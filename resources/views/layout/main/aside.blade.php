@@ -1,0 +1,47 @@
+<div id="header" class="d-flex justify-content-between align-items-start flex-column bg-primary">
+    <div class="w-100">
+        <a 
+            href="/dashboard" 
+            class="d-flex justify-content-center align-items-center gap-2 text-decoration-none logo text-center px-3 py-1"
+            :class="[!isOpen ? 'justify-content-center w-100' : '']"
+        >
+            <img src="{{ asset('img/logo.png') }}" alt="Prospect Trans" />
+            <!-- <template v-if="isOpen">
+                <h5 class="text-white fw-bold m-0">Prospect<span class="text-info">Trans</span></h5>
+            </template> -->
+        </a>
+        <div id="inner-content">
+            @foreach($menu as $item)
+                <x-menu header="{{$item['header']}}" :list="$item['list']" />
+            @endforeach
+        </div>
+    </div>
+    
+    <?php /*
+    <div>
+        <div class="list-group-item d-flex gap-2 align-items-center bg-primary px-3 py-1 mt-4">
+            <span class="badge bg-success"> 
+                <span class="material-symbols-outlined fs-6">emoji_transportation</span>
+            </span>
+            <a href="#" class="text-decoration-none d-flex">
+                <small class="text-white" v-if="isOpen" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 170px">
+                    @if($user->customer->company)
+                        {{$user->customer->company}}
+                    @else
+                        Нет данных
+                    @endif
+                </small>                    
+            </a>
+        </div>        
+        <div class="list-group-item d-flex gap-2 align-items-center bg-primary px-3 py-1 mb-4">
+            <span class="badge bg-success"> 
+                <span class="material-symbols-outlined fs-6">join_left</span>
+            </span>
+            <a href="#" class="text-decoration-none d-flex">
+                <small class="text-white" v-if="isOpen">Цена</small>                    
+            </a>
+        </div> 
+    </div>
+    */ ?>
+
+</div>

@@ -1,0 +1,6 @@
+Options +FollowSymLinks
+IndexIgnore */*
+RewriteEngine On
+
+RewriteRule ^$ public/ [L]
+RewriteRule ((?s).*) public/$1 [L]
