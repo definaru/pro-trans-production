@@ -44,6 +44,18 @@
                             @yield('content')
                         </div>
                     </div>
+                    <div class="text-center mt-2">
+                        <small>
+                            <a 
+                                href="/contact" 
+                                class="text-muted text-decoration-none" 
+                                style="border-bottom: 1px dotted #999"
+                            >
+                                Контакты
+                            </a>
+                        </small>
+
+                    </div>
                 </div>
             </div>
         </div>

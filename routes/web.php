@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DachboardController;
 use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\MainController;
 use App\Http\Middleware\Authenticate;
 
 
@@ -46,6 +47,10 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 
-// Route::get('/500', function() {
-//     return view('errors.500');
-// });
+Route::get('/contact', [MainController::class, 'Сontact']);
+Route::get('/doc', [MainController::class, 'Documentation']);
+Route::prefix('doc')->group(function () {
+    Route::get('license', [MainController::class, 'License']);
+    Route::get('responsibility', [MainController::class, 'Responsibility']);
+    Route::get('privatepolice', [MainController::class, 'Private']);
+});

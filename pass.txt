@@ -75,9 +75,9 @@ ssh root@62.217.178.252
 *TNmF4@K5mer
 
 
-git clone --branch=app https://github.com/definaru/pro-trans-production.git
+git clone --branch=app https://github.com/definaru/pro-trans-production.git ~/var/www/difficult-sinthia.ru/public_html
 
-git clone --branch=app git@github.com:definaru/pro-trans-production.git ~/home/p/prospekt83/difficult-sinthia.ru/public_html
+git clone --branch=app git@github.com:definaru/pro-trans-production.git
 
 difficult-sinthia.ru
 
@@ -211,4 +211,4 @@ PnLU0m3spOTHI4k5nNzr
 https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-20-04
 https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-20-04-ru
 https://www.digitalocean.com/community/tutorials/apache-ubuntu-14-04-lts-ru
-
+https://eternalhost.net/base/vps-vds/ustanovka-laravel-ubuntu
