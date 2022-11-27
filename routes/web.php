@@ -15,7 +15,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('profile/floading_settings', [DachboardController::class, 'FloadingSettings']);
     Route::get('profile/rg', [DachboardController::class, 'Profile']);
     Route::get('catalogs', [DachboardController::class, 'Catalog']);
-    Route::get('catalogs/category/{name}', [DachboardController::class, 'CatalogDetail']);
+    Route::get('catalog/category/{name}', [DachboardController::class, 'CatalogDetail']);
+    Route::get('payment/reports', [DachboardController::class, 'Reports']);
+    Route::get('payment/reports/{order}', [DachboardController::class, 'ReportsDetail']);
 });
 
 Route::prefix('api')->group(function () {

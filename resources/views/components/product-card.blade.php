@@ -1,21 +1,34 @@
+@php
+    $data = $img::Image($href);
+    $image = '';
+    try {
+        if(empty($data['rows'])) {
+            $image = '/img/no_photo.jpg';
+        } else {
+            $image = $data['rows'][0]['miniature']['href']; // 
+        }
+    } catch (\Exception $e) {
+        echo 'Error: ',  $e->getMessage();
+    }
+@endphp
 <tr>
     <td>
-        <div class="form-check mb-0 ms-3">
+        <div class="form-check mb-0 ms-2">
             <input type="checkbox" class="form-check-input" />
         </div>
     </td>
     <td>
-        <div class="avatar avatar-xs d-flex align-items-center gap-2">
-            <img src="/img/no_photo.jpg" alt="" class="rounded" style="width: 50px;" /> 
+        <div class="d-flex align-items-center gap-2">
+            <img src="{!! $image !!}" alt="{{$name}}" class="rounded" style="width: 50px;" /> 
             <small>
-                <a href="#" class="name fw-bold text-decoration-none text-dark">
+                <a href="{{$href}}" class="name fw-bold text-decoration-none text-dark">
                     {{$name}}
                 </a>
             </small>
         </div>
     </td>
     <td><a href="/test/{{$vendorcode}}" class="text-decoration-none">#{{$vendorcode}}</a></td>
-    <td><small>@php echo number_format($price, 2, '.', ' ') @endphp ₽</small></td>
+    <td><small>@php echo number_format(($price) / 100, 2, '.', ' ') @endphp ₽</small></td>
     <td>
         @if($availability === '0')
             <a href="/dashboard/order/{{$modifications}}/{{$vendorcode}}">
@@ -33,40 +46,11 @@
             <span>MERCEDES-BENZ</span>
         </div>
     </td>
-    <td><button class="other-features btn btn-outline-dark btn-sm">В корзину</button></td>
-</tr>
-
-
-<?php /*
-<tr>
     <td>
-        <div class="form-check mb-0 ms-3">
-            <input type="checkbox" class="form-check-input" />
-        </div>
-    </td>
-    <td>
-        <div class="avatar avatar-xs d-flex align-items-center gap-2">
-            <img src="/img/no_photo.jpg" alt="" class="rounded" style="width: 50px" /> 
-            <small>
-                <a href="#" class="name fw-bold text-decoration-none text-dark">{{$name}}</a>
-            </small>
-        </div>
-    </td>
-    <td><span class="badge rounded-pill text-bg-primary">{{$model}}</span></td>
-    <td>
-        <a href="/test/{{$mvs}}" class="text-decoration-none">#{{$mvs}}</a>
-    </td>
-    <td><small>{{$mvsdesc}}</small></td>
-    <td><small>{{$displacement}}</small> </td>
-    <td><small>{{$power}}</small></td>
-    <td><small>{{$drive}}</small></td>
-    <td><small>{{$bodyworktype}}</small></td>
-    <td><small>{{$fuel}}</small></td>
-    <td><small>{{$trimlevel}}</small> </td>
-    <td>
-        <button class="other-features btn btn-outline-dark btn-sm">
-            Показать
-        </button>
+        @if($availability === '0')
+            <button class="other-features btn btn-outline-secondary btn-sm" disabled>В корзину</button>
+        @else
+            <button class="other-features btn btn-outline-dark btn-sm">В корзину</button>
+        @endif
     </td>
 </tr>
-*/ ?>

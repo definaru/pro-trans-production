@@ -12,15 +12,18 @@
 </head>
 <body>
 
-    <div id="admin" :class="[isOpen ? 'panel' : 'panel-close']">
+    <div id="admin" :class="[isOpen ? 'panel' : 'panel-close']" class="d-print-block">
         @include('layout.main.aside')
-        <div class="bg-light content">
+        <div class="bg-light content d-print-table w-100">
             @include('layout.main.header')
-            <section style="overflow-y: scroll;height: 81vh">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 mt-5">
-                            <main class="px-3 pb-5">
+            <section style="overflow-y: scroll;height: 81vh" class="d-print-table w-100">
+                <div class="container d-print-table">
+                    <div class="row d-print-table">
+                        <div class="col-md-12 mt-5 d-print-table">
+                            <main class="px-3 pb-5 d-print-block">
+                                <div class="d-print-none">
+                                    @yield('breadcrumbs')
+                                </div>
                                 @include('layout.main.company')
                                 @yield('content')
                             </main>
@@ -28,7 +31,7 @@
                     </div>
                 </div>
             </section>
-            <footer class="border-top p-3 mb-2">
+            <footer class="border-top p-3 mb-2 d-print-none">
                 <div class="container">
                     <div class="row">
                         <div class="col-12">

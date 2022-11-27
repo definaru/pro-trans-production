@@ -26,6 +26,9 @@ https://www.moysklad.ru/login/
 admin@prospekt-trans
 0f108e3c54
 
+https://online.moysklad.ru/api/remap/1.2/entity/employee/2174f0e6-33fe-11ed-0a80-0285001db76b
+- Информация по продавцу.
+
 
 netsh wlan show profiles
 netsh wlan show profiles name=имя_wifi_сети key=clear
@@ -56,7 +59,7 @@ wcoWUkqZ3E9YStVTLpCr
 mysql -uprospekt83_trans -pwcoWUkqZ3E9YStVTLpCr prospekt83_trans
 
 composer-php self-update --2
-composer-php7.4 dump-autoload
+composer dump-autoload
 composer install
 
 php artisan cache:clear
@@ -75,12 +78,12 @@ ssh root@62.217.178.252
 *TNmF4@K5mer
 
 
-git clone --branch=app https://github.com/definaru/pro-trans-production.git ~/var/www/difficult-sinthia.ru/public_html
+git clone --branch=app https://github.com/definaru/pro-trans-production.git ~/
 
 git clone --branch=app git@github.com:definaru/pro-trans-production.git
 
 difficult-sinthia.ru
-
+prospekt-parts.com
 ...................................................................
 MySQL
 --
@@ -116,7 +119,9 @@ tree
 https://infobox.ru/community/blog/linuxvps/310.html
 
 
-ни чего не произошло. Так как сайт на VDS, то стало быть нужно ковыряться в конфигурационном файле Apache. А именно, (операционка Ubuntu 12.10 x86_64) /etc/apache2/apache2.conf добавляем:
+ни чего не произошло. Так как сайт на VDS, 
+то стало быть нужно ковыряться в конфигурационном файле Apache. 
+А именно, (операционка Ubuntu 12.10 x86_64) /etc/apache2/apache2.conf добавляем:
 
 
 <Directory /var/www/html>
@@ -139,7 +144,7 @@ sudo chown -R $USER:$USER /var/www/difficult-sinthia.ru/public_html
 
 sudo chgrp -R www-data /var/www/html/project
 
-sudo chmod -R 775 /var/www/difficult-sinthia.ru/public_html/storage
+sudo chmod -R 775 /var/www/prospekt-parts.com/public_html/storage
 sudo chgrp -R www-data /var/www/difficult-sinthia.ru/public_html
 sudo chgrp -R www-data /var/www/difficult-sinthia.ru/public_html -
 sudo chmod -R 775 /var/www/public_html/storage
@@ -151,15 +156,15 @@ sudo a2ensite sinthia
 ../var/www/public_html
 
 
-sudo chown -R $USER:$USER /var/www/public_html
+sudo chown -R $USER:$USER /var/www/prospekt-parts.com/public_html
 
 grep -n 'rewrite' apache2.conf
 
 <VirtualHost *:80>
-	ServerName difficult-sinthia.ru
-	ServerAlias www.difficult-sinthia.ru
+	ServerName prospekt-parts.com
+	ServerAlias www.prospekt-parts.com
 	ServerAdmin info@defina.ru
-	DocumentRoot /var/www/public_html
+	DocumentRoot /var/www/prospekt-parts.com/public_html
 	ErrorLog ${APACHE_LOG_DIR}/error.log
 	CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>

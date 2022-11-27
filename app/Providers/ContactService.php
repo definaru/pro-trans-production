@@ -5,7 +5,7 @@ namespace App\Providers;
 class ContactService
 {
 
-    public function format_phone($phone = '', $convert = false, $trim = true)
+    public static function format_phone($phone = '', $convert = false, $trim = true)
     {
         if (empty($phone)) return '';
         $phone = preg_replace("/[^0-9A-Za-z]/", "", $phone);

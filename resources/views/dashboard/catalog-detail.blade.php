@@ -70,13 +70,22 @@
                 <table class="table align-middle table-edge table-hover table-nowrap mb-0">
                     <thead class="thead-light bg-light">
                         <tr>
-                            <th class="w-60px ps-4">
-                                <div class="form-check mb-0"><input type="checkbox" value="" id="checkAllCheckboxes" class="form-check-input"></div>
+                            <th class="w-60px ps-3">
+                                <div class="form-check mb-0">
+                                    <input type="checkbox" id="checkAllCheckboxes" class="form-check-input" />
+                                </div>
                             </th>
-                            <th><a href="javascript: void(0);" data-sort="name" class="text-muted text-decoration-none" style="display: block; width: 300px;">
-                                Название <span class="list-sort"></span></a>
+                            <th>
+                                <a 
+                                    href="javascript: void(0);" 
+                                    data-sort="name" 
+                                    class="text-muted text-decoration-none" 
+                                    style="display: block; width: 300px;"
+                                >
+                                    Название <span class="list-sort"></span>
+                                </a>
                             </th>
-                            <th><a href="javascript: void(0);" class="text-muted text-decoration-none">Артикул<span class="list-sort"></span></a></th>
+                            <th><a href="javascript: void(0);" class="text-muted text-decoration-none" style="width: 170px;display: block">Артикул<span class="list-sort"></span></a></th>
                             <th><a href="javascript: void(0);" data-sort="status" class="text-muted text-decoration-none" style="width: 90px;display: block;">Цена<span class="list-sort"></span></a></th>
                             <th><a href="javascript: void(0);" data-sort="status" class="text-muted text-decoration-none" style="display: block;width: 85px;">Наличие<span class="list-sort"></span></a></th>
                             <th><a href="javascript: void(0);" data-sort="status" class="text-muted text-decoration-none" style="display: block;width: 198px;">Бренд<span class="list-sort"></span></a></th>
@@ -84,42 +93,16 @@
                         </tr>
                     </thead>
                     <tbody class="list">
+                        @foreach($data['rows'] as $item)
                         <x-product-card 
-                            name="CINQUECENTO ABARTH [NUOVA 500 ABARTH (2008-2012)]"
-                            vendorcode="150695001000"
-                            price="8792.43"
-                            availability="0"
+                            href="{{$item['id']}}"
+                            name="{{$item['name']}}"
+                            vendorcode="{{$item['code']}}"
+                            price="{{$item['salePrices'][0]['value']}}"
+                            availability="{{$item['volume']}}"
                             :modifications="$name"
-                            power="1.4 180 HP (KW132)"
-                            drive="LEFT (GSX)"
-                            bodyworktype="BN.W/ REAR END DOOR (TC2V)"
-                            fuel="БЕНЗИН (CMBBZ)"
-                            trimlevel="LEV.10 (FERRARI TRIBUTE) (LL10)"
                         />
-                        <x-product-card 
-                            name="CINQUECENTO ABARTH [NUOVA 500 ABARTH (2008-2012)]"
-                            vendorcode="150695001260"
-                            price="10792.43"
-                            availability="16"
-                            :modifications="$name"
-                            power="1.4 180 HP (KW132)"
-                            drive="LEFT (GSX)"
-                            bodyworktype="BN.W/ REAR END DOOR (TC2V)"
-                            fuel="БЕНЗИН (CMBBZ)"
-                            trimlevel="LEV.10 (FERRARI TRIBUTE) (LL10)"
-                        />                 
-                        <x-product-card 
-                            name="CINQUECENTO ABARTH [NUOVA 500 ABARTH (2008-2012)]"
-                            vendorcode="150695051870"
-                            price="108792.43"
-                            availability="7"
-                            :modifications="$name"
-                            power="1.4 180 HP (KW132)"
-                            drive="RIGHT (GDX)	"
-                            bodyworktype="BN.W/ REAR END DOOR (TC2V)"
-                            fuel="БЕНЗИН (CMBBZ)	"
-                            trimlevel="LEV.10 (FERRARI TRIBUTE) (LL10)"
-                        />
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -136,6 +119,9 @@
                     </ul>
                 </div>
             </div>
+          
+            <pre><?php //var_dump($data);?></pre>
+
         </div>
     </div>
 </div>

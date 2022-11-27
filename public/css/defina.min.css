@@ -143,6 +143,30 @@ input:focus {
     width: 9px;
 }
 
+.badge .legend-indicator {
+    margin-right: 0.3125rem;
+}
+.bg-soft-success {
+    background-color: rgba(0,201,167,.1)!important;
+}
+.bg-soft-info {
+    background-color: rgba(9,165,190,.1)!important;
+}
+.bg-soft-dark {
+    background-color: rgba(19,33,68,.1)!important;
+}
+.bg-soft-warning {
+    background-color: rgba(245,202,153,.1)!important;
+}
+.legend-indicator {
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: #bdc5d1;
+    border-radius: 50%;
+    margin-right: 0.4375rem;
+}
+
 .btn-primary {
     background-color: #3f51b5;
     border-color: #3f51b5;
@@ -230,4 +254,36 @@ input:focus {
     justify-content: center;
     align-items: center;
     border-radius: 50em;
+}
+.avatar-xss {
+    width: 1rem !important;
+    height: 1rem !important;
+}
+.avatar-xl {
+    width: 4.921875rem !important;
+    height: 4.921875rem !important;
+}
+.avatar-img {
+    max-width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+.avatar {
+    position: relative;
+    display: inline-block;
+    width: 2.625rem;
+    height: 2.625rem;
+}
+
+@media print {
+    .container {
+        width: 100% !important;
+    }
+    .panel {
+        display: grid;
+        height: 100%;
+        grid-template-columns: minmax(0px, 0%) 1fr;
+    }
 }

@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-between">
-    <h1>@yield('title')</h1>
-    <span class="material-symbols-outlined cp" data-bs-toggle="collapse" data-bs-target="#company" @click="toggleExpandLess">
+    <h2>@yield('title')</h2>
+    <span class="d-print-none material-symbols-outlined cp" data-bs-toggle="collapse" data-bs-target="#company" @click="toggleExpandLess">
         <template v-if="expand">expand_less</template> 
         <template v-else>expand_more</template>
     </span>

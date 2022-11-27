@@ -9,6 +9,7 @@ use App\Providers\GetMenu;
 use App\Models\UiComponent;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Notifications\Messages\MailMessage;
+use App\Providers\ContactService;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -35,7 +36,8 @@ class AppServiceProvider extends ServiceProvider
             'usermenu' => GetMenu::user(),
             'helpmenu' => GetMenu::help(),
             'catalog' => GetMenu::catalog(),
-            'catalogTrucks' => GetMenu::catalogTrucks()
+            'catalogTrucks' => GetMenu::catalogTrucks(),
+            'contact' => new ContactService()
         ]);
     }
 }

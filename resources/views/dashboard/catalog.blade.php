@@ -37,33 +37,18 @@
         </div>
     </div>
 </div>
-<?php /*
-<div class="row mt-5">
-    <div class="col-md-12">
-        <h5 class="mb-2">Наименования каталогов легкового транспорта</h5>
-    </div>
-    @foreach ($catalog as $item)
-    <div class="col-md-4">
-        <a href="/dashboard/catalogs/category/{{$item['name']}}" class="card border-0 shadow-sm mb-4">
-            <div class="card-body d-flex align-items-center gap-3">
-                <div class="icon-brand">
-                    <img src="{{$item['image']}}" class="w-100" alt="{{$item['name']}}" />
-                </div>
-                <span>{{$item['name']}}</span>
-            </div>
-        </a>
-    </div>
-    @endforeach
-</div>
-*/ ?>
 
 <div class="row mt-5">
     <div class="col-md-12">
         <h5 class="mb-2">Наименования каталогов грузового транспорта</h5>
+        <?php /*
+        https://github.com/milon/barcode
+        {!! DNS1D::getBarcodeSVG('2000000018744', 'EAN13', 1.7,60) !!}
+        */ ?>
     </div>
     @foreach ($catalogTrucks as $item)
     <div class="col-md-4">
-        <a href="/dashboard/catalogs/category/{{$item['name']}}" class="card border-0 shadow-sm mb-4">
+        <a href="/dashboard/catalog/category/{{$item['name']}}" class="card border-0 shadow-sm mb-4">
             <div class="card-body d-flex align-items-center gap-3">
                 <div class="icon-brand">
                     <img src="{{$item['image']}}" class="w-100" alt="{{$item['name']}}" />

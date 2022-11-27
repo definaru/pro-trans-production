@@ -586,16 +586,8 @@ class GetMenu
                                 'href' => 'settlements/payment'
                             ],
                             [
-                                'name' => 'Отчет по баллам',
-                                'href' => 'profile/points'
-                            ],
-                            [
-                                'name' => 'Онлайн оплата',
-                                'href' => 'payment'
-                            ],
-                            [
-                                'name' => 'Онлайн оплата. Отчет',
-                                'href' => 'payment/report'
+                                'name' => 'Отчеты',
+                                'href' => 'payment/reports'
                             ]
                         ]
                     ],

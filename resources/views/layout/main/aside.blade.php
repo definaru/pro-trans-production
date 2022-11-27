@@ -1,4 +1,4 @@
-<div id="header" class="d-flex justify-content-between align-items-start flex-column bg-primary">
+<div id="header" class="d-flex justify-content-between align-items-start flex-column bg-primary d-print-none">
     <div class="w-100">
         <a 
             href="/dashboard" 
