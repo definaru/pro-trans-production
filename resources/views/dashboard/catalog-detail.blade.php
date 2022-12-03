@@ -1,6 +1,6 @@
 @extends('layout/main')
 
-@section('title', $name)
+@section('title', $catalog['name'])
 
 @section('content')
 
@@ -22,6 +22,7 @@
         </div>
         @endif
     @endforeach
+    <pre><?php //var_dump($catalog);?></pre>
 
 <div class="row mt-4">
     <div class="col">
@@ -68,7 +69,7 @@
             </div>
             <div class="table-responsive">
                 <table class="table align-middle table-edge table-hover table-nowrap mb-0">
-                    <thead class="thead-light bg-light">
+                    <thead class="thead-light bg-light" style="font-size: 14px">
                         <tr>
                             <th class="w-60px ps-3">
                                 <div class="form-check mb-0">
@@ -80,19 +81,35 @@
                                     href="javascript: void(0);" 
                                     data-sort="name" 
                                     class="text-muted text-decoration-none" 
-                                    style="display: block; width: 300px;"
+                                    style="display: block; width: 250px;"
                                 >
                                     Название <span class="list-sort"></span>
                                 </a>
                             </th>
-                            <th><a href="javascript: void(0);" class="text-muted text-decoration-none" style="width: 170px;display: block">Артикул<span class="list-sort"></span></a></th>
-                            <th><a href="javascript: void(0);" data-sort="status" class="text-muted text-decoration-none" style="width: 90px;display: block;">Цена<span class="list-sort"></span></a></th>
-                            <th><a href="javascript: void(0);" data-sort="status" class="text-muted text-decoration-none" style="display: block;width: 85px;">Наличие<span class="list-sort"></span></a></th>
-                            <th><a href="javascript: void(0);" data-sort="status" class="text-muted text-decoration-none" style="display: block;width: 198px;">Бренд<span class="list-sort"></span></a></th>
+                            <th>
+                                <a href="javascript: void(0);" class="text-muted text-decoration-none" style="width: 120px;display: block">
+                                    Артикул<span class="list-sort"></span>
+                                </a>
+                            </th>
+                            <th>
+                                <a href="javascript: void(0);" data-sort="status" class="text-muted text-decoration-none" style="width: 90px;display: block;">
+                                    Цена<span class="list-sort"></span>
+                                </a>
+                            </th>
+                            <th>
+                                <a href="javascript: void(0);" data-sort="status" class="text-muted text-decoration-none" style="display: block;width: 85px;">
+                                    Наличие<span class="list-sort"></span>
+                                </a>
+                            </th>
+                            <th>
+                                <a href="javascript: void(0);" data-sort="status" class="text-muted text-decoration-none" style="display: block;width: 198px;">
+                                    Бренд<span class="list-sort"></span>
+                                </a>
+                            </th>
                             <th style="text-align: center;display: block;width: 110px;">Опции</th>
                         </tr>
                     </thead>
-                    <tbody class="list">
+                    <tbody class="list" style="font-size: 14px">
                         @foreach($data['rows'] as $item)
                         <x-product-card 
                             href="{{$item['id']}}"
@@ -110,7 +127,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="me-5 text-secondary small">
                         Показано: 
-                        <span>1</span> - <span>8</span> из <span>20</span>
+                        <span>1</span> - <span>{{$data['meta']['limit']}}</span> из <span>{{$data['meta']['size']}}</span>
                     </div>
                     <ul class="pagination list-pagination mb-0 d-flex">
                         <li class="page-item active"><a href="javascript: void(0);" class="page page-link">1</a></li>

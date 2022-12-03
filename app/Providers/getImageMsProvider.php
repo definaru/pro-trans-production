@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Http;
+use App\Models\MoySklad;
 
 
 class getImageMsProvider
@@ -10,7 +11,7 @@ class getImageMsProvider
 
     public static function Image($id)
     {
-        $url = 'https://online.moysklad.ru/api/remap/1.2/entity/product/'.$id.'/images';
+        $url = MoySklad::msUrl().'product/'.$id.'/images';
         $response = Http::withBasicAuth(config('app.ms_login'), config('app.ms_password'))->get($url);
         return $response->json();
     }

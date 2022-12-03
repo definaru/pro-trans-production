@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Models\MoySklad;
 
 
 class DachboardController extends Controller
@@ -14,6 +15,28 @@ class DachboardController extends Controller
         return view('profile.settings');
     }
 
+    public function Order() 
+    {
+        return view('dashboard.payment.order');
+    }
+
+    public function Invoice($invoice = '') 
+    {
+        $order = $invoice ? MoySklad::getInvoiceProduct($invoice) : '';
+        //return response()->json($order);
+        return view('dashboard.payment.order', ['order' => $order]);
+    }
+
+    public function Account() 
+    {
+        return view('dashboard.payment.account');
+    }
+
+    public function Record() 
+    {
+        return view('dashboard.payment.record');
+    }
+
     public function Catalog()
     {
         return view('dashboard.catalog');
@@ -21,11 +44,13 @@ class DachboardController extends Controller
 
     public function CatalogDetail($name)
     {
-        $url = 'https://online.moysklad.ru/api/remap/1.2/entity/product?limit=100&offset=0';
+        $catalog = MoySklad::getCategory($name);
+        $url = MoySklad::msUrl().'product?limit=25&offset=0';
         $response = Http::withBasicAuth(config('app.ms_login'), config('app.ms_password'))->get($url);
         return view('dashboard.catalog-detail', [
             'name' => $name, 
-            'data' => $response->json()
+            'data' => $response->json(),
+            'catalog' => $catalog
         ]);
     }
 

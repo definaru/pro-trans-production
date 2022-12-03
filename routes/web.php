@@ -14,8 +14,12 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('profile/special_prices', [DachboardController::class, 'SpecialPrices']);
     Route::get('profile/floading_settings', [DachboardController::class, 'FloadingSettings']);
     Route::get('profile/rg', [DachboardController::class, 'Profile']);
-    Route::get('catalogs', [DachboardController::class, 'Catalog']);
+    Route::get('catalog', [DachboardController::class, 'Catalog']);
     Route::get('catalog/category/{name}', [DachboardController::class, 'CatalogDetail']);
+    Route::get('payment/order', [DachboardController::class, 'Invoice']);
+    Route::get('payment/order/{invoice}', [DachboardController::class, 'Invoice']);
+    Route::get('payment/record', [DachboardController::class, 'Record']);
+    Route::get('payment/account', [DachboardController::class, 'Account']);
     Route::get('payment/reports', [DachboardController::class, 'Reports']);
     Route::get('payment/reports/{order}', [DachboardController::class, 'ReportsDetail']);
 });
@@ -40,8 +44,6 @@ Route::controller(PasswordController::class)->group(function () {
 
 Route::controller(AuthController::class)->group(function () {
     Route::match(['get', 'post'], '/', 'home')->name('index');
-    Route::get('/test', 'test');
-    Route::get('/info', 'info');
     Route::get('/dashboard', 'dashboard')->middleware('auth')->name('dashboard');
     Route::get('/logout', 'logout')->name('logout');
     Route::post('/login', 'login')->name('login');

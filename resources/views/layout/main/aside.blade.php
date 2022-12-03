@@ -1,14 +1,14 @@
-<div id="header" class="d-flex justify-content-between align-items-start flex-column bg-primary d-print-none">
+<div id="header" class="d-flex justify-content-between align-items-start flex-column bg-white d-print-none position-relative shadow-sm">
     <div class="w-100">
         <a 
             href="/dashboard" 
-            class="d-flex justify-content-center align-items-center gap-2 text-decoration-none logo text-center px-3 py-1"
+            class="d-flex justify-content-center align-items-center gap-2 text-decoration-none logo text-center px-3 py-3"
             :class="[!isOpen ? 'justify-content-center w-100' : '']"
         >
-            <img src="{{ asset('img/logo.png') }}" alt="Prospect Trans" />
-            <!-- <template v-if="isOpen">
-                <h5 class="text-white fw-bold m-0">Prospect<span class="text-info">Trans</span></h5>
-            </template> -->
+            <img src="{{ asset('img/dark-logo.png') }}" alt="{{ config('app.name') }}" />
+            <template v-if="isOpen">
+                <h5 class="text-dark m-0"><span class="fw-bold">Prospect</span> Parts</h5>
+            </template>
         </a>
         <div id="inner-content">
             @foreach($menu as $item)

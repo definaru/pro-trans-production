@@ -1,5 +1,5 @@
 @extends('layout/main')
-@section('title', 'Оригинальные каталоги')
+@section('title', 'Каталог')
 
 @section('content')
 <div class="row mt-4">

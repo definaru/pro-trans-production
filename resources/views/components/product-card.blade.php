@@ -5,7 +5,7 @@
         if(empty($data['rows'])) {
             $image = '/img/no_photo.jpg';
         } else {
-            $image = $data['rows'][0]['miniature']['href']; // 
+            $image = $data['rows'][0]['miniature']['href'];
         }
     } catch (\Exception $e) {
         echo 'Error: ',  $e->getMessage();
@@ -19,7 +19,7 @@
     </td>
     <td>
         <div class="d-flex align-items-center gap-2">
-            <img src="{!! $image !!}" alt="{{$name}}" class="rounded" style="width: 50px;" /> 
+            <img src="{!! $image !!}" alt="{{$name}}" class="rounded image-product" /> 
             <small>
                 <a href="{{$href}}" class="name fw-bold text-decoration-none text-dark">
                     {{$name}}
@@ -28,7 +28,7 @@
         </div>
     </td>
     <td><a href="/test/{{$vendorcode}}" class="text-decoration-none">#{{$vendorcode}}</a></td>
-    <td><small>@php echo number_format(($price) / 100, 2, '.', ' ') @endphp ₽</small></td>
+    <td><small><strong>@php echo number_format(($price) / 100, 2, '.', ' ') @endphp ₽</strong></small></td>
     <td>
         @if($availability === '0')
             <a href="/dashboard/order/{{$modifications}}/{{$vendorcode}}">

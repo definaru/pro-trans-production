@@ -142,15 +142,29 @@
                         <td><small class="text-muted">Aug 17, 2020 / 05:48</small></td>
                         <td><span class="badge bg-soft-success text-success"><span class="legend-indicator bg-success"></span>Оплачено</span></td>
                         <td>
-                            <div class="d-flex align-items-center"><img src="/img/card/mastercard.svg" alt="..." class="me-2" style="width: 25px;"> <span class="text-dark">•••• 4242</span></div>
+                            <div class="d-flex align-items-center">
+                                <img src="/img/card/mastercard.svg" alt="..." class="me-2" style="width: 22px" /> 
+                                <span class="text-dark">•••• 4242</span>
+                            </div>
                         </td>
                         <td>
                             <div role="group" class="btn-group">
-                                <a href="./ecommerce-order-details" class="d-flex align-items-center gap-1 btn btn-white btn-sm"><span class="material-symbols-outlined fs-6">visibility</span> Посмотреть
+                                <a href="#" class="d-flex align-items-center gap-1 btn btn-white btn-sm">
+                                    <span class="material-symbols-outlined fs-6">visibility</span> 
+                                    Посмотреть
                                 </a> 
                                 <div class="btn-group">
-                                    <button type="button" id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
-                                    <div aria-labelledby="ordersExportDropdown1" class="dropdown-menu dropdown-menu-end mt-1"><a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">print</span>Распечатать</a> <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">delete</span>Удалить</a></div>
+                                    <button type="button" id="ordersExportDropdown1" data-bs-toggle="dropdown" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
+                                    <div aria-labelledby="ordersExportDropdown1" class="dropdown-menu dropdown-menu-end mt-1">
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">print</span>
+                                            Распечатать
+                                        </a> 
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">delete</span>
+                                            Удалить
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </td>
@@ -162,19 +176,42 @@
                                 <label for="ordersCheck2" class="form-check-label"></label>
                             </div>
                         </td>
-                        <td class="table-column-ps-0"><a href="./ecommerce-order-details" class="text-decoration-none">#23513</a></td>
+                        <td class="table-column-ps-0">
+                            <a href="#" class="text-decoration-none">
+                                #23513
+                            </a>
+                        </td>
                         <td><small class="text-muted">Aug 17, 2022 / 02:01</small></td>
-                        <td><span class="badge bg-soft-success text-success"><span class="legend-indicator bg-success"></span>Оплачено</span></td>
                         <td>
-                            <div class="d-flex align-items-center"><img src="/img/card/mastercard.svg" alt="..." class="me-2" style="width: 25px;"> <span class="text-dark">•••• 2390</span></div>
+                            <span class="badge bg-soft-success text-success">
+                                <span class="legend-indicator bg-success"></span>
+                                Оплачено
+                            </span>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="/img/card/mastercard.svg" alt="..." class="me-2" style="width: 22px" />
+                                <span class="text-dark">•••• 2390</span>
+                            </div>
                         </td>
                         <td>
                             <div role="group" class="btn-group">
-                                <a href="./ecommerce-order-details" class="d-flex align-items-center gap-1 btn btn-white btn-sm"><span class="material-symbols-outlined fs-6">visibility</span> Посмотреть
+                                <a href="#" class="d-flex align-items-center gap-1 btn btn-white btn-sm">
+                                    <span class="material-symbols-outlined fs-6">visibility</span> 
+                                    Посмотреть
                                 </a> 
                                 <div class="btn-group">
-                                    <button type="button" id="ordersExportDropdown2" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
-                                    <div aria-labelledby="ordersExportDropdown2" class="dropdown-menu dropdown-menu-end mt-1"><a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">print</span>Распечатать</a> <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">delete</span>Удалить</a></div>
+                                    <button type="button" id="ordersExportDropdown2" data-bs-toggle="dropdown" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
+                                    <div aria-labelledby="ordersExportDropdown2" class="dropdown-menu dropdown-menu-end mt-1">
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">print</span>
+                                            Распечатать
+                                        </a> 
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">delete</span>
+                                            Удалить
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </td>
@@ -186,19 +223,38 @@
                                 <label for="ordersCheck3" class="form-check-label"></label>
                             </div>
                         </td>
-                        <td class="table-column-ps-0"><a href="./ecommerce-order-details" class="text-decoration-none">#62311</a></td>
+                        <td class="table-column-ps-0"><a href="#" class="text-decoration-none">#62311</a></td>
                         <td><small class="text-muted">Aug 17, 2022 / 01:55</small></td>
-                        <td><span class="badge bg-soft-success text-success"><span class="legend-indicator bg-success"></span>Оплачено</span></td>
                         <td>
-                            <div class="d-flex align-items-center"><img src="/img/card/paypal-icon.svg" alt="..." class="me-2" style="width: 25px;"> <span class="text-dark">••••@gmail.com</span></div>
+                            <span class="badge bg-soft-success text-success">
+                                <span class="legend-indicator bg-success"></span>
+                                Оплачено
+                            </span>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="/img/card/paypal-icon.svg" alt="..." class="me-2" style="width: 22px" /> 
+                                <span class="text-dark">••••@gmail.com</span>
+                            </div>
                         </td>
                         <td>
                             <div role="group" class="btn-group">
-                                <a href="./ecommerce-order-details" class="d-flex align-items-center gap-1 btn btn-white btn-sm"><span class="material-symbols-outlined fs-6">visibility</span> Посмотреть
+                                <a href="#" class="d-flex align-items-center gap-1 btn btn-white btn-sm">
+                                    <span class="material-symbols-outlined fs-6">visibility</span> 
+                                    Посмотреть
                                 </a> 
                                 <div class="btn-group">
-                                    <button type="button" id="ordersExportDropdown3" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
-                                    <div aria-labelledby="ordersExportDropdown3" class="dropdown-menu dropdown-menu-end mt-1"><a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">print</span>Распечатать</a> <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">delete</span>Удалить</a></div>
+                                    <button type="button" id="ordersExportDropdown3" data-bs-toggle="dropdown" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
+                                    <div aria-labelledby="ordersExportDropdown3" class="dropdown-menu dropdown-menu-end mt-1">
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">print</span>
+                                            Распечатать
+                                        </a> 
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">delete</span>
+                                            Удалить
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </td>
@@ -210,19 +266,38 @@
                                 <label for="ordersCheck4" class="form-check-label"></label>
                             </div>
                         </td>
-                        <td class="table-column-ps-0"><a href="./ecommerce-order-details" class="text-decoration-none">#12453</a></td>
+                        <td class="table-column-ps-0"><a href="#" class="text-decoration-none">#12453</a></td>
                         <td><small class="text-muted">Aug 17, 2022 / 01:54</small></td>
-                        <td><span class="badge bg-soft-warning text-warning"><span class="legend-indicator bg-warning"></span>В ожидании</span></td>
                         <td>
-                            <div class="d-flex align-items-center"><img src="/img/card/mastercard.svg" alt="..." class="avatar avatar-xss avatar-4x3 me-2" style="width: 25px;"> <span class="text-dark">•••• 3535</span></div>
+                            <span class="badge bg-soft-warning text-warning">
+                                <span class="legend-indicator bg-warning"></span>
+                                В ожидании
+                            </span>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="/img/card/mastercard.svg" alt="..." class="me-2" style="width: 22px" /> 
+                                <span class="text-dark">•••• 3535</span>
+                            </div>
                         </td>
                         <td>
                             <div role="group" class="btn-group">
-                                <a href="./ecommerce-order-details" class="d-flex align-items-center gap-1 btn btn-white btn-sm"><span class="material-symbols-outlined fs-6">visibility</span> Посмотреть
+                                <a href="#" class="d-flex align-items-center gap-1 btn btn-white btn-sm">
+                                    <span class="material-symbols-outlined fs-6">visibility</span> 
+                                    Посмотреть
                                 </a> 
                                 <div class="btn-group">
-                                    <button type="button" id="ordersExportDropdown4" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
-                                    <div aria-labelledby="ordersExportDropdown4" class="dropdown-menu dropdown-menu-end mt-1"><a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">print</span>Распечатать</a> <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">delete</span>Удалить</a></div>
+                                    <button type="button" id="ordersExportDropdown4" data-bs-toggle="dropdown" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
+                                    <div aria-labelledby="ordersExportDropdown4" class="dropdown-menu dropdown-menu-end mt-1">
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">print</span>
+                                            Распечатать
+                                        </a> 
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">delete</span>
+                                            Удалить
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </td>
@@ -234,19 +309,38 @@
                                 <label for="ordersCheck5" class="form-check-label"></label>
                             </div>
                         </td>
-                        <td class="table-column-ps-0"><a href="./ecommerce-order-details" class="text-decoration-none">#84223</a></td>
+                        <td class="table-column-ps-0"><a href="#" class="text-decoration-none">#84223</a></td>
                         <td><small class="text-muted">Aug 17, 2022 / 01:04</small></td>
-                        <td><span class="badge bg-soft-success text-success"><span class="legend-indicator bg-success"></span>Оплачено</span></td>
                         <td>
-                            <div class="d-flex align-items-center"><img src="/img/card/paypal-icon.svg" alt="..." class="avatar avatar-xss avatar-4x3 me-2" style="width: 25px;"> <span class="text-dark">••••@gmail.com</span></div>
+                            <span class="badge bg-soft-success text-success">
+                                <span class="legend-indicator bg-success"></span>
+                                Оплачено
+                            </span>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="/img/card/paypal-icon.svg" alt="..." class="me-2" style="width: 22px" /> 
+                                <span class="text-dark">••••@gmail.com</span>
+                            </div>
                         </td>
                         <td>
                             <div role="group" class="btn-group">
-                                <a href="./ecommerce-order-details" class="d-flex align-items-center gap-1 btn btn-white btn-sm"><span class="material-symbols-outlined fs-6">visibility</span> Посмотреть
+                                <a href="#" class="d-flex align-items-center gap-1 btn btn-white btn-sm">
+                                    <span class="material-symbols-outlined fs-6">visibility</span> 
+                                    Посмотреть
                                 </a> 
                                 <div class="btn-group">
-                                    <button type="button" id="ordersExportDropdown5" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
-                                    <div aria-labelledby="ordersExportDropdown5" class="dropdown-menu dropdown-menu-end mt-1"><a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">print</span>Распечатать</a> <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">delete</span>Удалить</a></div>
+                                    <button type="button" id="ordersExportDropdown5" data-bs-toggle="dropdown" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
+                                    <div aria-labelledby="ordersExportDropdown5" class="dropdown-menu dropdown-menu-end mt-1">
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">print</span>
+                                            Распечатать
+                                        </a> 
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">delete</span>
+                                            Удалить
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </td>
@@ -258,19 +352,38 @@
                                 <label for="ordersCheck6" class="form-check-label"></label>
                             </div>
                         </td>
-                        <td class="table-column-ps-0"><a href="./ecommerce-order-details" class="text-decoration-none">#46542</a></td>
+                        <td class="table-column-ps-0"><a href="#" class="text-decoration-none">#46542</a></td>
                         <td><small class="text-muted">Aug 17, 2022 / 01:01</small></td>
-                        <td><span class="badge bg-soft-success text-success"><span class="legend-indicator bg-success"></span>Оплачено</span></td>
                         <td>
-                            <div class="d-flex align-items-center"><img src="/img/card/paypal-icon.svg" alt="..." class="avatar avatar-xss avatar-4x3 me-2" style="width: 25px;"> <span class="text-dark">••••@gmail.com</span></div>
+                            <span class="badge bg-soft-success text-success">
+                                <span class="legend-indicator bg-success"></span>
+                                Оплачено
+                            </span>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="/img/card/paypal-icon.svg" alt="..." class="me-2" style="width: 22px" /> 
+                                <span class="text-dark">••••@gmail.com</span>
+                            </div>
                         </td>
                         <td>
                             <div role="group" class="btn-group">
-                                <a href="./ecommerce-order-details" class="d-flex align-items-center gap-1 btn btn-white btn-sm"><span class="material-symbols-outlined fs-6">visibility</span> Посмотреть
+                                <a href="#" class="d-flex align-items-center gap-1 btn btn-white btn-sm">
+                                    <span class="material-symbols-outlined fs-6">visibility</span> 
+                                    Посмотреть
                                 </a> 
                                 <div class="btn-group">
-                                    <button type="button" id="ordersExportDropdown6" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
-                                    <div aria-labelledby="ordersExportDropdown6" class="dropdown-menu dropdown-menu-end mt-1"><a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">print</span>Распечатать</a> <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">delete</span>Удалить</a></div>
+                                    <button type="button" id="ordersExportDropdown6" data-bs-toggle="dropdown" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
+                                    <div aria-labelledby="ordersExportDropdown6" class="dropdown-menu dropdown-menu-end mt-1">
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">print</span>
+                                            Распечатать
+                                        </a> 
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">delete</span>
+                                            Удалить
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </td>
@@ -283,20 +396,42 @@
                             </div>
                         </td>
                         <td>
-                            <div class="d-flex align-items-center gap-2"><a href="./ecommerce-order-details.html" class="text-decoration-none text-danger">#35378</a> <i class="material-symbols-outlined text-danger fs-6">emergency_home</i></div>
+                            <div class="d-flex align-items-center gap-2">
+                                <a href="#" class="text-decoration-none text-danger">#35378</a> 
+                                <i class="material-symbols-outlined text-danger fs-6">emergency_home</i>
+                            </div>
                         </td>
                         <td><small class="text-muted">Aug 17, 2022 / 12:56</small></td>
-                        <td><span class="badge bg-soft-warning text-warning"><span class="legend-indicator bg-warning"></span>В ожидании</span></td>
                         <td>
-                            <div class="d-flex align-items-center"><img src="/img/card/mastercard.svg" alt="..." class="avatar avatar-xss avatar-4x3 me-2" style="width: 25px;"> <span class="text-dark">•••• 9901</span></div>
+                            <span class="badge bg-soft-warning text-warning">
+                                <span class="legend-indicator bg-warning"></span>
+                                В ожидании
+                            </span>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="/img/card/mastercard.svg" alt="..." class="me-2" style="width: 22px" /> 
+                                <span class="text-dark">•••• 9901</span>
+                            </div>
                         </td>
                         <td>
                             <div role="group" class="btn-group">
-                                <a href="./ecommerce-order-details" class="d-flex align-items-center gap-1 btn btn-white btn-sm"><span class="material-symbols-outlined fs-6">visibility</span> Посмотреть
+                                <a href="#" class="d-flex align-items-center gap-1 btn btn-white btn-sm">
+                                    <span class="material-symbols-outlined fs-6">visibility</span> 
+                                    Посмотреть
                                 </a> 
                                 <div class="btn-group">
-                                    <button type="button" id="ordersExportDropdown7" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
-                                    <div aria-labelledby="ordersExportDropdown7" class="dropdown-menu dropdown-menu-end mt-1"><a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">print</span>Распечатать</a> <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">delete</span>Удалить</a></div>
+                                    <button type="button" id="ordersExportDropdown7" data-bs-toggle="dropdown" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
+                                    <div aria-labelledby="ordersExportDropdown7" class="dropdown-menu dropdown-menu-end mt-1">
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">print</span>
+                                            Распечатать
+                                        </a> 
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">delete</span>
+                                            Удалить
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </td>
@@ -309,20 +444,42 @@
                             </div>
                         </td>
                         <td>
-                            <div class="d-flex align-items-center gap-2"><a href="./ecommerce-order-details.html" class="text-decoration-none text-danger">#24562</a> <i class="material-symbols-outlined text-danger fs-6">emergency_home</i></div>
+                            <div class="d-flex align-items-center gap-2">
+                                <a href="№" class="text-decoration-none text-danger">#24562</a> 
+                                <i class="material-symbols-outlined text-danger fs-6">emergency_home</i>
+                            </div>
                         </td>
                         <td><small class="text-muted">Aug 17, 2022 / 12:54</small></td>
-                        <td><span class="badge bg-soft-warning text-warning"><span class="legend-indicator bg-warning"></span>В ожидании</span></td>
                         <td>
-                            <div class="d-flex align-items-center"><img src="/img/card/mastercard.svg" alt="..." class="avatar avatar-xss avatar-4x3 me-2" style="width: 25px;"> <span class="text-dark">•••• 2278</span></div>
+                            <span class="badge bg-soft-warning text-warning">
+                                <span class="legend-indicator bg-warning"></span>
+                                В ожидании
+                            </span>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="/img/card/mastercard.svg" alt="..." class="me-2" style="width: 22px" /> 
+                                <span class="text-dark">•••• 2278</span>
+                            </div>
                         </td>
                         <td>
                             <div role="group" class="btn-group">
-                                <a href="./ecommerce-order-details" class="d-flex align-items-center gap-1 btn btn-white btn-sm"><span class="material-symbols-outlined fs-6">visibility</span> Посмотреть
+                                <a href="#" class="d-flex align-items-center gap-1 btn btn-white btn-sm">
+                                    <span class="material-symbols-outlined fs-6">visibility</span> 
+                                    Посмотреть
                                 </a> 
                                 <div class="btn-group">
-                                    <button type="button" id="ordersExportDropdown8" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
-                                    <div aria-labelledby="ordersExportDropdown8" class="dropdown-menu dropdown-menu-end mt-1"><a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">print</span>Распечатать</a> <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">delete</span>Удалить</a></div>
+                                    <button type="button" id="ordersExportDropdown8" data-bs-toggle="dropdown" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
+                                    <div aria-labelledby="ordersExportDropdown8" class="dropdown-menu dropdown-menu-end mt-1">
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">print</span>
+                                            Распечатать
+                                        </a> 
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">delete</span>
+                                            Удалить
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </td>
@@ -334,19 +491,33 @@
                                 <label for="ordersCheck9" class="form-check-label"></label>
                             </div>
                         </td>
-                        <td class="table-column-ps-0"><a href="./ecommerce-order-details" class="text-decoration-none">#78531</a></td>
+                        <td class="table-column-ps-0"><a href="#" class="text-decoration-none">#78531</a></td>
                         <td><small class="text-muted">Aug 17, 2022 / 12:48</small></td>
                         <td><span class="badge bg-soft-success text-success"><span class="legend-indicator bg-success"></span>Оплачено</span></td>
                         <td>
-                            <div class="d-flex align-items-center"><img src="/img/card/paypal-icon.svg" alt="..." class="avatar avatar-xss avatar-4x3 me-2" style="width: 25px;"> <span class="text-dark">••••@gmail.com</span></div>
+                            <div class="d-flex align-items-center">
+                                <img src="/img/card/paypal-icon.svg" alt="..." class="me-2" style="width: 22px" /> 
+                                <span class="text-dark">••••@gmail.com</span>
+                            </div>
                         </td>
                         <td>
                             <div role="group" class="btn-group">
-                                <a href="./ecommerce-order-details" class="d-flex align-items-center gap-1 btn btn-white btn-sm"><span class="material-symbols-outlined fs-6">visibility</span> Посмотреть
+                                <a href="#" class="d-flex align-items-center gap-1 btn btn-white btn-sm">
+                                    <span class="material-symbols-outlined fs-6">visibility</span> 
+                                    Посмотреть
                                 </a> 
                                 <div class="btn-group">
-                                    <button type="button" id="ordersExportDropdown9" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
-                                    <div aria-labelledby="ordersExportDropdown9" class="dropdown-menu dropdown-menu-end mt-1"><a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">print</span>Распечатать</a> <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">delete</span>Удалить</a></div>
+                                    <button type="button" id="ordersExportDropdown9" data-bs-toggle="dropdown" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
+                                    <div aria-labelledby="ordersExportDropdown9" class="dropdown-menu dropdown-menu-end mt-1">
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">print</span>
+                                            Распечатать
+                                        </a> 
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">delete</span>
+                                            Удалить
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </td>
@@ -358,19 +529,38 @@
                                 <label for="ordersCheck10" class="form-check-label"></label>
                             </div>
                         </td>
-                        <td class="table-column-ps-0"><a href="./ecommerce-order-details" class="text-decoration-none">#34634</a></td>
+                        <td class="table-column-ps-0"><a href="#" class="text-decoration-none">#34634</a></td>
                         <td><small class="text-muted">Aug 17, 2022 / 12:41</small></td>
-                        <td><span class="badge bg-soft-success text-success"><span class="legend-indicator bg-success"></span>Оплачено</span></td>
                         <td>
-                            <div class="d-flex align-items-center"><img src="/img/card/paypal-icon.svg" alt="..." class="avatar avatar-xss avatar-4x3 me-2" style="width: 25px;"> <span class="text-dark">••••@gmail.com</span></div>
+                            <span class="badge bg-soft-success text-success">
+                                <span class="legend-indicator bg-success"></span>
+                                Оплачено
+                            </span>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="/img/card/paypal-icon.svg" alt="..." class="me-2" style="width: 22px" /> 
+                                <span class="text-dark">••••@gmail.com</span>
+                            </div>
                         </td>
                         <td>
                             <div role="group" class="btn-group">
-                                <a href="./ecommerce-order-details" class="d-flex align-items-center gap-1 btn btn-white btn-sm"><span class="material-symbols-outlined fs-6">visibility</span> Посмотреть
+                                <a href="#" class="d-flex align-items-center gap-1 btn btn-white btn-sm">
+                                    <span class="material-symbols-outlined fs-6">visibility</span> 
+                                    Посмотреть
                                 </a> 
                                 <div class="btn-group">
-                                    <button type="button" id="ordersExportDropdown10" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
-                                    <div aria-labelledby="ordersExportDropdown10" class="dropdown-menu dropdown-menu-end mt-1"><a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">print</span>Распечатать</a> <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">delete</span>Удалить</a></div>
+                                    <button type="button" id="ordersExportDropdown10" data-bs-toggle="dropdown" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
+                                    <div aria-labelledby="ordersExportDropdown10" class="dropdown-menu dropdown-menu-end mt-1">
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">print</span>
+                                            Распечатать
+                                        </a> 
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">delete</span>
+                                            Удалить
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </td>
@@ -383,20 +573,37 @@
                             </div>
                         </td>
                         <td>
-                            <div class="d-flex align-items-center gap-2"><a href="./ecommerce-order-details.html" class="text-decoration-none text-danger">#93817</a> <i class="material-symbols-outlined text-danger fs-6">emergency_home</i></div>
+                            <div class="d-flex align-items-center gap-2">
+                                <a href="#" class="text-decoration-none text-danger">#93817</a> 
+                                <i class="material-symbols-outlined text-danger fs-6">emergency_home</i>
+                            </div>
                         </td>
                         <td><small class="text-muted">Aug 17, 2022 / 12:36</small></td>
                         <td><span class="badge bg-soft-warning text-warning"><span class="legend-indicator bg-warning"></span>В ожидании</span></td>
                         <td>
-                            <div class="d-flex align-items-center"><img src="/img/card/paypal-icon.svg" alt="..." class="avatar avatar-xss avatar-4x3 me-2" style="width: 25px;"> <span class="text-dark">••••@gmail.com</span></div>
+                            <div class="d-flex align-items-center">
+                                <img src="/img/card/paypal-icon.svg" alt="..." class="me-2" style="width: 22px" /> 
+                                <span class="text-dark">••••@gmail.com</span>
+                            </div>
                         </td>
                         <td>
                             <div role="group" class="btn-group">
-                                <a href="./ecommerce-order-details" class="d-flex align-items-center gap-1 btn btn-white btn-sm"><span class="material-symbols-outlined fs-6">visibility</span> Посмотреть
+                                <a href="#" class="d-flex align-items-center gap-1 btn btn-white btn-sm">
+                                    <span class="material-symbols-outlined fs-6">visibility</span> 
+                                    Посмотреть
                                 </a> 
                                 <div class="btn-group">
-                                    <button type="button" id="ordersExportDropdown11" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
-                                    <div aria-labelledby="ordersExportDropdown11" class="dropdown-menu dropdown-menu-end mt-1"><a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">print</span>Распечатать</a> <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">delete</span>Удалить</a></div>
+                                    <button type="button" id="ordersExportDropdown11" data-bs-toggle="dropdown" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
+                                    <div aria-labelledby="ordersExportDropdown11" class="dropdown-menu dropdown-menu-end mt-1">
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">print</span>
+                                            Распечатать
+                                        </a> 
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">delete</span>
+                                            Удалить
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </td>
@@ -408,19 +615,38 @@
                                 <label for="ordersCheck12" class="form-check-label"></label>
                             </div>
                         </td>
-                        <td class="table-column-ps-0"><a href="./ecommerce-order-details.html" class="text-decoration-none">#43113</a></td>
+                        <td class="table-column-ps-0"><a href="#" class="text-decoration-none">#43113</a></td>
                         <td><small class="text-muted">Aug 17, 2022 / 12:25</small></td>
-                        <td><span class="badge bg-soft-success text-success"><span class="legend-indicator bg-success"></span>Оплачено</span></td>
                         <td>
-                            <div class="d-flex align-items-center"><img src="/img/card/mastercard.svg" alt="..." class="avatar avatar-xss avatar-4x3 me-2" style="width: 25px;"> <span class="text-dark">•••• 5533</span></div>
+                            <span class="badge bg-soft-success text-success">
+                                <span class="legend-indicator bg-success"></span>
+                                Оплачено
+                            </span>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="/img/card/mastercard.svg" alt="..." class="me-2" style="width: 22px" /> 
+                                <span class="text-dark">•••• 5533</span>
+                            </div>
                         </td>
                         <td>
                             <div role="group" class="btn-group">
-                                <a href="./ecommerce-order-details" class="d-flex align-items-center gap-1 btn btn-white btn-sm"><span class="material-symbols-outlined fs-6">visibility</span> Посмотреть
+                                <a href="#" class="d-flex align-items-center gap-1 btn btn-white btn-sm">
+                                    <span class="material-symbols-outlined fs-6">visibility</span> 
+                                    Посмотреть
                                 </a> 
                                 <div class="btn-group">
-                                    <button type="button" id="ordersExportDropdown12" data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
-                                    <div aria-labelledby="ordersExportDropdown12" class="dropdown-menu dropdown-menu-end mt-1"><a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">print</span>Распечатать</a> <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item"><span class="text-secondary material-symbols-outlined fs-5">delete</span>Удалить</a></div>
+                                    <button type="button" id="ordersExportDropdown12" data-bs-toggle="dropdown" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
+                                    <div aria-labelledby="ordersExportDropdown12" class="dropdown-menu dropdown-menu-end mt-1">
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">print</span>
+                                            Распечатать
+                                        </a> 
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                            <span class="text-secondary material-symbols-outlined fs-5">delete</span>
+                                            Удалить
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </td>
@@ -436,10 +662,10 @@
                     <span class="text-secondary me-2">Показано:</span> 
                     <div class="tom-select-custom">
                         <select id="datatableEntries" autocomplete="off" class="border-0 form-select text-secondary w-auto">
+                            <option value="12" selected="selected">12</option>
                             <option value="14">14</option>
                             <option value="16">16</option>
                             <option value="18">18</option>
-                            <option value="12" selected="selected">12</option>
                         </select>
                     </div>
                     <span class="text-secondary me-2">из</span> <span class="text-secondary">20</span>

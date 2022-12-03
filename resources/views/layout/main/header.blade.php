@@ -1,4 +1,4 @@
-<header class="d-flex gap-3 align-items-center justify-content-between bg-white py-3 px-4 shadow-sm d-print-none">
+<header class="d-flex gap-3 align-items-center justify-content-between border-bottom border-light bg-white py-3 px-4 shadow-sm d-print-none">
     <div class="d-flex align-items-center gap-3 w-50">
         <span class="material-symbols-outlined cp" v-on:click="toggleMenu">menu</span>
         <div class="input-group">

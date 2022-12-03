@@ -79,8 +79,12 @@ ssh root@62.217.178.252
 
 
 git clone --branch=app https://github.com/definaru/pro-trans-production.git ~/
-
 git clone --branch=app git@github.com:definaru/pro-trans-production.git
+
+rm -rf webpack.mix.js tests .styleci.yml storage server.php README.md phpunit.xml pass.txt package.json .htaccess .gitignore .git .editorconfig composer.lock composer.json bootstrap artisan .gitattributes
+
+rm -rf app config database public resources routes
+rm -rf new
 
 difficult-sinthia.ru
 prospekt-parts.com

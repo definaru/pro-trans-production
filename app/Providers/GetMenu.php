@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\MoySklad;
+
+
 class GetMenu 
 {
 
@@ -454,6 +457,22 @@ class GetMenu
         ];
     }
 
+
+    public static function getCatalog()
+    {
+        //GetMenu::getCatalog()
+        $url = MoySklad::msUrl().'productfolder';
+        $response = MoySklad::get($url);
+        $array = [];
+        foreach($response->json()['rows'] as $menu) {
+            $array[] = [
+                'name' => $menu['name'],
+                'href' => 'catalog/category/'.$menu['id'],
+            ];
+        }
+        return $array;
+    }
+
     public static function dataMenu()
     {
         return [
@@ -465,48 +484,7 @@ class GetMenu
                         'name' => 'Каталоги',
                         'slug' => 'catalogs',
                         'count' => '',
-                        'list' => [
-                            [
-                                'name' => 'Оригинальные каталоги',
-                                'href' => 'catalogs'
-                            ],
-                            [
-                                'name' => 'ACat каталоги',
-                                'href' => 'catalog_autodiler'
-                            ],
-                            [
-                                'name' => 'Tecdoc Inside',
-                                'href' => 'tecdoc'
-                            ],
-                            [
-                                'name' => 'Каталог шин и дисков',
-                                'href' => 'catalog_tires_disks'
-                            ],
-                            [
-                                'name' => 'Каталог Брендов',
-                                'href' => 'catalog_brands'
-                            ],
-                            [
-                                'name' => 'Ассортимент',
-                                'href' => 'assortment'
-                            ],
-                            [
-                                'name' => 'Неоригинальные каталоги',
-                                'href' => 'aftermarket'
-                            ],
-                            [
-                                'name' => 'Гараж',
-                                'href' => 'garage'
-                            ],
-                            [
-                                'name' => 'Фавориты',
-                                'href' => 'favorites'
-                            ],
-                            [
-                                'name' => 'Уцененные товары',
-                                'href' => 'discount'
-                            ]
-                        ]                  
+                        'list' => GetMenu::getCatalog()                 
                     ],
                     [
                         'icon' => 'shopping_cart',
@@ -517,87 +495,39 @@ class GetMenu
                     ],
                     [
                         'icon' => 'inventory',
-                        'name' => 'Заказы',
+                        'name' => 'Платежи',
                         'slug' => 'order',
                         'count' => '',
                         'list' => [
                             [
-                                'name' => 'Отчёты по заказам',
-                                'href' => 'order/report'
+                                'name' => 'Счета',
+                                'href' => 'payment/order'
                             ],
                             [
-                                'name' => 'Оформление возвратов',
-                                'href' => 'order_return'
-                            ],
-                            [
-                                'name' => 'Отгрузка за период',
-                                'href' => 'last_shipment'
-                            ],
-                            [
-                                'name' => 'divider',
-                                'href' => ''
-                            ],
-                            [
-                                'name' => 'Запланировано в консигнацию',
-                                'href' => 'tool/consignment/planned/consignment'
-                            ],
-                            [
-                                'name' => 'Товар на консигнации',
-                                'href' => 'tool/consignment'
-                            ],
-                            [
-                                'name' => 'Возвраты с консигнации',
-                                'href' => 'tool/consignment/returns'
-                            ],
-                            [
-                                'name' => 'Реализация консигнационного запаса',
-                                'href' => 'tool/consignment/stock'
-                            ],
-                            [
-                                'name' => 'История консигнационных заказов',
-                                'href' => 'tool/consignment/report'
-                            ],
-                            [
-                                'name' => 'divider',
-                                'href' => ''
-                            ],
-                            [
-                                'name' => 'Самовывоз (Отправить на сборку)',
-                                'href' => 'tools/create/delivery_tool'
-                            ],
-                            [
-                                'name' => 'Самовывоз - Отпуск товара',
-                                'href' => 'tool/transmission_goods'
-                            ]
-                        ]
-                    ],
-                    [
-                        'icon' => 'account_balance_wallet',
-                        'name' => 'Финансы',
-                        'slug' => 'payment',
-                        'count' => '',
-                        'list' => [
-                            [
-                                'name' => 'Взаиморасчеты',
-                                'href' => 'settlements'
-                            ],
-                            [
-                                'name' => 'График платежей',
-                                'href' => 'settlements/payment'
-                            ],
-                            [
-                                'name' => 'Отчеты',
+                                'name' => 'Заказы',
                                 'href' => 'payment/reports'
+                            ],
+                            [
+                                'name' => 'Отчёты',
+                                'href' => 'payment/record'
+                            ],
+                            [
+                                'name' => 'divider',
+                                'href' => ''
+                            ],
+                            [
+                                'name' => 'Мои заказы',
+                                'href' => 'payment/account'
                             ]
                         ]
                     ],
-                    [
-                        'icon' => 'monitoring',
-                        'name' => 'Акции',
-                        'slug' => 'sales',
-                        'count' => '',
-                        'list' => ''
-                    ],
+                    // [
+                    //     'icon' => 'monitoring',
+                    //     'name' => 'Акции',
+                    //     'slug' => 'sales',
+                    //     'count' => '',
+                    //     'list' => ''
+                    // ],
                     [
                         'icon' => 'school',
                         'name' => 'Обучение',
@@ -620,7 +550,7 @@ class GetMenu
                     [
                         'icon' => 'tune',
                         'name' => 'Настройки',
-                        'slug' => 'setting',
+                        'slug' => 'profile/settings',
                         'count' => '',
                         'list' => ''
                     ],

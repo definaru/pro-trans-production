@@ -10,6 +10,15 @@ body, html {
 input:focus {
     box-shadow: none !important;
 }
+.image-product {
+    /* image-rendering: pixelated; */
+    image-rendering: -moz-crisp-edges; /* Firefox */
+    -ms-interpolation-mode: nearest-neighbor; /* IE */
+    object-fit: cover;
+    object-position: center;
+    width: 50px;
+    height: 50px;
+}
 .profile-menu::before {
     content: '';
     position: absolute;
@@ -35,13 +44,13 @@ input:focus {
 }
 
 #header ul li:hover {
-    background-color: #393b97 !important;
+    background-color: #dfdfdf !important;
 }
 #content a:hover {
-    background-color: #393b97 !important;
+    background-color: #dfdfdf !important;
 }
 .accordion-item:hover {
-    background-color: #393b97;
+    background-color: #dfdfdf;
 }
 .border-secondary {
     border-color: #393b97 !important;
@@ -55,6 +64,10 @@ input:focus {
 .bg-transparent {
     background-color: transparent !important;
 }
+.text-primary {
+    color: #3f51b5 !important;
+}
+
 
 #admin {
     transition: all 1s ease 0s;
@@ -66,11 +79,11 @@ input:focus {
     padding: 10px 1px;
 }
 #submenu a {
-    color: #ddd;
+    color: #000;
     font-size: 12px;
 }
 #submenu a:hover {
-    color: #ffc107;
+    color: #3f51b5;
     background-color: transparent !important;
 }
 

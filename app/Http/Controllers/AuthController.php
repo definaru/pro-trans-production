@@ -82,16 +82,6 @@ class AuthController extends Controller
         ];
     }
 
-    public function test()
-    {
-        return view('test');
-    }
-
-    public function info()
-    {
-        return view('info');
-    }
-
     public function register()
     {
         return view('signup');
@@ -116,15 +106,6 @@ class AuthController extends Controller
         }
         return redirect()->route('index');
     }
-
-    // public function signup(Request $request)
-    // {
-    //     $model = new User();
-    //     $model->login = $request->input('login');
-    //     $model->password = $request->input('password');
-    //     $model->save();
-    //     return redirect()->route('/login');
-    // }
 
     public function logout(Request $request)
     {
