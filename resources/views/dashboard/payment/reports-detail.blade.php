@@ -33,6 +33,8 @@
             <span class="material-symbols-outlined text-secondary">print</span>
             Распечатать
         </a> 
+        <x-button type="a" href="#" size="sm" text="Запросить счёт" icon="credit_score" />
+        
         <div class="dropdown">
             <a 
                 href="javascript:;" 
@@ -51,14 +53,10 @@
                     <span class="material-symbols-outlined fs-6 text-secondary">block</span>
                     Отменить заказ
                 </a> 
-                <a href="#" class="d-flex align-items-center gap-2 dropdown-item">
+                <!-- <a href="#" class="d-flex align-items-center gap-2 dropdown-item">
                     <span class="material-symbols-outlined fs-6 text-secondary">inventory_2</span>
                     В архив
-                </a>  
-                <a href="#" class="d-flex align-items-center gap-2 dropdown-item">
-                    <span class="material-symbols-outlined fs-6 text-secondary">edit</span>
-                    Изменить заказ
-                </a>
+                </a> -->
             </div>
         </div>
     </div>
@@ -73,20 +71,29 @@
                     Информация по заказу 
                     <span class="badge bg-soft-success text-dark rounded-circle ms-1">4</span>
                 </h5>
-                <a href="javascript:;" class="text-secondary"><span class="material-symbols-outlined fs-6">edit</span></a>
+                <!-- <a href="javascript:;" class="text-secondary"><span class="material-symbols-outlined fs-6">edit</span></a> -->
             </div>
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="flex-shrink-0">
-                        <div class="avatar avatar-xl"><img src="/img/no_photo.jpg" alt="..." class="img-fluid rounded"></div>
+                        <div class="avatar avatar-xl">
+                            <img src="/img/no_photo.jpg" alt="..." class="img-fluid rounded" />
+                        </div>
                     </div>
                     <div class="flex-grow-1 ms-3">
                         <div class="row">
                             <div class="col-md-6 mb-3 mb-md-0">
-                                <a href="./ecommerce-product-details.html" class="h5 m-0 d-block text-decoration-none">Topman shoe in green</a>   
-                                <div class="fs-6 text-body"><span>Артикул:</span> <span class="fw-semibold">UK 7</span></div>
+                                <a href="#" class="h5 m-0 d-block text-decoration-none">
+                                    Topman shoe in green
+                                </a>   
+                                <div class="fs-6 text-body">
+                                    <span>Артикул:</span> 
+                                    <span class="fw-semibold">UK 7</span>
+                                </div>
                             </div>
-                            <div class="col col-md-2 px-0 align-self-center text-center"><small>1 021.00 ₽</small></div>
+                            <div class="col col-md-2 px-0 align-self-center text-center">
+                                <small>1 021.00 ₽</small>
+                            </div>
                             <div class="col col-md-2 align-self-center">
                                 <h5 class="m-0">2</h5>
                             </div>
@@ -96,7 +103,7 @@
                         </div>
                     </div>
                 </div>
-                <hr class="border-light">
+                <hr class="border-muted my-2">
                 <div class="d-flex align-items-center">
                     <div class="flex-shrink-0">
                         <div class="avatar avatar-xl"><img src="/img/no_photo.jpg" alt="..." class="img-fluid rounded"></div>
@@ -117,7 +124,7 @@
                         </div>
                     </div>
                 </div>
-                <hr class="border-light">
+                <hr class="border-muted my-2">
                 <div class="d-flex align-items-center">
                     <div class="flex-shrink-0">
                         <div class="avatar avatar-xl"><img src="/img/no_photo.jpg" alt="..." class="img-fluid rounded"></div>
@@ -139,8 +146,8 @@
                     </div>
                 </div>
                 <hr class="border-secondary">
-                <div class="row justify-content-md-end mb-3">
-                    <div class="col-md-8 col-lg-7">
+                <div class="row justify-content-md-end">
+                    <div class="col-md-8 col-lg-9">
                         <dl class="row text-sm-end m-0">
                             <dt class="col-sm-6 text-muted fw-light">Промежуточный итог:</dt>
                             <dd class="col-sm-6 fw-bold">5 942.00 ₽</dd>
@@ -172,7 +179,7 @@
                             <div class="flex-grow-1 text-end"><i class="bi-chevron-right text-body"></i></div>
                         </a>
                     </li>
-                    <li class="list-group-item">
+                    <!-- <li class="list-group-item">
                         <a href="./ecommerce-customer-details.html" class="d-flex align-items-center text-muted text-decoration-none">
                             <div style="
                                 height: 20px;
@@ -180,7 +187,7 @@
                             <div class="flex-grow-1 ms-3"><span class="text-body text-inherit">7 заказов</span></div>
                             <div class="d-flex align-items-center text-end"><span class="material-symbols-outlined text-secondary">keyboard_arrow_right</span></div>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="list-group-item">
                         <div class="d-flex justify-content-between align-items-center">
                             <h6 class="fw-bold">Контактная информация</h6>
@@ -199,7 +206,7 @@
                     </li>
                     <li class="list-group-item">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h6 class="fw-bold">Адрес доставки</h6>
+                            <h6 class="fw-bold">Фактический адрес</h6>
                             <a href="javascript:;" class="text-secondary"><span class="material-symbols-outlined fs-6">edit</span></a>
                         </div>
                         <small class="d-block text-muted">
@@ -221,12 +228,14 @@
                         UK 
                         <img src="/img/flags/russia_flag.svg" alt="Great Britain Flag" class="border rounded-circle avatar avatar-xss avatar-circle ms-1"></small> 
                         <div class="mt-3">
-                            <h6 class="fw-bold mb-0">Mastercard</h6>
+                            <!-- <h6 class="fw-bold mb-0">Mastercard</h6>
                             <span class="d-block text-body">
                             Номер карты: 
                             <span class="text-muted"><sub class="h5">**** **** ****</sub> 4291</span>
-                            </span>
+                            </span> -->
+                            <x-button type="a" href="#" color="dark" text="связаться с менеджером" icon="headset_mic" />
                         </div>
+                        
                     </li>
                 </ul>
             </div>

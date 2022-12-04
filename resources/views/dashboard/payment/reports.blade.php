@@ -190,7 +190,7 @@
                         </td>
                         <td>
                             <div class="d-flex align-items-center">
-                                <img src="/img/card/mastercard.svg" alt="..." class="me-2" style="width: 22px" />
+                                <img src="/img/card/mir-logo.svg" alt="..." class="me-2" style="width: 22px" />
                                 <span class="text-dark">•••• 2390</span>
                             </div>
                         </td>
@@ -276,7 +276,7 @@
                         </td>
                         <td>
                             <div class="d-flex align-items-center">
-                                <img src="/img/card/mastercard.svg" alt="..." class="me-2" style="width: 22px" /> 
+                                <img src="/img/card/visa.svg" alt="..." class="me-2" style="width: 35px" /> 
                                 <span class="text-dark">•••• 3535</span>
                             </div>
                         </td>

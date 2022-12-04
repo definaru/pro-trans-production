@@ -171,6 +171,9 @@ input:focus {
 .bg-soft-warning {
     background-color: rgba(245,202,153,.1)!important;
 }
+.bg-soft-danger {
+    background-color: rgba(245, 107, 125, 0.1)!important;
+}
 .legend-indicator {
     display: inline-block;
     width: 0.5rem;
