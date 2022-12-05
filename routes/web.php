@@ -58,6 +58,7 @@ Route::controller(AuthController::class)->group(function () {
 Route::get('/contact', [MainController::class, 'Сontact']);
 Route::get('/doc', [MainController::class, 'Documentation']);
 Route::prefix('doc')->group(function () {
+    // Страницы с Юр.документами
     Route::get('license', [MainController::class, 'License']);
     Route::get('responsibility', [MainController::class, 'Responsibility']);
     Route::get('privatepolice', [MainController::class, 'Private']);
