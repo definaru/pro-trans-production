@@ -15,6 +15,26 @@ class DachboardController extends Controller
         return view('profile.settings');
     }
 
+    public function Events() 
+    {
+        return view('dashboard.events');
+    }
+
+    public function Schedule() 
+    {
+        return view('dashboard.work.schedule');
+    }
+
+    public function Help() 
+    {
+        return view('dashboard.help');
+    }
+
+    public function Notifications() 
+    {
+        return view('dashboard.notifications');
+    }
+
     public function Order() 
     {
         return view('dashboard.payment.order');
@@ -22,7 +42,7 @@ class DachboardController extends Controller
 
     public function Invoice($invoice = '') 
     {
-        $order = $invoice ? MoySklad::getInvoiceProduct($invoice) : '';
+        $order = $invoice ?? MoySklad::getInvoiceProduct($invoice);
         //return response()->json($order);
         return view('dashboard.payment.order', ['order' => $order]);
     }

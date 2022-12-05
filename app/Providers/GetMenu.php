@@ -361,7 +361,7 @@ class GetMenu
             [
                 'icon' => 'settings',
                 'link' => 'Мои настройки',
-                'href' => '/dashboard/profile/settings'
+                'href' => '/dashboard/settings/profile'
             ],
             [
                 'icon' => 'assured_workload',
@@ -376,7 +376,7 @@ class GetMenu
             [
                 'icon' => 'monitoring',
                 'link' => 'График приемки товара',
-                'href' => '/dashboard/work_schedule'
+                'href' => '/dashboard/work/schedule'
             ],
             [
                 'icon' => '',
@@ -458,7 +458,7 @@ class GetMenu
     }
 
 
-    public static function getCatalog()
+    public static function getMenuCatalog()
     {
         //GetMenu::getCatalog()
         $url = MoySklad::msUrl().'productfolder';
@@ -482,9 +482,9 @@ class GetMenu
                     [
                         'icon' => 'topic',
                         'name' => 'Каталоги',
-                        'slug' => 'catalogs',
+                        'slug' => 'catalog',
                         'count' => '',
-                        'list' => GetMenu::getCatalog()                 
+                        'list' => GetMenu::getMenuCatalog()                 
                     ],
                     [
                         'icon' => 'shopping_cart',
@@ -496,7 +496,7 @@ class GetMenu
                     [
                         'icon' => 'inventory',
                         'name' => 'Платежи',
-                        'slug' => 'order',
+                        'slug' => 'payment',
                         'count' => '',
                         'list' => [
                             [
@@ -550,7 +550,7 @@ class GetMenu
                     [
                         'icon' => 'tune',
                         'name' => 'Настройки',
-                        'slug' => 'profile/settings',
+                        'slug' => 'settings/profile',
                         'count' => '',
                         'list' => ''
                     ],

@@ -37,7 +37,8 @@ class AppServiceProvider extends ServiceProvider
             'helpmenu' => GetMenu::help(),
             'catalog' => GetMenu::catalog(),
             'catalogTrucks' => GetMenu::catalogTrucks(),
-            'contact' => new ContactService()
+            'contact' => new ContactService(),
+            'url' => $_SERVER['REQUEST_URI']
         ]);
     }
 }

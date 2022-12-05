@@ -10,7 +10,11 @@ use App\Http\Middleware\Authenticate;
 
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('card', [DachboardController::class, 'Сard']);
-    Route::get('profile/settings', [DachboardController::class, 'Settings']);
+    Route::get('help', [DachboardController::class, 'Help']);
+    Route::get('events', [DachboardController::class, 'Events']);
+    Route::get('notifications', [DachboardController::class, 'Notifications']);
+    Route::get('work/schedule', [DachboardController::class, 'Schedule']);
+    Route::get('settings/profile', [DachboardController::class, 'Settings']);
     Route::get('profile/special_prices', [DachboardController::class, 'SpecialPrices']);
     Route::get('profile/floading_settings', [DachboardController::class, 'FloadingSettings']);
     Route::get('profile/rg', [DachboardController::class, 'Profile']);

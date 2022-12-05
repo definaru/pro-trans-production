@@ -1,3 +1,12 @@
+@php
+    if($url === '/dashboard') {
+        list($home, $section) = explode('/', $url);
+        $currenturl = $home.'/'.$section;        
+    } else {
+        list($home, $section, $info) = explode('/', $url);
+        $currenturl = $home.'/'.$section.'/'.$info;
+    }
+@endphp
 <div class="accordion" id="content">
     <li class="list-group-item disabled bg-white text-secondary fs-6 mt-3 px-3 py-2" :class="{'text-center' : !isOpen}">
         <template v-if="isOpen">{{$header}}</template>
@@ -8,7 +17,9 @@
         <div class="accordion-item border-0">
             <h2 class="accordion-header border-top border-light" id="heading{{ $loop->iteration}}" v-on:click="toggleSubMenu">
                 <a 
-                    class="d-flex gap-2 py-2 px-3 bg-white text-dark tooltips shadow-none rounded-0 text-decoration-none cp" 
+                    href="/dashboard/{{ $i['slug'] }}"
+                    class="d-flex gap-2 py-2 px-3 bg-white text-dark tooltips shadow-none rounded-0 text-decoration-none cp border-start border-4 
+                    @if($currenturl === '/dashboard/'.$i['slug']) border-primary @else border-white @endif" 
                     :class="[isOpen ? 'accordion-button' : 'justify-content-center']" 
                     data-bs-toggle="collapse" 
                     data-bs-target="#collapse{{$loop->iteration}}"
@@ -20,7 +31,7 @@
             </h2>
             <div 
                 id="collapse{{$loop->iteration}}" 
-                class="accordion-collapse collapse" 
+                class="accordion-collapse collapse @if($currenturl === '/dashboard/'.$i['slug']) show @endif" 
                 aria-labelledby="heading{{$loop->iteration}}" 
                 data-bs-parent="#content"
             >
@@ -29,8 +40,8 @@
                         @foreach($i['list'] as $d)
                             @if($d['name'] !== 'divider')
                                 <a 
-                                    href="{{ URL::to('dashboard/' . $d['href']) }}" 
-                                    class="list-group-item bg-light" 
+                                    href="{{ '/dashboard/'.$d['href'] }}" 
+                                    class="list-group-item bg-light @if('/dashboard/'.$d['href'] === $url) fw-bold @endif" 
                                     style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 215px"
                                     title="{{$d['name']}}"
                                 >
@@ -43,8 +54,11 @@
             </div>
         </div>
         @else
-            <a href="{{ URL::to('dashboard/' . $i['slug']) }}"  
-                class="d-flex align-items-center text-decoration-none bg-white text-dark tooltips border-top border-light"
+        <div class="border-top border-light">
+            <a 
+                href="{{ '/dashboard/'.$i['slug'] }}"  
+                class="d-flex align-items-center text-decoration-none bg-white text-dark tooltips border-start border-4
+                @if($url === '/dashboard/'.$i['slug']) border-primary @else border-white @endif"
                 :class="[isOpen ? 'justify-content-between' : 'justify-content-center']"
             >
                 <span class="d-flex gap-2 px-3 py-2">
@@ -57,7 +71,8 @@
                     {{ $i['count'] }}
                 </span>
                 @endif
-            </a>
+            </a>            
+        </div>
         @endif
     @endforeach    
 </div>
