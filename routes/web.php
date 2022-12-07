@@ -14,12 +14,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('events', [DachboardController::class, 'Events']);
     Route::get('notifications', [DachboardController::class, 'Notifications']);
     Route::get('work/schedule', [DachboardController::class, 'Schedule']);
-    Route::get('settings/profile', [DachboardController::class, 'Settings']);
-    Route::get('profile/special_prices', [DachboardController::class, 'SpecialPrices']);
-    Route::get('profile/floading_settings', [DachboardController::class, 'FloadingSettings']);
-    Route::get('profile/rg', [DachboardController::class, 'Profile']);
+    Route::match(['get', 'post'],'settings/profile', [DachboardController::class, 'Settings']);
     Route::get('catalog', [DachboardController::class, 'Catalog']);
     Route::get('catalog/category/{name}', [DachboardController::class, 'CatalogDetail']);
+    Route::get('product/details/{id}', [DachboardController::class, 'DetailProduct']);
     Route::get('payment/order', [DachboardController::class, 'Invoice']);
     Route::get('payment/order/{invoice}', [DachboardController::class, 'Invoice']);
     Route::get('payment/record', [DachboardController::class, 'Record']);

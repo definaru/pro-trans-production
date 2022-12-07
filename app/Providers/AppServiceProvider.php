@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
+use App\Models\MoySklad;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
@@ -32,13 +34,15 @@ class AppServiceProvider extends ServiceProvider
         UiComponent::list();
 
         View::share([
-            'menu' => GetMenu::dataMenu(),
-            'usermenu' => GetMenu::user(),
-            'helpmenu' => GetMenu::help(),
-            'catalog' => GetMenu::catalog(),
+            'menu'          => GetMenu::dataMenu(),
+            'usermenu'      => GetMenu::user(),
+            'helpmenu'      => GetMenu::help(),
+            'catalog'       => GetMenu::catalog(),
             'catalogTrucks' => GetMenu::catalogTrucks(),
-            'contact' => new ContactService(),
-            'url' => $_SERVER['REQUEST_URI']
+            'contact'       => new ContactService(),
+            'time'          => new Carbon(),
+            'MoySklad'      => new MoySklad(),
+            'url'           => $_SERVER['REQUEST_URI']
         ]);
     }
 }

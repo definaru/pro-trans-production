@@ -21,13 +21,13 @@
         <div class="d-flex align-items-center gap-2">
             <img src="{!! $image !!}" alt="{{$name}}" class="rounded image-product" /> 
             <small>
-                <a href="{{$href}}" class="name fw-bold text-decoration-none text-dark">
+                <a href="/dashboard/product/details/{{$href}}" class="name fw-bold text-decoration-none text-dark">
                     {{$name}}
                 </a>
             </small>
         </div>
     </td>
-    <td><a href="/test/{{$vendorcode}}" class="text-decoration-none">#{{$vendorcode}}</a></td>
+    <td><a href="/test/{{$vendorcode}}" class="text-decoration-none">{{$vendorcode}}</a></td>
     <td><small><strong>@php echo number_format(($price) / 100, 2, '.', ' ') @endphp ₽</strong></small></td>
     <td>
         @if($availability === '0')

@@ -19,12 +19,12 @@
                 <a 
                     href="/dashboard/{{ $i['slug'] }}"
                     class="d-flex gap-2 py-2 px-3 bg-white text-dark tooltips shadow-none rounded-0 text-decoration-none cp border-start border-4 
-                    @if($currenturl === '/dashboard/'.$i['slug']) border-primary @else border-white @endif" 
+                    @if($currenturl === '/dashboard/'.$i['slug']) border-danger @else border-white @endif" 
                     :class="[isOpen ? 'accordion-button' : 'justify-content-center']" 
                     data-bs-toggle="collapse" 
                     data-bs-target="#collapse{{$loop->iteration}}"
                 >
-                    <i class="material-symbols-outlined text-primary">{{ $i['icon'] }}</i>
+                    <i class="material-symbols-outlined text-secondary">{{ $i['icon'] }}</i>
                     <span v-if="isOpen">{{ $i['name'] }}</span>
                     <span v-else class="tooltiptext">{{ $i['name'] }}</span> 
                 </a>
@@ -58,11 +58,11 @@
             <a 
                 href="{{ '/dashboard/'.$i['slug'] }}"  
                 class="d-flex align-items-center text-decoration-none bg-white text-dark tooltips border-start border-4
-                @if($url === '/dashboard/'.$i['slug']) border-primary @else border-white @endif"
+                @if($url === '/dashboard/'.$i['slug']) border-danger @else border-white @endif"
                 :class="[isOpen ? 'justify-content-between' : 'justify-content-center']"
             >
                 <span class="d-flex gap-2 px-3 py-2">
-                    <i class="material-symbols-outlined text-primary">{{ $i['icon'] }}</i>
+                    <i class="material-symbols-outlined text-secondary">{{ $i['icon'] }}</i>
                     <span v-if="isOpen">{{ $i['name'] }}</span>   
                     <span v-else class="tooltiptext">{{ $i['name'] }}</span>             
                 </span>

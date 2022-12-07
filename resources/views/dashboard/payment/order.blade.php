@@ -1,3 +1,8 @@
+@php
+    $invoiceout = parse_url($order['order']['customerOrder']['meta']['href'])["path"];
+    $invoiceout = explode('/', $invoiceout);
+@endphp
+
 @extends('layout/main')
 @section('title', $order === '' ? 'Счета' : 'Счет покупателю №'.$order['order']['name'])
 
@@ -109,7 +114,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><a href="/b87526b8-6ff5-11ed-0a80-056400477101" class="ms-3 text-decoration-none">#0003</a></th>
+                            <td><a href="order/b87526b8-6ff5-11ed-0a80-056400477101" class="ms-3 text-decoration-none">#0003</a></th>
                             <td><small class="text-secondary">29.11.2022 17:54</small></td>
                             <td><small>АО "КОЛЫМСКАЯ РОССЫПЬ"</small></td>
                             <td><small>16 897,40 ₽</small></td>
@@ -202,13 +207,22 @@
                 <div class="row justify-content-lg-between">
                     <div class="col-sm order-2 order-sm-1 mb-3">
                         <div class="mb-2">
-                            <img src="/img/logo.svg" alt="Logo" style="position: absolute;top: -80px;left: -43px;width: 19rem;height: 19rem" />
+                            <img src="/img/color_logo.png" alt="Logo" style="width: 10rem" />
                         </div> 
                         <!-- <h1 class="h2 text-primary">Front Inc.</h1> -->
                     </div> 
                     <div class="col-sm-auto order-1 order-sm-2 text-sm-end mb-3">
                         <div class="mb-3">
-                            <h2>#{{$order['order']['name']}}</h2>
+                            <h2>
+                                <a 
+                                    href="/dashboard/payment/reports/{{$invoiceout[6]}}" 
+                                    class="text-decoration-none" 
+                                    data-bs-toggle="tooltip" 
+                                    title="Перейти к отчету"
+                                >
+                                    #{{$order['order']['name']}}
+                                </a>
+                            </h2>
                             @if($user->customer->company)
                                 {{$user->customer->company}}
                             @else
@@ -249,14 +263,14 @@
             <div class="table-responsive">
                 <table class="table table-borderless table-nowrap table-align-middle">
                     <thead class="thead-light">
-                        <tr class="border-bottom border-light">
+                        <tr class="border-bottom border-light text-muted">
                             <th>#</th> 
                             <th>Наименование</th>
-                            <th>Кол-во</th> 
+                            <th class="text-center">Кол-во</th> 
                             <!-- <th>Доступно</th>  -->
                             <th>НДС</th>
-                            <th>Скидка</th>
-                            <th class="table-text-end">Цена</th>
+                            <th class="text-center">Скидка</th>
+                            <th class="text-end">Цена</th>
                         </tr>
                     </thead> 
                     <tbody>
@@ -269,11 +283,11 @@
                                     <span class="fw-light">{{$invoice['product']['name']}}</span>
                                 </div>
                             </th>
-                            <td>{{$invoice['quantity']}} шт</td> 
+                            <td class="text-center">{{$invoice['quantity']}} шт</td> 
                             <!-- <td>5</td>  -->
                             <td class="table-text-end">{{$invoice['vat']}}%</td>
-                            <td class="table-text-end">{{$invoice['discount']}}%</td>
-                            <td class="table-text-end fw-bold">
+                            <td class="text-center">{{$invoice['discount']}}%</td>
+                            <td class="text-end fw-bold">
                                 @php echo number_format(($invoice['price']) / 100, 2, '.', ' ') @endphp ₽
                             </td>
                         </tr> 

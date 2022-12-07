@@ -354,29 +354,9 @@ class GetMenu
     {
         return [
             [
-                'icon' => 'account_tree',
-                'link' => 'Структура Клиента',
-                'href' => '/dashboard/profile/rg'
-            ],
-            [
                 'icon' => 'settings',
                 'link' => 'Мои настройки',
                 'href' => '/dashboard/settings/profile'
-            ],
-            [
-                'icon' => 'assured_workload',
-                'link' => 'Спец.цены',
-                'href' => '/dashboard/profile/special_prices'
-            ],
-            [
-                'icon' => 'file_download',
-                'link' => 'Загрузка файлов',
-                'href' => '/dashboard/profile/floading_settings'
-            ],
-            [
-                'icon' => 'monitoring',
-                'link' => 'График приемки товара',
-                'href' => '/dashboard/work/schedule'
             ],
             [
                 'icon' => '',
@@ -394,46 +374,11 @@ class GetMenu
     public static function help()
     {
         return [
-            [
-                'icon' => '',
-                'link' => 'Инструкция по Tecdoc RMI',
-                'href' => '/dashboard/index/help/rmi'
-            ],
-            [
-                'icon' => '',
-                'link' => 'Инструкция',
-                'href' => '/dashboard/index/help/client'
-            ],
-            [
-                'icon' => '',
-                'link' => 'ЭТП-Видеоуроки',
-                'href' => '/dashboard/video_tutorials'
-            ],
-            [
-                'icon' => '',
-                'link' => 'Новости ЭТП',
-                'href' => '/dashboard/news'
-            ],
-            [
-                'icon' => '',
-                'link' => 'Веб-сервисы',
-                'href' => '/dashboard/index/rest-services/rest-connection'
-            ],
-            [
-                'icon' => '',
-                'link' => 'Рекомендуемые браузеры',
-                'href' => '/dashboard/index/help/help.browsers'
-            ],
-            [
-                'icon' => '',
-                'link' => 'Резервные адреса ЭТП',
-                'href' => '/dashboard/index/help/help.websites'
-            ],
-            [
-                'icon' => '',
-                'link' => 'divider',
-                'href' => ''
-            ],
+            // [
+            //     'icon' => '',
+            //     'link' => 'divider',
+            //     'href' => ''
+            // ],
             [
                 'icon' => '',
                 'link' => 'Условия гарантии',
@@ -447,12 +392,7 @@ class GetMenu
             [
                 'icon' => '',
                 'link' => 'Обратная связь',
-                'href' => '/dashboard/feedback'
-            ],
-            [
-                'icon' => '',
-                'link' => 'Библиотеки',
-                'href' => '/dashboard/catalogues'
+                'href' => '/contact'
             ]
         ];
     }

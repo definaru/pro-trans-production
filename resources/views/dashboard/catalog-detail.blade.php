@@ -3,31 +3,10 @@
 @section('title', $catalog['name'])
 
 @section('content')
-
-    @foreach ($catalogTrucks as $item)
-        @if($item['name'] === $name)
-        <div class="row">
-            <div class="col">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center gap-2">
-                        <p class="m-0">Найденные модификации автомобиля</p>
-                        <img src="{{$item['image']}}" alt="{{$item['name']}}" style="width: 30px" />
-                    </div>   
-                    <a href="/dashboard/catalogs" class="d-flex align-items-center gap-2 text-decoration-none">
-                        <span class="material-symbols-outlined fs-6 text-secondary">undo</span>
-                        <small>Выбрать другой автомобиль</small> 
-                    </a>         
-                </div>                
-            </div>
-        </div>
-        @endif
-    @endforeach
-    <pre><?php //var_dump($catalog);?></pre>
-
 <div class="row mt-4">
     <div class="col">
         <div class="card border-0 w-100 rounded shadow-sm">
-            <div class="card-header border-0 d-flex align-items-center py-3 px-4 justify-content-between bg-white">
+            <!-- <div class="card-header border-0 d-flex align-items-center py-3 px-4 justify-content-between bg-white">
                 <h2 class="m-0 h6 fw-bold">Выберите нужный вариант автомобиля:</h2>
                 <div class="dropdown ms-4">
                     <a href="javascript: void(0);" role="button" data-bs-toggle="dropdown" class="text-secondary">
@@ -66,10 +45,10 @@
                         </label>
                     </div>
                 </div>
-            </div>
-            <div class="table-responsive">
+            </div> -->
+            <div class="table-responsive rounded-top">
                 <table class="table align-middle table-edge table-hover table-nowrap mb-0">
-                    <thead class="thead-light bg-light" style="font-size: 14px">
+                    <thead class="border-bottom border-light bg-white" style="font-size: 14px">
                         <tr>
                             <th class="w-60px ps-3">
                                 <div class="form-check mb-0">
@@ -106,7 +85,10 @@
                                     Бренд<span class="list-sort"></span>
                                 </a>
                             </th>
-                            <th style="text-align: center;display: block;width: 110px;">Опции</th>
+                            <th class="d-flex align-items-center gap-2 text-center border-0" style="width: 110px;height: 40px">
+                                Опции
+                                <span class="material-symbols-outlined fs-6 text-secondary">settings</span>
+                            </th>
                         </tr>
                     </thead>
                     <tbody class="list" style="font-size: 14px">

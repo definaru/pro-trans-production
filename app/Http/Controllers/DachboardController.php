@@ -12,7 +12,9 @@ class DachboardController extends Controller
 
     public function Settings()
     {
-        return view('profile.settings');
+        $uuid = auth()->user()->verified;
+        $profile = MoySklad::getCompany($uuid);
+        return view('dashboard.profile.settings', ['profile' => $profile]);
     }
 
     public function Events() 
@@ -42,7 +44,7 @@ class DachboardController extends Controller
 
     public function Invoice($invoice = '') 
     {
-        $order = $invoice ?? MoySklad::getInvoiceProduct($invoice);
+        $order = $invoice ? MoySklad::getInvoiceProduct($invoice) : '';
         //return response()->json($order);
         return view('dashboard.payment.order', ['order' => $order]);
     }
@@ -62,11 +64,22 @@ class DachboardController extends Controller
         return view('dashboard.catalog');
     }
 
+    public function DetailProduct($id)
+    {
+        $url = MoySklad::msUrl().'product/'.$id;
+        $response = MoySklad::get($url);
+        $product = MoySklad::getOneProduct($id);
+        return view('dashboard.product.details', [
+            'data' => $response->json(),
+            'product' => $product
+        ]);
+    }
+
     public function CatalogDetail($name)
     {
         $catalog = MoySklad::getCategory($name);
-        $url = MoySklad::msUrl().'product?limit=25&offset=0';
-        $response = Http::withBasicAuth(config('app.ms_login'), config('app.ms_password'))->get($url);
+        $url = MoySklad::msUrl().'product?limit=25&offset=0&expand=images';
+        $response = MoySklad::get($url);
         return view('dashboard.catalog-detail', [
             'name' => $name, 
             'data' => $response->json(),
@@ -76,22 +89,11 @@ class DachboardController extends Controller
 
     public function ReportsDetail($order)
     {
-        return view('dashboard.payment.reports-detail', ['order' => $order]);
-    }
-
-    public function Profile()
-    {
-        return view('profile.rg');
-    }
-
-    public function SpecialPrices()
-    {
-        return view('profile.special_prices');
-    }
-
-    public function FloadingSettings()
-    {
-        return view('profile.floading_settings');
+        $response = MoySklad::getPaymentReports($order);
+        //return response()->json($response);
+        return view('dashboard.payment.reports-detail', [
+            'data' => $response
+        ]);
     }
 
     public function Сard()

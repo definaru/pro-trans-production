@@ -26,9 +26,48 @@ class MoySklad
         )->get($url);
     }
 
+    public static function getStatusTrackingType($value)
+    {
+        return strtr($value, 
+            [
+                'ELECTRONICS' => 'Фотокамеры и лампы-вспышки',
+                'LP_CLOTHES'  => 'Тип маркировки "Одежда"',
+                'LP_LINENS'   => 'Тип маркировки "Постельное белье"',
+                'MILK'        => 'Молочная продукция',
+                'NCP'         => 'Никотиносодержащая продукция',
+                'NOT_TRACKED' => 'Без маркировки',
+                'OTP'         => 'Альтернативная табачная продукция',
+                'PERFUMERY'   => 'Духи и туалетная вода',
+                'SHOES'       => 'Тип маркировки "Обувь"',
+                'TIRES'       => 'Шины и покрышки',
+                'TOBACCO'     => 'Тип маркировки "Табак"',
+                'WATER'       => 'Упакованная вода'
+            ]
+        );
+    }
+
+    public static function getPaymentItemType($value)
+    {
+        return strtr($value, 
+            [
+                'GOOD' => 'Товар',
+                'EXCISABLE_GOOD' => 'Подакцизный товар',
+                'COMPOUND_PAYMENT_ITEM' => 'Составной предмет расчета',
+                'ANOTHER_PAYMENT_ITEM' => 'Иной предмет расчета'
+            ]
+        );
+    }
+
     public static function getCategory($id)
     {
         $url = self::msUrl().'productfolder/'.$id;
+        $response = self::get($url);
+        return $response->json();
+    }
+
+    public static function getCompany($id)
+    {
+        $url = self::msUrl().'counterparty/'.$id;
         $response = self::get($url);
         return $response->json();
     }
@@ -40,12 +79,104 @@ class MoySklad
         return $response->json();
     }
 
+    public static function getInvoiceOut($url) 
+    {
+        //$url = self::msUrl().'invoiceout/metadata/states/'.$id;
+        $response = self::get($url);
+        $items = $response->json();
+        return [
+            'id' => $items['id'],
+            'accountId' => $items['accountId'],
+            'name' => $items['name']
+        ];
+    }
+
+    public static function getInvoiceoutMetadataStates($url)
+    {
+        $response = self::get($url);
+        $items = $response->json();
+        return [
+            'id' => $items['id'],
+            'name' => $items['name'],
+            'color' => $items['color']
+        ];
+    }
+
     public static function getInvoicePositions($id) 
     {
         $url = self::msUrl().'invoiceout/'.$id.'/positions';
         $response = self::get($url);
         return $response->json();
     }
+
+    public static function getCustomerOrderPositions($url) 
+    {
+        //$url = self::msUrl().'customerorder/'.$id.'/positions';
+        $response = self::get($url);
+        $items = $response->json();
+        $array = [];
+        foreach($items['rows'] as $item) {
+            $array[] = [
+                'id' => $item['id'],
+                'product' => self::getProduct($item['assortment']['meta']['href']),
+                'quantity' => $item['quantity'],
+                'price' => $item['price'],
+                'discount' => $item['discount'],
+                'vat' => $item['vat'],
+            ];
+        }
+        return [
+            'product' => $array,
+            'size' => $items['meta']['size']
+        ];
+    }
+
+    public static function getProductImages($url)
+    {
+        $response = self::get($url);
+        $item = $response->json();
+        $images = $item['rows'] ? $item['rows'][0]['miniature']['href'] : '/img/placeholder.png';
+        return [
+            'images' => $images
+        ];
+    }
+
+    public static function getProductFolderID($url)
+    {
+        $parts = parse_url( $url );
+        $arr = explode('?id=', $parts["fragment"]);
+        return $arr[1];
+        //$parts;
+        //
+    }    
+
+    public static function getOneProduct($id)
+    {
+        $url = self::msUrl().'product/'.$id;
+        $response = self::get($url);
+        $item = $response->json();
+        return [
+            'id' => $item['id'],
+            'updated' => $item['updated'],
+            'name' => $item['name'],
+            'externalCode' => $item['externalCode'],
+            'archived' => $item['archived'] === true ? 'да' : 'нет',
+            'catalog' => [
+                'id' => self::getProductFolderID($item['productFolder']['meta']['uuidHref']),
+                'name' => $item['pathName']
+            ],
+            'vat' => $item['vat'],
+            'src' => self::getProductImages($item['images']['meta']['href']),
+            'minPrice' => $item['minPrice']['value'],
+            'salePrices' => $item['salePrices'][0]['value'],
+            'paymentItemType' => self::getPaymentItemType($item['paymentItemType']),
+            'article' => $item['article'],
+            'weight' => $item['weight'],
+            'volume' => $item['volume'],
+            'trackingType' => self::getStatusTrackingType($item['trackingType']),
+            'barcodes' => $item['barcodes'] ? $item['barcodes'][0]['ean13'] : 'Нет данных'
+        ];
+    } 
 
     public static function getProduct($url) 
     {
@@ -70,7 +201,10 @@ class MoySklad
             'inn' => $item['inn'],
             'kpp' => $item['kpp'],
             'ogrn' => $item['ogrn'],
-            'okpo' => $item['okpo']
+            'okpo' => $item['okpo'],
+            'email' => $item['email'] ? $item['email'] : '',
+            'phone' => $item['phone'] ? $item['phone'] : '',
+            'actualAddress' => $item['actualAddress'] ? $item['actualAddress'] : ''
         ];
     }
 
@@ -95,5 +229,37 @@ class MoySklad
         ];
     }
 
+    public static function getCustomerOrder($url)
+    {
+        $response = self::get($url);
+        $positions = $response->json();
+        return [
+            'size' => $positions['size']
+        ];
+    }
 
+    public static function getPaymentReports($order)
+    {
+        $array = [];
+        $url = self::msUrl().'customerorder/'.$order;
+        $response = self::get($url);
+        $neworder = $response->json();
+        return [
+            'id' => $neworder['id'],
+            'updated' => $neworder['updated'],
+            'deal' => $neworder['name'],
+            'moment' => $neworder['moment'],
+            'sum' => $neworder['sum'],
+            'company' => self::getCounterParty($neworder['agent']['meta']['href']),
+            'created' => $neworder['created'],
+            'positions' => self::getCustomerOrderPositions($neworder['positions']['meta']['href']),
+            'vatSum' => $neworder['vatSum'],
+            'deliveryPlannedMoment' => $neworder['deliveryPlannedMoment'],
+            'payedSum' => $neworder['payedSum'],
+            'shippedSum' => $neworder['shippedSum'],
+            'invoicedSum' => $neworder['invoicedSum'],
+            'state' => self::getInvoiceoutMetadataStates($neworder['state']['meta']['href']),
+            'invoicesOut' => self::getInvoiceOut($neworder['invoicesOut'][0]['meta']['href'])
+        ];
+    }
 }

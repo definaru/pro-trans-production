@@ -12,6 +12,21 @@
     <link rel="stylesheet" href="https://glyphsearch.com/bower_components/ionicons/css/ionicons.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" />
+    <link rel="canonical" href="{{ url()->current() }}"/>
+    
+    <meta name="keywords" content="CRM, продажи, оптом">
+    <meta name="description" content="Официальный сервис «Prospekt Parts» по оптовым продажам запчастей">
+    <meta name="theme-color" content="#3f51b5">
+    <meta name="msapplication-navbutton-color" content="#3f51b5">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#3f51b5">
+
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Prospekt Parts">
+    <meta property="og:image" content="/img/apple_touth_icon.jpg">
+    <meta property="og:title" content="{{ config('app.name') }}" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:description" content="Официальный сервис «Prospekt Parts» по оптовым продажам запчастей"/> 
     <style>
         body, html {
             font-family: 'Nunito Sans', sans-serif;

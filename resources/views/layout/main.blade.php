@@ -32,12 +32,12 @@
                     </div>
                 </div>
             </section>
-            <footer class="border-top p-3 mb-2 d-print-none">
+            <footer class="border-top py-2 d-print-none">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
                             <p class="text-muted text-center m-0">
-                                <small>Copyright &copy; {{ date('Y') }} 
+                                <small style="font-size: 12px">Copyright &copy; {{ date('Y') }} 
                                     &middot; Все права защищены. 
                                     &middot; <span class="text-dark">{{ config('app.name') }}</span>
                                     | {{ config('app.email') }}
@@ -56,5 +56,11 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
     <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
     <script src="{{ asset('js/defina.admin.min.js') }}"></script>
+    <script>
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        const tooltipList = [...tooltipTriggerList].map(
+            tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl)
+        );
+    </script>
 </body>
 </html>

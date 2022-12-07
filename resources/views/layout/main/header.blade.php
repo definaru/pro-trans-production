@@ -7,20 +7,23 @@
         </div>                    
     </div>
     <div class="d-flex align-items-center gap-1">
-        <span class="material-symbols-outlined">call</span>
+        <span class="material-symbols-outlined text-primary">call</span>
         <a href="tel:{{ config('app.phone') }}" class="fw-bold text-dark text-decoration-none">{{ $contact::format_phone(config('app.phone')) }}</a>
     </div>
     <div class="d-flex align-items-center gap-3">
         <div class="dropdown">
             <div class="d-flex align-items-center gap-2 cp py-0" data-bs-toggle="dropdown">
                 <span class="material-symbols-outlined fs-2 text-white bg-primary rounded-circle">account_circle</span>
-                <div>
                     @if($user->customer->company)
+                    <div 
+                        style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 220px" 
+                        title="{{$user->customer->company}}" data-bs-toggle="tooltip"
+                    >
                         {{$user->customer->company}}
+                    </div>    
                     @else
-                        Нет данных
+                    <div>Нет данных</div>
                     @endif
-                </div>
             </div>     
             <ul class="dropdown-menu dropdown-menu-end profile-menu shadow">
                 @foreach($usermenu as $list)
@@ -32,7 +35,7 @@
             <h6 class="position-absolute top-0 start-100 translate-middle">
                 <span class="badge rounded-pill bg-danger px-1 py-0">3</span>
             </h6>
-            <div class="d-flex align-items-center gap-2 cp py-0" data-bs-toggle="dropdown">
+            <div class="d-flex align-items-center gap-2 cp py-0">
                 <i class="material-symbols-outlined fs-5 text-secondary">shopping_cart</i>
             </div>
         </a>
