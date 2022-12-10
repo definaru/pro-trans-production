@@ -5,7 +5,7 @@
 @section('content')
 @include('layout.main.logo')
 @if (session('status'))
-    <x-alert type="success" message="{{ session('status') }}" />
+    <x-alert type="success" close="false" message="{{ session('status') }}" />
 @endif
 <form action="/login" method="post" class="mt-4">
     @csrf
@@ -44,7 +44,7 @@
         @enderror
     </div>
     <div class="mt-2 d-grid">
-        <x-button id="loading" type="submit" text="Войти" />
+        <x-button id="loading" color="danger" type="submit" text="Войти" />
     </div>
 </form>
 <div class="w-100 mt-3 text-center">

@@ -11,7 +11,7 @@ class MainController extends Controller
 
     public function Сontact()
     {
-        return view('contact', ['detail' => new ContactService()]);
+        return view('contact');
     }
 
 
@@ -23,19 +23,19 @@ class MainController extends Controller
 
     public function License()
     {
-        return view('license');
+        return view('doc.license');
     }
 
 
     public function Responsibility()
     {
-        return view('responsibility');
+        return view('doc.responsibility');
     }
 
 
     public function Private()
     {
-        return view('privatepolice');
+        return view('doc.privatepolice');
     }
 
 }

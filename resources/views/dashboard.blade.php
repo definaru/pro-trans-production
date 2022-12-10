@@ -2,49 +2,28 @@
 @section('title', 'Личный кабинет')
 
 @section('content')
-    <div>
-        <div class="d-flex gap-2">
-            <div class="badge bg-warning text-dark cp">Поиск</div>
-            <div class="badge bg-white shadow-sm text-dark cp">Ассортимент</div>
-            <div class="badge bg-white shadow-sm text-dark cp">Оригинальные каталоги</div>
-            <div class="badge bg-white shadow-sm text-dark cp">TecDoc</div>
-            <div class="badge bg-white shadow-sm text-dark cp">ACat</div>
-            <div class="badge bg-white shadow-sm text-dark cp">По брендам</div>
-            <div class="badge bg-white shadow-sm text-dark cp">Шины и диски</div>
-            <div class="badge bg-white shadow-sm text-dark cp">Гараж</div>
-            <div class="badge bg-white shadow-sm text-dark cp">Фавориты</div>
-            <div class="badge bg-white shadow-sm text-dark cp">Уценка</div>
-        </ul>
-    </div>
-    <div class="card shadow-sm border-0 mb-5 mt-3">
+    <form action="" method="post" class="card shadow-sm border-0 mb-5 mt-3">
+        @csrf
         <div id="type" class="card-body d-flex gap-2">
             <label class="border rounded">
-                <input type="radio" name="type" class="d-none" checked />
-                <span>Точный по номеру</span>
+                <input type="radio" name="type" class="d-none" value="article" checked />
+                <span>По артикулу</span>
             </label>
             <label class="border rounded">
-                <input type="radio" name="type" class="d-none" />
-                <span>С начала номера</span>
-            </label>
-            <label class="border rounded">
-                <input type="radio" name="type" class="d-none" />
+                <input type="radio" name="type" class="d-none" value="name" />
                 <span>По наименованию</span>
             </label>
             <label class="border rounded">
-                <input type="radio" name="type" class="d-none" />
-                <span>По размерам</span>
-            </label>
-            <label class="border rounded">
-                <input type="radio" name="type" class="d-none" />
+                <input type="radio" name="type" class="d-none" value="barcode" />
                 <span>По штрих-коду</span>
             </label>
             <label class="border rounded">
-                <input type="radio" name="type" class="d-none" />
+                <input type="radio" name="type" class="d-none" value="vin" />
                 <span>Поиск по VIN</span>
             </label>
         </div>
         <div id="filter" class="card-body pt-0 d-flex gap-2">
-            <label class="border rounded">
+            <!-- <label class="border rounded">
                 <input type="checkbox" name="filter" class="d-none"> 
                 <span class="btn material-symbols-outlined">tune</span>
             </label>
@@ -55,12 +34,13 @@
             <label class="border rounded">
                 <input type="checkbox" name="filter" class="d-none"> 
                 <span class="btn material-symbols-outlined">photo_camera</span>
-            </label>
+            </label> -->
 
-            <input type="text"  class="form-control" placeholder="Поиск..." />
-            <bottom class="btn btn-warning border">Найти</bottom>
+            <input type="text" name="text" class="form-control"value="{{ old('text') }}" placeholder="Поиск..." />
+            <x-button color="danger" icon="search" type="submit" text="Найти" />
         </div>
-    </div>
+    </form>
+    <pre><?php var_dump($_POST);?></pre>
     <!-- @role('customer')
         <p>Project Manager Panel</p> 
     @endrole
@@ -75,9 +55,6 @@
     <div class="row">
         <div class="col-md-4">
             <x-category-card icon="oil_barrel" header="Масла" category="smtp" />
-        </div>
-        <div class="col-md-4">
-            <x-category-card icon="hotel_class" header="Оригинальные каталоги" category="smtpq" />
         </div>
         <div class="col-md-4">
             <x-category-card icon="settings_suggest" header="TecDoc Inside" category="smtpw" />

@@ -1,5 +1,6 @@
 @php
-    $invoiceout = parse_url($order['order']['customerOrder']['meta']['href'])["path"];
+    error_reporting (E_ALL ^ E_NOTICE);
+    $invoiceout = $order === '' ? '' : parse_url($order['order']['customerOrder']['meta']['href'])["path"];
     $invoiceout = explode('/', $invoiceout);
 @endphp
 
@@ -8,7 +9,7 @@
 
 @section('breadcrumbs')
 <div class="d-flex gap-2">
-    <a href="/dashboard/payment/order">Счета</a>     
+    <a href="/dashboard/payment/order" class="text-muted">Счета</a>     
     <span class="text-secondary">/</span>
     <span class="text-muted">Детали счёта</span>
 </div>
@@ -223,11 +224,7 @@
                                     #{{$order['order']['name']}}
                                 </a>
                             </h2>
-                            @if($user->customer->company)
-                                {{$user->customer->company}}
-                            @else
-                                Нет данных
-                            @endif
+                            ООО "ПРОСПЕКТ ТРАНС"
                         </div> 
                     <address class="row text-muted">
                     <div class="col-6"></div>  

@@ -427,13 +427,6 @@ class GetMenu
                         'list' => GetMenu::getMenuCatalog()                 
                     ],
                     [
-                        'icon' => 'shopping_cart',
-                        'name' => 'Корзина',
-                        'slug' => 'card',
-                        'count' => '13',
-                        'list' => ''
-                    ],
-                    [
                         'icon' => 'inventory',
                         'name' => 'Платежи',
                         'slug' => 'payment',
@@ -461,6 +454,13 @@ class GetMenu
                             ]
                         ]
                     ],
+                    [
+                        'icon' => 'shopping_cart',
+                        'name' => 'Корзина',
+                        'slug' => 'card',
+                        'count' => '13',
+                        'list' => ''
+                    ],                    
                     // [
                     //     'icon' => 'monitoring',
                     //     'name' => 'Акции',

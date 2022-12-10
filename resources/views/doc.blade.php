@@ -8,6 +8,7 @@
         <li class="list-group-item"><a href="/doc/license" class="text-decoration-none">Пользовательское соглашение</a></li>
         <li class="list-group-item"><a href="/doc/privatepolice" class="text-decoration-none">Политика конфиденциальности</a></li>
         <li class="list-group-item"><a href="/doc/responsibility" class="text-decoration-none">Отказ от ответственности</a></li>
+        <li class="list-group-item"><a href="/doc/guaranty" class="text-decoration-none">Условия гарантии</a></li>
         <li class="list-group-item"><a href="/contact" class="text-decoration-none">Контакты</a></li>
     </ul>
 </div>

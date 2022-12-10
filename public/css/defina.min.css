@@ -16,6 +16,12 @@ input:focus {
 .nav-link:focus, .nav-link:hover {
     color: #333;
 }
+
+.page-link:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 .image-product {
     /* image-rendering: pixelated; */
     image-rendering: -moz-crisp-edges; /* Firefox */
@@ -104,7 +110,7 @@ input:focus {
 #type input:checked + span, 
 #filter input:checked + span 
 {
-    background: #ffc107;
+    background: #212529;
     color: #fff;
 }
 

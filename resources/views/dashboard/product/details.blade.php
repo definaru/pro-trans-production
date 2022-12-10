@@ -1,32 +1,61 @@
 @extends('layout/main')
 
 @php
-    error_reporting (E_ALL ^ E_NOTICE);
-    if(isset($data['errors'])) {
-        $title = 'Товар не найден';
-    } else {
-        $title = $product['name'];
-    }
+    $datetime = $time::now()->addHours(3)->locale('ru')->translatedFormat('l, j F Y, H:i');
+    $uuid = auth()->user()->verified;
 @endphp
 
-@section('title', $title)
+@section('title', $product['name'])
 
 @section('breadcrumbs')
 <div class="d-flex gap-2 mb-2">
-    <a href="/dashboard">Панель</a>
+    <a href="/dashboard" class="text-muted">Панель</a>
     <span class="text-secondary">/</span>
-    <a href="/dashboard/catalog/category/{{$product['catalog']['id']}}">
+    @if($product['name'] === 'Товар не найден')
+    <span class="text-muted">{{$product['name']}}</span>
+    @else
+    <a href="/dashboard/catalog/category/{{$product['catalog']['id']}}" class="text-muted">
         {{$product['catalog']['name']}}
     </a>     
     <span class="text-secondary">/</span>
-    <span class="text-muted">Детали {{$product['paymentItemType']}}а</span>
+    <span class="text-muted">Детали {{$product['paymentItemType']}}а</span>    
+    @endif
 </div>
 @endsection
 
 
 @section('content')
-    @if($data['errors'])
-        <x-alert type="danger" message="{!!$data['errors'][0]['error']!!}" />
+    @if($product['name'] === 'Товар не найден')
+        <x-alert type="danger" close="false" message="Товар удалён или не верно указан ID товара" />
+        <form action="" method="post" class="card shadow-sm border-0">
+            <div class="card-header bg-white">
+                <h5 class="fw-bold m-0">Связаться с менеджером</h5>
+            </div>
+            <div class="card-body">
+                @csrf
+                <input type="hidden" name="date" value="{{$datetime}}">
+                <input type="hidden" name="company" value="{{$uuid}}">
+                <input type="hidden" name="message" value="ID товар {{$id}} не найден">
+                <div class="mb-2">
+                    <label>ID товара</label>
+                    <input type="text" class="form-control" name="id" value="{{$id}}" />
+                </div>
+                <div class="mb-2">
+                    <label>Ваше имя</label>
+                    <input type="text" class="form-control" name="name" value="" />
+                </div>
+                <div>
+                    <label>Ваш телефон</label>
+                    <input type="text" class="form-control" name="phone" value="" />
+                </div>
+            </div>
+            <div class="card-footer bg-white border-light">
+                <x-button type="submit" color="dark" text="Отправить" icon="forward_to_inbox" />
+            </div>
+        </form>
+        @if(isset($_POST["_token"]))
+        <pre><?php var_dump($_POST);?></pre>
+        @endif
     @else
     <div class="card border-0 shadow-sm">
         <div class="card-body">
@@ -34,10 +63,14 @@
                 <div class="col-md-3">
                     <img src="{{$product['src']['images']}}" class="w-100 rounded" alt="{{$product['name']}}" />
                     <div class="text-center py-3">
+                        @if(isset($item['barcodes']))
                         {!! DNS1D::getBarcodeSVG($product['barcodes'], 'EAN13', 1.7,60) !!}
+                        @endif
                     </div>
                     <div>
+                    @if($product['quantity'] != 0)
                     <x-button type="a" href="#" color="dark" text="В корзину" icon="shopping_cart" />
+                    @endif
                     </div>
                 </div>
                 <div class="col-md-9">
@@ -65,14 +98,14 @@
                         <b>Цена <i class="fw-light text-muted">(за 1 шт.)</i>:</b>
                         @php echo number_format(($product['salePrices']) / 100, 2, '.', ' ') @endphp ₽
                     </p>
-                    <p class="mb-1">
+                    <!-- <p class="mb-1">
                         <b>Масса:</b>
                         {{$product['weight']}} кг.
                     </p>
                     <p class="mb-1">
                         <b>Объем:</b>
                         {{$product['volume']}}
-                    </p>
+                    </p> -->
                     <p class="mb-1">
                         <b>Тип маркеровки:</b>
                         {{$product['trackingType']}}
@@ -82,6 +115,23 @@
                         <input type="text" name="id" class="form-control" value="{{$product['id']}}" placeholder="Идентификатор..." />
                         <div class="form-text">Вы можете сообщить этот ID менеджеру при поиске данной позиции</div>
                     </div>
+                    <p>
+                        @if($product['quantity'] == 0)
+                        <div class="badge bg-soft-danger text-danger px-3">
+                            Нет в наличии
+                        </div>
+                        @else
+                        <div class="badge bg-soft-success px-3">
+                            <div class="d-flex align-items-center gap-2 text-success">
+                                В наличии 
+                                <span class="badge bg-success">
+                                {{$product['quantity']}}
+                                </span>                                
+                            </div>
+                        </div>
+                        @endif
+                    </p>
+                    
                     
                     <pre><?php //var_dump($product);?></pre>
                     <pre><?php // var_dump($data);?></pre>  

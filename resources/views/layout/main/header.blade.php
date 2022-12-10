@@ -7,13 +7,13 @@
         </div>                    
     </div>
     <div class="d-flex align-items-center gap-1">
-        <span class="material-symbols-outlined text-primary">call</span>
+        <span class="material-symbols-outlined text-secondary">call</span>
         <a href="tel:{{ config('app.phone') }}" class="fw-bold text-dark text-decoration-none">{{ $contact::format_phone(config('app.phone')) }}</a>
     </div>
     <div class="d-flex align-items-center gap-3">
         <div class="dropdown">
             <div class="d-flex align-items-center gap-2 cp py-0" data-bs-toggle="dropdown">
-                <span class="material-symbols-outlined fs-2 text-white bg-primary rounded-circle">account_circle</span>
+                <span class="material-symbols-outlined fs-2 text-white bg-soft-danger rounded-circle">account_circle</span>
                     @if($user->customer->company)
                     <div 
                         style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 220px" 
@@ -40,8 +40,8 @@
             </div>
         </a>
         <div class="dropdown">
-            <div class="d-flex align-items-center gap-2 cp py-0" data-bs-toggle="dropdown" title="Справочная информация">
-                <span class="material-symbols-outlined fs-5 text-secondary">help</span>
+            <div class="d-flex align-items-center gap-2 cp py-0" data-bs-toggle="dropdown">
+                <span class="material-symbols-outlined fs-5 text-secondary" data-bs-toggle="tooltip" title="Справочная информация">help</span>
             </div>
             <ul class="dropdown-menu dropdown-menu-end">
                 @foreach($helpmenu as $item)

@@ -58,6 +58,13 @@ class MoySklad
         );
     }
 
+    public static function getAllProduct($limit = 10, $offset = 0)
+    {
+        $url = self::msUrl().'assortment?expand=images,positions&limit='.$limit.'&offset='.$offset;
+        $response = self::get($url);
+        return $response->json();
+    }
+
     public static function getCategory($id)
     {
         $url = self::msUrl().'productfolder/'.$id;
@@ -152,9 +159,16 @@ class MoySklad
 
     public static function getOneProduct($id)
     {
-        $url = self::msUrl().'product/'.$id;
+        $url = self::msUrl().'assortment?filter=id='.$id;
         $response = self::get($url);
-        $item = $response->json();
+        $item = $response->json()['rows']; 
+        if($item === []) {
+            return [
+                'id' => $id,
+                'name' => 'Товар не найден'
+            ];
+        }
+        $item = $item[0];
         return [
             'id' => $item['id'],
             'updated' => $item['updated'],
@@ -174,7 +188,8 @@ class MoySklad
             'weight' => $item['weight'],
             'volume' => $item['volume'],
             'trackingType' => self::getStatusTrackingType($item['trackingType']),
-            'barcodes' => $item['barcodes'] ? $item['barcodes'][0]['ean13'] : 'Нет данных'
+            'barcodes' => isset($item['barcodes']) ? $item['barcodes'][0]['ean13'] : 'Нет данных',
+            'quantity' => $item['quantity']
         ];
     } 
 

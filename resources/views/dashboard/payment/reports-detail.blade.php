@@ -4,7 +4,7 @@
 
 @section('breadcrumbs')
 <div class="d-flex gap-2">
-    <a href="/dashboard/payment/reports">Заказы</a>     
+    <a href="/dashboard/payment/reports" class="text-muted">Заказы</a>     
     <span class="text-secondary">/</span>
     <span class="text-muted">Детали заказа</span>
 </div>
@@ -16,10 +16,7 @@
             <span class="legend-indicator bg-success"></span>
             Оплачено 
         </span>  -->
-        <span class="badge bg-soft-info text-info">
-            <span class="legend-indicator bg-info"></span>
-            {{$data['state']['name']}}
-        </span> 
+        <x-badge color="{{$data['state']['color']}}" text="{{$data['state']['name']}}"/>
         <span class="d-flex align-items-center gap-2 ms-2 ms-sm-3 text-secondary">
             <span class="material-symbols-outlined">calendar_month</span> 
             <!-- Сен. 17, 2020, 5:48 -->
@@ -38,6 +35,7 @@
         <x-button 
             type="a" 
             size="sm" 
+            color="danger"
             href="/dashboard/payment/order/{{$data['invoicesOut']['id']}}" 
             text="Запросить счёт" 
             icon="credit_score" 
@@ -77,7 +75,7 @@
             <div class="card-header border-light bg-white d-flex align-items-center justify-content-between">
                 <h5 class="fw-bold mb-0 mt-1">
                     Информация по заказу 
-                    <span class="badge bg-soft-success text-dark rounded-circle ms-1">
+                    <span class="badge bg-soft-danger text-danger rounded-circle ms-1">
                     {{$data['positions']['size']}}
                     </span>
                 </h5>
@@ -94,12 +92,12 @@
                     <div class="flex-grow-1 ms-3">
                         <div class="row">
                             <div class="col-md-6 mb-3 mb-md-0">
-                                <a href="/dashboard/product/details/{{$product['id']}}" class="h5 m-0 d-block text-decoration-none">
+                                <a href="/dashboard/product/details/{{$product['id']}}" class="h6 text-dark m-0 d-block text-decoration-none">
                                     {{$product['product']['name']}}
                                 </a> 
-                                <div class="fs-6 text-body">
-                                    <span>Артикул:</span> 
-                                    <span class="fw-semibold">
+                                <div class="fs-6 text-secondary">
+                                    <span class="fw-semibold">Артикул:</span> 
+                                    <span>
                                         {{$product['product']['article']}}
                                     </span>
                                 </div>
@@ -110,7 +108,7 @@
                                 </small>
                             </div>
                             <div class="col col-md-2 align-self-center">
-                                <h5>{{$product['quantity']}} шт</h5>
+                                <h6>{{$product['quantity']}} шт</h6>
                             </div>
                             <div class="col col-md-2 ps-0 align-self-center text-end">
                                 <h6 class="m-0">
@@ -166,7 +164,7 @@
                     <li class="list-group-item border-light">
                         <a href="./ecommerce-customer" class="d-flex align-items-center text-decoration-none">
                             <div>
-                                <span class="material-symbols-outlined icon-card">apartment</span>
+                                <span class="material-symbols-outlined bg-soft-danger text-danger icon-card">apartment</span>
                             </div>
                             <div class="flex-grow-1 ms-3">
                                 <span class="text-body text-inherit">

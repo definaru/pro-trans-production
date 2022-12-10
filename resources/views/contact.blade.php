@@ -3,8 +3,10 @@
 @section('title', 'Контакты')
 
 @section('content')
+<hr />
 <div class="mt-5">
     <h6 class="text-secondary">Компания</h6> 
+    
     <h3 class="text-dark mb-4">{{ config('app.name') }}</h3>
     <div class="row">
         <div class="col-md-5">
@@ -13,8 +15,8 @@
             <p><strong>КПП:</strong> 771501001</p>            
         </div>
         <div class="col-md-7">
-            <p><strong>E-mail: </strong> {!! $detail::getEmail(config('app.email'), ['text-prymary', 'text-decoration-none']) !!}</p>
-            <p><strong>Телефон:</strong> {!! $detail::getPhone(config('app.phone'), ['text-prymary', 'text-decoration-none']) !!}</p>
+            <p><strong>E-mail: </strong> {!! $contact::getEmail(config('app.email'), ['text-muted', 'text-decoration-none']) !!}</p>
+            <p><strong>Телефон:</strong> {!! $contact::getPhone(config('app.phone'), ['text-muted', 'text-decoration-none']) !!}</p>
             <p><strong>Адрес:</strong> {{ config('app.address') }}</p>
         </div>
     </div>

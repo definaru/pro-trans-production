@@ -1,4 +1,7 @@
-<div class="alert alert-{{ $type }} d-flex gap-2 align-items-center alert-dismissible fade show" role="alert">
+@php
+$classes = ($close === true) ? 'alert-dismissible' : '';
+@endphp
+<div class="alert alert-{{ $type }} d-flex gap-2 align-items-center {{ $classes }} fade show border-0">
     <span class="material-symbols-outlined text-{{ $type }}">
         @switch($type)
             @case('info')
@@ -48,5 +51,7 @@
         @endif
         {{ $message }}
     </div>
+    @if($close === true)
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    @endif
 </div>

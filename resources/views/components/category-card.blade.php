@@ -1,7 +1,7 @@
 <div class="card shadow-sm border-0 mt-4">
     <button class="cp card-header rounded bg-white py-3 border-0 d-flex align-items-center justify-content-between" data-bs-toggle="collapse" data-bs-target="#{{$category}}">
         <div class="d-flex align-items-center gap-2">
-            <i class="material-symbols-outlined text-warning">{{$icon}}</i> 
+            <i class="material-symbols-outlined text-danger">{{$icon}}</i> 
             <strong>{{$header}}</strong>             
         </div>
         <div>

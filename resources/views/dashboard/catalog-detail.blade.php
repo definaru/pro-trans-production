@@ -92,13 +92,14 @@
                         </tr>
                     </thead>
                     <tbody class="list" style="font-size: 14px">
-                        @foreach($data['rows'] as $item)
+                        @foreach($product['rows'] as $item)
                         <x-product-card 
+                            :image="$item['images']['rows']"
                             href="{{$item['id']}}"
                             name="{{$item['name']}}"
                             vendorcode="{{$item['code']}}"
                             price="{{$item['salePrices'][0]['value']}}"
-                            availability="{{$item['volume']}}"
+                            availability="{{$item['quantity']}}"
                             :modifications="$name"
                         />
                         @endforeach
@@ -109,18 +110,39 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="me-5 text-secondary small">
                         Показано: 
-                        <span>1</span> - <span>{{$data['meta']['limit']}}</span> из <span>{{$data['meta']['size']}}</span>
+                        <span>{{$offset == 0 ? 1 : $product['meta']['limit']}}</span> - 
+                        <span>
+                            @if($product['meta']['size']-$offset < $limit)
+                                {{$offset+$product['meta']['size']-$offset}}
+                            @else
+                                {{$offset == 0 ? $limit : $offset}}
+                            @endif
+                        </span> из 
+                        <span>{{$product['meta']['size']}}</span>
                     </div>
-                    <ul class="pagination list-pagination mb-0 d-flex">
+                    <!-- <ul class="pagination list-pagination mb-0 d-flex">
                         <li class="page-item active"><a href="javascript: void(0);" class="page page-link">1</a></li>
                         <li class="page-item"><a href="javascript: void(0);" class="page page-link">2</a></li>
                         <li class="page-item"><a href="javascript: void(0);" class="page page-link">3</a></li>
-                    </ul>
+                    </ul> -->
+                    <nav aria-label="...">
+                        <ul class="pagination m-0">
+                            @if($offset != 0)
+                            <li class="page-item">
+                                <!-- <span class="page-link">Previous</span> disabled -->
+                                <a class="page-link text-muted" href="{{$offset-$limit}}">&larr; Предыдущие</a>
+                            </li>
+                            @endif
+
+                            @if($product['meta']['size']-$offset > $limit)
+                            <li class="page-item">
+                                <a class="page-link text-muted" href="{{$offset === 0 ? $name.'/'.($limit+$offset).'/'.$offset : $limit+$offset}}">Далее &rarr;</a>
+                            </li>
+                            @endif
+                        </ul>
+                    </nav>
                 </div>
             </div>
-          
-            <pre><?php //var_dump($data);?></pre>
-
         </div>
     </div>
 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Models\Pagination;
 use App\Models\MoySklad;
 
 
@@ -66,24 +67,25 @@ class DachboardController extends Controller
 
     public function DetailProduct($id)
     {
-        $url = MoySklad::msUrl().'product/'.$id;
-        $response = MoySklad::get($url);
         $product = MoySklad::getOneProduct($id);
         return view('dashboard.product.details', [
-            'data' => $response->json(),
+            'id' => $id,
             'product' => $product
         ]);
     }
 
-    public function CatalogDetail($name)
+    public function CatalogDetail($name, $limit = 10, $offset = 0)
     {
         $catalog = MoySklad::getCategory($name);
-        $url = MoySklad::msUrl().'product?limit=25&offset=0&expand=images';
-        $response = MoySklad::get($url);
+        $product = MoySklad::getAllProduct($limit, $offset);
+        //$pagination = new Pagination();
         return view('dashboard.catalog-detail', [
-            'name' => $name, 
-            'data' => $response->json(),
-            'catalog' => $catalog
+            'name' => $name,
+            //'pagination' => $pagination,
+            'catalog' => $catalog,
+            'product' => $product,
+            'limit' => $limit, 
+            'offset' => $offset
         ]);
     }
 

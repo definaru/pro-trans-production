@@ -41,7 +41,7 @@
                                     &middot; Все права защищены. 
                                     &middot; <span class="text-dark">{{ config('app.name') }}</span>
                                     | {{ config('app.email') }}
-                                    &middot; <a href="/doc/privatepolice">Политика конфиденциальности</a>
+                                    &middot; <a href="/doc/privatepolice" class="text-muted">Политика конфиденциальности</a>
                                 </small>
                             </p>                            
                         </div>

@@ -8,7 +8,11 @@
     }
 @endphp
 <div class="accordion" id="content">
-    <li class="list-group-item disabled bg-white text-secondary fs-6 mt-3 px-3 py-2" :class="{'text-center' : !isOpen}">
+    <li 
+        style="font-size:12px"
+        class="list-group-item disabled bg-white text-secondary mt-3 px-3 py-2" 
+        :class="{'text-center' : !isOpen}"
+    >
         <template v-if="isOpen">{{$header}}</template>
         <template v-else>-</template>
     </li>

@@ -7,7 +7,7 @@
         >
             <img src="{{ asset('img/dark-logo.png') }}" alt="{{ config('app.name') }}" />
             <template v-if="isOpen">
-                <h5 class="text-dark m-0"><span class="fw-bold">Prospect</span> Parts</h5>
+                <h5 class="text-dark m-0"><span class="fw-bold">Prospekt</span> Parts</h5>
             </template>
         </a>
         <div id="inner-content">

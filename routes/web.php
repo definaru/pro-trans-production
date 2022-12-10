@@ -16,8 +16,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('work/schedule', [DachboardController::class, 'Schedule']);
     Route::match(['get', 'post'],'settings/profile', [DachboardController::class, 'Settings']);
     Route::get('catalog', [DachboardController::class, 'Catalog']);
-    Route::get('catalog/category/{name}', [DachboardController::class, 'CatalogDetail']);
-    Route::get('product/details/{id}', [DachboardController::class, 'DetailProduct']);
+    Route::get('catalog/category/{name}/{limit?}/{offset?}', [DachboardController::class, 'CatalogDetail']);
+    Route::match(['get', 'post'],'product/details/{id}', [DachboardController::class, 'DetailProduct']);
     Route::get('payment/order', [DachboardController::class, 'Invoice']);
     Route::get('payment/order/{invoice}', [DachboardController::class, 'Invoice']);
     Route::get('payment/record', [DachboardController::class, 'Record']);
@@ -46,7 +46,7 @@ Route::controller(PasswordController::class)->group(function () {
 
 Route::controller(AuthController::class)->group(function () {
     Route::match(['get', 'post'], '/', 'home')->name('index');
-    Route::get('/dashboard', 'dashboard')->middleware('auth')->name('dashboard');
+    Route::match(['get', 'post'], '/dashboard', 'dashboard')->middleware('auth')->name('dashboard');
     Route::get('/logout', 'logout')->name('logout');
     Route::post('/login', 'login')->name('login');
     Route::get('/signup', 'register')->name('signup');

@@ -138,7 +138,7 @@
                                 <label for="ordersCheck1" class="form-check-label"></label>
                             </div>
                         </td>
-                        <td class="table-column-ps-0"><a href="reports/35463" class="text-decoration-none">#35463</a></td>
+                        <td class="table-column-ps-0"><a href="reports/7acfcb5d-6fec-11ed-0a80-0255004708b5" class="text-decoration-none">#35463</a></td>
                         <td><small class="text-muted">Aug 17, 2020 / 05:48</small></td>
                         <td><span class="badge bg-soft-success text-success"><span class="legend-indicator bg-success"></span>Оплачено</span></td>
                         <td>
