@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-between">
+<div class="d-flex justify-content-between d-print-none">
     <h2><?php echo $__env->yieldContent('title'); ?></h2>
     <span class="d-print-none material-symbols-outlined cp" data-bs-toggle="collapse" data-bs-target="#company" @click="toggleExpandLess">
         <template v-if="expand">expand_less</template> 

@@ -305,7 +305,10 @@ input:focus {
     height: 2.625rem;
 }
 
+
+
 @media print {
+    /* @page { size: landscape; } */
     .container {
         width: 100% !important;
     }
@@ -313,5 +316,10 @@ input:focus {
         display: grid;
         height: 100%;
         grid-template-columns: minmax(0px, 0%) 1fr;
+    }
+    a {color: #000;}
+    .shadow-sm {box-shadow: none !important}
+    body, html {
+        overflow: visible;
     }
 }

@@ -17,6 +17,10 @@
     'address' => '127576, г. Москва, ул. Абрамцевская, Д. 8А, Э 1 пом 3 к. 47 оф. Б6Л',
     'ms_login' => 'admin@prospekt-trans',
     'ms_password' => '0f108e3c54',
+    'tg_url' => 'https://api.telegram.org/bot',
+    'tg_apikey' => '5607440103:AAFFAWhhZL5dl58l_Qohsd_2aFgPmeN5v2o',
+    'dadata_token' => '3e6ac5399230fe9e2e7d6ae0fc7e72dd86c0d9ef',
+    'dadata_secret' => 'e68a044f6db4999da98ce4bb93090b58df460669',
     'providers' => 
     array (
       0 => 'Illuminate\\Auth\\AuthServiceProvider',
@@ -629,6 +633,53 @@
       0 => 'C:\\OpenServer\\domains\\prospektrans.host\\resources\\views',
     ),
     'compiled' => 'C:\\OpenServer\\domains\\prospektrans.host\\storage\\framework\\views',
+  ),
+  'dompdf' => 
+  array (
+    'show_warnings' => false,
+    'public_path' => NULL,
+    'convert_entities' => true,
+    'options' => 
+    array (
+      'font_dir' => 'C:\\OpenServer\\domains\\prospektrans.host\\storage\\fonts',
+      'font_cache' => 'C:\\OpenServer\\domains\\prospektrans.host\\storage\\fonts',
+      'temp_dir' => 'c:/openserver/userdata/temp',
+      'chroot' => 'C:\\OpenServer\\domains\\prospektrans.host',
+      'allowed_protocols' => 
+      array (
+        'file://' => 
+        array (
+          'rules' => 
+          array (
+          ),
+        ),
+        'http://' => 
+        array (
+          'rules' => 
+          array (
+          ),
+        ),
+        'https://' => 
+        array (
+          'rules' => 
+          array (
+          ),
+        ),
+      ),
+      'log_output_file' => NULL,
+      'enable_font_subsetting' => false,
+      'pdf_backend' => 'CPDF',
+      'default_media_type' => 'screen',
+      'default_paper_size' => 'a4',
+      'default_paper_orientation' => 'portrait',
+      'default_font' => 'serif',
+      'dpi' => 96,
+      'enable_php' => false,
+      'enable_javascript' => true,
+      'enable_remote' => true,
+      'font_height_ratio' => 1.1,
+      'enable_html5_parser' => true,
+    ),
   ),
   'flare' => 
   array (

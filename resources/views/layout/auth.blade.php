@@ -54,7 +54,7 @@
         <div class="container h-100">
             <div class="d-flex align-items-center row h-100">
                 <div class="col-md-4 offset-md-4 py-5">
-                    <div class="card border-0 shadow bg-white">
+                    <div class="card border-0 shadow-sm bg-white">
                         <div class="card-body">
                             @yield('content')
                         </div>

@@ -129,6 +129,11 @@ return [
     'ms_login' => env('MS_LOGIN'),
     'ms_password' => env('MS_PASSWORD'),
     
+    'tg_url' => env('TELEGRAM_URL'),
+    'tg_apikey' => env('TELEGRAM_APIKEY'),
+    'dadata_token' => env('DADATA_TOKEN'),
+    'dadata_secret' => env('DADATA_SECRET'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

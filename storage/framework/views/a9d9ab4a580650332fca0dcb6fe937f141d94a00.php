@@ -1,5 +1,5 @@
 <?php
-$classes = ($close === true) ? 'alert-dismissible' : '';
+$classes = ($close === 'true') ? 'alert-dismissible' : '';
 ?>
 <div class="alert alert-<?php echo e($type); ?> d-flex gap-2 align-items-center <?php echo e($classes); ?> fade show border-0">
     <span class="material-symbols-outlined text-<?php echo e($type); ?>">
@@ -52,7 +52,7 @@ $classes = ($close === true) ? 'alert-dismissible' : '';
         <?php echo e($message); ?>
 
     </div>
-    <?php if($close === true): ?>
+    <?php if($close === 'true'): ?>
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     <?php endif; ?>
 </div><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/components/alert.blade.php ENDPATH**/ ?>

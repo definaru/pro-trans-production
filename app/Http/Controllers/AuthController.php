@@ -13,6 +13,7 @@ use App\Models\Customer;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewUser;
+use App\Models\MoySklad;
 
 
 class AuthController extends Controller
@@ -34,7 +35,6 @@ class AuthController extends Controller
         if($user) {
             Mail::to($request->email)->send(new NewUser($user));
         }
-        //dd($user);
         return [
             'message' => 'Send post mail get started'
         ];
@@ -87,14 +87,17 @@ class AuthController extends Controller
         return view('signup');
     }
 
-    public function dashboard()
+    public function dashboard(Request $request)
     {
-        return view('dashboard');
+        $search = [];
+        if ($request->has(['type', 'text'])) {
+            $search = MoySklad::searchByProduct($request->type, $request->text);
+        }
+        return view('dashboard', ['search' => $search]);
     }
 
     public function login(UserLogin $request)
     {
-        //dd($request);
         $credentials = $request->validate(UserLogin::rules());
         if (Auth::check()) {
             return redirect()->intended('dashboard');

@@ -17,7 +17,7 @@
         @include('layout.main.aside')
         <div class="bg-light content d-print-table w-100">
             @include('layout.main.header')
-            <section style="overflow-y: scroll;height: 81vh" class="d-print-table w-100">
+            <section style="overflow-y: scroll;height: 83vh" class="d-print-table w-100">
                 <div class="container-fluid d-print-table">
                     <div class="row d-print-table">
                         <div class="col-md-12 mt-5 d-print-table">

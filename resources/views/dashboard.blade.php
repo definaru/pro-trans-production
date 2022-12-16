@@ -1,4 +1,5 @@
 @extends('layout/main')
+
 @section('title', 'Личный кабинет')
 
 @section('content')
@@ -14,12 +15,8 @@
                 <span>По наименованию</span>
             </label>
             <label class="border rounded">
-                <input type="radio" name="type" class="d-none" value="barcode" />
-                <span>По штрих-коду</span>
-            </label>
-            <label class="border rounded">
                 <input type="radio" name="type" class="d-none" value="vin" />
-                <span>Поиск по VIN</span>
+                <span>Запрос по VIN</span>
             </label>
         </div>
         <div id="filter" class="card-body pt-0 d-flex gap-2">
@@ -36,11 +33,16 @@
                 <span class="btn material-symbols-outlined">photo_camera</span>
             </label> -->
 
-            <input type="text" name="text" class="form-control"value="{{ old('text') }}" placeholder="Поиск..." />
+            <input type="text" name="text" class="form-control" value="{{ old('text') }}" placeholder="Поиск..." />
             <x-button color="danger" icon="search" type="submit" text="Найти" />
         </div>
     </form>
-    <pre><?php var_dump($_POST);?></pre>
+    
+    <pre><?php var_dump($search);?></pre>
+    <?php if(isset($_POST)) { ?>
+        <pre><?php var_dump($_POST);?></pre>
+    <?php } ?>
+    
     <!-- @role('customer')
         <p>Project Manager Panel</p> 
     @endrole

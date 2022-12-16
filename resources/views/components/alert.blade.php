@@ -1,5 +1,5 @@
 @php
-$classes = ($close === true) ? 'alert-dismissible' : '';
+$classes = ($close === 'true') ? 'alert-dismissible' : '';
 @endphp
 <div class="alert alert-{{ $type }} d-flex gap-2 align-items-center {{ $classes }} fade show border-0">
     <span class="material-symbols-outlined text-{{ $type }}">
@@ -51,7 +51,7 @@ $classes = ($close === true) ? 'alert-dismissible' : '';
         @endif
         {{ $message }}
     </div>
-    @if($close === true)
+    @if($close === 'true')
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     @endif
 </div>

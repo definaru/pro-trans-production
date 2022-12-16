@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use App\Models\Pagination;
+use App\Http\Requests\MakeContract;
+use App\Models\Contract;
+use App\Models\Telegram;
 use App\Models\MoySklad;
+use App\Models\DaData;
 
 
 class DachboardController extends Controller
@@ -38,21 +41,68 @@ class DachboardController extends Controller
         return view('dashboard.notifications');
     }
 
-    public function Order() 
+    public function Orders() 
     {
-        return view('dashboard.payment.order');
+        $orders = MoySklad::getOrderCustomer();
+        //return response()->json($orders);
+        return view('dashboard.payment.orders', ['orders' => $orders]);
     }
 
-    public function Invoice($invoice = '') 
+    public function Invoice($invoice) 
     {
-        $order = $invoice ? MoySklad::getInvoiceProduct($invoice) : '';
+        $order = MoySklad::getOrderCustomerOne($invoice);
         //return response()->json($order);
-        return view('dashboard.payment.order', ['order' => $order]);
+        return view('dashboard.payment.order', [
+            'order' => $order, 
+            'id' => $invoice
+        ]);
     }
 
     public function Account() 
     {
         return view('dashboard.payment.account');
+    }
+
+    public function updateAgreement(MakeContract $request)
+    {
+        $uuid = auth()->user()->verified;
+        $message = 'Данные договора обновлены. Пожалуйста, сверьте данные и подтвердите.';
+        $doc = Contract::find($uuid)->update($request->all());
+        return redirect()->route('contract')->with(['status' => $message]);
+    }
+
+    public function sendAgreement(MakeContract $request)
+    {
+        $contract = MoySklad::getContract();
+        $message = 'Ваш запрос на заключение договора получен. Пожалуйста, сверьте данные и подтвердите.';
+        $request->validate(MakeContract::rules());
+        Telegram::getMessageTelegram(time(), 'Запрос на заключение договора.', $contract['meta']['uuidHref']);
+        Contract::create($request->all());
+        return back()->with(['status' => $message]);
+    }
+
+    public function sendDeal(Request $request)
+    {
+        $message = 'Поздравляем! Договор заключён, теперь его можно сохранить или распечатать.';
+        MoySklad::enterIntoAcontract($request->deal, $request->accountId);
+        return redirect()->route('contract')->with(['status' => $message]);
+    }
+
+    public function EditAgreement()
+    {
+        $uuid = auth()->user()->verified;
+        $contract = Contract::find($uuid);
+        return view('document.edit-agreement', ['contract' => $contract]);
+    }
+
+    public function Agreement() 
+    {
+        $contract = MoySklad::getContract();
+        //$bank = DaData::bank($contract['agent']['inn']);
+        return view('document.agreement', [
+            'contract' => $contract,
+            //'bank' => $bank
+        ]);
     }
 
     public function Record() 
@@ -65,8 +115,12 @@ class DachboardController extends Controller
         return view('dashboard.catalog');
     }
 
-    public function DetailProduct($id)
+    public function DetailProduct($id, Request $request)
     {
+        if ($request->has(['name', 'phone'])) {
+            Telegram::getMessageTelegram($request->num, $request->message, $request->id);
+            return back()->with(['status' => 'Ваш тикет отправлен и получен. Ожидайте ответа от менеджера']);
+        }
         $product = MoySklad::getOneProduct($id);
         return view('dashboard.product.details', [
             'id' => $id,

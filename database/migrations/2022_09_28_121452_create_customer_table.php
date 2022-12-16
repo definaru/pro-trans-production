@@ -16,7 +16,6 @@ class CreateCustomerTable extends Migration
         Schema::create('customer', function(Blueprint $table) {
             $table->id();
             $table->string('uuid')->unique();
-            $table->foreign('uuid')->references('verified')->on('users')->onDelete('cascade');
             $table->string('superintendant', 255);
             $table->string('company', 255);
             $table->string('okved');
@@ -25,6 +24,8 @@ class CreateCustomerTable extends Migration
             $table->string('kpp');
             $table->text('address');
             $table->string('ogrn_date', 50);
+            //$table->foreign('uuid')->references('verified')->on('users')->onDelete('cascade');
+            //$table->primary('uuid');
         });
     }
 

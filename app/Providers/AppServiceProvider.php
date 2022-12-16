@@ -3,7 +3,10 @@
 namespace App\Providers;
 
 use Carbon\Carbon;
+use App\Models\DaData;
 use App\Models\MoySklad;
+use App\Models\Declension;
+use App\Models\FormatCurrency;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
@@ -42,6 +45,9 @@ class AppServiceProvider extends ServiceProvider
             'contact'       => new ContactService(),
             'time'          => new Carbon(),
             'MoySklad'      => new MoySklad(),
+            'currency'      => new FormatCurrency(),
+            'decl'          => new Declension(),
+            'dadata'        => new DaData(),
             'url'           => $_SERVER['REQUEST_URI']
         ]);
     }

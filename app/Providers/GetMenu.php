@@ -400,14 +400,13 @@ class GetMenu
 
     public static function getMenuCatalog()
     {
-        //GetMenu::getCatalog()
         $url = MoySklad::msUrl().'productfolder';
         $response = MoySklad::get($url);
         $array = [];
         foreach($response->json()['rows'] as $menu) {
             $array[] = [
                 'name' => $menu['name'],
-                'href' => 'catalog/category/'.$menu['id'],
+                'href' => 'catalog/category/'.$menu['id'].'/10/0',
             ];
         }
         return $array;
@@ -434,7 +433,7 @@ class GetMenu
                         'list' => [
                             [
                                 'name' => 'Счета',
-                                'href' => 'payment/order'
+                                'href' => 'payment/orders'
                             ],
                             [
                                 'name' => 'Заказы',
@@ -458,7 +457,14 @@ class GetMenu
                         'icon' => 'shopping_cart',
                         'name' => 'Корзина',
                         'slug' => 'card',
-                        'count' => '13',
+                        'count' => '3',
+                        'list' => ''
+                    ],                    
+                    [
+                        'icon' => 'assignment',
+                        'name' => 'Договор',
+                        'slug' => 'document/agreement',
+                        'count' => '',
                         'list' => ''
                     ],                    
                     // [
