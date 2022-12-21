@@ -1,7 +1,7 @@
-@extends('layout/main')
-@section('title', 'Счета')
 
-@section('content')
+<?php $__env->startSection('title', 'Счета'); ?>
+
+<?php $__env->startSection('content'); ?>
 <div class="row mt-2">
     <div class="col-md-12">
         <div class="card bg-white border-0 shadow-sm">
@@ -104,41 +104,56 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($orders['list'] as $ord)
+                        <?php $__currentLoopData = $orders['list']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ord): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
                             <td>
-                                <a href="order/{{$ord['id']}}" class="ms-3 text-decoration-none">
-                                    #{{$ord['name']}}
+                                <a href="order/<?php echo e($ord['id']); ?>" class="ms-3 text-decoration-none">
+                                    #<?php echo e($ord['name']); ?>
+
                                 </a>
                             </th>
                             <td>
                                 <small class="text-secondary">
-                                {{$time::parse($ord['created'])->locale('ru')->translatedFormat('d F Y, H:i')}}
+                                <?php echo e($time::parse($ord['created'])->locale('ru')->translatedFormat('d F Y, H:i')); ?>
+
                                 </small>
                             </td>
-                            <td><small>{{$ord['agent']['name']}}</small></td>
+                            <td><small><?php echo e($ord['agent']['name']); ?></small></td>
                             <td>
                                 <small>
-                                    @php echo number_format(($ord['sum']) / 100, 2, '.', ' ') @endphp ₽
+                                    <?php echo number_format(($ord['sum']) / 100, 2, '.', ' ') ?> ₽
                                 </small>
                             </td>
                             <td>
                                 <small class="text-secondary">
-                                @if($ord['paymentPlannedMoment'] === 'Нет данных')
-                                    {{$time::parse($ord['moment'])->locale('ru')->translatedFormat('d F Y')}}
-                                @else
-                                    {{$time::parse($ord['paymentPlannedMoment'])->locale('ru')->translatedFormat('d F Y')}}
-                                @endif
+                                <?php if($ord['paymentPlannedMoment'] === 'Нет данных'): ?>
+                                    <?php echo e($time::parse($ord['moment'])->locale('ru')->translatedFormat('d F Y')); ?>
+
+                                <?php else: ?>
+                                    <?php echo e($time::parse($ord['paymentPlannedMoment'])->locale('ru')->translatedFormat('d F Y')); ?>
+
+                                <?php endif; ?>
                                 </small>
                             </td>
                             <td>
-                                @php echo number_format(($ord['payedSum']) / 100, 2, '.', ' ') @endphp ₽
+                                <?php echo number_format(($ord['payedSum']) / 100, 2, '.', ' ') ?> ₽
                             </td>
                             <td>
-                                <x-badge color="{{$ord['state']['color']}}" text="{{$ord['state']['name']}}" />
+                                <?php if (isset($component)) { $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Badge::class, ['color' => ''.e($ord['state']['color']).'','text' => ''.e($ord['state']['name']).'']); ?>
+<?php $component->withName('badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94)): ?>
+<?php $component = $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94; ?>
+<?php unset($__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94); ?>
+<?php endif; ?>
                             </td>
                         </tr>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                     </tbody>
                 </table>
@@ -148,7 +163,8 @@
                     <div class="col-sm mb-2 mb-sm-0">
                         <div class="d-flex justify-content-center justify-content-sm-start align-items-center">
                             <span class="text-secondary me-2">Показано:</span> 
-                            {{$orders['count']}}
+                            <?php echo e($orders['count']); ?>
+
                             <!-- <div class="tom-select-custom">
                                 <select id="datatableEntries" autocomplete="off" class="border-0 form-select text-secondary w-auto">
                                     <option value="12" selected="selected">12</option> 
@@ -158,7 +174,7 @@
                                 </select>
                             </div>  -->
                             <span class="text-secondary mx-2">из</span> 
-                            <span class="text-secondary">{{$orders['count']}}</span>
+                            <span class="text-secondary"><?php echo e($orders['count']); ?></span>
                         </div>
                     </div> 
                     <div class="col-sm-auto">
@@ -192,4 +208,5 @@
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout/main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/dashboard/payment/orders.blade.php ENDPATH**/ ?>

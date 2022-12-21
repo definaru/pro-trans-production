@@ -45,7 +45,7 @@
         @enderror  
     </div>
     <div class="d-grid mt-2">
-        <x-button id="loading" type="submit" text="Сменить пароль" icon="outgoing_mail" />
+        <x-button id="loading" color="danger" type="submit" text="Сменить пароль" icon="outgoing_mail" />
     </div>
 </form>
 <div class="w-100 mt-3 text-center">

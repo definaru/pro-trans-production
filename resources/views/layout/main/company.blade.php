@@ -79,7 +79,7 @@
             <x-card-column header="Договор" icon="description">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <small><a href="#">ТДСТ/МСК/10068/ОО</a></small>  
+                        <small><a href="/dashboard/document/agreement">ТДСТ/МСК/10068/ОО</a></small>  
                         <span class="badge bg-light text-dark rounded-pill">от 15.01.2020</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">

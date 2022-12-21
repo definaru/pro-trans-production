@@ -356,7 +356,8 @@ class GetMenu
             [
                 'icon' => 'settings',
                 'link' => 'Мои настройки',
-                'href' => '/dashboard/settings/profile'
+                'href' => '/dashboard/settings/profile',
+                'target' => ''
             ],
             [
                 'icon' => '',
@@ -366,7 +367,8 @@ class GetMenu
             [
                 'icon' => 'logout',
                 'link' => 'Выйти',
-                'href' => '/logout'
+                'href' => '/logout',
+                'target' => ''
             ]
         ];
     }
@@ -382,17 +384,20 @@ class GetMenu
             [
                 'icon' => '',
                 'link' => 'Условия гарантии',
-                'href' => '/dashboard/guaranty'
+                'href' => '/doc/guaranty',
+                'target' => 'target'
             ],
             [
                 'icon' => '',
                 'link' => 'Правила возврата',
-                'href' => '/dashboard/return-policy'
+                'href' => '/doc/return-policy',
+                'target' => 'target'
             ],
             [
                 'icon' => '',
                 'link' => 'Обратная связь',
-                'href' => '/contact'
+                'href' => '/contact',
+                'target' => 'target'
             ]
         ];
     }

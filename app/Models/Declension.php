@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\FormatCurrency;
 
 
 class Declension
@@ -12,7 +13,7 @@ class Declension
         if($b) {$n = $n;}
         if($m==0 || $m>=5 || ($j>=10 && $j<=20)) {return $s3;}
         if($m>=2 && $m<=4) {return $s2;}
-        return $n.' '.$s1;
+        return $s1;
     }
 
     public static function rub($num)
@@ -28,6 +29,13 @@ class Declension
     public static function name($num)
     {
         return self::diff($num, 'наименование', 'наименования', 'наименований');
+    }
+    
+    public static function search($num)
+    {
+        $start = self::diff($num, 'Найден', 'Найдено', 'Найдено');
+        $end = self::diff($num, 'результат', 'результата', 'результатов');
+        return $start.' '.FormatCurrency::res($num).' '.$end;
     }
 
 }

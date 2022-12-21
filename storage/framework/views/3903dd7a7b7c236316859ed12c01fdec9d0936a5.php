@@ -1,7 +1,7 @@
-@extends('layout/main')
-@section('title', 'Заказы')
 
-@section('content')
+<?php $__env->startSection('title', 'Заказы'); ?>
+
+<?php $__env->startSection('content'); ?>
 <div class="card border-0 shadow-sm">
     <div class="card-header d-flex align-items-center justify-content-between bg-white border-0">
         <div class="mb-2 mb-md-0">
@@ -132,28 +132,39 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($reports['list'] as $item)
+                    <?php $__currentLoopData = $reports['list']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                        <td class="ps-3" style="vertical-align: middle">{{$loop->iteration}}.</td>
+                        <td class="ps-3" style="vertical-align: middle"><?php echo e($loop->iteration); ?>.</td>
                         <td class="table-column-ps-0" style="vertical-align: middle">
-                            <a href="reports/{{$item['id']}}" class="fw-bold text-dark text-decoration-none">
-                                #{{$item['name']}}
+                            <a href="reports/<?php echo e($item['id']); ?>" class="fw-bold text-dark text-decoration-none">
+                                #<?php echo e($item['name']); ?>
+
                             </a>
                         </td>
                         <td style="vertical-align: middle">
                             <small class="text-muted">
-                                {{$time::parse($item['created'])->locale('ru')->translatedFormat('d M. Y / H:i')}}
+                                <?php echo e($time::parse($item['created'])->locale('ru')->translatedFormat('d M. Y / H:i')); ?>
+
                             </small>
                         </td>
-                        <td style="vertical-align: middle"><small>{{$item['agent']['name']}}</small></td>
+                        <td style="vertical-align: middle"><small><?php echo e($item['agent']['name']); ?></small></td>
                         <td style="vertical-align: middle;text-align: center">
-                            <x-badge 
-                                color="{{$item['state']['color']}}" 
-                                text="{{$item['state']['name']}}" 
-                            />
+                            <?php if (isset($component)) { $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Badge::class, ['color' => ''.e($item['state']['color']).'','text' => ''.e($item['state']['name']).'']); ?>
+<?php $component->withName('badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94)): ?>
+<?php $component = $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94; ?>
+<?php unset($__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94); ?>
+<?php endif; ?>
                         </td>
                         <td style="vertical-align: middle">
-                            {!!$currency::summa($item['sum'])!!}
+                            <?php echo $currency::summa($item['sum']); ?>
+
                             <!-- <div class="d-flex align-items-center">
                                 <img src="/img/card/mastercard.svg" alt="..." class="me-2" style="width: 22px" /> 
                                 <span class="text-dark">•••• 4242</span>
@@ -181,7 +192,7 @@
                             </div>
                         </td>
                     </tr>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
             </table>
         </div>
@@ -231,4 +242,5 @@
         </div>
     </div>
 </div>                 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout/main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/dashboard/payment/reports.blade.php ENDPATH**/ ?>

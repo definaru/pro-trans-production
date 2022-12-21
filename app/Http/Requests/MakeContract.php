@@ -17,17 +17,17 @@ class MakeContract extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public static function rules()
     {
         return [
             'name' => 'required',
             'action' => 'required',
             'bank' => 'required',
-            'rs' => 'required|min:20',
-            'bik' => 'required|min:9',
-            'ks' => 'required|min:20',
+            'rs' => 'required|numeric|min:20',
+            'bik' => 'required|numeric|min:9',
+            'ks' => 'required|numeric|min:20',
             'email' => 'required|email|min:4|max:50',
-            'phone' => 'required|min:11|max:14'
+            'phone' => 'required|numeric|min:11|max:14'
         ];
     }
 
@@ -50,6 +50,10 @@ class MakeContract extends FormRequest
             'phone.required' => 'Укажите актуальный рабочий номер телефона',
             'phone.min' => 'Номер телефона не может быть меньше 11 цифр',
             'phone.max' => 'Номер телефона не может быть больше 14 цифр (возможно лишние пробелы и скобки)',
+            'rs.numeric' => 'Рассчётный счёт допускаются только цифры',
+            'bik.numeric' => 'В БИК должны быть только цифры',
+            'ks.numeric' => 'В номере корр.счёта должны быть только цифры',
+            'phone.numeric' => 'В номере телефона должны быть только цифры'
         ];
     }
 

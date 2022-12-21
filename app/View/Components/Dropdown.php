@@ -10,13 +10,15 @@ class Dropdown extends Component
     public $icon;
     public $link;
     public $href;
+    public $target;
 
 
-    public function __construct($link, $href = '#', $icon = '')
+    public function __construct($link, $href = '#', $icon = '', $target = '')
     {
         $this->link = $link;
         $this->href = $href;
         $this->icon = $icon;
+        $this->target = $target;
     }
 
 

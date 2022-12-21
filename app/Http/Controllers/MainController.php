@@ -27,6 +27,18 @@ class MainController extends Controller
     }
 
 
+    public function ReturnPolicy()
+    {
+        return view('doc.return-policy');
+    }
+
+
+    public function Guaranty()
+    {
+        return view('doc.guaranty');
+    }
+
+
     public function Responsibility()
     {
         return view('doc.responsibility');

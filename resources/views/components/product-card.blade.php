@@ -7,8 +7,8 @@
 @endphp
 <tr>
     <td>
-        <div class="form-check mb-0 ms-2">
-            <input type="checkbox" class="form-check-input" />
+        <div class="ms-2">
+            {{$id}}
         </div>
     </td>
     <td>
@@ -21,11 +21,11 @@
             </small>
         </div>
     </td>
-    <td><a href="/test/{{$vendorcode}}" class="text-danger text-decoration-none">{{$vendorcode}}</a></td>
+    <td><a href="/dashboard/product/details/{{$href}}" class="text-danger text-decoration-none">{{$vendorcode}}</a></td>
     <td><small><strong>@php echo number_format(($price) / 100, 2, '.', ' ') @endphp ₽</strong></small></td>
     <td>
         @if($availability === '0')
-            <a href="/dashboard/order/{{$modifications}}/{{$vendorcode}}">
+            <a href="#">
                 <small class="badge text-bg-secondary">Заказать</small>
             </a>
         @else
@@ -33,18 +33,37 @@
         @endif
     </td>
     <td>
-        <div class="card-body p-0 d-flex align-items-center gap-2">
+        <div class="card-body p-0 d-flex align-items-center">
             <div class="icon-brand">
-                <img src="/img/guayaquillib/mercedes-benz.png" alt="MERCEDES-BENZ COMMERCIAL" class="w-50" />
+                <img src="/img/guayaquillib/mercedes-benz.png" alt="MERCEDES-BENZ" class="w-50" />
             </div>
             <span>MERCEDES-BENZ</span>
         </div>
     </td>
     <td>
         @if($availability === '0')
-            <button class="other-features btn btn-outline-secondary btn-sm" disabled>В корзину</button>
+            <!-- <button class="other-features btn btn-secondary btn-sm" disabled>В корзину</button> -->
+            <x-button 
+                type="button" 
+                size="sm"
+                icon="add_shopping_cart" 
+                color="secondary" 
+                text="В корзину" 
+            /> 
         @else
-            <button class="other-features btn btn-outline-dark btn-sm">В корзину</button>
+        <div
+            id="card{{$href}}" 
+            data-card="{{$href}},{{$vendorcode}},{{$name}},1,<?=number_format(($price) / 100, 2, '.', '')?>" 
+            v-on:click="addToCard('{{$href}}')"    
+        >
+            <x-button 
+                type="button" 
+                size="sm"
+                icon="add_shopping_cart" 
+                color="dark" 
+                text="В корзину" 
+            />            
+        </div>
         @endif
     </td>
 </tr>

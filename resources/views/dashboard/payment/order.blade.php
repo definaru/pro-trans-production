@@ -1,12 +1,12 @@
 @php
     error_reporting (E_ALL ^ E_NOTICE);
-    //$invoiceout = parse_url($order['order']['customerOrder']['meta']['href'])["path"];
-    //$invoiceout = explode('/', $invoiceout);
+    $invoiceout = parse_url($order['order']['customerOrder']['meta']['href'])["path"];
+    $invoiceout = explode('/', $invoiceout);
     $total = $order['positions']['meta']['size'];
 @endphp
 
 @extends('layout/main')
-@section('title', 'Счет покупателю №'.$order['name'])
+@section('title', 'Счет-фактура №'.$order['name'])
 
 @section('breadcrumbs')
 <div class="d-flex gap-2">
@@ -35,7 +35,7 @@
                         <div class="mb-3">
                             <h2>
                                 <a 
-                                    href="/dashboard/payment/reports/invoiceout[6]" 
+                                    href="/dashboard/payment/reports/{{$invoiceout[6]}}" 
                                     class="text-decoration-none" 
                                     data-bs-toggle="tooltip" 
                                     title="Перейти к отчету"
@@ -71,7 +71,14 @@
                         </dl> 
                         <dl class="row">
                             <dt class="col-sm-8">Срок оплаты:</dt> 
-                            <dd class="col-sm-4">{{date_format(date_create($order['moment']), 'd/m/Y')}}</dd>
+                            <dd class="col-sm-4">
+                                @if(isset($order['paymentPlannedMoment']))
+                                {{date_format(date_create($order['paymentPlannedMoment']), 'd/m/Y')}}
+                                @else
+                                {{date_format(date_create($order['moment']), 'd/m/Y')}}
+                                @endif
+                            </dd>
+                            <!-- moment -->
                         </dl>
                     </div>
                 </div>

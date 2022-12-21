@@ -4,9 +4,11 @@
 
 @section('content')
 @include('layout.main.logo')
+
 @if (session('status'))
     <x-alert type="success" close="false" message="{{ session('status') }}" />
 @endif
+
 <form action="/login" method="post" class="mt-4">
     @csrf
     <div class="mt-2">
@@ -17,6 +19,8 @@
             <input 
                 type="text" 
                 name="email" 
+                v-model="mail"
+                @change="cookieStart"
                 class="form-control border-start-0 ps-0 @error('email') is-invalid @enderror" 
                 value="{{ old('email') }}"
                 placeholder="Ваш логин" 

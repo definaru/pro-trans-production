@@ -368,22 +368,18 @@ unset($__errorArgs, $__bag); ?>
         </div>
         <div class="mt-2">
             <label class="fw-bold">Действуете на основании:</label>
-            <select 
-                name="action" 
-                class="form-control <?php $__errorArgs = ['action'];
+            <select name="action" class="form-control <?php $__errorArgs = ['action'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" 
-                value="<?php echo e(old('action')); ?>"
-            >
+unset($__errorArgs, $__bag); ?>">
                 <option value="" selected disabled>Действуете на основании...</option>
-                <option value="устава">устава</option>
-                <option value="договоренности и устава">договоренности и устава</option>
-                <option value="учредительного договора">учредительного договора</option>
+                <?php $__currentLoopData = ['устава', 'договоренности и устава', 'учредительного договора']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <option value="<?php echo e($value); ?>" <?php if($value === old('action')): ?> selected <?php endif; ?>><?php echo e($value); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </select>
             <?php $__errorArgs = ['action'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');

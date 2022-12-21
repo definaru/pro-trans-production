@@ -68,11 +68,17 @@
                         {!! DNS1D::getBarcodeSVG($product['barcodes'], 'EAN13', 1.7,60) !!}
                         @endif
                     </div>
-                    <div>
                     @if($product['quantity'] != 0)
-                    <x-button type="a" href="#" color="dark" text="В корзину" icon="shopping_cart" />
-                    @endif
+                    <div 
+                        id="cards1" 
+                        class="d-flex flex-column"
+                        data-card="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,<?=number_format(($product['salePrices']) / 100, 2, '.', '')?>" 
+                        v-on:click="addToCard('s1')"
+                    >
+                    <x-button type="button" color="dark" text="В корзину" icon="shopping_cart" />
                     </div>
+                    @endif
+                    
                 </div>
                 <div class="col-md-9">
                     <p class="mb-1">
@@ -127,4 +133,5 @@
         </div>
     </div>
     @endif
+    <pre><?php //var_dump($_COOKIE);?></pre>
 @endsection

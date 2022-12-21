@@ -3,18 +3,18 @@
 @if (! empty($greeting))
 # {{ $greeting }}
 @else
-@if ($level === 'error')
-# @lang('Whoops!')
-@else
-# Здравствуйте.
-@endif
+    @if ($level === 'error')
+    # @lang('Whoops!')
+    @else
+    # Здравствуйте.
+    @endif
 @endif
 
 {{-- Intro Lines --}}
-@foreach ($introLines as $line)
-{{ $line }}
-
-@endforeach
+{{-- @foreach ($introLines as $line) --}}
+{{-- $line --}}
+{{-- @endforeach --}}
+Вы получаете это письмо, потому что сделал запрос на сброс пароля, для вашей учетной записи.
 
 {{-- Action Button --}}
 @isset($actionText)
@@ -34,16 +34,20 @@
 @endisset
 
 {{-- Outro Lines --}}
-@foreach ($outroLines as $line)
-{{ $line }}
-@endforeach
+{{-- @foreach ($outroLines as $line) --}}
+{{-- $line --}}
+{{-- @endforeach --}}
+Эта ссылка сброса пароля истекает за 60 минут. 
+Если вы не запросили сброс пароля, никаких дальнейших действий не требуется.
 
 {{-- Salutation --}}
 @if (! empty($salutation))
 {{ $salutation }}
 @else
+<small>
 С уважением,<br>
-{{ config('app.name') }}
+{{ config('app.name') }}    
+</small>
 @endif
 
 {{-- Subcopy --}}

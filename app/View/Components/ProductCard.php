@@ -9,6 +9,7 @@ use App\Providers\getImageMsProvider;
 class ProductCard extends Component
 {
 	
+    public $id;
     public $name;
     public $image; // = '/img/no_photo.jpg'
     public $href;
@@ -18,8 +19,9 @@ class ProductCard extends Component
     public $modifications;
 
 
-    public function __construct($name, $image, $href, $vendorcode, $price, $availability, $modifications)
+    public function __construct($id, $name, $image, $href, $vendorcode, $price, $availability, $modifications)
     {
+        $this->id          = $id;
         $this->name          = $name;
         $this->image         = $image;
         $this->href          = $href;

@@ -98,18 +98,18 @@ class MoySklad
         return $response->json();
     }
 
-
-    public static function getOrderCustomerOne($id)
+    //getOrderCustomerOne
+    public static function getInvoiceOne($id)
     {
         $url = self::msUrl().'invoiceout/'.$id.'?expand=state,agent,positions.assortment,positions.assortment.images';
         $response = self::get($url);
-        return $response->json();// customerorder
+        return $response->json();
     }
     
 
-    public static function getOrderCustomer()
+    public static function getInvoices()
     {
-        $uuid = auth()->user()->verified; // customerorder
+        $uuid = auth()->user()->verified;
         $url = self::msUrl().'invoiceout?filter=agent=https://online.moysklad.ru/api/remap/1.2/entity/counterparty/'.$uuid;
         $response = self::get($url);
         $items = $response->json();
@@ -123,13 +123,41 @@ class MoySklad
                 'state' => self::getInvoiceoutMetadataStates(isset($item['state']['meta']['href']) ? $item['state']['meta']['href'] : ''),
                 'created' => $item['created'],
                 'payedSum' => $item['payedSum'],
-                'deliveryPlannedMoment' => isset($item['deliveryPlannedMoment']) ? $item['deliveryPlannedMoment'] : 'Нет данных',
+                'moment' => $item['moment'],
+                'paymentPlannedMoment' => isset($item['paymentPlannedMoment']) ? $item['paymentPlannedMoment'] : 'Нет данных',
             ];
         }
         return [
             'list' => $array,
             'count' => $items['meta']['size']
         ];
+    }
+
+    public static function getReports()
+    {
+        $uuid = auth()->user()->verified; // customerorder
+        $url = self::msUrl().'customerorder?filter=agent=https://online.moysklad.ru/api/remap/1.2/entity/counterparty/'.$uuid;
+        $response = self::get($url);
+        $items = $response->json();
+        $array = [];
+        foreach($items['rows'] as $item) {
+            $array[] = [
+                'id' => $item['id'],
+                'name' => $item['name'],
+                'sum' => $item['sum'],
+                'agent' => self::getCounterParty($item['agent']['meta']['href']),
+                'state' => self::getInvoiceoutMetadataStates(isset($item['state']['meta']['href']) ? $item['state']['meta']['href'] : ''),
+                'created' => $item['created'],
+                'payedSum' => $item['payedSum'],
+                'moment' => $item['moment'],
+                'paymentPlannedMoment' => isset($item['paymentPlannedMoment']) ? $item['paymentPlannedMoment'] : 'Нет данных',
+            ];
+        }
+        $return = [
+            'list' => $array,
+            'count' => $items['meta']['size']
+        ];
+        return $return;
     }
 
 
@@ -367,25 +395,27 @@ class MoySklad
     public static function getPaymentReports($order)
     {
         $array = [];
-        $url = self::msUrl().'customerorder/'.$order;
+        $params = '?expand=state,agent,positions,positions.assortment,positions.assortment.images,invoicesOut';
+        $url = self::msUrl().'customerorder/'.$order.$params;
+        // $url = self::msUrl().'customerorder/'.$order;
         $response = self::get($url);
-        $neworder = $response->json();
-        return [
-            'id' => $neworder['id'],
-            'updated' => $neworder['updated'],
-            'deal' => $neworder['name'],
-            'moment' => $neworder['moment'],
-            'sum' => $neworder['sum'],
-            'company' => self::getCounterParty($neworder['agent']['meta']['href']),
-            'created' => $neworder['created'],
-            'positions' => self::getCustomerOrderPositions($neworder['positions']['meta']['href']),
-            'vatSum' => $neworder['vatSum'],
-            'deliveryPlannedMoment' => $neworder['deliveryPlannedMoment'],
-            'payedSum' => $neworder['payedSum'],
-            'shippedSum' => $neworder['shippedSum'],
-            'invoicedSum' => $neworder['invoicedSum'],
-            'state' => self::getInvoiceoutMetadataStates($neworder['state']['meta']['href']),
-            'invoicesOut' => self::getInvoiceOut($neworder['invoicesOut'][0]['meta']['href'])
-        ];
+        return $response->json();
+        // [
+        //     'id' => $neworder['id'],
+        //     'updated' => $neworder['updated'],
+        //     'deal' => $neworder['name'],
+        //     'moment' => $neworder['moment'],
+        //     'sum' => $neworder['sum'],
+        //     'company' => self::getCounterParty($neworder['agent']['meta']['href']),
+        //     'created' => $neworder['created'],
+        //     'positions' => self::getCustomerOrderPositions($neworder['positions']['meta']['href']),
+        //     'vatSum' => $neworder['vatSum'],
+        //     'deliveryPlannedMoment' => isset($neworder['deliveryPlannedMoment']) ? $neworder['deliveryPlannedMoment'] : '',
+        //     'payedSum' => $neworder['payedSum'],
+        //     'shippedSum' => $neworder['shippedSum'],
+        //     'invoicedSum' => $neworder['invoicedSum'],
+        //     'state' => self::getInvoiceoutMetadataStates($neworder['state']['meta']['href']),
+        //     'invoicesOut' => self::getInvoiceOut($neworder['invoicesOut'][0]['meta']['href'])
+        // ];
     }
 }

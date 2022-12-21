@@ -58,7 +58,7 @@
             <ul class="dropdown-menu dropdown-menu-end">
                 <?php $__currentLoopData = $helpmenu; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <?php if (isset($component)) { $__componentOriginalfc08e47099b658bf3489ee5abf9b40d3b6748e6d = $component; } ?>
-<?php $component = $__env->getContainer()->make(App\View\Components\Dropdown::class, ['href' => ''.e($item['href']).'','link' => ''.e($item['link']).'','icon' => ''.e($item['icon']).'']); ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Dropdown::class, ['href' => ''.e($item['href']).'','link' => ''.e($item['link']).'','icon' => ''.e($item['icon']).'','target' => ''.e($item['target']).'']); ?>
 <?php $component->withName('dropdown'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>

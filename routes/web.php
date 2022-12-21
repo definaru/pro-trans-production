@@ -10,6 +10,8 @@ use App\Http\Middleware\Authenticate;
 
 
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
+    Route::get('', [DachboardController::class, 'Dashboard'])->name('dashboard');
+    Route::post('search', [DachboardController::class, 'searchDashboard']);
     Route::get('card', [DachboardController::class, 'Сard']);
     Route::get('help', [DachboardController::class, 'Help']);
     Route::get('events', [DachboardController::class, 'Events']);
@@ -43,8 +45,8 @@ Route::controller(PasswordController::class)->group(function () {
     // Маршруты запроса ссылки для сброса пароля
     Route::get('/forgot-password', 'getEmail');
     Route::post('/forgot-password', 'postEmail')->middleware('guest')->name('forgot');
-
     Route::post('/confirm-reset-password', 'resetPasswordAuth');
+
     // Маршруты сброса пароля
     Route::get('/reset/{token}', 'getReset')->middleware('guest')->name('password.reset');
     Route::get('/reset', 'notReset')->middleware('guest');
@@ -52,8 +54,8 @@ Route::controller(PasswordController::class)->group(function () {
 });
 
 Route::controller(AuthController::class)->group(function () {
+    // Авторизация и Регистрация
     Route::match(['get', 'post'], '/', 'home')->name('index');
-    Route::match(['get', 'post'], '/dashboard', 'dashboard')->middleware('auth')->name('dashboard');
     Route::get('/logout', 'logout')->name('logout');
     Route::post('/login', 'login')->name('login');
     Route::get('/signup', 'register')->name('signup');
@@ -67,4 +69,6 @@ Route::prefix('doc')->group(function () {
     Route::get('license', [MainController::class, 'License']);
     Route::get('responsibility', [MainController::class, 'Responsibility']);
     Route::get('privatepolice', [MainController::class, 'Private']);
+    Route::get('return-policy', [MainController::class, 'ReturnPolicy']);
+    Route::get('guaranty', [MainController::class, 'Guaranty']);
 });

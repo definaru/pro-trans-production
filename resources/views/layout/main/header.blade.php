@@ -45,7 +45,12 @@
             </div>
             <ul class="dropdown-menu dropdown-menu-end">
                 @foreach($helpmenu as $item)
-                <x-dropdown href="{{$item['href']}}" link="{{$item['link']}}" icon="{{$item['icon']}}" />
+                <x-dropdown 
+                    href="{{$item['href']}}" 
+                    link="{{$item['link']}}" 
+                    icon="{{$item['icon']}}" 
+                    target="{{$item['target']}}" 
+                />
                 @endforeach
             </ul>
         </div>

@@ -299,15 +299,11 @@
         </div>
         <div class="mt-2">
             <label class="fw-bold">Действуете на основании:</label>
-            <select 
-                name="action" 
-                class="form-control @error('action') is-invalid @enderror" 
-                value="{{ old('action') }}"
-            >
+            <select name="action" class="form-control @error('action') is-invalid @enderror">
                 <option value="" selected disabled>Действуете на основании...</option>
-                <option value="устава">устава</option>
-                <option value="договоренности и устава">договоренности и устава</option>
-                <option value="учредительного договора">учредительного договора</option>
+                @foreach (['устава', 'договоренности и устава', 'учредительного договора'] as $value)
+                <option value="{{ $value }}" @if ($value === old('action')) selected @endif>{{ $value }}</option>
+                @endforeach
             </select>
             @error('action')
                 <small class="valid-feedback d-block text-danger">{{ $message }}</small>

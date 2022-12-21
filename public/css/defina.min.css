@@ -59,7 +59,7 @@ input:focus {
     background-color: #dfdfdf !important;
 }
 #content a:hover {
-    background-color: #dfdfdf !important;
+    background-color: #fbfbfb !important;
 }
 .accordion-item:hover {
     background-color: #dfdfdf;
@@ -71,7 +71,7 @@ input:focus {
     --bs-accordion-transition: none;
 }
 #header a:first-child:hover { 
-    background-color: transparent !important;
+    background-color: transparent;
 }
 .bg-transparent {
     background-color: transparent !important;
@@ -303,6 +303,30 @@ input:focus {
     display: inline-block;
     width: 2.625rem;
     height: 2.625rem;
+}
+.form-control:focus {
+    border-color: #222 !important;
+}
+.dropdown-item.active, .dropdown-item:active {
+    background-color: #000;
+}
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
+    border-color: transparent;
+}
+.form-control:focus {
+    outline: none;
+    box-shadow: none;
+}
+textarea {
+    resize: none;
+}
+.active>.page-link, .page-link.active {
+    background-color: #212529 !important;
+    border-color: #212529 !important;
+}
+.page-link {
+    color: #212529;
+    font-weight: bold;
 }
 
 

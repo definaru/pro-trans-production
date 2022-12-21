@@ -14,6 +14,24 @@ use App\Models\DaData;
 class DachboardController extends Controller
 {
 
+    public function Dashboard()
+    {
+        return view('dashboard');
+    }
+
+    public function searchDashboard(Request $request)
+    {
+        $request->validate([
+            'type' => 'required',
+            'text' => 'required',
+        ]);
+        //$validated = $request->validated();
+        $search = MoySklad::searchByProduct($request->type, $request->text);
+        $text = $request->input('text');
+        //$validated = $request->safe()->only(['type', 'text']);
+        return redirect()->route('dashboard')->with(['search' => $search, 'text' => $text]);
+    }
+
     public function Settings()
     {
         $uuid = auth()->user()->verified;
@@ -43,14 +61,14 @@ class DachboardController extends Controller
 
     public function Orders() 
     {
-        $orders = MoySklad::getOrderCustomer();
+        $orders = MoySklad::getInvoices();
         //return response()->json($orders);
         return view('dashboard.payment.orders', ['orders' => $orders]);
     }
 
     public function Invoice($invoice) 
     {
-        $order = MoySklad::getOrderCustomerOne($invoice);
+        $order = MoySklad::getInvoiceOne($invoice);
         //return response()->json($order);
         return view('dashboard.payment.order', [
             'order' => $order, 
@@ -159,7 +177,15 @@ class DachboardController extends Controller
 
     public function Reports()
     {
-        return view('dashboard.payment.reports');
+        $reports = MoySklad::getReports();
+        //return response()->json($reports);
+        return view('dashboard.payment.reports', ['reports' => $reports]);
     }
+    // public function Orders() 
+    // {
+    //     $orders = MoySklad::getInvoices();
+    //     //return response()->json($orders);
+    //     return view('dashboard.payment.orders', ['orders' => $orders]);
+    // }
     
 }

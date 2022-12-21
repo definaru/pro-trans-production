@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserLogin;
 use App\Models\User;
 use App\Models\Role;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewUser;
 use App\Models\MoySklad;
+use Illuminate\Http\Response;
 
 
 class AuthController extends Controller
@@ -66,17 +68,18 @@ class AuthController extends Controller
 
     public function Customer(Request $request)
     {
-        Customer::create([
-            'uuid' => $request->uuid,
-            'superintendant' => $request->superintendant,
-            'company' => $request->company,
-            'okved' => $request->okved,
-            'inn' => $request->inn,
-            'ogrn' => $request->ogrn,
-            'kpp' => $request->kpp,
-            'address' => $request->address,
-            'ogrn_date' => $request->ogrn_date,
-        ]);
+        // [
+        //     'uuid' => $request->uuid,
+        //     'superintendant' => $request->superintendant,
+        //     'company' => $request->company,
+        //     'okved' => $request->okved,
+        //     'inn' => $request->inn,
+        //     'ogrn' => $request->ogrn,
+        //     'kpp' => $request->kpp,
+        //     'address' => $request->address,
+        //     'ogrn_date' => $request->ogrn_date,
+        // ]
+        Customer::create($request->all());
         return [
             'message' => 'Success! Contact is added'
         ];
@@ -87,14 +90,6 @@ class AuthController extends Controller
         return view('signup');
     }
 
-    public function dashboard(Request $request)
-    {
-        $search = [];
-        if ($request->has(['type', 'text'])) {
-            $search = MoySklad::searchByProduct($request->type, $request->text);
-        }
-        return view('dashboard', ['search' => $search]);
-    }
 
     public function login(UserLogin $request)
     {
@@ -102,7 +97,6 @@ class AuthController extends Controller
         if (Auth::check()) {
             return redirect()->intended('dashboard');
         }
-        
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('dashboard');
