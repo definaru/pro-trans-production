@@ -8,6 +8,11 @@
     <span class="legend-indicator bg-success"></span>
     {{$text}}
 </span>
+@elseif($color === 'danger')
+<span class="badge bg-soft-danger text-danger d-print-none">
+    <span class="legend-indicator bg-danger"></span>
+    {{$text}}
+</span>
 @else
 <span class="badge d-print-none" style="background: #<?=dechex($color);?>30; color: #<?=dechex($color);?>">
     <span class="legend-indicator" style="background: #<?=dechex($color);?>"></span>

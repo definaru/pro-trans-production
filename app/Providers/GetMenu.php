@@ -453,7 +453,7 @@ class GetMenu
                                 'href' => ''
                             ],
                             [
-                                'name' => 'Мои заказы',
+                                'name' => 'Предзаказы',
                                 'href' => 'payment/account'
                             ]
                         ]

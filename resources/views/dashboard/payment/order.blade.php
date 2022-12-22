@@ -1,7 +1,5 @@
 @php
     error_reporting (E_ALL ^ E_NOTICE);
-    $invoiceout = parse_url($order['order']['customerOrder']['meta']['href'])["path"];
-    $invoiceout = explode('/', $invoiceout);
     $total = $order['positions']['meta']['size'];
 @endphp
 
@@ -34,14 +32,18 @@
                     <div class="col-sm-auto order-1 order-sm-2 text-sm-end mb-3">
                         <div class="mb-3">
                             <h2>
+                                @if(isset($order['customerOrder']['id']))
                                 <a 
-                                    href="/dashboard/payment/reports/{{$invoiceout[6]}}" 
+                                    href="/dashboard/payment/reports/{{$order['customerOrder']['id']}}" 
                                     class="text-decoration-none" 
                                     data-bs-toggle="tooltip" 
                                     title="Перейти к отчету"
                                 >
                                     #{{$order['name']}}
                                 </a>
+                                @else
+                                #{{$order['name']}}
+                                @endif
                             </h2>
                             ООО "ПРОСПЕКТ ТРАНС"
                         </div> 

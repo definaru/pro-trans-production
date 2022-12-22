@@ -2,67 +2,89 @@
 @section('title', 'Корзина')
 
 @section('content')
-<div class="card border-0 shadow-sm d-none">
-    <div class="card-body">
-        <div class="d-flex align-items-center gap-4">
-            <i class="material-symbols-outlined icon-card">shopping_cart</i> 
-            <span>Ваша корзина пуста</span> 
+
+
+<template v-if="card.length === 0">
+    <div class="card border-0 shadow-sm mt-4">
+        <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center gap-4">
+                    <i class="material-symbols-outlined icon-card bg-soft-danger text-danger">shopping_cart</i> 
+                    <span>Ваша корзина пуста</span> 
+                </div>
+                <div>
+                    <x-button type="a" href="/dashboard" color="dark" text="Выбрать товар" />
+                </div>
+            </div>
         </div>
     </div>
-</div>
-
-<ul class="list-group list-group-flush mt-4 d-grid gap-2">
-    <x-card-item 
-        id="52078891" 
-        image=""
-        brand="МЕГЕОН"
-        articul="К0000035621"
-        name="Эндоскоп (отоскоп) ушной 33036 к0000035621"
-        vector="ЦЗ Санкт-Петербург"
-        percent="95"
-        price="1859.44"
-    />
-    <x-card-item 
-        id="42031518" 
-        image=""
-        brand="ICARTOOL"
-        articul="IC-V101"
-        name="Видеоэндоскоп USB, 1Мп, 1280x720, 2м, 8мм зонд iCartool IC-V101"
-        vector="ЦЗ Москва"
-        percent="94"
-        price="2392.45"
-    />
-    <x-card-item 
-        id="41350111" 
-        image=""
-        brand="AUTEL"
-        articul="100000223"
-        name="AUTEL Видеоэндоскоп-приставка MV108, 8,5 мм"
-        vector="ЦЗ Москва"
-        percent="100"
-        price="4540.54"
-    />
-</ul>
-<div class="d-flex justify-content-between">
-    <div class="col-md-6 mt-3">
-        <p class="m-0 text-muted">
-            <small>
-                Нажимая кнопку "Оформить заказ" вы соглашаетесь с нашей 
-                <a href="#" class="text-muted">политикой конфиденциальности</a> и
-                <a href="#" class="text-muted">пользовательским соглашением</a>                
+</template>
+@verbatim
+<template v-else>
+    <template v-if="!loading">
+        <h6 class="text-muted">Всего {{card.length+' '+countGoods(card.length, 'товар', 'товара', 'товаров')}}</h6>
+        <ul class="list-group list-group-flush mt-4 d-grid gap-2">
+        <li v-for="(item, id) in card" class="list-group-item d-flex justify-content-between align-items-center rounded shadow-sm border-0">
+            <small class="d-flex align-items-center gap-3" style="width: 320px">
+                <img src="/img/no_photo.jpg" class="rounded" style="width: 50px" :alt="item.name" />
+                <a :href=`http://prospektrans.host/dashboard/product/details/${item.id}` class="d-flex align-items-center text-muted text-decoration-none">
+                    <div class="d-flex justify-content-start flex-column">
+                        <span>{{item.article}}</span>
+                        <p class="fw-bold text-dark m-0">{{item.name}}</p>
+                    </div>
+                </a>
             </small>
-        </p>
-    </div>
-    <div class="d-flex justify-content-end gap-4 align-items-center mt-3 mb-5">
-        <div class="py-2">Всего:</div>
-        <div class="py-2 fw-bold pe-4">
-            @php echo number_format(8792.43, 2, '.', ' ') @endphp ₽
-        </div>
-        <div class="py-2">3 (шт.)</div>
-        <div class="py-2">
-            <x-button type="a" href="#" icon="check" text="Оформить заказ" />
-        </div>
-    </div>    
-</div>
+            <div class="position-relative" style="width: 180px">
+                {{ priceFormat(item.price) }}
+                <span class="badge rounded-pill text-dark bg-light">за 1 шт.</span>
+            </div>
+            <div style="width: 100px">
+                <span class="badge bg-soft-success text-success">
+                    <span class="legend-indicator bg-success"></span>
+                    {{priceFormat(item.price)}}
+                </span>        
+            </div>
+            <div class="input-group" style="width: 140px">
+                <button class="btn btn-sm material-symbols-outlined pe-0">add</button>
+                <input type="number" min="1" class="form-control form-control-sm border-0 text-center" :value="item.count" />
+                <button class="btn btn-sm material-symbols-outlined ps-0">remove</button>
+            </div>
+            <div class="btn-group">
+                <button @click="removeCart(id)" class="btn text-danger rounded material-symbols-outlined">delete</button>
+            </div>
+        </li>
 
+        </ul>
+        <div class="d-flex justify-content-between">
+            <div class="col-md-6 mt-3">
+                <p class="m-0 text-muted">
+                    <small>
+                        Нажимая кнопку "Оформить заказ" вы соглашаетесь с нашей 
+                        <a href="/doc/privatepolice" target="_blank" class="text-muted">политикой конфиденциальности</a> и
+                        <a href="/doc/license" target="_blank" class="text-muted">пользовательским соглашением</a>                
+                    </small>
+                </p>
+            </div>
+            <div class="d-flex justify-content-end gap-4 align-items-center mt-3 mb-5">
+                <div class="py-2">Всего:</div>
+                <div class="py-2 fw-bold pe-4">
+                    {{priceFormat(summa)}}
+                    
+                </div>
+                <div class="py-2">{{card.length}} (шт.)</div>
+                <div class="py-2">
+                    <button type="button" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
+                        <span class="material-symbols-outlined ">check</span>
+                        Оформить заказ
+                    </button>
+                </div>
+            </div>    
+        </div>
+        {{totalSum}}
+    </template>
+    <template v-else>
+        <h6 class="text-muted">Подгружаем товары...</h6>
+    </template>
+</template>
+@endverbatim
 @endsection

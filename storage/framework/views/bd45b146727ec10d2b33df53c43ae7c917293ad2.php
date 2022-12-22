@@ -44,6 +44,7 @@
             <span class="material-symbols-outlined text-secondary">print</span>
             Распечатать
         </a> 
+        <?php if(isset($data['invoicesOut'])): ?>
         <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'a','size' => 'sm','color' => 'danger','href' => '/dashboard/payment/order/'.e($data['invoicesOut'][0]['id']).'','text' => 'Запросить счёт','icon' => 'credit_score']); ?>
 <?php $component->withName('button'); ?>
@@ -56,6 +57,7 @@
 <?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
 <?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
 <?php endif; ?>
+        <?php endif; ?>
         
         <div class="dropdown">
             <a 

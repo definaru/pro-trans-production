@@ -43,7 +43,18 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <small>Сумма</small> 
-                        <span class="badge bg-light text-danger rounded-pill">-78 066.79 ₽</span>
+                        <?php if (isset($component)) { $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Badge::class, ['color' => 'danger','text' => '-78 066.79 ₽']); ?>
+<?php $component->withName('badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94)): ?>
+<?php $component = $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94; ?>
+<?php unset($__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94); ?>
+<?php endif; ?>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <small>Кредит / Остаток:</small> 
@@ -80,7 +91,18 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <small>Нормальная</small> 
-                        <span class="badge bg-primary rounded-pill">78 066.79 ₽</span>
+                        <?php if (isset($component)) { $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Badge::class, ['color' => '34617','text' => '78 066.79 ₽']); ?>
+<?php $component->withName('badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94)): ?>
+<?php $component = $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94; ?>
+<?php unset($__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94); ?>
+<?php endif; ?>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <small>Просроченная</small> 
@@ -105,7 +127,7 @@
 <?php $component->withAttributes([]); ?>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <small><a href="#">ТДСТ/МСК/10068/ОО</a></small>  
+                        <small><a href="/dashboard/document/agreement">ТДСТ/МСК/10068/ОО</a></small>  
                         <span class="badge bg-light text-dark rounded-pill">от 15.01.2020</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">

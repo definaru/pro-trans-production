@@ -44,8 +44,10 @@
             </ul>                   
         </div>
         <a href="/dashboard/card" class="dropdown text-decoration-none">
-            <h6 class="position-absolute top-0 start-100 translate-middle">
-                <span class="badge rounded-pill bg-danger px-1 py-0">3</span>
+            <h6 class="position-absolute top-0 start-100 translate-middle" v-if="card.length">
+                <span class="badge rounded-pill bg-danger px-1 py-0">
+                {{card.length}}
+                </span>
             </h6>
             <div class="d-flex align-items-center gap-2 cp py-0">
                 <i class="material-symbols-outlined fs-5 text-secondary">shopping_cart</i>

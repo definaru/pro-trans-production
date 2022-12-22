@@ -101,7 +101,7 @@ class MoySklad
     //getOrderCustomerOne
     public static function getInvoiceOne($id)
     {
-        $url = self::msUrl().'invoiceout/'.$id.'?expand=state,agent,positions.assortment,positions.assortment.images';
+        $url = self::msUrl().'invoiceout/'.$id.'?expand=state,agent,positions.assortment,positions.assortment.images,customerOrder';
         $response = self::get($url);
         return $response->json();
     }

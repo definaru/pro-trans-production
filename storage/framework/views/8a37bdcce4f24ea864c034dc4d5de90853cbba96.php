@@ -2,7 +2,7 @@
     <div class="rounded bg-white shadow-sm h-100">
         <div class="d-flex align-items-center p-3 justify-content-between">
             <strong class="fs-5"><?php echo e($header); ?>:</strong>
-            <span class="material-symbols-outlined icon-card"><?php echo e($icon); ?></span>
+            <span class="material-symbols-outlined icon-card bg-soft-danger text-danger"><?php echo e($icon); ?></span>
         </div>
         <?php echo e($slot); ?>
 

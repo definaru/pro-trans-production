@@ -2,33 +2,24 @@
     $isImage = $image === '' ? '/img/no_photo.jpg' : $image;
     $ifBig = $percent > 94 ? 'btn-success' : 'btn-danger';
     $isTotal = $percent >= 100 ? 'bg-success' : 'text-dark bg-warning';
+    $price = number_format($price, 2, '.', ' ').' ₽';
 @endphp
 <li class="list-group-item d-flex justify-content-between align-items-center rounded shadow-sm border-0">
-    <img src="{{$isImage}}" class="rounded" style="width: 50px" alt="" />
-    <small style="width: 95px">
-        {{$brand}} 
-        <br/>
-        <a href="/search/index/{{$id}}">
+    <small class="d-flex align-items-center gap-3" style="width: 250px">
+        <img src="{{$isImage}}" class="rounded" style="width: 50px" alt="" />
+        <a href="/search/index/{{$id}}" class="fw-bold text-dark text-decoration-none">
             {{$articul}}
         </a>
+        {{$name}} 
     </small>
 
-    <span 
-        class="text-secondary cp"
-        style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 200px" 
-        title="{{ $name }}"
-    >
-        {{ $name }}
-    </span>
-
     <div class="position-relative">
-        @php echo number_format($price, 2, '.', ' ') @endphp ₽ 
+        {{$price}}
         <span class="badge rounded-pill text-dark bg-light">за 1 шт.</span>
     </div>          
 
-    <span class="badge bg-primary rounded-pill">
-        @php echo number_format($price, 2, '.', ' ') @endphp ₽
-    </span>
+    
+    <x-badge color="34617" text="{{$price}}" />
 
     <div class="input-group" style="width: 140px">
         <button class="btn btn-sm material-symbols-outlined pe-0">add</button>

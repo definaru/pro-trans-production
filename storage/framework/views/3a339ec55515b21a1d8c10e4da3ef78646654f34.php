@@ -72,10 +72,16 @@
                     <span v-else class="tooltiptext"><?php echo e($i['name']); ?></span>             
                 </span>
                 <?php if($i['count']): ?>
-                <span class="badge bg-danger rounded-pill me-3" :class="[!isOpen ? 'label-menu' : '']">
-                    <?php echo e($i['count']); ?>
+                    <?php if($i['name'] === 'Корзина'): ?>
+                        <span class="badge bg-danger rounded-pill me-3" v-if="card.length" :class="[!isOpen ? 'label-menu' : '']">
+                            {{card.length}}
+                        </span>
+                    <?php else: ?>
+                    <span class="badge bg-danger rounded-pill me-3" :class="[!isOpen ? 'label-menu' : '']">
+                        <?php echo e($i['count']); ?>
 
-                </span>
+                    </span>
+                    <?php endif; ?>
                 <?php endif; ?>
             </a>            
         </div>

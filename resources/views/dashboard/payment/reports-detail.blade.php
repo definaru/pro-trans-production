@@ -32,6 +32,7 @@
             <span class="material-symbols-outlined text-secondary">print</span>
             Распечатать
         </a> 
+        @if(isset($data['invoicesOut']))
         <x-button 
             type="a" 
             size="sm" 
@@ -40,6 +41,7 @@
             text="Запросить счёт" 
             icon="credit_score" 
         />
+        @endif
         
         <div class="dropdown">
             <a 

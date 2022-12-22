@@ -2,35 +2,37 @@
     $isImage = $image === '' ? '/img/no_photo.jpg' : $image;
     $ifBig = $percent > 94 ? 'btn-success' : 'btn-danger';
     $isTotal = $percent >= 100 ? 'bg-success' : 'text-dark bg-warning';
+    $price = number_format($price, 2, '.', ' ').' ₽';
 ?>
 <li class="list-group-item d-flex justify-content-between align-items-center rounded shadow-sm border-0">
-    <img src="<?php echo e($isImage); ?>" class="rounded" style="width: 50px" alt="" />
-    <small style="width: 95px">
-        <?php echo e($brand); ?> 
-        <br/>
-        <a href="/search/index/<?php echo e($id); ?>">
+    <small class="d-flex align-items-center gap-3" style="width: 250px">
+        <img src="<?php echo e($isImage); ?>" class="rounded" style="width: 50px" alt="" />
+        <a href="/search/index/<?php echo e($id); ?>" class="fw-bold text-dark text-decoration-none">
             <?php echo e($articul); ?>
 
         </a>
+        <?php echo e($brand); ?> 
     </small>
 
-    <span 
-        class="text-secondary cp"
-        style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 200px" 
-        title="<?php echo e($name); ?>"
-    >
-        <?php echo e($name); ?>
-
-    </span>
-
     <div class="position-relative">
-        <?php echo number_format($price, 2, '.', ' ') ?> ₽ 
+        <?php echo e($price); ?>
+
         <span class="badge rounded-pill text-dark bg-light">за 1 шт.</span>
     </div>          
 
-    <span class="badge bg-primary rounded-pill">
-        <?php echo number_format($price, 2, '.', ' ') ?> ₽
-    </span>
+    
+    <?php if (isset($component)) { $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Badge::class, ['color' => '34617','text' => ''.e($price).'']); ?>
+<?php $component->withName('badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94)): ?>
+<?php $component = $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94; ?>
+<?php unset($__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94); ?>
+<?php endif; ?>
 
     <div class="input-group" style="width: 140px">
         <button class="btn btn-sm material-symbols-outlined pe-0">add</button>

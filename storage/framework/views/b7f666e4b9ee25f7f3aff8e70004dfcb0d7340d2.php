@@ -7,8 +7,10 @@
     <title><?php echo $__env->yieldContent('title'); ?> / <?php echo e(config('app.name')); ?> </title>
     <link rel="shortcut icon" href='/img/prospectdesktopicon.png' type="image/x-icon" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="<?php echo e(asset('css/defina.min.css')); ?>" />
+    <link rel="stylesheet" href="<?php echo e(asset('css/toastr.css')); ?>" />
     <link rel="canonical" href="<?php echo e(url()->current()); ?>" />
 </head>
 <body>
@@ -55,6 +57,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="<?php echo e(asset('js/toastr.min.js')); ?> "></script>
     <script src="<?php echo e(asset('js/jquery.slimscroll.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/defina.admin.min.js')); ?>"></script>
     <script>

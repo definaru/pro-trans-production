@@ -71,9 +71,15 @@
                     <span v-else class="tooltiptext">{{ $i['name'] }}</span>             
                 </span>
                 @if($i['count'])
-                <span class="badge bg-danger rounded-pill me-3" :class="[!isOpen ? 'label-menu' : '']">
-                    {{ $i['count'] }}
-                </span>
+                    @if($i['name'] === 'Корзина')
+                        <span class="badge bg-danger rounded-pill me-3" v-if="card.length" :class="[!isOpen ? 'label-menu' : '']">
+                            @{{card.length}}
+                        </span>
+                    @else
+                    <span class="badge bg-danger rounded-pill me-3" :class="[!isOpen ? 'label-menu' : '']">
+                        {{ $i['count'] }}
+                    </span>
+                    @endif
                 @endif
             </a>            
         </div>

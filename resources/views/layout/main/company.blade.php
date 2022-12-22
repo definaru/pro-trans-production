@@ -37,7 +37,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <small>Сумма</small> 
-                        <span class="badge bg-light text-danger rounded-pill">-78 066.79 ₽</span>
+                        <x-badge color="danger" text="-78 066.79 ₽" />
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <small>Кредит / Остаток:</small> 
@@ -64,7 +64,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <small>Нормальная</small> 
-                        <span class="badge bg-primary rounded-pill">78 066.79 ₽</span>
+                        <x-badge color="34617" text="78 066.79 ₽" />
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <small>Просроченная</small> 

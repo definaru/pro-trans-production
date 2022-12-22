@@ -10,6 +10,12 @@
     <?php echo e($text); ?>
 
 </span>
+<?php elseif($color === 'danger'): ?>
+<span class="badge bg-soft-danger text-danger d-print-none">
+    <span class="legend-indicator bg-danger"></span>
+    <?php echo e($text); ?>
+
+</span>
 <?php else: ?>
 <span class="badge d-print-none" style="background: #<?=dechex($color);?>30; color: #<?=dechex($color);?>">
     <span class="legend-indicator" style="background: #<?=dechex($color);?>"></span>

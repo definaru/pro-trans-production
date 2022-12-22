@@ -181,11 +181,5 @@ class DachboardController extends Controller
         //return response()->json($reports);
         return view('dashboard.payment.reports', ['reports' => $reports]);
     }
-    // public function Orders() 
-    // {
-    //     $orders = MoySklad::getInvoices();
-    //     //return response()->json($orders);
-    //     return view('dashboard.payment.orders', ['orders' => $orders]);
-    // }
     
 }
