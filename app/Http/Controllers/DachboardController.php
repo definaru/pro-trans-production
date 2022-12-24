@@ -192,7 +192,7 @@ class DachboardController extends Controller
     public function Checkout($account)
     {
         //$uuid = auth()->user()->verified;
-        //Telegram::getMessageTelegram('d8d7e6b2-8225-11ed-0a80-03ac002b5be3', '', '', 'сheckout');
+        Telegram::getMessageTelegram('d8d7e6b2-8225-11ed-0a80-03ac002b5be3', '', '', 'сheckout');
         return response()->json($account);
     }
     

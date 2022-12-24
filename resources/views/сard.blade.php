@@ -74,8 +74,9 @@
                 <div class="py-2">{{card.length}} (шт.)</div>
                 <div class="py-2">
                     <button v-on:click="Checkout('<?=$user->verified?>')" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
-                        <span class="material-symbols-outlined ">check</span>
-                        Оформить заказ
+                        <span class="material-symbols-outlined" v-if="сheckout.length === 0">check</span>
+                        <span class="material-symbols-outlined spin" v-else>autorenew</span>
+                        {{сheckout.length !== 0 ? 'Отправляем...' : 'Оформить заказ'}}
                     </button>
                 </div>
             </div>    
@@ -86,6 +87,6 @@
         <h6 class="text-muted">Подгружаем товары...</h6>
     </template>
 </template>
-<pre>{{JSON.stringify(сheckout, null, 4)}}</pre>
+<pre style="display:none">{{JSON.stringify(сheckout, null, 4)}}</pre>
 @endverbatim
 @endsection
