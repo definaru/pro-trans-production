@@ -33,16 +33,18 @@
                         <div class="mb-3">
                             <h2>
                                 @if(isset($order['customerOrder']['id']))
-                                <a 
-                                    href="/dashboard/payment/reports/{{$order['customerOrder']['id']}}" 
-                                    class="text-decoration-none" 
-                                    data-bs-toggle="tooltip" 
-                                    title="Перейти к отчету"
-                                >
-                                    #{{$order['name']}}
-                                </a>
+                                <abbr style="text-decoration: underline dotted">
+                                    <a 
+                                        href="/dashboard/payment/reports/{{$order['customerOrder']['id']}}" 
+                                        class="text-decoration-none text-dark" 
+                                        data-bs-toggle="tooltip" style="cursor: help"
+                                        title="Перейти к заказу"
+                                    >
+                                        #{{$order['name']}}
+                                    </a>                                    
+                                </abbr>
                                 @else
-                                #{{$order['name']}}
+                                <abbr>#{{$order['name']}}</abbr>
                                 @endif
                             </h2>
                             ООО "ПРОСПЕКТ ТРАНС"

@@ -1,6 +1,6 @@
 @extends('layout/main')
 
-@section('title', $catalog['name'])
+@section('title', isset($catalog['name']) ? $catalog['name'] : array_column($catalogTrucks, 'name', 'href')[$name])
 
 @section('content')
 <div class="row mt-4">

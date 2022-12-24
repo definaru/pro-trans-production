@@ -182,4 +182,19 @@ class DachboardController extends Controller
         return view('dashboard.payment.reports', ['reports' => $reports]);
     }
     
+    public function SendSpares(Request $request)
+    {
+        $uuid = auth()->user()->verified;
+        //dd($request);
+        Telegram::getMessageTelegram($uuid, $request->spares, $request->vin, 'spares');
+    }
+
+    public function Checkout($account)
+    {
+        //$uuid = auth()->user()->verified;
+        //Telegram::getMessageTelegram('d8d7e6b2-8225-11ed-0a80-03ac002b5be3', '', '', 'сheckout');
+        return response()->json($account);
+    }
+    
+    
 }

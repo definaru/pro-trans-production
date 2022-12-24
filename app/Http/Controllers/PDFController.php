@@ -13,7 +13,7 @@ class PDFController extends Controller
     public function generatePDF($id, $name)
     {
         $data = [
-            'order' => MoySklad::getOrderCustomerOne($id)
+            'order' => MoySklad::getInvoiceOne($id)
         ];
         $pdf = PDF::loadView('document.pdf', $data, [], 'UTF-8');
         return $pdf->download('Документ №'.$data['order']['name'].'.pdf');

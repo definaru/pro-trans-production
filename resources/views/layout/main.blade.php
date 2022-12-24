@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title') / {{ config('app.name') }} </title>
     <link rel="shortcut icon" href='/img/prospectdesktopicon.png' type="image/x-icon" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="{{ asset('css/defina.min.css') }}" />
@@ -54,9 +54,9 @@
     </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
-    <script src="{{ asset('js/toastr.min.js')}} "></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/vue.js') }}"></script>
+    <script src="{{ asset('js/toastr.min.js') }}"></script>
     <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
     <script src="{{ asset('js/defina.admin.min.js') }}"></script>
     <script>

@@ -54,7 +54,7 @@
             </div>
         </a>
         <div class="dropdown">
-            <div class="d-flex align-items-center gap-2 cp py-0" data-bs-toggle="dropdown">
+            <div class="d-flex align-items-center gap-2 cp py-0" data-bs-toggle="dropdown" style="cursor: help">
                 <span class="material-symbols-outlined fs-5 text-secondary" data-bs-toggle="tooltip" title="Справочная информация">help</span>
             </div>
             <ul class="dropdown-menu dropdown-menu-end">

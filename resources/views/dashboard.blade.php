@@ -13,7 +13,7 @@
 @endphp
 @extends('layout/main')
 
-@section('title', 'Личный кабинет')
+@section('title', 'Поиск запчастей')
 
 @section('content')
 
@@ -26,7 +26,7 @@
                 <span>{{$item['name']}}</span>
             </label>
             @endforeach
-            <label class="border rounded" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <label class="border rounded" data-bs-toggle="modal" data-bs-target="#vinModal">
                 <input type="radio" name="type" class="d-none" value="vin" />
                 <span>Запрос по VIN</span>
             </label>
@@ -47,7 +47,7 @@
         @if($size === 0)
         <p>По запросу <strong>"{{session('text')}}"</strong> ничего не найдено</p>
         @else
-        <p>{{$decl::search($size)}} <span class="badge bg-danger rounded-pill">{{$size}}</span> </p>        
+        <p>{{$decl::search($size)}} <span class="badge bg-soft-danger text-danger rounded-pill">{{$size}}</span> </p>        
         @endif
 
         @foreach(session('search')['rows'] as $item)
@@ -107,26 +107,58 @@
     */ ?>
 
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="vinModal" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-dialog-centered">
-            <form class="modal-content border-0">
+            <form class="modal-content border-0" novalidate @submit.prevent="Save" v-if="!send">
                 <div class="modal-header border-0">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Заказ по VIN номеру</h1>
+                    <h1 class="modal-title fs-5">Заказ по VIN номеру</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body py-0">
                     <div class="mt-2">
-                        <input type="text" class="form-control" name="vin" placeholder="Укажите VIN номер" />
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            :class="[error.vin && vin === '' ? 'is-invalid' : '']"
+                            v-model="vin" 
+                            placeholder="Укажите VIN номер" 
+                        />
+                        <div class="invalid-feedback d-block m-0" v-if="error.vin && vin === ''">
+                            Пожалуйста, укажите VIN номер модели
+                        </div>
                     </div>
                     <div class="mt-2">
-                        <textarea rows="5" class="form-control" name="spares" placeholder="Укажите список запчастей"></textarea>
+                        <textarea 
+                            rows="5" 
+                            class="form-control" 
+                            :class="[error.spares && spares === '' ? 'is-invalid' : '']"
+                            v-model="spares" 
+                            placeholder="Укажите список запчастей"
+                        >
+                        </textarea>
+                        <div class="invalid-feedback d-block m-0" v-if="error.spares && spares === ''">
+                            Пожалуйста, напишите через запятую, какие запчасти вам нужны
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer border-0">
                     <div class="btn btn-outline-light text-dark" data-bs-dismiss="modal">Отмена</div>
-                    <x-button color="dark" icon="forward" type="submit" text="Отправить менеджеру" />
+                    <button type="submit" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center" v-if="loading">
+                        <span class="material-symbols-outlined spin">autorenew</span>
+                        Отправляю...
+                    </button>
+                    <x-button color="dark" icon="forward" type="submit" text="Отправить менеджеру" v-on:click="Send" v-else />
                 </div>
             </form>
+            <div class="modal-content border-0" v-else>
+                <div class="modal-header border-0">
+                    <h1 class="modal-title fs-5">Заказ по VIN номеру</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-0">
+                    <x-alert type="success" message="Ваша заявка принята." close="false" />
+                </div>
+            </div>
         </div>
     </div>
 @endsection

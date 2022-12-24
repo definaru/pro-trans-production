@@ -39,6 +39,8 @@ Route::prefix('api')->group(function () {
     Route::post('signup', [AuthController::class, 'Sigature']);
     Route::post('customer', [AuthController::class, 'Customer']);
     Route::post('mail', [AuthController::class, 'SendMail']);
+    Route::post('spares', [DachboardController::class, 'SendSpares']);
+    Route::get('сheckout/{account}', [DachboardController::class, 'Checkout']);
 });
 
 Route::controller(PasswordController::class)->group(function () {

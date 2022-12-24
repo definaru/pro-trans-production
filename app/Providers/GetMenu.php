@@ -43,7 +43,7 @@ class GetMenu
             ],
             [
                 'name' => 'MERCEDES-BENZ COMMERCIAL',
-                'href' => 'mercedes-benz-commercial',
+                'href' => '8854033a-48ad-11ed-0a80-0c87007f4175/10/0',
                 'image' => '/img/guayaquillib/mercedes-benz.png'
             ],
             [

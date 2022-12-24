@@ -126,7 +126,7 @@
                         <th class="text-muted" style="width: 70px;"><small>Заказ</small></th>
                         <th class="text-muted" style="width: 125px;"><small>Дата</small></th>
                         <th class="text-muted" style="width: 170px;"><small>Контрагент</small></th>
-                        <th class="text-muted" style="width: 124px;text-align: center"><small>Статус платежа</small></th>
+                        <th class="text-muted" style="width: 124px;text-align: center"><small>Статус заказа</small></th>
                         <th class="text-muted" style="width: 124px;"><small>Сумма платежа</small></th>
                         <th class="text-secondary text-center" style="width: 119px;"><small>Действия</small></th>
                     </tr>

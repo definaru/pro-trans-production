@@ -48,7 +48,7 @@
     </div>
     @foreach ($catalogTrucks as $item)
     <div class="col-md-4">
-        <a href="/dashboard/catalog/category/{{$item['name']}}" class="card border-0 shadow-sm mb-4">
+        <a href="/dashboard/catalog/category/{{$item['href']}}" class="card border-0 shadow-sm mb-4">
             <div class="card-body d-flex align-items-center gap-3">
                 <div class="icon-brand">
                     <img src="{{$item['image']}}" class="w-100" alt="{{$item['name']}}" />

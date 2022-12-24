@@ -7,7 +7,7 @@
     <meta name="csrf_token" content="{{ csrf_token() }}" />
     <title>@yield('title') | {{ config('app.name') }}</title>
     <link rel="shortcut icon" href='/img/prospectdesktopicon.png' type="image/x-icon" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.29/dist/sweetalert2.min.css" />
     <link rel="stylesheet" href="https://glyphsearch.com/bower_components/ionicons/css/ionicons.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -76,8 +76,8 @@
         </div>
     </section>
     
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/vue.js') }}"></script>
     <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('js/defina.min.js') }}"></script>
 </body>

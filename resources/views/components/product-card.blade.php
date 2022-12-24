@@ -25,11 +25,12 @@
     <td><small><strong>@php echo number_format(($price) / 100, 2, '.', ' ') @endphp ₽</strong></small></td>
     <td>
         @if($availability === '0')
-            <a href="#">
+            <!-- <a href="#">
                 <small class="badge text-bg-secondary">Заказать</small>
-            </a>
+            </a> -->
+            <x-badge color="danger" text="Нет в наличии" />
         @else
-            <small class="badge bg-soft-success text-success px-3 py-2">В наличии - {{$availability}} шт.</small>
+            <x-badge color="34617" text="В наличии - {{$availability}} шт." />
         @endif
     </td>
     <td>
@@ -41,16 +42,16 @@
         </div>
     </td>
     <td>
-        @if($availability === '0')
-            <!-- <button class="other-features btn btn-secondary btn-sm" disabled>В корзину</button> -->
-            <x-button 
+        <!-- if($availability === '0')
+            <button 
                 type="button" 
                 size="sm"
                 icon="add_shopping_cart" 
                 color="secondary" 
                 text="В корзину" 
             /> 
-        @else
+        else
+        endif -->
         <div
             id="card{{$href}}" 
             data-card="{{$href}},{{$vendorcode}},{{$name}},1,<?=number_format(($price) / 100, 2, '.', '')?>" 
@@ -64,6 +65,6 @@
                 text="В корзину" 
             />            
         </div>
-        @endif
+        
     </td>
 </tr>
