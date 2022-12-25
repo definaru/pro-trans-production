@@ -5,7 +5,7 @@
 @section('content')
 @include('layout.main.logo')
 
-@if (session('status'))
+@if(session('status'))
     <x-alert type="success" close="false" message="{{ session('status') }}" />
 @endif
 

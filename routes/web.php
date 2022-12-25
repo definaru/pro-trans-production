@@ -11,8 +11,10 @@ use App\Http\Middleware\Authenticate;
 
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('', [DachboardController::class, 'Dashboard'])->name('dashboard');
+    Route::get('result/search', [DachboardController::class, 'noSearch']);
+    Route::post('result/search', [DachboardController::class, 'resultSearch']);
     Route::post('search', [DachboardController::class, 'searchDashboard']);
-    Route::get('card', [DachboardController::class, 'Сard']);
+    Route::get('card', [DachboardController::class, 'Сard'])->name('card');
     Route::get('help', [DachboardController::class, 'Help']);
     Route::get('events', [DachboardController::class, 'Events']);
     Route::get('notifications', [DachboardController::class, 'Notifications']);
@@ -40,7 +42,7 @@ Route::prefix('api')->group(function () {
     Route::post('customer', [AuthController::class, 'Customer']);
     Route::post('mail', [AuthController::class, 'SendMail']);
     Route::post('spares', [DachboardController::class, 'SendSpares']);
-    Route::get('сheckout/{account}', [DachboardController::class, 'Checkout']);
+    Route::post('checkout', [DachboardController::class, 'Checkout']);
 });
 
 Route::controller(PasswordController::class)->group(function () {

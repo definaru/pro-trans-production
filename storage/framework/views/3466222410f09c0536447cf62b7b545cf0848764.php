@@ -3,7 +3,34 @@
 
 <?php $__env->startSection('content'); ?>
 
-
+<?php if(session('status')): ?>
+    <?php if (isset($component)) { $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Alert::class, ['type' => 'success','close' => 'false','message' => ''.e(session('status')).'']); ?>
+<?php $component->withName('alert'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975)): ?>
+<?php $component = $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975; ?>
+<?php unset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975); ?>
+<?php endif; ?>
+    <div class="w-25">
+        <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'a','text' => 'Перейти к заказу','icon' => 'arrow_right_alt','href' => '/dashboard/payment/reports/'.e(session('id')).'','color' => 'dark']); ?>
+<?php $component->withName('button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940)): ?>
+<?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
+<?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
+<?php endif; ?>
+    </div>
+<?php else: ?>
 <template v-if="card.length === 0">
     <div class="card border-0 shadow-sm mt-4">
         <div class="card-body">
@@ -30,6 +57,7 @@
         </div>
     </div>
 </template>
+<?php endif; ?>
 
 <template v-else>
     <template v-if="!loading">
@@ -83,13 +111,15 @@
                     
                 </div>
                 <div class="py-2">{{card.length}} (шт.)</div>
-                <div class="py-2">
+                <form action="/api/checkout" method="post" class="py-2">
+                    <input type="hidden" name="_token" value="<?=csrf_token();?>" />
+                    <input type="hidden" name="name" :value="JSON.stringify(сheckout)" />
                     <button v-on:click="Checkout('<?=$user->verified?>')" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
                         <span class="material-symbols-outlined" v-if="сheckout.length === 0">check</span>
                         <span class="material-symbols-outlined spin" v-else>autorenew</span>
                         {{сheckout.length !== 0 ? 'Отправляем...' : 'Оформить заказ'}}
                     </button>
-                </div>
+                </form>
             </div>    
         </div>
         {{totalSum}}
@@ -98,7 +128,6 @@
         <h6 class="text-muted">Подгружаем товары...</h6>
     </template>
 </template>
-<pre style="display:none">{{JSON.stringify(сheckout, null, 4)}}</pre>
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layout/main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/сard.blade.php ENDPATH**/ ?>

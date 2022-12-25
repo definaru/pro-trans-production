@@ -3,7 +3,18 @@
 
 @section('content')
 
-
+@if(session('status'))
+    <x-alert type="success" close="false" message="{{ session('status') }}" />
+    <div class="w-25">
+        <x-button 
+            type="a" 
+            text="Перейти к заказу"
+            icon="arrow_right_alt"
+            href="/dashboard/payment/reports/{{session('id')}}" 
+            color="dark"  
+        />
+    </div>
+@else
 <template v-if="card.length === 0">
     <div class="card border-0 shadow-sm mt-4">
         <div class="card-body">
@@ -19,6 +30,7 @@
         </div>
     </div>
 </template>
+@endif
 @verbatim
 <template v-else>
     <template v-if="!loading">
@@ -72,13 +84,15 @@
                     
                 </div>
                 <div class="py-2">{{card.length}} (шт.)</div>
-                <div class="py-2">
+                <form action="/api/checkout" method="post" class="py-2">
+                    <input type="hidden" name="_token" value="<?=csrf_token();?>" />
+                    <input type="hidden" name="name" :value="JSON.stringify(сheckout)" />
                     <button v-on:click="Checkout('<?=$user->verified?>')" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
                         <span class="material-symbols-outlined" v-if="сheckout.length === 0">check</span>
                         <span class="material-symbols-outlined spin" v-else>autorenew</span>
                         {{сheckout.length !== 0 ? 'Отправляем...' : 'Оформить заказ'}}
                     </button>
-                </div>
+                </form>
             </div>    
         </div>
         {{totalSum}}
@@ -87,6 +101,5 @@
         <h6 class="text-muted">Подгружаем товары...</h6>
     </template>
 </template>
-<pre style="display:none">{{JSON.stringify(сheckout, null, 4)}}</pre>
 @endverbatim
 @endsection

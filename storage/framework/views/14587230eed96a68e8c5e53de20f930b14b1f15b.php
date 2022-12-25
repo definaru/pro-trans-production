@@ -1,10 +1,14 @@
 <header class="d-flex gap-3 align-items-center justify-content-between border-bottom border-light bg-white py-3 px-4 shadow-sm d-print-none">
     <div class="d-flex align-items-center gap-3 w-50">
         <span class="material-symbols-outlined cp" v-on:click="toggleMenu">menu</span>
-        <div class="input-group">
+        <?php if($url !== '/dashboard'): ?>
+        <form action="/dashboard/result/search" method="post" class="input-group">
+            <?php echo csrf_field(); ?>
             <span class="material-symbols-outlined input-group-text bg-light border-0 px-2 text-muted" id="basic-addon1">search</span>
-            <input type="text" class="form-control bg-light border-0 ps-0" placeholder="Поиск по артиклу..." />
-        </div>                    
+            <input type="text" name="text" value="<?=isset($_POST['text']) ? $_POST['text'] : '';?>" class="form-control search bg-light border-0 ps-0" placeholder="Поиск по артиклу..." />
+            <span></span>
+        </form>
+        <?php endif; ?>                    
     </div>
     <div class="d-flex align-items-center gap-1">
         <span class="material-symbols-outlined text-secondary">call</span>

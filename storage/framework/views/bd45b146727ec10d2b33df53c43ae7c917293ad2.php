@@ -1,26 +1,38 @@
-@extends('layout/main')
 
-@section('title', 'Заказ #'.$data['name'])
 
-@section('breadcrumbs')
+<?php $__env->startSection('title', 'Заказ #'.$data['name']); ?>
+
+<?php $__env->startSection('breadcrumbs'); ?>
 <div class="d-flex gap-2">
     <a href="/dashboard/payment/reports" class="text-muted">Заказы</a>     
     <span class="text-secondary">/</span>
     <span class="text-muted">Детали заказа</span>
 </div>
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 <div class="d-flex align-items-center justify-content-between">
     <div class="d-flex align-items-center">
         <!-- <span class="badge bg-soft-success text-success">
             <span class="legend-indicator bg-success"></span>
             Оплачено 
         </span>  -->
-        <x-badge color="{{$data['state']['color']}}" text="{{$data['state']['name']}}"/>
+        <?php if (isset($component)) { $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Badge::class, ['color' => ''.e($data['state']['color']).'','text' => ''.e($data['state']['name']).'']); ?>
+<?php $component->withName('badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94)): ?>
+<?php $component = $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94; ?>
+<?php unset($__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94); ?>
+<?php endif; ?>
         <span class="d-flex align-items-center gap-2 ms-2 ms-sm-3 text-secondary">
             <span class="material-symbols-outlined">calendar_month</span> 
             <!-- Сен. 17, 2020, 5:48 -->
-            {{$time::parse($data['created'])->locale('ru')->translatedFormat('d F Y, H:i:s')}}
+            <?php echo e($time::parse($data['created'])->locale('ru')->translatedFormat('d F Y, H:i:s')); ?>
+
         </span>
     </div>
     <div class="d-flex gap-3 d-print-none">
@@ -32,16 +44,20 @@
             <span class="material-symbols-outlined text-secondary">print</span>
             Распечатать
         </a> 
-        @if(isset($data['invoicesOut']))
-        <x-button 
-            type="a" 
-            size="sm" 
-            color="danger"
-            href="/dashboard/payment/order/{{$data['invoicesOut'][0]['id']}}" 
-            text="Запросить счёт" 
-            icon="credit_score" 
-        />
-        @endif
+        <?php if(isset($data['invoicesOut'])): ?>
+        <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'a','size' => 'sm','color' => 'danger','href' => '/dashboard/payment/order/'.e($data['invoicesOut'][0]['id']).'','text' => 'Запросить счёт','icon' => 'credit_score']); ?>
+<?php $component->withName('button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940)): ?>
+<?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
+<?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
+<?php endif; ?>
+        <?php endif; ?>
         
         <div class="dropdown">
             <a 
@@ -78,14 +94,15 @@
                 <h5 class="fw-bold mb-0 mt-1">
                     Информация по заказу 
                     <span class="badge bg-soft-danger text-danger rounded-circle ms-1">
-                    {{$data['positions']['meta']['size']}}
+                    <?php echo e($data['positions']['meta']['size']); ?>
+
                     </span>
                 </h5>
                 <span class="material-symbols-outlined cp" @click="close = false" v-if="close">open_in_new</span>
                 <!-- <a href="javascript:;" class="text-secondary"><span class="material-symbols-outlined fs-6">edit</span></a> -->
             </div>
             <div class="card-body">
-                @foreach($data['positions']['rows'] as $product)
+                <?php $__currentLoopData = $data['positions']['rows']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="d-flex align-items-center">
                     <div class="flex-shrink-0">
                         <div class="avatar avatar-xl">
@@ -95,69 +112,72 @@
                     <div class="flex-grow-1 ms-3">
                         <div class="row">
                             <div class="col-md-5 mb-3 mb-md-0">
-                                <a href="/dashboard/product/details/{{$product['assortment']['id']}}" class="h6 text-dark m-0 d-block text-decoration-none">
-                                    {{$product['assortment']['name']}}
+                                <a href="/dashboard/product/details/<?php echo e($product['assortment']['id']); ?>" class="h6 text-dark m-0 d-block text-decoration-none">
+                                    <?php echo e($product['assortment']['name']); ?>
+
                                 </a> 
                                 <div class="fs-6 text-secondary">
                                     <span class="fw-semibold">Артикул:</span> 
                                     <span>
-                                        {{$product['assortment']['article']}}
+                                        <?php echo e($product['assortment']['article']); ?>
+
                                     </span>
                                 </div>
                             </div>
                             <div class="col-lg-2 px-0 align-self-center">
                                 <small>
-                                    @php echo number_format(($product['price']) / 100, 2, '.', ' ') @endphp ₽
+                                    <?php echo number_format(($product['price']) / 100, 2, '.', ' ') ?> ₽
                                 </small>
                             </div>
                             <div class="col align-self-center">
-                                <h6>{{$product['quantity']}} шт</h6>
+                                <h6><?php echo e($product['quantity']); ?> шт</h6>
                             </div>
                             <div class="col-lg-3 ps-0 align-self-center text-end">
                                 <h6 class="m-0 pe-2">
-                                    @php echo number_format(($product['price']*$product['quantity']) / 100, 2, '.', ' ') @endphp ₽
+                                    <?php echo number_format(($product['price']*$product['quantity']) / 100, 2, '.', ' ') ?> ₽
                                 </h6>
                             </div>
                         </div>
                     </div>
                 </div>
                 <hr class="border-muted my-2" />
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <div class="row justify-content-md-end">
                     <div class="col-lg-9">
                         <dl class="row text-sm-end m-0">
                             <dt class="col-sm-6 text-muted fw-light">Промежуточный итог:</dt>
                             <dd class="col-sm-6 fw-bold">
-                                @php echo number_format(($data['sum']) / 100, 2, '.', ' ') @endphp ₽
+                                <?php echo number_format(($data['sum']) / 100, 2, '.', ' ') ?> ₽
                             </dd>
                             <dt class="col-sm-6 text-muted fw-light">Выплаченная сумма:</dt>
                             <dd class="col-sm-6 fw-bold">
-                                @php echo number_format(($data['payedSum']) / 100, 2, '.', ' ') @endphp ₽
+                                <?php echo number_format(($data['payedSum']) / 100, 2, '.', ' ') ?> ₽
                             </dd>                            
                             <!-- <dt class="col-sm-6 text-muted fw-light">Стоимость доставки:</dt>
                             <dd class="col-sm-6 fw-bold">0.00 ₽</dd> -->
                             <dt class="col-sm-6 text-muted fw-light">Налог:</dt>
                             <dd class="col-sm-6 fw-bold">
-                                @php echo number_format(($data['vatSum']) / 100, 2, '.', ' ') @endphp ₽
+                                <?php echo number_format(($data['vatSum']) / 100, 2, '.', ' ') ?> ₽
                             </dd>
                             <dt class="col-sm-6 text-muted fw-light">Итого:</dt>
                             <dd class="col-sm-6 fw-bold">
-                                @php echo number_format(($data['sum']) / 100, 2, '.', ' ') @endphp ₽
+                                <?php echo number_format(($data['sum']) / 100, 2, '.', ' ') ?> ₽
                             </dd>
                         </dl>
                     </div>
                 </div>
             </div>
         </div>
-        @if(isset($data['deliveryPlannedMoment']))
+        <?php if(isset($data['deliveryPlannedMoment'])): ?>
         <p>
             <small class="d-flex align-items-center gap-2">
                 <span class="material-symbols-outlined fs-5 text-secondary">info</span> 
                 Запланированное время доставки: 
-                {{$time::parse($data['deliveryPlannedMoment'])->locale('ru')->translatedFormat('d F Y, H:i')}}
+                <?php echo e($time::parse($data['deliveryPlannedMoment'])->locale('ru')->translatedFormat('d F Y, H:i')); ?>
+
             </small>
         </p>
-        @endif
+        <?php endif; ?>
     </div>
     <div class="col-lg-4 d-print-none" :class="[close ? 'd-none' : '']">
         <div class="card border-0 shadow-sm">
@@ -174,7 +194,8 @@
                             </div>
                             <div class="flex-grow-1 ms-3">
                                 <span class="text-body text-inherit">
-                                    {{$data['agent']['name']}}
+                                    <?php echo e($data['agent']['name']); ?>
+
                                 </span>
                             </div>
                             <div class="flex-grow-1 text-end"><i class="bi-chevron-right text-body"></i></div>
@@ -197,11 +218,13 @@
                         <ul class="list-unstyled list-py-2 text-body">
                             <li class="d-flex gap-2 align-items-center">
                                 <span class="material-symbols-outlined fs-6 text-secondary">mail</span>
-                                {{$data['agent']['email']}}
+                                <?php echo e($data['agent']['email']); ?>
+
                             </li>
                             <li class="d-flex gap-2 align-items-center">
                                 <span class="material-symbols-outlined fs-6 text-secondary">phone_iphone</span>
-                                {{$data['agent']['phone']}}
+                                <?php echo e($data['agent']['phone']); ?>
+
                             </li>
                         </ul>
                     </li>
@@ -211,7 +234,8 @@
                             <!-- <a href="javascript:;" class="text-secondary"><span class="material-symbols-outlined fs-6">edit</span></a> -->
                         </div>
                         <small class="d-block text-muted">
-                        {{$data['agent']['actualAddress']}}
+                        <?php echo e($data['agent']['actualAddress']); ?>
+
                         <img src="/img/flags/russia_flag.svg" alt="Great Britain Flag" class="border rounded-circle avatar avatar-xss avatar-circle ms-1"></small>
                     </li>
                     <li class="list-group-item">
@@ -220,7 +244,8 @@
                             <!-- <a href="javascript:;" class="link"><span class="material-symbols-outlined">edit</span></a> -->
                         </div>
                         <small class="d-block text-muted">
-                        {{$data['agent']['legalAddress']}}
+                        <?php echo e($data['agent']['legalAddress']); ?>
+
                         <img src="/img/flags/russia_flag.svg" alt="Great Britain Flag" class="border rounded-circle avatar avatar-xss avatar-circle ms-1"></small> 
                         <div class="mt-3 d-grid">
                             <!-- <h6 class="fw-bold mb-0">Mastercard</h6>
@@ -228,14 +253,18 @@
                             Номер карты: 
                             <span class="text-muted"><sub class="h5">**** **** ****</sub> 4291</span>
                             </span> -->
-                            <x-button 
-                                type="button" 
-                                color="dark" 
-                                text="связаться с менеджером" 
-                                icon="headset_mic" 
-                                data-bs-toggle="modal" 
-                                data-bs-target="#manager" 
-                            />
+                            <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'button','color' => 'dark','text' => 'связаться с менеджером','icon' => 'headset_mic']); ?>
+<?php $component->withName('button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes(['data-bs-toggle' => 'modal','data-bs-target' => '#manager']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940)): ?>
+<?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
+<?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
+<?php endif; ?>
                         </div>
                         
                     </li>
@@ -287,7 +316,18 @@
                         <span class="material-symbols-outlined spin">autorenew</span>
                         Отправляю...
                     </button>
-                    <x-button color="dark" icon="forward" type="submit" text="Отправить менеджеру" v-on:click="Send" />
+                    <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['color' => 'dark','icon' => 'forward','type' => 'submit','text' => 'Отправить менеджеру']); ?>
+<?php $component->withName('button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes(['v-on:click' => 'Send']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940)): ?>
+<?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
+<?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
+<?php endif; ?>
                 </div>
             </form>
             <div class="modal-content border-0" v-else>
@@ -296,9 +336,21 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body py-0">
-                    <x-alert type="success" message="Ваша заявка принята." close="false" />
+                    <?php if (isset($component)) { $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Alert::class, ['type' => 'success','message' => 'Ваша заявка принята.','close' => 'false']); ?>
+<?php $component->withName('alert'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975)): ?>
+<?php $component = $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975; ?>
+<?php unset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975); ?>
+<?php endif; ?>
                 </div>
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout/main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/dashboard/payment/reports-detail.blade.php ENDPATH**/ ?>

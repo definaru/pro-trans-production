@@ -20,14 +20,26 @@ class Telegram
             case 'сheckout':
                 return self::сheckout($num, $product, $link);
                 break;
+            case 'manager':
+                return self::manager($num, $product, $link);
+                break;
             default:
                 return self::product($num, $product, $link);
         }
     }
 
+    public static function manager($num, $product, $link)
+    {
+        $msd = '<b>Заказ #'.$product.'</b>'.PHP_EOL.
+        '------'.PHP_EOL.
+        'На вашем сервисе '.config('app.name').' был оформлен заказ товаров.'.PHP_EOL.
+        '<a href="https://online.moysklad.ru/app/#Company/edit?id='.$num.'">[Подробнее]</a>';
+        return $msd;
+    }
+
     public static function сheckout($num, $product, $link)
     {   
-        $msd = '<b>Заказ #'.time().'</b>'.PHP_EOL.
+        $msd = '<b>Заказ #'.$product.'</b>'.PHP_EOL.
         '------'.PHP_EOL.
         'На вашем сервисе '.config('app.name').' был оформлен заказ товаров.'.PHP_EOL.
         '<a href="https://online.moysklad.ru/app/#customerorder/edit?id='.$num.'">[Подробнее]</a>';

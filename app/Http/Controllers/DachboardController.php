@@ -19,16 +19,28 @@ class DachboardController extends Controller
         return view('dashboard');
     }
 
+    public function noSearch()
+    {
+        return redirect()->route('dashboard');
+    }
+
+    public function resultSearch(Request $request)
+    {
+        $request->validate([
+            'text' => 'required'
+        ]);
+        $search = MoySklad::searchByProduct('article', $request->text);
+        return view('dashboard.result.search', ['search' => $search, 'text' => $request->text]);
+    }
+
     public function searchDashboard(Request $request)
     {
         $request->validate([
             'type' => 'required',
             'text' => 'required',
         ]);
-        //$validated = $request->validated();
         $search = MoySklad::searchByProduct($request->type, $request->text);
         $text = $request->input('text');
-        //$validated = $request->safe()->only(['type', 'text']);
         return redirect()->route('dashboard')->with(['search' => $search, 'text' => $text]);
     }
 
@@ -166,7 +178,8 @@ class DachboardController extends Controller
         $response = MoySklad::getPaymentReports($order);
         //return response()->json($response);
         return view('dashboard.payment.reports-detail', [
-            'data' => $response
+            'data' => $response,
+            'order' => $order
         ]);
     }
 
@@ -189,11 +202,17 @@ class DachboardController extends Controller
         Telegram::getMessageTelegram($uuid, $request->spares, $request->vin, 'spares');
     }
 
-    public function Checkout($account)
+    public function Checkout(Request $request)
     {
         //$uuid = auth()->user()->verified;
-        Telegram::getMessageTelegram('d8d7e6b2-8225-11ed-0a80-03ac002b5be3', '', '', 'сheckout');
-        return response()->json($account);
+        $message = 'Ваш заказ получен.';
+        $account = MoySklad::getCheckout($request->name);
+        if(isset($account['id'])) {
+            Telegram::getMessageTelegram($account['id'], $account['name'], '', 'сheckout');
+        }
+        //return response()->json($account);
+        //dd($account);
+        return redirect()->route('card')->with(['status' => $message, 'id' => $account['id']]);
     }
     
     

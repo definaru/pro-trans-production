@@ -29,6 +29,124 @@ class MoySklad
         )->withBody($req, 'application/json')->put($url);
     }
 
+    public static function post($url, $req)
+    {
+        //$req = response()->json($req);
+        return Http::withBasicAuth(
+            config('app.ms_login'), 
+            config('app.ms_password')
+        )->withBody($req, 'application/json')->post($url);
+    }
+
+    public static function getCheckout($req)
+    {
+        // $req = '{
+        //     "organization": {
+        //         "meta": {
+        //             "href": "https://online.moysklad.ru/api/remap/1.2/entity/organization/218c26ab-33fe-11ed-0a80-0285001db7b3",
+        //             "type": "organization",
+        //             "mediaType": "application/json"
+        //         }
+        //     },
+        //     "agent": {
+        //         "meta": {
+        //             "href": "https://online.moysklad.ru/api/remap/1.2/entity/counterparty/8f8fe2c0-55e8-11ed-0a80-09d6000ea9fc",
+        //             "type": "counterparty",
+        //             "mediaType": "application/json"
+        //         }
+        //     },
+        //     "positions": [
+        //         {
+        //             "quantity": 1,
+        //             "price": 1122846,
+        //             "discount": 0,
+        //             "vat": 20,
+        //             "assortment": {
+        //                 "meta": {
+        //                     "href": "https://online.moysklad.ru/api/remap/1.2/entity/product/42a4b047-5064-11ed-0a80-05bf003d0d33",
+        //                     "type": "product",
+        //                     "mediaType": "application/json"
+        //                 }
+        //             },
+        //             "reserve": 0
+        //         },
+        //         {
+        //             "quantity": 1,
+        //             "price": 540000,
+        //             "discount": 0,
+        //             "vat": 20,
+        //             "assortment": {
+        //                 "meta": {
+        //                     "href": "https://online.moysklad.ru/api/remap/1.2/entity/product/49f64444-5064-11ed-0a80-05bf003d1191",
+        //                     "type": "product",
+        //                     "mediaType": "application/json"
+        //                 }
+        //             },
+        //             "reserve": 0
+        //         },
+        //         {
+        //             "quantity": 1,
+        //             "price": 368940,
+        //             "discount": 0,
+        //             "vat": 20,
+        //             "assortment": {
+        //                 "meta": {
+        //                     "href": "https://online.moysklad.ru/api/remap/1.2/entity/product/69e6615f-5064-11ed-0a80-05bf003d27b2",
+        //                     "type": "product",
+        //                     "mediaType": "application/json"
+        //                 }
+        //             },
+        //             "reserve": 0
+        //         },
+        //         {
+        //             "quantity": 1,
+        //             "price": 500000,
+        //             "discount": 0,
+        //             "vat": 20,
+        //             "assortment": {
+        //                 "meta": {
+        //                     "href": "https://online.moysklad.ru/api/remap/1.2/entity/product/8198635b-5064-11ed-0a80-05bf003d33d5",
+        //                     "type": "product",
+        //                     "mediaType": "application/json"
+        //                 }
+        //             },
+        //             "reserve": 0
+        //         },
+        //         {
+        //             "quantity": 1,
+        //             "price": 1787500,
+        //             "discount": 0,
+        //             "vat": 20,
+        //             "assortment": {
+        //                 "meta": {
+        //                     "href": "https://online.moysklad.ru/api/remap/1.2/entity/product/443911e3-5064-11ed-0a80-05bf003d0df5",
+        //                     "type": "product",
+        //                     "mediaType": "application/json"
+        //                 }
+        //             },
+        //             "reserve": 0
+        //         },
+        //         {
+        //             "quantity": 1,
+        //             "price": 578123,
+        //             "discount": 0,
+        //             "vat": 20,
+        //             "assortment": {
+        //                 "meta": {
+        //                     "href": "https://online.moysklad.ru/api/remap/1.2/entity/product/581d8508-5064-11ed-0a80-05bf003d1bb4",
+        //                     "type": "product",
+        //                     "mediaType": "application/json"
+        //                 }
+        //             },
+        //             "reserve": 0
+        //         }
+        //     ]
+        // }';
+        $url = self::msUrl().'customerorder';
+        $response = self::post($url, $req);
+        return $response->json();
+    }
+
     public static function enterIntoAcontract($deal, $accountId)
     {
         $id = self::getAgreementID();
