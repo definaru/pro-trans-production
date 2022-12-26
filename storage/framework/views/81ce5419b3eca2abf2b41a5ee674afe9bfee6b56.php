@@ -78,7 +78,7 @@
         endif -->
         <div
             id="card<?php echo e($href); ?>" 
-            data-card="<?php echo e($href); ?>,<?php echo e($vendorcode); ?>,<?php echo e($name); ?>,1,<?=number_format(($price) / 100, 2, '.', '')?>" 
+            data-card="<?php echo e($href); ?>,<?php echo e($vendorcode); ?>,<?php echo e($name); ?>,1,<?php echo e($price); ?>,<?php echo e($price); ?>" 
             v-on:click="addToCard('<?php echo e($href); ?>')"    
         >
             <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>

@@ -247,58 +247,45 @@
 
 
 <div class="modal fade" id="manager" data-bs-backdrop="static" data-bs-keyboard="false">
-        <div class="modal-dialog modal-dialog-centered">
-            <form class="modal-content border-0" novalidate @submit.prevent="Save" v-if="!send">
-                <div class="modal-header border-0">
-                    <h1 class="modal-title fs-5">Обратная связь</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body py-0">
-                    <div class="mt-2">
-                        <input 
-                            type="text" 
-                            class="form-control" 
-                            :class="[error.vin && vin === '' ? 'is-invalid' : '']"
-                            v-model="vin"
-                            value="<?=$order?>" 
-                            placeholder="Ваше имя" 
-                        />
-                        <div class="invalid-feedback d-block m-0" v-if="error.vin && vin === ''">
-                            Пожалуйста, напишите ваше имя
-                        </div>
-                    </div>
-                    <div class="mt-2">
-                        <textarea 
-                            rows="5" 
-                            class="form-control" 
-                            :class="[error.spares && spares === '' ? 'is-invalid' : '']"
-                            v-model="spares" 
-                            placeholder="Опишите здесь ваш вопрос..."
-                        >
-                        </textarea>
-                        <div class="invalid-feedback d-block m-0" v-if="error.spares && spares === ''">
-                            Пожалуйста, напишите ваш вопрос.
-                        </div>
+    <div class="modal-dialog modal-dialog-centered">
+        <form class="modal-content border-0" novalidate @submit.prevent="SendManager('{{$order}}')" v-if="!send">
+            <div class="modal-header border-0">
+                <h1 class="modal-title fs-5">Обратная связь</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body py-0">
+                <div class="mt-2">
+                    <textarea 
+                        rows="5" 
+                        class="form-control" 
+                        :class="[error.message && message === '' ? 'is-invalid' : '']"
+                        v-model="message" 
+                        placeholder="Опишите здесь ваш вопрос..."
+                    >
+                    </textarea>
+                    <div class="invalid-feedback d-block m-0" v-if="error.message && message === ''">
+                        Пожалуйста, напишите ваш вопрос.
                     </div>
                 </div>
-                <div class="modal-footer border-0">
-                    <div class="btn btn-outline-light text-dark" data-bs-dismiss="modal">Отмена</div>
-                    <button type="submit" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center" v-if="!loading">
-                        <span class="material-symbols-outlined spin">autorenew</span>
-                        Отправляю...
-                    </button>
-                    <x-button color="dark" icon="forward" type="submit" text="Отправить менеджеру" v-on:click="Send" />
-                </div>
-            </form>
-            <div class="modal-content border-0" v-else>
-                <div class="modal-header border-0">
-                    <h1 class="modal-title fs-5">Заказ по VIN номеру</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body py-0">
-                    <x-alert type="success" message="Ваша заявка принята." close="false" />
-                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <div class="btn btn-outline-light text-dark px-3" data-bs-dismiss="modal">Отмена</div>
+                <button type="submit" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center" v-if="!loading">
+                    <span class="material-symbols-outlined spin">autorenew</span>
+                    Отправляю...
+                </button>
+                <x-button color="dark" icon="forward" type="submit" text="Отправить менеджеру" v-else v-on:click="Sender" />
+            </div>
+        </form>
+        <div class="modal-content border-0" v-else>
+            <div class="modal-header border-0">
+                <h1 class="modal-title fs-5">Обратная связь</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body py-0">
+                <x-alert type="success" message="Ваша заявка принята." close="false" />
             </div>
         </div>
     </div>
+</div>
 @endsection

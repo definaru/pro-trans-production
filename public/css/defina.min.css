@@ -95,7 +95,7 @@ input:focus {
     font-size: 12px;
 }
 #submenu a:hover {
-    color: #3f51b5;
+    color: #dc3545;
     background-color: transparent !important;
 }
 

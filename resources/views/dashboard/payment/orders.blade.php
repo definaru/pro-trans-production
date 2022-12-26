@@ -107,7 +107,7 @@
                         @foreach($orders['list'] as $ord)
                         <tr>
                             <td>
-                                <a href="order/{{$ord['id']}}" class="ms-3 text-decoration-none">
+                                <a href="order/{{$ord['id']}}" class="ms-3 text-decoration-none fw-bold text-dark">
                                     #{{$ord['name']}}
                                 </a>
                             </th>

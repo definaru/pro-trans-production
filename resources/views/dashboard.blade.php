@@ -31,7 +31,10 @@
                 <span>Запрос по VIN</span>
             </label>
             @error('type')
-            <label class="text-danger">&larr; укажите, по какому параметру искать</label>
+                <label class="d-flex align-items-center gap-2 text-danger font-monospace">
+                    <span class="fs-3">←</span> 
+                    укажите, по какому параметру искать
+                </label>
             @enderror
         </div>
         <div id="filter" class="card-body pt-0 d-flex gap-2">
@@ -70,7 +73,7 @@
                 </div> 
                 <div 
                     id="card{{$loop->iteration}}" 
-                    data-card="{{$item['id']}},{{$item['code']}},{{$item['name']}},1,<?=number_format(($item['salePrices'][0]['value']) / 100, 2, '.', '')?>" 
+                    data-card="{{$item['id']}},{{$item['code']}},{{$item['name']}},1,{{$item['salePrices'][0]['value']}},{{$item['salePrices'][0]['value']}}" 
                     v-on:click="addToCard({{$loop->iteration}})"
                 >
                     <x-button 

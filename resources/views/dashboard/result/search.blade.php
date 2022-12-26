@@ -37,7 +37,7 @@
             </div> 
             <div 
                 id="card{{$loop->iteration}}" 
-                data-card="{{$item['id']}},{{$item['code']}},{{$item['name']}},1,<?=number_format(($item['salePrices'][0]['value']) / 100, 2, '.', '')?>" 
+                data-card="{{$item['id']}},{{$item['code']}},{{$item['name']}},1,{{$item['salePrices'][0]['value']}},{{$item['salePrices'][0]['value']}}" 
                 v-on:click="addToCard({{$loop->iteration}})"
             >
                 <x-button 

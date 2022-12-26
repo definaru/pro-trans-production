@@ -214,6 +214,13 @@ class DachboardController extends Controller
         //dd($account);
         return redirect()->route('card')->with(['status' => $message, 'id' => $account['id']]);
     }
-    
+
+    public function Manager(Request $request)
+    {
+        $message = 'Ваш запрос получен.';
+        $uuid = auth()->user()->verified;
+        Telegram::getMessageTelegram($request->reports, $request->message, $uuid, 'manager');
+        return redirect()->route('order')->with(['status' => $message]);
+    }
     
 }

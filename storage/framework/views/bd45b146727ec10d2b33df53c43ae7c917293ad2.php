@@ -276,67 +276,54 @@
 
 
 <div class="modal fade" id="manager" data-bs-backdrop="static" data-bs-keyboard="false">
-        <div class="modal-dialog modal-dialog-centered">
-            <form class="modal-content border-0" novalidate @submit.prevent="Save" v-if="!send">
-                <div class="modal-header border-0">
-                    <h1 class="modal-title fs-5">Обратная связь</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body py-0">
-                    <div class="mt-2">
-                        <input 
-                            type="text" 
-                            class="form-control" 
-                            :class="[error.vin && vin === '' ? 'is-invalid' : '']"
-                            v-model="vin"
-                            value="<?=$order?>" 
-                            placeholder="Ваше имя" 
-                        />
-                        <div class="invalid-feedback d-block m-0" v-if="error.vin && vin === ''">
-                            Пожалуйста, напишите ваше имя
-                        </div>
-                    </div>
-                    <div class="mt-2">
-                        <textarea 
-                            rows="5" 
-                            class="form-control" 
-                            :class="[error.spares && spares === '' ? 'is-invalid' : '']"
-                            v-model="spares" 
-                            placeholder="Опишите здесь ваш вопрос..."
-                        >
-                        </textarea>
-                        <div class="invalid-feedback d-block m-0" v-if="error.spares && spares === ''">
-                            Пожалуйста, напишите ваш вопрос.
-                        </div>
+    <div class="modal-dialog modal-dialog-centered">
+        <form class="modal-content border-0" novalidate @submit.prevent="SendManager('<?php echo e($order); ?>')" v-if="!send">
+            <div class="modal-header border-0">
+                <h1 class="modal-title fs-5">Обратная связь</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body py-0">
+                <div class="mt-2">
+                    <textarea 
+                        rows="5" 
+                        class="form-control" 
+                        :class="[error.message && message === '' ? 'is-invalid' : '']"
+                        v-model="message" 
+                        placeholder="Опишите здесь ваш вопрос..."
+                    >
+                    </textarea>
+                    <div class="invalid-feedback d-block m-0" v-if="error.message && message === ''">
+                        Пожалуйста, напишите ваш вопрос.
                     </div>
                 </div>
-                <div class="modal-footer border-0">
-                    <div class="btn btn-outline-light text-dark" data-bs-dismiss="modal">Отмена</div>
-                    <button type="submit" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center" v-if="!loading">
-                        <span class="material-symbols-outlined spin">autorenew</span>
-                        Отправляю...
-                    </button>
-                    <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+            </div>
+            <div class="modal-footer border-0">
+                <div class="btn btn-outline-light text-dark px-3" data-bs-dismiss="modal">Отмена</div>
+                <button type="submit" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center" v-if="!loading">
+                    <span class="material-symbols-outlined spin">autorenew</span>
+                    Отправляю...
+                </button>
+                <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['color' => 'dark','icon' => 'forward','type' => 'submit','text' => 'Отправить менеджеру']); ?>
 <?php $component->withName('button'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php $component->withAttributes(['v-on:click' => 'Send']); ?>
+<?php $component->withAttributes(['v-else' => true,'v-on:click' => 'Sender']); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940)): ?>
 <?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
 <?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
 <?php endif; ?>
-                </div>
-            </form>
-            <div class="modal-content border-0" v-else>
-                <div class="modal-header border-0">
-                    <h1 class="modal-title fs-5">Заказ по VIN номеру</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body py-0">
-                    <?php if (isset($component)) { $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975 = $component; } ?>
+            </div>
+        </form>
+        <div class="modal-content border-0" v-else>
+            <div class="modal-header border-0">
+                <h1 class="modal-title fs-5">Обратная связь</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body py-0">
+                <?php if (isset($component)) { $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975 = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\Alert::class, ['type' => 'success','message' => 'Ваша заявка принята.','close' => 'false']); ?>
 <?php $component->withName('alert'); ?>
 <?php if ($component->shouldRender()): ?>
@@ -348,9 +335,9 @@
 <?php $component = $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975; ?>
 <?php unset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975); ?>
 <?php endif; ?>
-                </div>
             </div>
         </div>
     </div>
+</div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layout/main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/dashboard/payment/reports-detail.blade.php ENDPATH**/ ?>

@@ -30,10 +30,11 @@ class Telegram
 
     public static function manager($num, $product, $link)
     {
-        $msd = '<b>Заказ #'.$product.'</b>'.PHP_EOL.
+        $msd = '<b>Вопрос менеджеру #'.time().
+        ' <a href="https://online.moysklad.ru/app/#customerorder/edit?id='.$num.'">по заказу</a></b>'.PHP_EOL.
         '------'.PHP_EOL.
-        'На вашем сервисе '.config('app.name').' был оформлен заказ товаров.'.PHP_EOL.
-        '<a href="https://online.moysklad.ru/app/#Company/edit?id='.$num.'">[Подробнее]</a>';
+        PHP_EOL.$product.PHP_EOL.
+        '<a href="https://online.moysklad.ru/app/#Company/edit?id='.$link.'">[Подробнее]</a>';
         return $msd;
     }
 

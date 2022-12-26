@@ -35,7 +35,10 @@ $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-            <label class="text-danger">&larr; укажите, по какому параметру искать</label>
+                <label class="d-flex align-items-center gap-2 text-danger font-monospace">
+                    <span class="fs-3">←</span> 
+                    укажите, по какому параметру искать
+                </label>
             <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -95,7 +98,7 @@ unset($__errorArgs, $__bag); ?>
                 </div> 
                 <div 
                     id="card<?php echo e($loop->iteration); ?>" 
-                    data-card="<?php echo e($item['id']); ?>,<?php echo e($item['code']); ?>,<?php echo e($item['name']); ?>,1,<?=number_format(($item['salePrices'][0]['value']) / 100, 2, '.', '')?>" 
+                    data-card="<?php echo e($item['id']); ?>,<?php echo e($item['code']); ?>,<?php echo e($item['name']); ?>,1,<?php echo e($item['salePrices'][0]['value']); ?>,<?php echo e($item['salePrices'][0]['value']); ?>" 
                     v-on:click="addToCard(<?php echo e($loop->iteration); ?>)"
                 >
                     <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>

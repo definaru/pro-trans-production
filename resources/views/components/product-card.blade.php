@@ -54,7 +54,7 @@
         endif -->
         <div
             id="card{{$href}}" 
-            data-card="{{$href}},{{$vendorcode}},{{$name}},1,<?=number_format(($price) / 100, 2, '.', '')?>" 
+            data-card="{{$href}},{{$vendorcode}},{{$name}},1,{{$price}},{{$price}}" 
             v-on:click="addToCard('{{$href}}')"    
         >
             <x-button 

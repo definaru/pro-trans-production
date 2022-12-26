@@ -80,13 +80,14 @@
             <div style="width: 100px">
                 <span class="badge bg-soft-success text-success">
                     <span class="legend-indicator bg-success"></span>
-                    {{priceFormat(item.price)}}
+                    {{priceFormat(item.summa)}}
                 </span>        
             </div>
             <div class="input-group" style="width: 140px">
-                <button class="btn btn-sm material-symbols-outlined pe-0">add</button>
-                <input type="number" min="1" class="form-control form-control-sm border-0 text-center" :value="item.count" />
-                <button class="btn btn-sm material-symbols-outlined ps-0">remove</button>
+                <button class="btn btn-sm material-symbols-outlined pe-0" @click="inCrement(item.id)">add</button>
+                <div class="form-control form-control-sm fs-6 border-0 text-center">{{item.count}}</div>
+                <button class="btn btn-sm material-symbols-outlined ps-0" v-if="item.count == 1">remove</button>
+                <button class="btn btn-sm material-symbols-outlined ps-0" @click="deCrement(item.id)" v-else>remove</button>
             </div>
             <div class="btn-group">
                 <button @click="removeCart(id)" class="btn text-danger rounded material-symbols-outlined">delete</button>
@@ -107,10 +108,9 @@
             <div class="d-flex justify-content-end gap-4 align-items-center mt-3 mb-5">
                 <div class="py-2">Всего:</div>
                 <div class="py-2 fw-bold pe-4">
-                    {{priceFormat(summa)}}
-                    
+                    {{getTotalsumma(totalsumma)}}
                 </div>
-                <div class="py-2">{{card.length}} (шт.)</div>
+                <div class="py-2">{{amount}} (шт.)</div>
                 <form action="/api/checkout" method="post" class="py-2">
                     <input type="hidden" name="_token" value="<?=csrf_token();?>" />
                     <input type="hidden" name="name" :value="JSON.stringify(сheckout)" />
@@ -123,6 +123,7 @@
             </div>    
         </div>
         {{totalSum}}
+        {{totalAmount}}
     </template>
     <template v-else>
         <h6 class="text-muted">Подгружаем товары...</h6>

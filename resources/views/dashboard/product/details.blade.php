@@ -72,7 +72,7 @@
                     <div 
                         id="cards1" 
                         class="d-flex flex-column"
-                        data-card="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,<?=number_format(($product['salePrices']) / 100, 2, '.', '')?>" 
+                        data-card="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,{{$item['salePrices'][0]['value']}},{{$item['salePrices'][0]['value']}}" 
                         v-on:click="addToCard('s1')"
                     >
                     <x-button type="button" color="dark" text="В корзину" icon="shopping_cart" />

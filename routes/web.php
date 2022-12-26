@@ -28,7 +28,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('payment/record', [DachboardController::class, 'Record']);
     Route::get('payment/account', [DachboardController::class, 'Account']);
     Route::get('payment/reports', [DachboardController::class, 'Reports']);
-    Route::get('payment/reports/{order}', [DachboardController::class, 'ReportsDetail']);
+    Route::get('payment/reports/{order}', [DachboardController::class, 'ReportsDetail'])->name('order');
     Route::get('doc/{id}/{name}{extension?}', [PDFController::class, 'generatePDF'])->where(['extension' => '^(.pdf)|(.csv)|(.json)$']);
     Route::get('document/agreement', [DachboardController::class, 'Agreement'])->name('contract');
     Route::get('document/agreement/edit', [DachboardController::class, 'EditAgreement']);
@@ -43,6 +43,7 @@ Route::prefix('api')->group(function () {
     Route::post('mail', [AuthController::class, 'SendMail']);
     Route::post('spares', [DachboardController::class, 'SendSpares']);
     Route::post('checkout', [DachboardController::class, 'Checkout']);
+    Route::post('manager', [DachboardController::class, 'Manager']);
 });
 
 Route::controller(PasswordController::class)->group(function () {

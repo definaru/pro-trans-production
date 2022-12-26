@@ -37,7 +37,7 @@
             </div> 
             <div 
                 id="card<?php echo e($loop->iteration); ?>" 
-                data-card="<?php echo e($item['id']); ?>,<?php echo e($item['code']); ?>,<?php echo e($item['name']); ?>,1,<?=number_format(($item['salePrices'][0]['value']) / 100, 2, '.', '')?>" 
+                data-card="<?php echo e($item['id']); ?>,<?php echo e($item['code']); ?>,<?php echo e($item['name']); ?>,1,<?php echo e($item['salePrices'][0]['value']); ?>,<?php echo e($item['salePrices'][0]['value']); ?>" 
                 v-on:click="addToCard(<?php echo e($loop->iteration); ?>)"
             >
                 <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
