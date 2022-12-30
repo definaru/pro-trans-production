@@ -19,7 +19,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('events', [DachboardController::class, 'Events']);
     Route::get('notifications', [DachboardController::class, 'Notifications']);
     Route::get('work/schedule', [DachboardController::class, 'Schedule']);
-    Route::match(['get', 'post'],'settings/profile', [DachboardController::class, 'Settings']);
+    Route::post('settings', [DachboardController::class, 'EditSettings']);
+    Route::get('settings/profile', [DachboardController::class, 'Settings'])->name('settings');
     Route::match(['get', 'post'],'product/details/{id}', [DachboardController::class, 'DetailProduct']);
     Route::get('catalog', [DachboardController::class, 'Catalog']);
     Route::get('catalog/category/{name}/{limit?}/{offset?}', [DachboardController::class, 'CatalogDetail']);
@@ -43,6 +44,7 @@ Route::prefix('api')->group(function () {
     Route::post('mail', [AuthController::class, 'SendMail']);
     Route::post('spares', [DachboardController::class, 'SendSpares']);
     Route::post('checkout', [DachboardController::class, 'Checkout']);
+    Route::post('counterparty', [DachboardController::class, 'addedCounterAgent']);
     Route::post('manager', [DachboardController::class, 'Manager']);
 });
 

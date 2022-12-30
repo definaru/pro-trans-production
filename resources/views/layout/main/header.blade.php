@@ -1,7 +1,10 @@
+@php
+    $start = $deal::status() === '1' ? $usermenu : $nouser;
+@endphp
 <header class="d-flex gap-3 align-items-center justify-content-between border-bottom border-light bg-white py-3 px-4 shadow-sm d-print-none">
     <div class="d-flex align-items-center gap-3 w-50">
         <span class="material-symbols-outlined cp" v-on:click="toggleMenu">menu</span>
-        @if($url !== '/dashboard')
+        @if($url !== '/dashboard' && $deal::status() === '1')
         <form action="/dashboard/result/search" method="post" class="input-group">
             @csrf
             <span class="material-symbols-outlined input-group-text bg-light border-0 px-2 text-muted" id="basic-addon1">search</span>
@@ -18,19 +21,10 @@
         <div class="dropdown">
             <div class="d-flex align-items-center gap-2 cp py-0" data-bs-toggle="dropdown">
                 <span class="material-symbols-outlined fs-2 text-white bg-soft-danger rounded-circle">account_circle</span>
-                    @if($user->customer->company)
-                    <div 
-                        style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 220px" 
-                        title="{{$user->customer->company}}" data-bs-toggle="tooltip"
-                    >
-                        {{$user->customer->company}}
-                    </div>    
-                    @else
-                    <div>Нет данных</div>
-                    @endif
-            </div>     
+                @include('layout.main.company.name')
+            </div>
             <ul class="dropdown-menu dropdown-menu-end profile-menu shadow">
-                @foreach($usermenu as $list)
+                @foreach($start as $list)
                 <x-dropdown href="{{$list['href']}}" link="{{$list['link']}}" icon="{{$list['icon']}}" />
                 @endforeach
             </ul>                   
@@ -41,9 +35,11 @@
                 @{{card.length}}
                 </span>
             </h6>
+            @if($deal::status() === '1')
             <div class="d-flex align-items-center gap-2 cp py-0">
                 <i class="material-symbols-outlined fs-5 text-secondary">shopping_cart</i>
             </div>
+            @endif
         </a>
         <div class="dropdown">
             <div class="d-flex align-items-center gap-2 cp py-0" data-bs-toggle="dropdown" style="cursor: help">

@@ -68,17 +68,6 @@ class AuthController extends Controller
 
     public function Customer(Request $request)
     {
-        // [
-        //     'uuid' => $request->uuid,
-        //     'superintendant' => $request->superintendant,
-        //     'company' => $request->company,
-        //     'okved' => $request->okved,
-        //     'inn' => $request->inn,
-        //     'ogrn' => $request->ogrn,
-        //     'kpp' => $request->kpp,
-        //     'address' => $request->address,
-        //     'ogrn_date' => $request->ogrn_date,
-        // ]
         Customer::create($request->all());
         return [
             'message' => 'Success! Contact is added'

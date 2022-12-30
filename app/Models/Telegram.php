@@ -23,9 +23,23 @@ class Telegram
             case 'manager':
                 return self::manager($num, $product, $link);
                 break;
+            case 'counterparty':
+                return self::counterparty($num, $product, $link);
+                break;
             default:
                 return self::product($num, $product, $link);
         }
+    }
+
+    public static function counterparty($num, $product, $link)
+    {
+        // ($account['id'], $account['name'], $account['email'], 'counterparty')
+        $msd = '<b>Зарегистрировалась новая компания</b>'.PHP_EOL.
+        '<i>'.$product.'</i>'.PHP_EOL.
+        'E-mail адрес: '.$link.PHP_EOL.
+        '------'.PHP_EOL.
+        '<a href="https://online.moysklad.ru/app/#Company/edit?id='.$num.'">[Подробнее]</a>';
+        return $msd;
     }
 
     public static function manager($num, $product, $link)

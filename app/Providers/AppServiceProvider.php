@@ -7,6 +7,7 @@ use App\Models\DaData;
 use App\Models\MoySklad;
 use App\Models\Declension;
 use App\Models\FormatCurrency;
+use App\Models\Card;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function register()
     {
-        //
+        // 
     }
 
 
@@ -38,6 +39,8 @@ class AppServiceProvider extends ServiceProvider
 
         View::share([
             'menu'          => GetMenu::dataMenu(),
+            'nouser'        => GetMenu::nouser(),
+            'stop'          => GetMenu::dataMenuStop(),
             'usermenu'      => GetMenu::user(),
             'helpmenu'      => GetMenu::help(),
             'catalog'       => GetMenu::catalog(),
@@ -47,6 +50,7 @@ class AppServiceProvider extends ServiceProvider
             'MoySklad'      => new MoySklad(),
             'currency'      => new FormatCurrency(),
             'decl'          => new Declension(),
+            'deal'          => new Card(),
             'dadata'        => new DaData(),
             'url'           => $_SERVER['REQUEST_URI']
         ]);

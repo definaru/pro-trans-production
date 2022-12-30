@@ -18,7 +18,7 @@ class Contract extends Model
     protected $attributes;
     		
     protected $fillable = [
-        'uuid', 'name', 'action', 'bank', 'rs', 'bik', 'ks', 'email', 'phone',
+        'uuid', 'name', 'action', 'bank', 'rs', 'bik', 'ks', 'email', 'phone'
     ];
 
     public function __construct(array $attributes = [])

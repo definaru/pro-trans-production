@@ -1,7 +1,7 @@
-@extends('layout/main')
-@section('title', 'Предзаказы')
 
-@section('content')
+<?php $__env->startSection('title', 'Предзаказы'); ?>
+
+<?php $__env->startSection('content'); ?>
 <h6 class="text-muted">Всего 2 товара</h6>
 
 <ul class="list-group list-group-flush mt-4 d-grid gap-2">
@@ -35,4 +35,5 @@
         </div>
     </li> 
 </ul>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout/main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/dashboard/payment/account.blade.php ENDPATH**/ ?>

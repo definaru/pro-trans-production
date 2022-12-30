@@ -42,29 +42,28 @@
         </div>
     </td>
     <td>
-        <!-- if($availability === '0')
-            <button 
-                type="button" 
-                size="sm"
-                icon="add_shopping_cart" 
-                color="secondary" 
-                text="В корзину" 
-            /> 
-        else
-        endif -->
-        <div
-            id="card{{$href}}" 
-            data-card="{{$href}},{{$vendorcode}},{{$name}},1,{{$price}},{{$price}}" 
-            v-on:click="addToCard('{{$href}}')"    
-        >
+        @if($availability === '0')
             <x-button 
                 type="button" 
                 size="sm"
                 icon="add_shopping_cart" 
-                color="dark" 
-                text="В корзину" 
-            />            
-        </div>
-        
+                color="secondary" 
+                text="Предзаказ" 
+            /> 
+        @else
+            <div
+                id="card{{$href}}" 
+                data-card="{{$href}},{{$vendorcode}},{{$name}},1,{{$price}},{{$price}}" 
+                v-on:click="addToCard('{{$href}}')"    
+            >
+                <x-button 
+                    type="button" 
+                    size="sm"
+                    icon="add_shopping_cart" 
+                    color="dark" 
+                    text="В корзину" 
+                />            
+            </div>        
+        @endif
     </td>
 </tr>

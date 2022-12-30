@@ -13,10 +13,53 @@
 ?>
 
 
-<?php $__env->startSection('title', 'Поиск запчастей'); ?>
+<?php $__env->startSection('title', $deal::status() === '1' ? 'Поиск запчастей' : 'Статус договора'); ?>
 
 <?php $__env->startSection('content'); ?>
 
+
+
+
+    <?php if($deal::status() === '0'): ?>
+        <?php if (isset($component)) { $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Alert::class, ['type' => 'info','message' => 'Договор составлен. Нужно прислать подписанный договор с печатю. Два экземпляра']); ?>
+<?php $component->withName('alert'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975)): ?>
+<?php $component = $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975; ?>
+<?php unset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975); ?>
+<?php endif; ?>     
+    <?php elseif($deal::status() === 'z'): ?>
+        <?php if (isset($component)) { $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Alert::class, ['type' => 'danger','message' => 'Договор не заключён']); ?>
+<?php $component->withName('alert'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975)): ?>
+<?php $component = $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975; ?>
+<?php unset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975); ?>
+<?php endif; ?>    
+    <?php elseif($deal::status() === '2'): ?>
+        <?php if (isset($component)) { $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Alert::class, ['type' => 'danger','message' => 'Договор расторгнут. Вы не можете пользоваться данной платформой']); ?>
+<?php $component->withName('alert'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975)): ?>
+<?php $component = $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975; ?>
+<?php unset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975); ?>
+<?php endif; ?>    
+    <?php elseif($deal::status() === '1'): ?>
     <form action="/dashboard/search" method="post" class="card shadow-sm border-0 mb-5 mt-3">
         <?php echo csrf_field(); ?>
         <div id="type" class="card-body d-flex align-items-center gap-2">
@@ -30,19 +73,12 @@
                 <input type="radio" name="type" class="d-none" value="vin" />
                 <span>Запрос по VIN</span>
             </label>
-            <?php $__errorArgs = ['type'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
+            <!-- error('type')
                 <label class="d-flex align-items-center gap-2 text-danger font-monospace">
                     <span class="fs-3">←</span> 
                     укажите, по какому параметру искать
                 </label>
-            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
+            enderror -->
         </div>
         <div id="filter" class="card-body pt-0 d-flex gap-2">
             <input type="text" name="text" class="form-control" value="<?php echo e(session('text') ? session('text') : old('text')); ?>" placeholder="Поиск..." />
@@ -60,6 +96,7 @@ unset($__errorArgs, $__bag); ?>
 <?php endif; ?>
         </div>
     </form>
+    <?php endif; ?>
 
     <?php $__errorArgs = ['text'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -179,7 +216,7 @@ unset($__errorArgs, $__bag); ?>
                 </div>
                 <div class="modal-footer border-0">
                     <div class="btn btn-outline-light text-dark" data-bs-dismiss="modal">Отмена</div>
-                    <button type="submit" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center" v-if="loading">
+                    <button type="submit" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center" v-if="!loading">
                         <span class="material-symbols-outlined spin">autorenew</span>
                         Отправляю...
                     </button>
@@ -219,5 +256,39 @@ unset($__errorArgs, $__bag); ?>
             </div>
         </div>
     </div>
+
+<?php if($deal::status() === 'z'): ?>
+<div data-bs-backdrop="static" data-bs-keyboard="false" class="modal fade show" aria-modal="true" role="dialog" style="display: block;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0">
+            <div class="modal-header border-0">
+                <h1 class="modal-title fs-5 fw-bold">Здравствуйте</h1>
+            </div>
+            <div class="modal-body py-0">
+                <p>
+                    В настоящий момент, вы не можете пользоваться нашей платформой,
+                    так как у вас не заключён договор. Чтобы начать пользоваться, нажмите кнопку:
+                </p>
+            </div>
+            <div class="modal-footer border-0">
+                <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'a','href' => '/dashboard/document/agreement','color' => 'dark','icon' => 'quick_reference','text' => 'Заключить договор']); ?>
+<?php $component->withName('button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940)): ?>
+<?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
+<?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
+<?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop fade show"></div>
+<?php endif; ?>
+
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layout/main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/dashboard.blade.php ENDPATH**/ ?>

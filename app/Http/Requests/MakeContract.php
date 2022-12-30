@@ -27,7 +27,7 @@ class MakeContract extends FormRequest
             'bik' => 'required|numeric|min:9',
             'ks' => 'required|numeric|min:20',
             'email' => 'required|email|min:4|max:50',
-            'phone' => 'required|numeric|min:11|max:14'
+            'phone' => 'required|numeric|min:11'
         ];
     }
 
@@ -47,12 +47,11 @@ class MakeContract extends FormRequest
             'bik.min' => 'БИК банка не может быть меньше 9 символов',
             'ks.required' => 'Укажите номер корр.счёта',
             'ks.min' => 'Номер корр.счёта не может быть меньше 20 символов',
-            'phone.required' => 'Укажите актуальный рабочий номер телефона',
-            'phone.min' => 'Номер телефона не может быть меньше 11 цифр',
-            'phone.max' => 'Номер телефона не может быть больше 14 цифр (возможно лишние пробелы и скобки)',
             'rs.numeric' => 'Рассчётный счёт допускаются только цифры',
             'bik.numeric' => 'В БИК должны быть только цифры',
             'ks.numeric' => 'В номере корр.счёта должны быть только цифры',
+            'phone.required' => 'Укажите актуальный рабочий номер телефона',
+            'phone.min' => 'Номер телефона не может быть меньше 11 цифр',
             'phone.numeric' => 'В номере телефона должны быть только цифры'
         ];
     }

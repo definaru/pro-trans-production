@@ -1,5 +1,5 @@
 <div class="card border-0 rounded-bottom shadow border-top-0 rounded-0">
-    <div class="d-flex justify-content-between align-items-center gap-2 card-header rounded-0 bg-light border-0">
+    <div class="d-flex justify-content-between align-items-center gap-2 card-header rounded-0 bg-soft-danger border-0">
         <div class="d-flex gap-2 align-items-center">
             <i class="material-symbols-outlined text-secondary">{{$icon}}</i> 
             <span>{!! $header !!}</span>                         

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Http\Requests\MakeContract;
+use App\Http\Requests\SettingEdit;
+use App\Http\Requests\CounterAgent;
+use App\Models\Card;
 use App\Models\Contract;
 use App\Models\Telegram;
 use App\Models\MoySklad;
@@ -24,6 +27,16 @@ class DachboardController extends Controller
         return redirect()->route('dashboard');
     }
 
+    public function EditSettings(SettingEdit $request)
+    {
+        $request->validate(SettingEdit::rules());
+        $message = 'Настройки обновлены.';
+        MoySklad::editSetting($request);
+        // $res = 
+        // dd($res);
+        return redirect()->route('settings')->with(['message' => $message]);
+    }
+
     public function resultSearch(Request $request)
     {
         $request->validate([
@@ -36,7 +49,7 @@ class DachboardController extends Controller
     public function searchDashboard(Request $request)
     {
         $request->validate([
-            'type' => 'required',
+            'type' => 'nullable',
             'text' => 'required',
         ]);
         $search = MoySklad::searchByProduct($request->type, $request->text);
@@ -48,6 +61,7 @@ class DachboardController extends Controller
     {
         $uuid = auth()->user()->verified;
         $profile = MoySklad::getCompany($uuid);
+        //return response()->json($profile);
         return view('dashboard.profile.settings', ['profile' => $profile]);
     }
 
@@ -106,15 +120,24 @@ class DachboardController extends Controller
         $contract = MoySklad::getContract();
         $message = 'Ваш запрос на заключение договора получен. Пожалуйста, сверьте данные и подтвердите.';
         $request->validate(MakeContract::rules());
+        if($contract === null) {
+            MoySklad::createContract();
+            $message = 'Не удалось создать договор. Свяжитесь с менеджером.';
+            return back()->with(['error' => $message]);
+        }
         Telegram::getMessageTelegram(time(), 'Запрос на заключение договора.', $contract['meta']['uuidHref']);
-        Contract::create($request->all());
+        Contract::create($request->all());        
         return back()->with(['status' => $message]);
     }
 
     public function sendDeal(Request $request)
     {
-        $message = 'Поздравляем! Договор заключён, теперь его можно сохранить или распечатать.';
-        MoySklad::enterIntoAcontract($request->deal, $request->accountId);
+        $uuid = auth()->user()->verified;
+        $message = 'Договор составлен, теперь его можно сохранить или распечатать.';
+        $deal = new Card;
+        $deal->user_id = $uuid;
+        $deal->save();
+        // MoySklad::enterIntoAcontract($request->deal, $request->accountId);
         return redirect()->route('contract')->with(['status' => $message]);
     }
 
@@ -128,6 +151,7 @@ class DachboardController extends Controller
     public function Agreement() 
     {
         $contract = MoySklad::getContract();
+        //return response()->json($contract);
         //$bank = DaData::bank($contract['agent']['inn']);
         return view('document.agreement', [
             'contract' => $contract,
@@ -198,21 +222,28 @@ class DachboardController extends Controller
     public function SendSpares(Request $request)
     {
         $uuid = auth()->user()->verified;
-        //dd($request);
         Telegram::getMessageTelegram($uuid, $request->spares, $request->vin, 'spares');
     }
 
     public function Checkout(Request $request)
     {
-        //$uuid = auth()->user()->verified;
         $message = 'Ваш заказ получен.';
         $account = MoySklad::getCheckout($request->name);
         if(isset($account['id'])) {
             Telegram::getMessageTelegram($account['id'], $account['name'], '', 'сheckout');
         }
-        //return response()->json($account);
-        //dd($account);
         return redirect()->route('card')->with(['status' => $message, 'id' => $account['id']]);
+    }
+
+    public function addedCounterAgent(CounterAgent $request)
+    {
+        $request->validate(CounterAgent::rules());
+        $account = MoySklad::getCounterAgent($request->company);
+        if(isset($account['id'])) {
+            Telegram::getMessageTelegram($account['id'], $account['name'], $request->email, 'counterparty');
+        }
+        $message = 'На ваш email: '.$request->email.' была отправлена важная информация. Пожалуйста, ознакомьтесь.';
+        return redirect()->route('index')->with(['signup' => $message, 'id' => $account['id']]);
     }
 
     public function Manager(Request $request)

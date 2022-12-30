@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Customer;
 use App\Models\Contract;
+use App\Models\Card;
 
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -50,6 +51,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function contract()
     {
         return $this->hasOne(Contract::class, 'uuid', 'verified');
+    }
+
+    public function status()
+    {
+        return $this->hasOne(Card::class, 'user_id', 'verified');
     }
 
 }

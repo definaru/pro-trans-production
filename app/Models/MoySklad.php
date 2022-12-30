@@ -38,111 +38,34 @@ class MoySklad
         )->withBody($req, 'application/json')->post($url);
     }
 
+    public static function editSetting($data)
+    {
+        $uuid = auth()->user()->verified;
+        $url = self::msUrl().'counterparty/'.$uuid;
+        $arr = [
+            'description' => $data->person,
+            'email' => $data->email,
+            'phone' => $data->phone,
+            'actualAddress' => $data->actualAddress,
+            'legalAddress' => $data->legalAddress,
+            'actualAddressFull' => [
+                'comment' => $data->delivery
+            ]
+        ];
+        $response = self::put($url, json_encode($arr));
+        return $response->json();
+    }
+
     public static function getCheckout($req)
     {
-        // $req = '{
-        //     "organization": {
-        //         "meta": {
-        //             "href": "https://online.moysklad.ru/api/remap/1.2/entity/organization/218c26ab-33fe-11ed-0a80-0285001db7b3",
-        //             "type": "organization",
-        //             "mediaType": "application/json"
-        //         }
-        //     },
-        //     "agent": {
-        //         "meta": {
-        //             "href": "https://online.moysklad.ru/api/remap/1.2/entity/counterparty/8f8fe2c0-55e8-11ed-0a80-09d6000ea9fc",
-        //             "type": "counterparty",
-        //             "mediaType": "application/json"
-        //         }
-        //     },
-        //     "positions": [
-        //         {
-        //             "quantity": 1,
-        //             "price": 1122846,
-        //             "discount": 0,
-        //             "vat": 20,
-        //             "assortment": {
-        //                 "meta": {
-        //                     "href": "https://online.moysklad.ru/api/remap/1.2/entity/product/42a4b047-5064-11ed-0a80-05bf003d0d33",
-        //                     "type": "product",
-        //                     "mediaType": "application/json"
-        //                 }
-        //             },
-        //             "reserve": 0
-        //         },
-        //         {
-        //             "quantity": 1,
-        //             "price": 540000,
-        //             "discount": 0,
-        //             "vat": 20,
-        //             "assortment": {
-        //                 "meta": {
-        //                     "href": "https://online.moysklad.ru/api/remap/1.2/entity/product/49f64444-5064-11ed-0a80-05bf003d1191",
-        //                     "type": "product",
-        //                     "mediaType": "application/json"
-        //                 }
-        //             },
-        //             "reserve": 0
-        //         },
-        //         {
-        //             "quantity": 1,
-        //             "price": 368940,
-        //             "discount": 0,
-        //             "vat": 20,
-        //             "assortment": {
-        //                 "meta": {
-        //                     "href": "https://online.moysklad.ru/api/remap/1.2/entity/product/69e6615f-5064-11ed-0a80-05bf003d27b2",
-        //                     "type": "product",
-        //                     "mediaType": "application/json"
-        //                 }
-        //             },
-        //             "reserve": 0
-        //         },
-        //         {
-        //             "quantity": 1,
-        //             "price": 500000,
-        //             "discount": 0,
-        //             "vat": 20,
-        //             "assortment": {
-        //                 "meta": {
-        //                     "href": "https://online.moysklad.ru/api/remap/1.2/entity/product/8198635b-5064-11ed-0a80-05bf003d33d5",
-        //                     "type": "product",
-        //                     "mediaType": "application/json"
-        //                 }
-        //             },
-        //             "reserve": 0
-        //         },
-        //         {
-        //             "quantity": 1,
-        //             "price": 1787500,
-        //             "discount": 0,
-        //             "vat": 20,
-        //             "assortment": {
-        //                 "meta": {
-        //                     "href": "https://online.moysklad.ru/api/remap/1.2/entity/product/443911e3-5064-11ed-0a80-05bf003d0df5",
-        //                     "type": "product",
-        //                     "mediaType": "application/json"
-        //                 }
-        //             },
-        //             "reserve": 0
-        //         },
-        //         {
-        //             "quantity": 1,
-        //             "price": 578123,
-        //             "discount": 0,
-        //             "vat": 20,
-        //             "assortment": {
-        //                 "meta": {
-        //                     "href": "https://online.moysklad.ru/api/remap/1.2/entity/product/581d8508-5064-11ed-0a80-05bf003d1bb4",
-        //                     "type": "product",
-        //                     "mediaType": "application/json"
-        //                 }
-        //             },
-        //             "reserve": 0
-        //         }
-        //     ]
-        // }';
         $url = self::msUrl().'customerorder';
+        $response = self::post($url, $req);
+        return $response->json();
+    }
+
+    public static function getCounterAgent($req)
+    {
+        $url = self::msUrl().'counterparty';
         $response = self::post($url, $req);
         return $response->json();
     }
@@ -195,15 +118,52 @@ class MoySklad
         $uuid = auth()->user()->verified;
         $url = self::msUrl().'contract?filter=agent=https://online.moysklad.ru/api/remap/1.2/entity/counterparty/'.$uuid;
         $response = self::get($url);
-        return $response->json()['rows'][0]['id'];
+        $item = $response->json()['rows'];
+        if($item === []) {
+            return null;
+        }
+        //dd($response->json());
+        return $item[0]['id'];
     }
 
+
+    public static function createContract()
+    {
+        $uuid = auth()->user()->verified;
+        $url = self::msUrl().'contract';
+        $arr = [
+            [
+                'ownAgent' => [
+                    'meta' => [
+                        'href' => 'https://online.moysklad.ru/api/remap/1.2/entity/organization/218c26ab-33fe-11ed-0a80-0285001db7b3',
+                        'metadataHref' => 'https://online.moysklad.ru/api/remap/1.2/entity/organization/metadata',
+                        'type' => 'organization',
+                        'mediaType' => 'application/json'                        
+                    ]                   
+                ],
+                'agent' => [
+                    'meta' => [
+                        'href' => 'https://online.moysklad.ru/api/remap/1.2/entity/counterparty/'.$uuid,
+                        'metadataHref' => 'https://online.moysklad.ru/api/remap/1.2/entity/counterparty/metadata',
+                        'type' => 'counterparty',
+                        'mediaType' => 'application/json'
+                    ]                   
+                ]                
+            ]
+        ];
+        $response = self::post($url, json_encode($arr));
+        return $response->json();
+    }
 
     public static function getContract()
     {
         $id = self::getAgreementID();
         $url = self::msUrl().'contract/'.$id.'?expand=agent,state,accounts,ownAgent,ownAgent.accounts';
         $response = self::get($url);
+        //dd($response->json());
+        if(isset($response->json()['meta']['size']) === 0) {
+            return null;
+        }
         return $response->json();
     }
 

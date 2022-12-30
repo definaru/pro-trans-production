@@ -338,6 +338,12 @@ textarea {
     background: #f8f9fa;
     padding: 5px;
 }
+form.signup i {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 5px
+}
 
 
 .spin {

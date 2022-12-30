@@ -13,10 +13,20 @@
 @endphp
 @extends('layout/main')
 
-@section('title', 'Поиск запчастей')
+@section('title', $deal::status() === '1' ? 'Поиск запчастей' : 'Статус договора')
 
 @section('content')
+{{--$deal::status()--}}
 
+
+
+    @if($deal::status() === '0')
+        <x-alert type="info" message="Договор составлен. Нужно прислать подписанный договор с печатю. Два экземпляра" />     
+    @elseif($deal::status() === 'z')
+        <x-alert type="danger" message="Договор не заключён" />    
+    @elseif($deal::status() === '2')
+        <x-alert type="danger" message="Договор расторгнут. Вы не можете пользоваться данной платформой" />    
+    @elseif($deal::status() === '1')
     <form action="/dashboard/search" method="post" class="card shadow-sm border-0 mb-5 mt-3">
         @csrf
         <div id="type" class="card-body d-flex align-items-center gap-2">
@@ -30,18 +40,19 @@
                 <input type="radio" name="type" class="d-none" value="vin" />
                 <span>Запрос по VIN</span>
             </label>
-            @error('type')
+            <!-- error('type')
                 <label class="d-flex align-items-center gap-2 text-danger font-monospace">
                     <span class="fs-3">←</span> 
                     укажите, по какому параметру искать
                 </label>
-            @enderror
+            enderror -->
         </div>
         <div id="filter" class="card-body pt-0 d-flex gap-2">
             <input type="text" name="text" class="form-control" value="{{session('text') ? session('text') : old('text') }}" placeholder="Поиск..." />
             <x-button color="danger" icon="search" type="submit" text="Найти" />
         </div>
     </form>
+    @endif
 
     @error('text')
         <p>Получен пустой запрос.</p>
@@ -146,7 +157,7 @@
                 </div>
                 <div class="modal-footer border-0">
                     <div class="btn btn-outline-light text-dark" data-bs-dismiss="modal">Отмена</div>
-                    <button type="submit" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center" v-if="loading">
+                    <button type="submit" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center" v-if="!loading">
                         <span class="material-symbols-outlined spin">autorenew</span>
                         Отправляю...
                     </button>
@@ -164,4 +175,27 @@
             </div>
         </div>
     </div>
+
+@if($deal::status() === 'z')
+<div data-bs-backdrop="static" data-bs-keyboard="false" class="modal fade show" aria-modal="true" role="dialog" style="display: block;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0">
+            <div class="modal-header border-0">
+                <h1 class="modal-title fs-5 fw-bold">Здравствуйте</h1>
+            </div>
+            <div class="modal-body py-0">
+                <p>
+                    В настоящий момент, вы не можете пользоваться нашей платформой,
+                    так как у вас не заключён договор. Чтобы начать пользоваться, нажмите кнопку:
+                </p>
+            </div>
+            <div class="modal-footer border-0">
+                <x-button type="a" href="/dashboard/document/agreement" color="dark" icon="quick_reference" text="Заключить договор" />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop fade show"></div>
+@endif
+
 @endsection

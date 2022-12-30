@@ -10,11 +10,18 @@
                 <h5 class="text-dark m-0"><span class="fw-bold">Prospekt</span> Parts</h5>
             </template>
         </a>
+        
+        @if($deal::status() === '1')
         <div id="inner-content">
             @foreach($menu as $item)
                 <x-menu header="{{$item['header']}}" :list="$item['list']" />
             @endforeach
         </div>
+        @else
+            @foreach($stop as $item)
+                <x-menu header="{{$item['header']}}" :list="$item['list']" />
+            @endforeach
+        @endif
     </div>
     
     <?php /*

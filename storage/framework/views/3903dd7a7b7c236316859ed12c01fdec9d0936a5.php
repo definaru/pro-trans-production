@@ -115,8 +115,6 @@
     <div class="table-responsive datatable-custom">
         <div id="datatable_wrapper" class="dataTables_wrapper no-footer">
 
-
-
             <table class="table table-hover table-thead-bordered mb-2">
                 <thead class="bg-light">
                     <tr>
@@ -125,7 +123,7 @@
                         </th>
                         <th class="text-muted" style="width: 70px;"><small>Заказ</small></th>
                         <th class="text-muted" style="width: 125px;"><small>Дата</small></th>
-                        <th class="text-muted" style="width: 170px;"><small>Контрагент</small></th>
+                        <th class="text-muted" style="width: 180px;"><small>Контрагент</small></th>
                         <th class="text-muted" style="width: 124px;text-align: center"><small>Статус заказа</small></th>
                         <th class="text-muted" style="width: 124px;"><small>Сумма платежа</small></th>
                         <th class="text-secondary text-center" style="width: 119px;"><small>Действия</small></th>
@@ -148,7 +146,7 @@
                             </small>
                         </td>
                         <td style="vertical-align: middle"><small><?php echo e($item['agent']['name']); ?></small></td>
-                        <td style="vertical-align: middle;text-align: center">
+                        <td style="vertical-align: middle;text-align: left">
                             <?php if (isset($component)) { $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94 = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\Badge::class, ['color' => ''.e($item['state']['color']).'','text' => ''.e($item['state']['name']).'']); ?>
 <?php $component->withName('badge'); ?>
@@ -172,7 +170,7 @@
                         </td>
                         <td style="text-align: right">
                             <div class="btn-group">
-                                <a href="#" class="d-flex align-items-center gap-1 btn btn-white btn-sm">
+                                <a href="reports/<?php echo e($item['id']); ?>" class="d-flex align-items-center gap-1 btn btn-white btn-sm">
                                     <span class="material-symbols-outlined fs-6">visibility</span> 
                                     Посмотреть
                                 </a> 
@@ -183,10 +181,10 @@
                                             <span class="text-secondary material-symbols-outlined fs-5">print</span>
                                             Распечатать
                                         </a> 
-                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                        <!-- <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
                                             <span class="text-secondary material-symbols-outlined fs-5">delete</span>
                                             Удалить
-                                        </a>
+                                        </a> -->
                                     </div>
                                 </div>
                             </div>

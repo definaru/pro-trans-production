@@ -66,22 +66,26 @@
         </div>
     </td>
     <td>
-        <!-- if($availability === '0')
-            <button 
-                type="button" 
-                size="sm"
-                icon="add_shopping_cart" 
-                color="secondary" 
-                text="В корзину" 
-            /> 
-        else
-        endif -->
-        <div
-            id="card<?php echo e($href); ?>" 
-            data-card="<?php echo e($href); ?>,<?php echo e($vendorcode); ?>,<?php echo e($name); ?>,1,<?php echo e($price); ?>,<?php echo e($price); ?>" 
-            v-on:click="addToCard('<?php echo e($href); ?>')"    
-        >
+        <?php if($availability === '0'): ?>
             <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'button','size' => 'sm','icon' => 'add_shopping_cart','color' => 'secondary','text' => 'Предзаказ']); ?>
+<?php $component->withName('button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940)): ?>
+<?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
+<?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
+<?php endif; ?> 
+        <?php else: ?>
+            <div
+                id="card<?php echo e($href); ?>" 
+                data-card="<?php echo e($href); ?>,<?php echo e($vendorcode); ?>,<?php echo e($name); ?>,1,<?php echo e($price); ?>,<?php echo e($price); ?>" 
+                v-on:click="addToCard('<?php echo e($href); ?>')"    
+            >
+                <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'button','size' => 'sm','icon' => 'add_shopping_cart','color' => 'dark','text' => 'В корзину']); ?>
 <?php $component->withName('button'); ?>
 <?php if ($component->shouldRender()): ?>
@@ -93,7 +97,7 @@
 <?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
 <?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
 <?php endif; ?>            
-        </div>
-        
+            </div>        
+        <?php endif; ?>
     </td>
 </tr><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/components/product-card.blade.php ENDPATH**/ ?>

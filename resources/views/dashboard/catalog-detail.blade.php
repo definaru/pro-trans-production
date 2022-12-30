@@ -46,14 +46,13 @@
                     </div>
                 </div>
             </div> -->
+            
             <div class="table-responsive rounded-top">
                 <table class="table align-middle table-edge table-hover table-nowrap mb-0">
                     <thead class="border-bottom border-light bg-white" style="font-size: 14px">
                         <tr>
                             <th class="w-60px ps-3">
-                                <div class="text-muted mb-0">
-                                    #
-                                </div>
+                                <div class="text-muted mb-0">#</div>
                             </th>
                             <th>
                                 <a 

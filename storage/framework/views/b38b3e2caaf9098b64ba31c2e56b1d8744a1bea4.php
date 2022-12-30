@@ -1,7 +1,7 @@
-@extends('layout/main')
-@section('title', 'Сообщения')
 
-@section('content')
+<?php $__env->startSection('title', 'Сообщения'); ?>
+
+<?php $__env->startSection('content'); ?>
 <h6 class="text-muted">Пока оповещений нет</h6>
 <ul class="list-group list-group-flush mt-4 d-grid gap-2">
     <li class="list-group-item d-flex justify-content-between align-items-center rounded shadow-sm border-0">
@@ -126,4 +126,5 @@
         <div class="btn-group"><button class="btn text-danger rounded material-symbols-outlined">delete</button></div>
     </li>
 </ul>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout/main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/dashboard/notifications.blade.php ENDPATH**/ ?>

@@ -1,13 +1,13 @@
-@extends('layout/page')
 
-@section('title', 'Контакты')
 
-@section('content')
+<?php $__env->startSection('title', 'Контакты'); ?>
+
+<?php $__env->startSection('content'); ?>
 <hr />
 <div class="mt-5">
     <h6 class="text-secondary">Компания</h6> 
     
-    <h3 class="text-dark mb-4">{{ config('app.name') }}</h3>
+    <h3 class="text-dark mb-4"><?php echo e(config('app.name')); ?></h3>
     <div class="row">
         <div class="col-12 col-md-4">
             <p><strong>ИНН:</strong> 9715366031</p>
@@ -15,9 +15,9 @@
             <p><strong>КПП:</strong> 771501001</p>            
         </div>
         <div class="col-12 col-md-8">
-            <p><strong>E-mail: </strong> {!! $contact::getEmail(config('app.email'), ['text-muted', 'text-decoration-none']) !!}</p>
-            <p><strong>Телефон:</strong> {!! $contact::getPhone(config('app.phone'), ['text-muted', 'text-decoration-none']) !!}</p>
-            <p><strong>Юридический адрес:</strong> {{ config('app.address') }}</p>
+            <p><strong>E-mail: </strong> <?php echo $contact::getEmail(config('app.email'), ['text-muted', 'text-decoration-none']); ?></p>
+            <p><strong>Телефон:</strong> <?php echo $contact::getPhone(config('app.phone'), ['text-muted', 'text-decoration-none']); ?></p>
+            <p><strong>Юридический адрес:</strong> <?php echo e(config('app.address')); ?></p>
         </div>
     </div>
 
@@ -32,4 +32,5 @@
         <a href="/doc" class="btn btn-dark px-4">Юридическая информация</a>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout/page', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/contact.blade.php ENDPATH**/ ?>

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\MoySklad;
+use App\Models\Card;
 
 
 class GetMenu 
@@ -350,6 +351,18 @@ class GetMenu
         ];
     }
 
+    public static function nouser() 
+    {
+        return [
+            [
+                'icon' => 'logout',
+                'link' => 'Выйти',
+                'href' => '/logout',
+                'target' => ''
+            ]
+        ];
+    }
+
     public static function user() 
     {
         return [
@@ -417,6 +430,24 @@ class GetMenu
         return $array;
     }
 
+    public static function dataMenuStop()
+    {
+        return [
+            [
+                'header' => 'Меню',
+                'list' => [
+                    [
+                        'icon' => 'assignment',
+                        'name' => 'Договор',
+                        'slug' => 'document/agreement',
+                        'count' => '',
+                        'list' => ''
+                    ]
+                ]
+            ]
+        ];        
+    }
+
     public static function dataMenu()
     {
         return [
@@ -471,7 +502,7 @@ class GetMenu
                         'slug' => 'document/agreement',
                         'count' => '',
                         'list' => ''
-                    ],                    
+                    ]                  
                     // [
                     //     'icon' => 'monitoring',
                     //     'name' => 'Акции',
@@ -479,13 +510,13 @@ class GetMenu
                     //     'count' => '',
                     //     'list' => ''
                     // ],
-                    [
-                        'icon' => 'school',
-                        'name' => 'Обучение',
-                        'slug' => 'events',
-                        'count' => '',
-                        'list' => ''
-                    ]
+                    // [
+                    //     'icon' => 'school',
+                    //     'name' => 'Обучение',
+                    //     'slug' => 'events',
+                    //     'count' => '',
+                    //     'list' => ''
+                    // ]
                 ]
             ],
             [
@@ -495,7 +526,7 @@ class GetMenu
                         'icon' => 'notifications',
                         'name' => 'Сообщения',
                         'slug' => 'notifications',
-                        'count' => '5',
+                        'count' => '',
                         'list' => ''
                     ],
                     [
@@ -504,15 +535,14 @@ class GetMenu
                         'slug' => 'settings/profile',
                         'count' => '',
                         'list' => ''
-                    ],
-                    [
-                        'icon' => 'help',
-                        'name' => 'Помощь',
-                        'slug' => 'help',
-                        'count' => '',
-                        'list' => ''
                     ]
-
+                    // [
+                    //     'icon' => 'help',
+                    //     'name' => 'Помощь',
+                    //     'slug' => 'help',
+                    //     'count' => '',
+                    //     'list' => ''
+                    // ]
                 ]
             ]
         ];

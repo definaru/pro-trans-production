@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://glyphsearch.com/bower_components/ionicons/css/ionicons.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" />
+    <link rel="stylesheet" href="{{ asset('css/toastr.css') }}" />
     <link rel="canonical" href="{{ url()->current() }}"/>
     
     <meta name="keywords" content="CRM, продажи, оптом">
@@ -43,7 +44,7 @@
         } 
         .alert small {color: #673ab7}  
         .form-control:focus {
-            border-color: none !important;
+            border-color: #212529 !important;
             outline: none !important;
             box-shadow: none !important;
         }
@@ -76,9 +77,11 @@
         </div>
     </section>
     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/vue.js') }}"></script>
     <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
+    <script src="{{ asset('js/toastr.min.js') }}"></script>
     <script src="{{ asset('js/defina.min.js') }}"></script>
 </body>
 </html>

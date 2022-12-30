@@ -72,7 +72,7 @@
                     <div 
                         id="cards1" 
                         class="d-flex flex-column"
-                        data-card="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,{{$item['salePrices'][0]['value']}},{{$item['salePrices'][0]['value']}}" 
+                        data-card="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,{{$product['salePrices']}},{{$product['salePrices']}}" 
                         v-on:click="addToCard('s1')"
                     >
                     <x-button type="button" color="dark" text="В корзину" icon="shopping_cart" />
@@ -89,10 +89,10 @@
                         <b>Артикул:</b>
                         {{$product['article']}}
                     </p>
-                    <p class="mb-1">
+                    <!-- <p class="mb-1">
                         <b>Внешний код:</b>
-                        {{$product['externalCode']}}
-                    </p>
+                        {{--$product['externalCode']--}}
+                    </p> -->
                     <p class="mb-1">
                         <b>НДС:</b>
                         {{$product['vat']}}%
@@ -107,11 +107,11 @@
                         <b>Тип маркеровки:</b>
                         {{$product['trackingType']}}
                     </p>
-                    <div class="mb-3">
-                        <label class="form-label fw-bold m-0">ID {{$product['paymentItemType']}}а:</label>
-                        <input type="text" name="id" class="form-control" value="{{$product['id']}}" placeholder="Идентификатор..." />
+                    <!-- <div class="mb-3">
+                        <label class="form-label fw-bold m-0">ID {{--$product['paymentItemType']--}}а:</label>
+                        <input type="text" name="id" class="form-control" value="{{--$product['id']--}}" placeholder="Идентификатор..." />
                         <div class="form-text">Вы можете сообщить этот ID менеджеру при поиске данной позиции</div>
-                    </div>
+                    </div> -->
                     <p>
                         @if($product['quantity'] == 0)
                         <div class="badge bg-soft-danger text-danger px-3">

@@ -1,26 +1,60 @@
-@extends('layout/main')
-@section('title', isset($user->contract->name) ? 'Детали договора' : 'Заключение договора')
 
-@section('content')
+<?php $__env->startSection('title', isset($user->contract->name) ? 'Детали договора' : 'Заключение договора'); ?>
 
-@if(session('status'))
-    <x-alert type="success" close="true" message="{{ session('status') }}" />
-@endif
+<?php $__env->startSection('content'); ?>
 
-@if(session('error'))
-    <x-alert type="danger" close="true" message="{{ session('error') }}" />
-@endif
+<?php if(session('status')): ?>
+    <?php if (isset($component)) { $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Alert::class, ['type' => 'success','close' => 'true','message' => ''.e(session('status')).'']); ?>
+<?php $component->withName('alert'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975)): ?>
+<?php $component = $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975; ?>
+<?php unset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975); ?>
+<?php endif; ?>
+<?php endif; ?>
+
+<?php if(session('error')): ?>
+    <?php if (isset($component)) { $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Alert::class, ['type' => 'danger','close' => 'true','message' => ''.e(session('error')).'']); ?>
+<?php $component->withName('alert'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975)): ?>
+<?php $component = $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975; ?>
+<?php unset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975); ?>
+<?php endif; ?>
+<?php endif; ?>
 
 <!-- isset($user->contract->name) -->
-@if(isset($user->contract->name))
-    @if($contract)
+<?php if(isset($user->contract->name)): ?>
+    <?php if($contract): ?>
     <div class="d-flex align-items-center gap-3 d-print-none">
-        @if(isset($contract['state']['color']))
-        <x-badge color="{{$contract['state']['color']}}" text="{{$contract['state']['name']}}" />
-        @endif
+        <?php if(isset($contract['state']['color'])): ?>
+        <?php if (isset($component)) { $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Badge::class, ['color' => ''.e($contract['state']['color']).'','text' => ''.e($contract['state']['name']).'']); ?>
+<?php $component->withName('badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94)): ?>
+<?php $component = $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94; ?>
+<?php unset($__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94); ?>
+<?php endif; ?>
+        <?php endif; ?>
         <span class="d-flex align-items-center gap-1 text-secondary">
             <span class="material-symbols-outlined fs-5">calendar_month</span>
-            {{$time::parse($contract['updated'])->locale('ru')->translatedFormat('d F Y, H:i')}}
+            <?php echo e($time::parse($contract['updated'])->locale('ru')->translatedFormat('d F Y, H:i')); ?>
+
         </span>
     </div>
     <div class="card shadow-sm border-0 mt-4">
@@ -28,13 +62,13 @@
             <table class="w-100">
                 <tr>
                     <td colspan="2" class="text-center py-5">
-                        <h3>ДОГОВОР №{{$contract['name']}}</h3>
+                        <h3>ДОГОВОР №<?php echo e($contract['name']); ?></h3>
                     </td>
                 </tr>
                 <tr>    
                     <td class="w-50">г. Москва</td>
                     <td class="w-50 text-end">
-                    {{$time::parse($contract['moment'])->locale('ru')->translatedFormat('d.m.Y')}} г.
+                    <?php echo e($time::parse($contract['moment'])->locale('ru')->translatedFormat('d.m.Y')); ?> г.
                     </td>
                 </tr>
             </table>
@@ -43,14 +77,16 @@
                     <td>
                         <p>
                             ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "ПРОСПЕКТ ТРАНС", именуемое(ый) в
-                            дальнейшем ПОСТАВЩИК, в лице <u>&#160;{{$contract['ownAgent']['director']}}
+                            дальнейшем ПОСТАВЩИК, в лице <u>&#160;<?php echo e($contract['ownAgent']['director']); ?>
+
                                 <!-- $dadata::cleanName($contract['ownAgent']['director'])[0]['result_genitive'] -->
                                 &#160;</u> ,
-                            действующего(ей) на основании устава, с одной СТОРОНЫ, и {{$contract['agent']['legalTitle']}}, 
-                            именуемое(ый) в дальнейшем ПОКУПАТЕЛЬ, в лице <u>&#160;{{$user->contract->name}}
+                            действующего(ей) на основании устава, с одной СТОРОНЫ, и <?php echo e($contract['agent']['legalTitle']); ?>, 
+                            именуемое(ый) в дальнейшем ПОКУПАТЕЛЬ, в лице <u>&#160;<?php echo e($user->contract->name); ?>
+
                                 <!-- $dadata::cleanName($user->contract->name)[0]['result_genitive'] -->
                                 &#160;</u>, 
-                            действующего(ей) на основании <u>&#160;{{$user->contract->action}}&#160;</u>, с другой СТОРОНЫ, 
+                            действующего(ей) на основании <u>&#160;<?php echo e($user->contract->action); ?>&#160;</u>, с другой СТОРОНЫ, 
                             а вместе именуемые СТОРОНАМИ, заключили настоящий
                             договор о нижеследующем:  
                             <br />                      
@@ -177,61 +213,64 @@
                             <tr>
                                 <td class="w-50 text-center">
                                     <i>ПОСТАВЩИК:</i><br />
-                                    <b>{{$contract['ownAgent']['legalTitle']}}</b>
+                                    <b><?php echo e($contract['ownAgent']['legalTitle']); ?></b>
                                     
                                 </td>
                                 <td class="w-50 text-center">
                                     <i>ПОКУПАТЕЛЬ:</i><br />
-                                    <b>{{$contract['agent']['legalTitle']}}</b>
+                                    <b><?php echo e($contract['agent']['legalTitle']); ?></b>
                                 </td>
                             </tr>
                             <tr>
-                                <td><b>ИНН:</b> {{$contract['ownAgent']['inn']}}</td>
-                                <td><b>ИНН:</b> {{$contract['agent']['inn']}}</td>
+                                <td><b>ИНН:</b> <?php echo e($contract['ownAgent']['inn']); ?></td>
+                                <td><b>ИНН:</b> <?php echo e($contract['agent']['inn']); ?></td>
                             </tr>
                             <tr>
-                                <td><b>КПП:</b> {{$contract['ownAgent']['kpp']}}</td>
-                                <td><b>КПП:</b> {{$contract['agent']['kpp']}}</td>
+                                <td><b>КПП:</b> <?php echo e($contract['ownAgent']['kpp']); ?></td>
+                                <td><b>КПП:</b> <?php echo e($contract['agent']['kpp']); ?></td>
                             </tr>
                             <tr>
-                                <td><b>ОГРН:</b> {{$contract['ownAgent']['ogrn']}}</td>
-                                <td><b>ОГРН:</b> {{$contract['agent']['ogrn']}}</td>
+                                <td><b>ОГРН:</b> <?php echo e($contract['ownAgent']['ogrn']); ?></td>
+                                <td><b>ОГРН:</b> <?php echo e($contract['agent']['ogrn']); ?></td>
                             </tr>
                             <tr>
                                 <td>
                                     <b>Юридический адрес:</b> <br />
-                                    {{$contract['ownAgent']['legalAddress']}}
+                                    <?php echo e($contract['ownAgent']['legalAddress']); ?>
+
                                 </td>
                                 <td>
                                     <b>Юридический адрес:</b> <br />
-                                    {{$contract['agent']['legalAddress']}}
+                                    <?php echo e($contract['agent']['legalAddress']); ?>
+
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <b>Банк:</b> {{$contract['ownAgent']['accounts']['rows'][0]['bankName']}}
+                                    <b>Банк:</b> <?php echo e($contract['ownAgent']['accounts']['rows'][0]['bankName']); ?>
+
                                 </td>
-                                <td><b>Банк:</b> {{$user->contract->bank}}</td>
+                                <td><b>Банк:</b> <?php echo e($user->contract->bank); ?></td>
                             </tr>
                             <tr>
-                                <td><b>р/с:</b> {{$contract['ownAgent']['accounts']['rows'][0]['accountNumber']}}</td>
-                                <td><b>р/с:</b> {{$user->contract->rs}}</td>
+                                <td><b>р/с:</b> <?php echo e($contract['ownAgent']['accounts']['rows'][0]['accountNumber']); ?></td>
+                                <td><b>р/с:</b> <?php echo e($user->contract->rs); ?></td>
                             </tr>
                             <tr>
-                                <td><b>БИК:</b> {{$contract['ownAgent']['accounts']['rows'][0]['bic']}}</td>
-                                <td><b>БИК:</b> {{$user->contract->bik}}</td>
+                                <td><b>БИК:</b> <?php echo e($contract['ownAgent']['accounts']['rows'][0]['bic']); ?></td>
+                                <td><b>БИК:</b> <?php echo e($user->contract->bik); ?></td>
                             </tr>
                             <tr>
-                                <td><b>к/с:</b> {{$contract['ownAgent']['accounts']['rows'][0]['correspondentAccount']}}</td>
-                                <td><b>к/с:</b> {{$user->contract->ks}}</td>
+                                <td><b>к/с:</b> <?php echo e($contract['ownAgent']['accounts']['rows'][0]['correspondentAccount']); ?></td>
+                                <td><b>к/с:</b> <?php echo e($user->contract->ks); ?></td>
                             </tr>
                             <tr>
-                                <td><b>Тел.:</b> {{ $contact::format_phone(config('app.phone')) }}</td>
-                                <td><b>Тел.:</b> {{ $contact::format_phone($user->contract->phone) }}</td>
+                                <td><b>Тел.:</b> <?php echo e($contact::format_phone(config('app.phone'))); ?></td>
+                                <td><b>Тел.:</b> <?php echo e($contact::format_phone($user->contract->phone)); ?></td>
                             </tr>
                             <tr>
-                                <td><b>E-mail:</b> {{$contract['ownAgent']['email']}}</td>
-                                <td><b>E-mail:</b> {{$user->contract->email}}</td>
+                                <td><b>E-mail:</b> <?php echo e($contract['ownAgent']['email']); ?></td>
+                                <td><b>E-mail:</b> <?php echo e($user->contract->email); ?></td>
                             </tr>
                         </table>
                         
@@ -253,17 +292,39 @@
             </table>
         </div>
     </div>
-    @endif
+    <?php endif; ?>
 
-    <p>{{--$user->status->id_card--}}</p> 
-    @if($deal::status() === 'z')
+    <p></p> 
+    <?php if($deal::status() === 'z'): ?>
     <div class="d-flex align-items-center row mt-4">
         <div class="col-12 col-lg-5 d-flex gap-3">
             <form action="/dashboard/action/deal" method="post">
-                @csrf
-                <x-button icon="done" color="dark" type="submit" text="Подтвердить" />
+                <?php echo csrf_field(); ?>
+                <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['icon' => 'done','color' => 'dark','type' => 'submit','text' => 'Подтвердить']); ?>
+<?php $component->withName('button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940)): ?>
+<?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
+<?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
+<?php endif; ?>
             </form>
-            <x-button type="a" href="agreement/edit" icon="edit" color="outline-dark" text="Редактировать" />
+            <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'a','href' => 'agreement/edit','icon' => 'edit','color' => 'outline-dark','text' => 'Редактировать']); ?>
+<?php $component->withName('button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940)): ?>
+<?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
+<?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
+<?php endif; ?>
         </div>
         <div class="col-12 col-lg-7">
             <div class="d-flex align-items-center gap-3">
@@ -275,69 +336,107 @@
             </div>
         </div>
     </div>
-    @else
+    <?php else: ?>
     <div class="d-flex align-items-center row mt-4 d-print-none">
         <div class="col-12 col-lg-6 d-flex gap-3">
-            @if($deal::status() === '2')
-            @else
-            <x-button 
-                type="a"
-                color="dark"
-                href="javascript:;" onclick="window.print(); return false;" 
-                text="Распечатать" 
-                icon="print" 
-            /> 
-            @endif
-            <x-button 
-                type="button"
-                color="outline-dark"
-                data-bs-toggle="modal" 
-                data-bs-target="#manager"
-                text="Связаться с менеджером" 
-                icon="headset_mic" 
-            />             
+            <?php if($deal::status() === '2'): ?>
+            <?php else: ?>
+            <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'a','color' => 'dark','href' => 'javascript:;','text' => 'Распечатать','icon' => 'print']); ?>
+<?php $component->withName('button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes(['onclick' => 'window.print(); return false;']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940)): ?>
+<?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
+<?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
+<?php endif; ?> 
+            <?php endif; ?>
+            <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'button','color' => 'outline-dark','text' => 'Связаться с менеджером','icon' => 'headset_mic']); ?>
+<?php $component->withName('button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes(['data-bs-toggle' => 'modal','data-bs-target' => '#manager']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940)): ?>
+<?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
+<?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
+<?php endif; ?>             
         </div>
         <div class="col-12 col-lg-6">
-            @if($deal::status() === '2')
-            @else
+            <?php if($deal::status() === '2'): ?>
+            <?php else: ?>
             <small class="text-muted">
                 Распечатайте договор и подпишите в двух экземплярах, и отправьте на почту 
-                {!!$contact::getEmail('info@prospekt-parts.com', ['text-muted'])!!}
+                <?php echo $contact::getEmail('info@prospekt-parts.com', ['text-muted']); ?>
+
                 либо на адрес А\Я г. Мытищи, <br />ЭДО Калуга-Астрал
             </small>
-            @endif
+            <?php endif; ?>
         </div>
     </div>
-    @endif
+    <?php endif; ?>
 
-@else
+<?php else: ?>
     <div class="card shadow-sm border-0">
         <form action="/dashboard/agreements" class="card-body" method="post">
-            @csrf
+            <?php echo csrf_field(); ?>
             <div class="mt-2">
                 <label class="fw-bold">Ваше Ф.И.О.</label>
                 <input 
                     type="text" 
                     name="name" 
-                    class="form-control @error('name') is-invalid @enderror" 
-                    value="{{ old('name') }}"
+                    class="form-control <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                    value="<?php echo e(old('name')); ?>"
                     placeholder="Ваше Ф.И.О." 
                 />
-                @error('name')
-                    <small class="valid-feedback d-block text-danger">{{ $message }}</small>
-                @enderror
+                <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <small class="valid-feedback d-block text-danger"><?php echo e($message); ?></small>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
             </div>
             <div class="mt-2">
                 <label class="fw-bold">Действуете на основании:</label>
-                <select name="action" class="form-control @error('action') is-invalid @enderror">
+                <select name="action" class="form-control <?php $__errorArgs = ['action'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
                     <option value="" selected disabled>Действуете на основании...</option>
-                    @foreach (['устава', 'договоренности и устава', 'учредительного договора'] as $value)
-                    <option value="{{ $value }}" @if ($value === old('action')) selected @endif>{{ $value }}</option>
-                    @endforeach
+                    <?php $__currentLoopData = ['устава', 'договоренности и устава', 'учредительного договора']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($value); ?>" <?php if($value === old('action')): ?> selected <?php endif; ?>><?php echo e($value); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
-                @error('action')
-                    <small class="valid-feedback d-block text-danger">{{ $message }}</small>
-                @enderror
+                <?php $__errorArgs = ['action'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <small class="valid-feedback d-block text-danger"><?php echo e($message); ?></small>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
             </div>
             <div class="row">
                 <div class="col-12 col-lg-6">
@@ -346,13 +445,27 @@
                         <input 
                             type="text" 
                             name="bank" 
-                            class="form-control @error('bank') is-invalid @enderror" 
-                            value="{{ old('bank') }}"
+                            class="form-control <?php $__errorArgs = ['bank'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                            value="<?php echo e(old('bank')); ?>"
                             placeholder="Наименование Банка" 
                         />
-                        @error('bank')
-                            <small class="valid-feedback d-block text-danger">{{ $message }}</small>
-                        @enderror
+                        <?php $__errorArgs = ['bank'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <small class="valid-feedback d-block text-danger"><?php echo e($message); ?></small>
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                     </div>
                 </div>
                 <div class="col-12 col-lg-6">
@@ -361,13 +474,27 @@
                         <input 
                             type="text" 
                             name="rs" 
-                            class="form-control @error('rs') is-invalid @enderror" 
-                            value="{{ old('rs') }}"
+                            class="form-control <?php $__errorArgs = ['rs'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                            value="<?php echo e(old('rs')); ?>"
                             placeholder="Рассчётный счёт (номер)" 
                         />
-                        @error('rs')
-                            <small class="valid-feedback d-block text-danger">{{ $message }}</small>
-                        @enderror
+                        <?php $__errorArgs = ['rs'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <small class="valid-feedback d-block text-danger"><?php echo e($message); ?></small>
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                     </div>
                 </div>
             </div>
@@ -378,13 +505,27 @@
                         <input 
                             type="text" 
                             name="bik" 
-                            class="form-control @error('bik') is-invalid @enderror" 
-                            value="{{ old('bik') }}"
+                            class="form-control <?php $__errorArgs = ['bik'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                            value="<?php echo e(old('bik')); ?>"
                             placeholder="БИК (номер)" 
                         />
-                        @error('bik')
-                            <small class="valid-feedback d-block text-danger">{{ $message }}</small>
-                        @enderror
+                        <?php $__errorArgs = ['bik'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <small class="valid-feedback d-block text-danger"><?php echo e($message); ?></small>
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                     </div>
                 </div>
                 <div class="col-12 col-lg-6">
@@ -393,13 +534,27 @@
                         <input 
                             type="text" 
                             name="ks" 
-                            class="form-control @error('ks') is-invalid @enderror" 
-                            value="{{ old('ks') }}"
+                            class="form-control <?php $__errorArgs = ['ks'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                            value="<?php echo e(old('ks')); ?>"
                             placeholder="корр.счёт (номер)" 
                         />
-                        @error('ks')
-                            <small class="valid-feedback d-block text-danger">{{ $message }}</small>
-                        @enderror
+                        <?php $__errorArgs = ['ks'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <small class="valid-feedback d-block text-danger"><?php echo e($message); ?></small>
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                     </div>
                 </div>
             </div>
@@ -410,13 +565,27 @@
                         <input 
                             type="text" 
                             name="phone" 
-                            class="form-control @error('phone') is-invalid @enderror" 
-                            value="{{ old('phone') }}"
+                            class="form-control <?php $__errorArgs = ['phone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                            value="<?php echo e(old('phone')); ?>"
                             placeholder="Контактный номер телефона" 
                         />
-                        @error('phone')
-                            <small class="valid-feedback d-block text-danger">{{ $message }}</small>
-                        @enderror
+                        <?php $__errorArgs = ['phone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <small class="valid-feedback d-block text-danger"><?php echo e($message); ?></small>
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                     </div>
                 </div>
                 <div class="col-12 col-lg-6">
@@ -425,25 +594,50 @@
                         <input 
                             type="text" 
                             name="email" 
-                            class="form-control @error('email') is-invalid @enderror" 
-                            value="{{ old('email') }}"
+                            class="form-control <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                            value="<?php echo e(old('email')); ?>"
                             placeholder="Контактный E-mail (корпоративный)" 
                         />
-                        @error('email')
-                            <small class="valid-feedback d-block text-danger">{{ $message }}</small>
-                        @enderror
+                        <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <small class="valid-feedback d-block text-danger"><?php echo e($message); ?></small>
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                     </div>
                 </div>
             </div>
             <div class="mt-4">
-                <x-button icon="drive_file_rename_outline" color="dark" type="submit" text="Заключить договор" />
+                <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['icon' => 'drive_file_rename_outline','color' => 'dark','type' => 'submit','text' => 'Заключить договор']); ?>
+<?php $component->withName('button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940)): ?>
+<?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
+<?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
+<?php endif; ?>
             </div>
         </form>   
     </div>
-@endif
+<?php endif; ?>
 <div class="modal fade" id="manager" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered">
-        <form class="modal-content border-0" novalidate @submit.prevent="SendManager('{{$user->verified}}')" v-if="!send">
+        <form class="modal-content border-0" novalidate @submit.prevent="SendManager('<?php echo e($user->verified); ?>')" v-if="!send">
             <div class="modal-header border-0">
                 <h1 class="modal-title fs-5">Обратная связь</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -469,7 +663,18 @@
                     <span class="material-symbols-outlined spin">autorenew</span>
                     Отправляю...
                 </button>
-                <x-button color="dark" icon="forward" type="submit" text="Отправить менеджеру" v-else v-on:click="Sender" />
+                <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['color' => 'dark','icon' => 'forward','type' => 'submit','text' => 'Отправить менеджеру']); ?>
+<?php $component->withName('button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes(['v-else' => true,'v-on:click' => 'Sender']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940)): ?>
+<?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
+<?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
+<?php endif; ?>
             </div>
         </form>
         <div class="modal-content border-0" v-else>
@@ -478,9 +683,21 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body py-0">
-                <x-alert type="success" message="Ваша заявка принята." close="false" />
+                <?php if (isset($component)) { $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Alert::class, ['type' => 'success','message' => 'Ваша заявка принята.','close' => 'false']); ?>
+<?php $component->withName('alert'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975)): ?>
+<?php $component = $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975; ?>
+<?php unset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975); ?>
+<?php endif; ?>
             </div>
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout/main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/document/agreement.blade.php ENDPATH**/ ?>

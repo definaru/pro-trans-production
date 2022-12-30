@@ -19,6 +19,20 @@
 <?php unset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975); ?>
 <?php endif; ?>
 <?php endif; ?>
+<?php if(session('signup')): ?>
+    <?php if (isset($component)) { $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Alert::class, ['type' => 'success','close' => 'false','message' => ''.e(session('signup')).'']); ?>
+<?php $component->withName('alert'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975)): ?>
+<?php $component = $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975; ?>
+<?php unset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975); ?>
+<?php endif; ?>
+<?php endif; ?>
 
 <form action="/login" method="post" class="mt-4">
     <?php echo csrf_field(); ?>
@@ -115,8 +129,18 @@ unset($__errorArgs, $__bag); ?>
 <?php endif; ?>
     </div>
 </form>
+<div id="account" class="d-none"><?php if(session('id')): ?> <?php echo e(session('id')); ?> <?php endif; ?></div>
 <div class="w-100 mt-3 text-center">
-    <a href="/forgot-password">Восстановить пароль</a>
+    <p class="mb-0">
+        <a href="/forgot-password" class="text-dark">
+            Восстановить пароль
+        </a>
+    </p>
+    <p>
+        <a href="/signup" class="text-dark">
+            Зарегистрироваться
+        </a>
+    </p>
 </div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layout/auth', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/index.blade.php ENDPATH**/ ?>

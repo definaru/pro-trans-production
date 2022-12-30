@@ -8,6 +8,9 @@
 @if(session('status'))
     <x-alert type="success" close="false" message="{{ session('status') }}" />
 @endif
+@if(session('signup'))
+    <x-alert type="success" close="false" message="{{ session('signup') }}" />
+@endif
 
 <form action="/login" method="post" class="mt-4">
     @csrf
@@ -51,7 +54,17 @@
         <x-button id="loading" color="danger" type="submit" text="Войти" />
     </div>
 </form>
+<div id="account" class="d-none">@if(session('id')) {{ session('id') }} @endif</div>
 <div class="w-100 mt-3 text-center">
-    <a href="/forgot-password">Восстановить пароль</a>
+    <p class="mb-0">
+        <a href="/forgot-password" class="text-dark">
+            Восстановить пароль
+        </a>
+    </p>
+    <p>
+        <a href="/signup" class="text-dark">
+            Зарегистрироваться
+        </a>
+    </p>
 </div>
 @endsection
