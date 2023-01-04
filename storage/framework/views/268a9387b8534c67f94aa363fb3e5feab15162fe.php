@@ -77,12 +77,12 @@
                     <td>
                         <p>
                             ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "ПРОСПЕКТ ТРАНС", именуемое(ый) в
-                            дальнейшем ПОСТАВЩИК, в лице <u>&#160;<?php echo e($contract['ownAgent']['director']); ?>
+                            дальнейшем ПОСТАВЩИК, в лице <u>&#160;<?php echo e($decl::fio($contract['ownAgent']['director'])); ?>
 
                                 <!-- $dadata::cleanName($contract['ownAgent']['director'])[0]['result_genitive'] -->
                                 &#160;</u> ,
                             действующего(ей) на основании устава, с одной СТОРОНЫ, и <?php echo e($contract['agent']['legalTitle']); ?>, 
-                            именуемое(ый) в дальнейшем ПОКУПАТЕЛЬ, в лице <u>&#160;<?php echo e($user->contract->name); ?>
+                            именуемое(ый) в дальнейшем ПОКУПАТЕЛЬ, в лице <u>&#160;<?php echo e($decl::fio($user->contract->name)); ?>
 
                                 <!-- $dadata::cleanName($user->contract->name)[0]['result_genitive'] -->
                                 &#160;</u>, 
@@ -327,9 +327,9 @@
 <?php endif; ?>
         </div>
         <div class="col-12 col-lg-7">
-            <div class="d-flex align-items-center gap-3">
+            <div class="d-flex align-items-center gap-2 bg-soft-warning rounded p-3">
                 <span class="material-symbols-outlined fs-1 text-warning">warning</span>
-                <small class="text-muted">
+                <small class="text-muted lh-1">
                     Пожалуйста, внимательно ознакомьтесь с деталями договора. Если всё указано верное, нажмите кнопку "Подтвердить".
                     На данный момент вы всё ещё можете отредактировать данный договор.
                 </small>                

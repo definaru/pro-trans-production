@@ -21,7 +21,14 @@
 
 
     @if($deal::status() === '0')
-        <x-alert type="info" message="Договор составлен. Нужно прислать подписанный договор с печатю. Два экземпляра" />     
+        <x-alert type="info" message="Договор составлен. Нужно прислать подписанный договор с печатю. Два экземпляра" />   
+        <strong class="d-grid mb-3">Варианты отправки документов:</strong>
+        
+        <ul class="d-grid gap-3">
+            <li>Скан документов с подписью и печатью в PDF - <i>{!!$contact::getEmail('manager@prospekt-parts.com', ['text-dark'])!!}</i></li>
+            <li>На бумаге, формата А4, почтой - <i>100111, А/Я 1245, г. Мытищи</i> <br />
+               <strong>Кому:</strong> &laquo;ООО Проспект Транс&raquo;</li>
+        </ul>  
     @elseif($deal::status() === 'z')
         <x-alert type="danger" message="Договор не заключён" />    
     @elseif($deal::status() === '2')

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 use App\Models\FormatCurrency;
+use App\Models\voicecms\Voice;
+use App\Models\voicecms\Namevoiceru;
 
 
 class Declension
@@ -36,6 +38,12 @@ class Declension
         $start = self::diff($num, 'Найден', 'Найдено', 'Найдено');
         $end = self::diff($num, 'результат', 'результата', 'результатов');
         return $start.' '.FormatCurrency::res($num).' '.$end;
+    }
+
+    public static function fio($person)
+    {
+        $nc = new Namevoiceru();
+        return $nc->q($person, Voice::$RODITLN);
     }
 
 }

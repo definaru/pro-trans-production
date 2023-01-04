@@ -60,8 +60,10 @@
                             @yield('content')
                         </div>
                     </div>
-                    <div class="text-center mt-2">
+                    <div class="text-center text-muted mt-2">
                         <small>
+                            Если у вас есть вопросы, мы всегда рады помочь. <br />
+                            Свяжитесь с нами {{ $contact::format_phone(config('app.phone')) }} <br />
                             <a 
                                 href="/contact" 
                                 class="text-muted text-decoration-none" 

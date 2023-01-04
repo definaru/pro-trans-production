@@ -13,7 +13,7 @@
 
 <!-- isset($user->contract->name) -->
 @if(isset($user->contract->name))
-    @if($contract)
+    @if(isset($contract))
     <div class="d-flex align-items-center gap-3 d-print-none">
         @if(isset($contract['state']['color']))
         <x-badge color="{{$contract['state']['color']}}" text="{{$contract['state']['name']}}" />
@@ -43,11 +43,11 @@
                     <td>
                         <p>
                             ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "ПРОСПЕКТ ТРАНС", именуемое(ый) в
-                            дальнейшем ПОСТАВЩИК, в лице <u>&#160;{{$contract['ownAgent']['director']}}
+                            дальнейшем ПОСТАВЩИК, в лице <u>&#160;{{$decl::fio($contract['ownAgent']['director'])}}
                                 <!-- $dadata::cleanName($contract['ownAgent']['director'])[0]['result_genitive'] -->
                                 &#160;</u> ,
                             действующего(ей) на основании устава, с одной СТОРОНЫ, и {{$contract['agent']['legalTitle']}}, 
-                            именуемое(ый) в дальнейшем ПОКУПАТЕЛЬ, в лице <u>&#160;{{$user->contract->name}}
+                            именуемое(ый) в дальнейшем ПОКУПАТЕЛЬ, в лице <u>&#160;{{$decl::fio($user->contract->name)}}
                                 <!-- $dadata::cleanName($user->contract->name)[0]['result_genitive'] -->
                                 &#160;</u>, 
                             действующего(ей) на основании <u>&#160;{{$user->contract->action}}&#160;</u>, с другой СТОРОНЫ, 
@@ -266,9 +266,9 @@
             <x-button type="a" href="agreement/edit" icon="edit" color="outline-dark" text="Редактировать" />
         </div>
         <div class="col-12 col-lg-7">
-            <div class="d-flex align-items-center gap-3">
+            <div class="d-flex align-items-center gap-2 bg-soft-warning rounded p-3">
                 <span class="material-symbols-outlined fs-1 text-warning">warning</span>
-                <small class="text-muted">
+                <small class="text-muted lh-1">
                     Пожалуйста, внимательно ознакомьтесь с деталями договора. Если всё указано верное, нажмите кнопку "Подтвердить".
                     На данный момент вы всё ещё можете отредактировать данный договор.
                 </small>                

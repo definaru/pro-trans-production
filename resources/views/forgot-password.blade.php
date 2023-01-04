@@ -19,7 +19,7 @@
             <input 
                 type="text" 
                 name="email" 
-                class="form-control px-4 @error('email') is-invalid @enderror" 
+                class="form-control @error('email') is-invalid @enderror" 
                 value="{{ old('email') }}"
                 placeholder="Ваш e-mail" 
             />
@@ -31,7 +31,7 @@
             <x-button id="loading" type="submit" color="danger" text="Восстановить пароль" icon="outgoing_mail" />
         </div>
         <div class="text-center mt-2">
-            <a href="/">Назад</a>
+            <a href="/" class="text-dark">Назад</a>
         </div>
     </form>
 @endif

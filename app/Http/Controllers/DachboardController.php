@@ -123,9 +123,9 @@ class DachboardController extends Controller
         if($contract === null) {
             MoySklad::createContract();
             $message = 'Не удалось создать договор. Свяжитесь с менеджером.';
+            Telegram::getMessageTelegram(time(), 'Запрос на заключение договора.', $contract['meta']['uuidHref']);
             return back()->with(['error' => $message]);
         }
-        Telegram::getMessageTelegram(time(), 'Запрос на заключение договора.', $contract['meta']['uuidHref']);
         Contract::create($request->all());        
         return back()->with(['status' => $message]);
     }
@@ -241,9 +241,9 @@ class DachboardController extends Controller
         $account = MoySklad::getCounterAgent($request->company);
         if(isset($account['id'])) {
             Telegram::getMessageTelegram($account['id'], $account['name'], $request->email, 'counterparty');
+            $message = 'На ваш email: '.$request->email.' была отправлена важная информация. Пожалуйста, ознакомьтесь.';
+            return redirect()->route('index')->with(['signup' => $message, 'id' => $account['id']]);            
         }
-        $message = 'На ваш email: '.$request->email.' была отправлена важная информация. Пожалуйста, ознакомьтесь.';
-        return redirect()->route('index')->with(['signup' => $message, 'id' => $account['id']]);
     }
 
     public function Manager(Request $request)

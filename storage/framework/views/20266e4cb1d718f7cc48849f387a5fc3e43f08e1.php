@@ -130,9 +130,9 @@ unset($__errorArgs, $__bag); ?>
     </div>
 </form>
 <div id="account" class="d-none"><?php if(session('id')): ?> <?php echo e(session('id')); ?> <?php endif; ?></div>
-<div class="w-100 mt-3 text-center">
-    <p class="mb-0">
-        <a href="/forgot-password" class="text-dark">
+<div class="w-100 mt-2 text-center">
+    <p class="d-grid mb-3">
+        <a href="/forgot-password" class="btn btn-light text-dark">
             Восстановить пароль
         </a>
     </p>

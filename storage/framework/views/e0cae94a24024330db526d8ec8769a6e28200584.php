@@ -32,7 +32,14 @@
 <?php if (isset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975)): ?>
 <?php $component = $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975; ?>
 <?php unset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975); ?>
-<?php endif; ?>     
+<?php endif; ?>   
+        <strong class="d-grid mb-3">Варианты отправки документов:</strong>
+        
+        <ul class="d-grid gap-3">
+            <li>Скан документов с подписью и печатью в PDF - <i><?php echo $contact::getEmail('manager@prospekt-parts.com', ['text-dark']); ?></i></li>
+            <li>На бумаге, формата А4, почтой - <i>100111, А/Я 1245, г. Мытищи</i> <br />
+               <strong>Кому:</strong> &laquo;ООО Проспект Транс&raquo;</li>
+        </ul>  
     <?php elseif($deal::status() === 'z'): ?>
         <?php if (isset($component)) { $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975 = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\Alert::class, ['type' => 'danger','message' => 'Договор не заключён']); ?>

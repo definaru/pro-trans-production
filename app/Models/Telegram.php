@@ -56,6 +56,7 @@ class Telegram
     {   
         $msd = '<b>Заказ #'.$product.'</b>'.PHP_EOL.
         '------'.PHP_EOL.
+        'Дата: '.date('d.m.Y | H:i:s').PHP_EOL.
         'На вашем сервисе '.config('app.name').' был оформлен заказ товаров.'.PHP_EOL.
         '<a href="https://online.moysklad.ru/app/#customerorder/edit?id='.$num.'">[Подробнее]</a>';
         return $msd;
