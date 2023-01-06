@@ -87,25 +87,22 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <pre><?php //var_dump($orders);?></pre>
-
-
-
                 <table class="table table-hover m-0">
                     <thead class="bg-light">
                         <tr>
                             <th scope="col" class="text-muted"><div class="ms-3">№</div></th>
                             <th scope="col" class="text-muted"><small>Дата заказа</small></th>
-                            <th scope="col" class="text-muted"><small>Контрагент</small></th>
+                            <!-- <th scope="col" class="text-muted"><small>Контрагент</small></th> -->
                             <th scope="col" class="text-muted"><small>Сумма</small></th>
                             <th scope="col" class="text-muted"><small>План. дата оплаты</small></th>
                             <th scope="col" class="text-muted"><small>Оплачено</small></th>
                             <th scope="col" class="text-muted"><small>Статус</small></th>
+                            <th scope="col" style="width: 190px"></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($orders['list'] as $ord)
-                        <tr>
+                        <tr class="align-middle">
                             <td>
                                 <a href="order/{{$ord['id']}}" class="ms-3 text-decoration-none fw-bold text-dark">
                                     #{{$ord['name']}}
@@ -116,10 +113,10 @@
                                 {{$time::parse($ord['created'])->locale('ru')->translatedFormat('d F Y, H:i')}}
                                 </small>
                             </td>
-                            <td><small>{{$ord['agent']['name']}}</small></td>
+                            <!-- <td><small>{{--$ord['agent']['name']--}}</small></td> -->
                             <td>
                                 <small>
-                                    @php echo number_format(($ord['sum']) / 100, 2, '.', ' ') @endphp ₽
+                                    {!!$currency::summa($ord['sum'])!!}
                                 </small>
                             </td>
                             <td>
@@ -137,9 +134,18 @@
                             <td>
                                 <x-badge color="{{$ord['state']['color']}}" text="{{$ord['state']['name']}}" />
                             </td>
+                            <td>
+                                <x-button 
+                                    type="a" 
+                                    size="sm" 
+                                    color="dark"
+                                    href="/dashboard/doc/{{$ord['id']}}/{{time()}}.pdf" 
+                                    text="Скачать в PDF" 
+                                    icon="download" 
+                                />
+                            </td>
                         </tr>
                         @endforeach
-
                     </tbody>
                 </table>
             </div>

@@ -32,6 +32,16 @@ class Declension
     {
         return self::diff($num, 'наименование', 'наименования', 'наименований');
     }
+
+    public static function demand($num)
+    {
+        return self::diff($num, 'отчёт', 'отчёта', 'отчётов');
+    }
+
+    public static function positions($num)
+    {
+        return '<b>'.$num.'</b> &#160;'. self::diff($num, 'позиция', 'позиции', 'позиций');
+    }
     
     public static function search($num)
     {

@@ -19,102 +19,163 @@
             font-weight: normal;
             font-style: normal;
 
-        }        
+        }   
+        .tables {border-top: 2px solid #000 !important} 
+        .tables-top {border-top: 2px solid #000 !important}
         * {
             font-family: 'Prospekt-Trans', "DejaVu Sans", sans-serif !important;
         }
     </style>
 </head>
 <body>
-    <table class="w-100">
-        <tr>
-            <th style="width:65%">
-                <img src="{{ asset('img/color_logo.png') }}" alt="Logo" style="width: 8rem;">
-            </th>
-            <th style="width:35%;text-align: right;">
-                <p style="margin:0;font-size:14px;">#{{$order['name']}}</p>
-                <b>ООО "ПРОСПЕКТ ТРАНС"</b>
-                <p style="font-size:12px;font-weight: normal">{{ config('app.address') }}</p>
-            </th>
-        </tr>
-    </table>
+    <div class="my-5">       
+        <table class="table table-bordered border border-dark" style="font-size:12px">
+            <tbody>
+                <tr>
+                    <td class="px-1 py-0 border-bottom-0 border-dark" colspan="2" style="width:55%">
+                        {{$order['organization']['accounts']['rows'][0]['bankName']}}&#160;
+                        {{$order['organization']['accounts']['rows'][0]['bankLocation']}}
+                    </td>
+                    <td class="px-1 py-0 border-dark" style="width:70px">БИК</td>
+                    <td class="px-1 py-0 border-bottom-0 border-dark">
+                        {{$order['organization']['accounts']['rows'][0]['bic']}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="px-1 pb-0 pt-2 border-top-0 border-dark" colspan="2" valign="bottom">
+                        <small>Банк получателя</small>
+                    </td>
+                    <td class="px-1 py-0 border-dark">Сч. №</td>
+                    <td class="px-1 py-0 border-top-0 border-dark">
+                        {{$order['organization']['accounts']['rows'][0]['correspondentAccount']}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="px-1 py-0 border-dark">ИНН &nbsp; {{$order['organization']['inn']}}</td>
+                    <td class="px-1 py-0 border-dark">КПП &nbsp; {{$order['organization']['kpp']}}</td>
+                    <td class="px-1 py-0 border-dark" rowspan="2">Сч. №</td>
+                    <td class="px-1 py-0 border-dark" rowspan="2">
+                        {{$order['organization']['accounts']['rows'][0]['accountNumber']}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="px-1 py-0 border-dark" colspan="2">
+                        <p class="mb-1">{{$order['organization']['name']}}</p>
+                        <small>Получатель</small>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-    <table class="w-100">
-        <tr>
-            <th style="width:50%">
-                <p style="font-size:12px;font-weight: normal;">
-                    <b>Плательщик:</b> <br />
-                    <i>{{$order['agent']['name']}}</i> <br />
-                    {{$order['agent']['legalAddress']}}
-                </p>
-            </th>
-            <th style="width:50%;text-align: right;font-size:12px;font-weight: normal">
-                <p style="margin:0;"><b>Дата счета:</b>&#160;{{date_format(date_create($order['created']), 'd/m/Y')}}</p>
-                <p style="margin:0;"><b>Срок оплаты:</b>&#160;{{date_format(date_create($order['moment']), 'd/m/Y')}}</p>
-            </th>
-        </tr>
-    </table>
-  
-    <table class="table table-striped">
-        <tr class="text-muted bg-white" style="font-size:11px">
-            <th>#</th>
-            <th>Наименование</th>
-            <th>Кол-во</th>
-            <th>НДС</th>
-            <th>Скидка</th>
-            <th>Цена</th>
-        </tr>
-        @foreach($order['positions']['rows'] as $invoice)
-        <tr style="font-size:12px">
-            <td>{{ $loop->iteration }}</td>
-            <td>
-                <b>{{$invoice['assortment']['article']}}</b>&#160;
-                {{$invoice['assortment']['name']}}
-            </td>
-            <td>{{$invoice['quantity']}} шт</td>
-            <td>{{$invoice['vat']}}%</td>
-            <td>{{$invoice['discount']}}%</td>
-            <td>@php echo number_format(($invoice['price']) / 100, 2, '.', ' ') @endphp ₽</td>
-        </tr>
-        @endforeach          
-    </table>
+        <p class="p-0" class="font-weight-bold">
+            Счёт на оплату №{{$order['name']}} от {{$time::parse($order['created'])->locale('ru')->translatedFormat('d F Y')}} г.
+        </p>
+        <hr class="border border-dark" />
+        <table class="table table-borderless m-0">
+            <tbody>
+                <tr>
+                    <td class="font-weight-normal px-1" style="font-size:12px;width:120px">Поставщик<br />(Исполнитель):</td>
+                    <td class="font-weight-bold" style="font-size:12px;">
+                        {{$order['organization']['name']}}, 
+                        ИНН {{$order['organization']['inn']}}, 
+                        КПП {{$order['organization']['kpp']}}, 
+                        {{$order['organization']['legalAddress']}}
+                    </td>
+                <tr> 
+                <tr>
+                    <td class="font-weight-normal px-1" style="font-size:12px;">Покупатель<br />(Заказчик):</td>
+                    <td class="font-weight-bold" style="font-size:12px;">
+                        {{$order['agent']['name']}}, 
+                        ИНН {{$order['agent']['inn']}}, 
+                        КПП {{$order['agent']['kpp']}}, 
+                        {{$order['agent']['actualAddress']}}
+                    </td>
+                <tr>  
+                <tr>
+                    <td colspan="2" class="font-weight-normal px-1" style="font-size:12px">Основание:</td>
+                <tr> 
+            </tbody>
+        </table>
+        <table class="table tables table-bordered border-0">
+            <thead style="font-size:12px;border-left: 2px solid #000;border-right: 2px solid #000">
+                <tr class="border-dark">
+                <th class="px-1 py-0 text-center border-dark border-bottom-0">№</th>
+                <th class="px-1 py-0 text-center border-dark border-bottom-0">Товары (работы, услуги)</th>
+                <th class="px-1 py-0 text-center border-dark border-bottom-0">Кол-во</th>
+                <th class="px-1 py-0 text-center border-dark border-bottom-0">Ед.</th>
+                <th class="px-1 py-0 text-center border-dark border-bottom-0">Цена</th>
+                <th class="px-1 py-0 text-center border-dark border-bottom-0">Сумма</th>
+                </tr>
+            </thead>
+            <tbody style="font-size:12px">
+                @foreach($order['positions']['rows'] as $invoice)
+                <tr class="font-weight-normal" style="font-size:12px;border-left: 2px solid #000 !important;border-right: 2px solid #000">
+                    <td class="px-1 py-0 text-center border-dark">{{ $loop->iteration }}</td>
+                    <td class="px-1 py-0 border-dark"><b>{{$invoice['assortment']['article']}}</b>&#160; {{$invoice['assortment']['name']}}</td>
+                    <td class="px-1 py-0 text-right border-dark">{{$invoice['quantity']}}</td>
+                    <td class="px-1 py-0 border-dark">шт</td>
+                    <td class="px-1 py-0 text-right border-dark">
+                        @php echo number_format(($invoice['price']) / 100, 2, '.', ' ') @endphp
+                    </td>
+                    <td class="px-1 py-0 text-right border-dark">
+                        @php echo number_format(($invoice['price']*$invoice['quantity']) / 100, 2, '.', ' ') @endphp
+                    </td>
+                </tr>
+                @endforeach 
+                <tr class="border-0 font-weight-bold tables-top">
+                    <td colspan="2" class="border-0"></td>
+                    <td colspan="3" class="border-0 text-right px-1">
+                        <p class="mb-1">Итого:</p>
+                        <div class="mb-1">В том числе НДС 20%:</div>
+                        <p class="m-0">Всего к оплате:</p>
+                    </td>
+                    <td class="border-0 text-right px-1">
+                        <p class="mb-1">@php echo number_format(($order['sum']) / 100, 2, '.', ' ') @endphp</p>
+                        <p class="mb-1">@php echo number_format(($order['vatSum']) / 100, 2, '.', ' ') @endphp</p>
+                        <p class="m-0">@php echo number_format(($order['sum']) / 100, 2, '.', ' ') @endphp</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-    <table class="w-100">
-        <tr>
-            <th style="width:60%;font-size:11px;font-weight: normal;color: #999">
-                <p>
-                    Если у вас есть какие-либо вопросы<br /> относительно этого счета, 
-                    используйте следующую контактную информацию:<br /><br />
-                    {{ $contact::format_phone(config('app.phone')) }}<br />
-                    {{ config('app.email') }}                   
-                </p>
-            </th>
-            <th style="width:40%;text-align: right;font-size:12px;font-weight: normal;vertical-align: top;">
-                <table class="w-100">
-                    <tr>
-                        <td style="text-align: right;"><b>Промежуточный итог:</b></td>
-                        <td style="text-align: right;">@php echo number_format(($order['sum']) / 100, 2, '.', ' ') @endphp ₽</td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: right;"><b>Кол-во:</b></td>
-                        <td style="text-align: right;">{{$order['positions']['meta']['size']}}</td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: right;"><b>НДС:</b></td>
-                        <td style="text-align: right;">@php echo number_format(($order['vatSum']) / 100, 2, '.', ' ') @endphp ₽</td>
-                    </tr>
-                    <tr style="font-size:14px;">
-                        <td style="text-align: right;"><b>Итого:</b></td>
-                        <td style="text-align: right;">@php echo number_format(($order['sum']) / 100, 2, '.', ' ') @endphp ₽</td>
-                    </tr>
-                </table>
-            </th>
-        </tr>
-    </table>
-    <hr />
-    <p style="font-size:12px;">
-        Всего {{$order['positions']['meta']['size']}} {{$decl::name($order['positions']['meta']['size'])}}, 
-        на сумму {!! $currency::rub(number_format(($order['sum']) / 100, 2, '.', '')) !!}
-    </p>
+        <p class="font-weight-normal m-0" style="font-size:12px;">
+            Всего {{$order['positions']['meta']['size']}} {{$decl::name($order['positions']['meta']['size'])}}, 
+            на сумму @php echo number_format(($order['sum']) / 100, 2, '.', ' ') @endphp руб.
+        </p>
+        <p class="mb-2 font-weight-bold" style="font-size:13px;">{!! $currency::rub(number_format(($order['sum']) / 100, 2, '.', '')) !!}</p>
+        <p class="font-weight-normal m-0" style="font-size:12px;">
+            Оплатить не позднее&#160;
+            {{date_format(date_create($order['moment']), 'd.m.Y')}}
+        </p>
+        <p class="font-weight-normal" style="font-size:12px;">
+            Оплата данного счёта означает согласие с условиями поставки товара. 
+            Уведомление об оплате обязательно, в противном случае не гарантируется наличие товарана складе. 
+            Товар отпускается по факту прихода денег на р/с Поставщика, самовывозом, 
+            при наличии доверенности и паспорта.<br />
+        </p>
+        <hr class="border border-dark" />
+        <table class="table table-bordered border-0 mt-4">
+            <tbody>
+                <tr class="border-0">
+                    <td class="px-1 py-0 border-0 font-weight-bold" style="font-size:12px;width: 15%">
+                        Руководитель
+                    </td>
+                    <td  style="font-size:11px" class="px-1 py-0 text-right border-top-0 border-left-0 border-right-0 border-dark font-weight-normal">
+                        <?php
+                            $m = explode(' ', $order['organization']['director']);
+                            echo $m[0] . ' ' . substr($m[1],0,2) . '.' . substr($m[2],0,2) . '.' ;
+                        ?>
+                    </td>
+                    <td class="border-0" style="width: 2%"></td>
+                    <td class="px-1 py-0 border-0 font-weight-bold" style="font-size:12px;width: 15%">
+                        Бухгалтер
+                    </td>
+                    <td  style="font-size:11px" class="px-1 py-0 text-right border-top-0 border-left-0 border-right-0 border-dark font-weight-normal">
+                        Дущенко А.О.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

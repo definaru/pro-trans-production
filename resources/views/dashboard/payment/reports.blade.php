@@ -158,11 +158,11 @@
                             </div> -->
                         </td>
                         <td style="text-align: right">
-                            <div class="btn-group">
-                                <a href="reports/{{$item['id']}}" class="d-flex align-items-center gap-1 btn btn-white btn-sm">
-                                    <span class="material-symbols-outlined fs-6">visibility</span> 
-                                    Посмотреть
-                                </a> 
+                            <a href="reports/{{$item['id']}}" class="d-flex align-items-center gap-1 btn btn-white btn-sm">
+                                <span class="material-symbols-outlined fs-6">visibility</span> 
+                                Посмотреть
+                            </a>                         
+                            <!-- <div class="btn-group">
                                 <div class="btn-group">
                                     <button type="button" id="ordersExportDropdown1" data-bs-toggle="dropdown" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty"></button> 
                                     <div aria-labelledby="ordersExportDropdown1" class="dropdown-menu dropdown-menu-end mt-1">
@@ -170,13 +170,13 @@
                                             <span class="text-secondary material-symbols-outlined fs-5">print</span>
                                             Распечатать
                                         </a> 
-                                        <!-- <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
+                                        <a href="javascript:;" class="d-flex align-items-center gap-1 dropdown-item">
                                             <span class="text-secondary material-symbols-outlined fs-5">delete</span>
                                             Удалить
-                                        </a> -->
+                                        </a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </td>
                     </tr>
                     @endforeach

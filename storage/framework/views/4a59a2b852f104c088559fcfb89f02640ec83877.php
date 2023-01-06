@@ -87,25 +87,22 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <pre><?php //var_dump($orders);?></pre>
-
-
-
                 <table class="table table-hover m-0">
                     <thead class="bg-light">
                         <tr>
                             <th scope="col" class="text-muted"><div class="ms-3">№</div></th>
                             <th scope="col" class="text-muted"><small>Дата заказа</small></th>
-                            <th scope="col" class="text-muted"><small>Контрагент</small></th>
+                            <!-- <th scope="col" class="text-muted"><small>Контрагент</small></th> -->
                             <th scope="col" class="text-muted"><small>Сумма</small></th>
                             <th scope="col" class="text-muted"><small>План. дата оплаты</small></th>
                             <th scope="col" class="text-muted"><small>Оплачено</small></th>
                             <th scope="col" class="text-muted"><small>Статус</small></th>
+                            <th scope="col" style="width: 190px"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $__currentLoopData = $orders['list']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ord): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <tr>
+                        <tr class="align-middle">
                             <td>
                                 <a href="order/<?php echo e($ord['id']); ?>" class="ms-3 text-decoration-none fw-bold text-dark">
                                     #<?php echo e($ord['name']); ?>
@@ -118,10 +115,11 @@
 
                                 </small>
                             </td>
-                            <td><small><?php echo e($ord['agent']['name']); ?></small></td>
+                            <!-- <td><small></small></td> -->
                             <td>
                                 <small>
-                                    <?php echo number_format(($ord['sum']) / 100, 2, '.', ' ') ?> ₽
+                                    <?php echo $currency::summa($ord['sum']); ?>
+
                                 </small>
                             </td>
                             <td>
@@ -150,6 +148,20 @@
 <?php if (isset($__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94)): ?>
 <?php $component = $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94; ?>
 <?php unset($__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94); ?>
+<?php endif; ?>
+                            </td>
+                            <td>
+                                <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'a','size' => 'sm','color' => 'dark','href' => '/dashboard/doc/'.e($ord['id']).'/'.e(time()).'.pdf','text' => 'Скачать в PDF','icon' => 'download']); ?>
+<?php $component->withName('button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940)): ?>
+<?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
+<?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
 <?php endif; ?>
                             </td>
                         </tr>

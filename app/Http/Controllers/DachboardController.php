@@ -118,14 +118,15 @@ class DachboardController extends Controller
     public function sendAgreement(MakeContract $request)
     {
         $contract = MoySklad::getContract();
+        
         $message = 'Ваш запрос на заключение договора получен. Пожалуйста, сверьте данные и подтвердите.';
         $request->validate(MakeContract::rules());
         if($contract === null) {
             MoySklad::createContract();
-            $message = 'Не удалось создать договор. Свяжитесь с менеджером.';
-            Telegram::getMessageTelegram(time(), 'Запрос на заключение договора.', $contract['meta']['uuidHref']);
-            return back()->with(['error' => $message]);
+            //$message = 'Не удалось создать договор. Свяжитесь с менеджером.';
+            //return back()->with(['error' => $message]);
         }
+        Telegram::getMessageTelegram(time(), 'Запрос на заключение договора.', $contract['id']);
         Contract::create($request->all());        
         return back()->with(['status' => $message]);
     }
@@ -161,7 +162,8 @@ class DachboardController extends Controller
 
     public function Record() 
     {
-        return view('dashboard.payment.record');
+        $demand = MoySklad::getDemand();
+        return view('dashboard.payment.record', ['demand' => $demand]);
     }
 
     public function Catalog()
@@ -239,11 +241,11 @@ class DachboardController extends Controller
     {
         $request->validate(CounterAgent::rules());
         $account = MoySklad::getCounterAgent($request->company);
+        $message = 'На ваш email: '.$request->email.' была отправлена важная информация. Пожалуйста, ознакомьтесь.';
         if(isset($account['id'])) {
             Telegram::getMessageTelegram($account['id'], $account['name'], $request->email, 'counterparty');
-            $message = 'На ваш email: '.$request->email.' была отправлена важная информация. Пожалуйста, ознакомьтесь.';
-            return redirect()->route('index')->with(['signup' => $message, 'id' => $account['id']]);            
         }
+        return redirect()->route('index')->with(['signup' => $message, 'id' => $account['id']]);
     }
 
     public function Manager(Request $request)

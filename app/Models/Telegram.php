@@ -84,7 +84,7 @@ class Telegram
     {
         $msd = '<b>Запрос #'.$num.'</b>'.PHP_EOL.
         '<b>Информация:</b>'.PHP_EOL.$product.PHP_EOL.
-        '<a href="'.$link.'">[Подробнее]</a>';
+        '<a href="https://online.moysklad.ru/app/#Contract/edit?id='.$link.'">[Подробнее]</a>';
         return $msd;
     }
 

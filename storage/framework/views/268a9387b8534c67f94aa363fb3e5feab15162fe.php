@@ -35,7 +35,7 @@
 
 <!-- isset($user->contract->name) -->
 <?php if(isset($user->contract->name)): ?>
-    <?php if($contract): ?>
+    <?php if(isset($contract)): ?>
     <div class="d-flex align-items-center gap-3 d-print-none">
         <?php if(isset($contract['state']['color'])): ?>
         <?php if (isset($component)) { $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94 = $component; } ?>
