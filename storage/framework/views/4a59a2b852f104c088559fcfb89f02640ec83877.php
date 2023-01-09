@@ -2,6 +2,21 @@
 <?php $__env->startSection('title', 'Счета'); ?>
 
 <?php $__env->startSection('content'); ?>
+
+<?php if(session('message')): ?>
+    <?php if (isset($component)) { $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Alert::class, ['type' => 'success','close' => 'false','message' => ''.e(session('message')).'']); ?>
+<?php $component->withName('alert'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975)): ?>
+<?php $component = $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975; ?>
+<?php unset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975); ?>
+<?php endif; ?>
+<?php endif; ?>
 <div class="row mt-2">
     <div class="col-md-12">
         <div class="card bg-white border-0 shadow-sm">
@@ -90,7 +105,8 @@
                 <table class="table table-hover m-0">
                     <thead class="bg-light">
                         <tr>
-                            <th scope="col" class="text-muted"><div class="ms-3">№</div></th>
+                            <th scope="col" class="ps-3 text-muted">#</td>
+                            <th scope="col" class="text-muted"><div class="ms-3">№ Заказа</div></th>
                             <th scope="col" class="text-muted"><small>Дата заказа</small></th>
                             <!-- <th scope="col" class="text-muted"><small>Контрагент</small></th> -->
                             <th scope="col" class="text-muted"><small>Сумма</small></th>
@@ -103,6 +119,7 @@
                     <tbody>
                         <?php $__currentLoopData = $orders['list']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ord): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr class="align-middle">
+                            <td class="ps-3" style="vertical-align: middle"><?php echo e($loop->iteration); ?>.</td>
                             <td>
                                 <a href="order/<?php echo e($ord['id']); ?>" class="ms-3 text-decoration-none fw-bold text-dark">
                                     #<?php echo e($ord['name']); ?>
@@ -152,7 +169,7 @@
                             </td>
                             <td>
                                 <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
-<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'a','size' => 'sm','color' => 'dark','href' => '/dashboard/doc/'.e($ord['id']).'/'.e(time()).'.pdf','text' => 'Скачать в PDF','icon' => 'download']); ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'a','size' => 'sm','color' => 'dark','href' => '/dashboard/doc/'.e($ord['id']).'/'.e($ord['name']).'.pdf','text' => 'Скачать в PDF','icon' => 'download']); ?>
 <?php $component->withName('button'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
@@ -166,7 +183,6 @@
                             </td>
                         </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
                     </tbody>
                 </table>
             </div>

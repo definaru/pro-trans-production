@@ -178,7 +178,7 @@ class MoySklad
     //getOrderCustomerOne
     public static function getInvoiceOne($id)
     {
-        $url = self::msUrl().'invoiceout/'.$id.'?expand=state,agent,positions.assortment,positions.assortment.images,customerOrder,organization,organization.accounts';
+        $url = self::msUrl().'invoiceout/'.$id.'?expand=state,contract,agent,positions.assortment,positions.assortment.images,customerOrder,organization,organization.accounts';
         $response = self::get($url);
         return $response->json();
     }
@@ -187,7 +187,7 @@ class MoySklad
     public static function getInvoices()
     {
         $uuid = auth()->user()->verified;
-        $url = self::msUrl().'invoiceout?filter=agent=https://online.moysklad.ru/api/remap/1.2/entity/counterparty/'.$uuid;
+        $url = self::msUrl().'invoiceout?order=created,desc;&filter=agent=https://online.moysklad.ru/api/remap/1.2/entity/counterparty/'.$uuid;
         $response = self::get($url);
         $items = $response->json();
         $array = [];
@@ -481,7 +481,7 @@ class MoySklad
     public static function getDemand()
     {
         $uuid = auth()->user()->verified;
-        $url = self::msUrl().'demand?filter=agent=https://online.moysklad.ru/api/remap/1.2/entity/counterparty/'.$uuid;
+        $url = self::msUrl().'demand?order=name,desc;created&filter=agent=https://online.moysklad.ru/api/remap/1.2/entity/counterparty/'.$uuid;
         $response = self::get($url);
         $items = $response->json();
         $array = [];
@@ -502,6 +502,121 @@ class MoySklad
             'count' => $items['meta']['size']
         ];
         return $return;
+    }
+
+    public static function getOneDemand($id)
+    {
+        $url = self::msUrl().'demand/'.$id.'?expand=state,agent,organization,organizationAccount,positions,positions.assortment,payments,invoicesOut';
+        $response = self::get($url);
+        return $response->json();
+    }
+
+    public static function changeStatusCustomerorder($id)
+    {
+        $req = [
+            'state' => [
+                'meta' => [
+                    'href' => 'https://online.moysklad.ru/api/remap/1.2/entity/customerorder/metadata/states/dbf6a5f2-8ffc-11ed-0a80-07fe011434dd',
+                    'metadataHref' => 'https://online.moysklad.ru/api/remap/1.2/entity/customerorder/metadata',
+                    'type' => 'state',
+                    'mediaType' => 'application/json'                    
+                ],
+                'id' => 'dbf6a5f2-8ffc-11ed-0a80-07fe011434dd',
+                'accountId' => '213fbb41-33fe-11ed-0a80-08210000b632',
+                'name' => 'Выставлен счет',
+                'color' =>  10066329,
+                'stateType' => 'Regular',
+                'entityType' => 'customerorder'                
+            ]          
+        ];
+        $url = self::msUrl().'customerorder/'.$id;
+        $response = self::put($url, json_encode($req));
+        return $response->json();
+    }
+
+    public static function createInvoiceout($id)
+    {
+        $get = self::getPaymentReports($id);
+        $items = response()->json($get);
+        $array = [];
+        foreach($items->original['positions']['rows'] as $item) {
+            $array[] = [
+                'quantity' => $item['quantity'],
+                'price' => $item['price'],
+                'discount' => $item['discount'],
+                'vat' => $item['vat'],
+                'assortment' => [
+                    'meta' => [
+                        'href' => 'https://online.moysklad.ru/api/remap/1.2/entity/product/'.$item['assortment']['id'],
+                        'type' => 'product',
+                        'mediaType' => 'application/json'                        
+                    ]
+                ]
+            ];
+        }
+        $arr = [
+            'organization' => [
+                'meta' => [
+                    'href' => $items->original['organization']['meta']['href'],
+                    'metadataHref' => $items->original['organization']['meta']['metadataHref'],
+                    'type' => $items->original['organization']['meta']['type'],
+                    'mediaType' => $items->original['organization']['meta']['mediaType']
+                ]
+            ],
+            'agent' => [
+                'meta' => [
+                    'href' => $items->original['agent']['meta']['href'],
+                    'metadataHref' => $items->original['agent']['meta']['metadataHref'],
+                    'type' => $items->original['agent']['meta']['type'],
+                    'mediaType' => $items->original['agent']['meta']['mediaType']  
+                ]
+            ],
+            'state' => [
+                'meta' => [
+                    'href' => 'https://online.moysklad.ru/api/remap/1.2/entity/invoiceout/metadata/states/7a7494b7-6ff6-11ed-0a80-0e4b0048295b',
+                    'metadataHref' => 'https://online.moysklad.ru/api/remap/1.2/entity/invoiceout/metadata',
+                    'type' => 'state',
+                    'mediaType' => 'application/json'                  
+                ],
+                'id' => '7a7494b7-6ff6-11ed-0a80-0e4b0048295b',
+                'accountId' => '213fbb41-33fe-11ed-0a80-08210000b632',
+                'name' => 'Не оплачено',
+                'color' => 15280409,
+                'stateType' => 'Regular',
+                'entityType' => 'invoiceout'    
+            ],
+            'customerOrder' => [
+                'meta' => [
+                    'href' => 'https://online.moysklad.ru/api/remap/1.2/entity/customerorder/'.$items->original['id'],
+                    'metadataHref' => 'https://online.moysklad.ru/api/remap/1.2/entity/customerorder/metadata',
+                    'type' => 'customerorder',
+                    'mediaType' => 'application/json'                   
+                ]
+            ],
+            'store' => [
+                'meta' => [
+                    'href' => 'https://online.moysklad.ru/api/remap/1.2/entity/store/218d258b-33fe-11ed-0a80-0285001db7b5',
+                    'metadataHref' => 'https://online.moysklad.ru/api/remap/1.2/entity/store/metadata',
+                    'type' => 'store',
+                    'mediaType' => 'application/json'                    
+                ]             
+            ],
+            'contract' => [
+                'meta' => [
+                    'href' => 'https://online.moysklad.ru/api/remap/1.2/entity/contract/'.self::getContract()['id'],
+                    'metadataHref' => 'https://online.moysklad.ru/api/remap/1.2/entity/contract/metadata',
+                    'type' => 'contract',
+                    'mediaType' => 'application/json'                    
+                ]
+            ],
+            'positions' => $array,
+            'paymentPlannedMoment' => date('Y-m-d H:i:s', strtotime($items->original['created'].'+3 days')) 
+        ];
+        self::changeStatusCustomerorder($id);
+        // https://online.moysklad.ru/api/remap/1.2/entity/invoiceout
+        $url = self::msUrl().'invoiceout';
+        $response = self::post($url, json_encode($arr));
+        return $response->json();
     }
     
 }

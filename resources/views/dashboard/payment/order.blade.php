@@ -4,7 +4,7 @@
 @endphp
 
 @extends('layout/main')
-@section('title', 'Счет-фактура №'.$order['name'])
+@section('title', 'Счет №'.$order['name'])
 
 @section('breadcrumbs')
 <div class="d-flex gap-2">

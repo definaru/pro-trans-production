@@ -28,7 +28,7 @@
     </style>
 </head>
 <body>
-    <div class="my-5">       
+    <div class="my-5 px-5">       
         <table class="table table-bordered border border-dark" style="font-size:12px">
             <tbody>
                 <tr>
@@ -78,7 +78,7 @@
         <table class="table table-borderless m-0">
             <tbody>
                 <tr>
-                    <td class="font-weight-normal px-1" style="font-size:12px;width:120px">Поставщик<br />(Исполнитель):</td>
+                    <td class="font-weight-normal px-1" style="font-size:12px;width:100px">Поставщик<br />(Исполнитель):</td>
                     <td class="font-weight-bold" style="font-size:12px;">
                         <?php echo e($order['organization']['name']); ?>, 
                         ИНН <?php echo e($order['organization']['inn']); ?>, 
@@ -98,7 +98,12 @@
                     </td>
                 <tr>  
                 <tr>
-                    <td colspan="2" class="font-weight-normal px-1" style="font-size:12px">Основание:</td>
+                    <td class="font-weight-normal px-1" style="font-size:12px">Основание:</td>
+                    <td class="font-weight-bold" style="font-size:12px;">
+                        Договор №<?php echo e($order['contract']['name']); ?> / MS-<?php echo e($order['customerOrder']['name']); ?> 
+                        от <?php echo e(date_format(date_create($order['customerOrder']['created']), 'd.m.Y')); ?>
+
+                    </td>
                 <tr> 
             </tbody>
         </table>

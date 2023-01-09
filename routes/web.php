@@ -24,15 +24,17 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::match(['get', 'post'],'product/details/{id}', [DachboardController::class, 'DetailProduct']);
     Route::get('catalog', [DachboardController::class, 'Catalog']);
     Route::get('catalog/category/{name}/{limit?}/{offset?}', [DachboardController::class, 'CatalogDetail']);
-    Route::get('payment/orders', [DachboardController::class, 'Orders']);
+    Route::get('payment/orders', [DachboardController::class, 'Orders'])->name('orders');
     Route::get('payment/order/{invoice}', [DachboardController::class, 'Invoice']);
     Route::get('payment/record', [DachboardController::class, 'Record']);
+    Route::get('payment/record/{id}', [DachboardController::class, 'RecordDetail']);
     Route::get('payment/account', [DachboardController::class, 'Account']);
     Route::get('payment/reports', [DachboardController::class, 'Reports']);
     Route::get('payment/reports/{order}', [DachboardController::class, 'ReportsDetail'])->name('order');
     Route::get('doc/{id}/{name}{extension?}', [PDFController::class, 'generatePDF'])->where(['extension' => '^(.pdf)|(.csv)|(.json)$']);
     Route::get('document/agreement', [DachboardController::class, 'Agreement'])->name('contract');
     Route::get('document/agreement/edit', [DachboardController::class, 'EditAgreement']);
+    Route::post('/create/invoice', [DachboardController::class, 'createInvoice']);
     Route::post('/agreements', [DachboardController::class, 'sendAgreement']);
     Route::post('/agreements/update', [DachboardController::class, 'updateAgreement']);
     Route::post('/action/deal', [DachboardController::class, 'sendDeal']);

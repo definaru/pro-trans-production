@@ -55,7 +55,7 @@
                             <td>
                                 <x-badge color="{{$item['state']['color']}}" text="{{$item['state']['name']}}" />
                             </td>
-                            <td>
+                            <td class="d-flex flex-row-reverse pe-4">
                                 @if($item['state']['name'] === 'Не оплачено')
                                     <x-button 
                                         size="sm"

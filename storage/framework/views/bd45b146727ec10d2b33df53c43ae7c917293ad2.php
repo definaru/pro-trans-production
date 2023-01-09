@@ -45,7 +45,6 @@
 <?php endif; ?>
             <span class="d-flex align-items-center gap-2 ms-2 ms-sm-3 text-secondary">
                 <span class="material-symbols-outlined">calendar_month</span> 
-                <!-- Сен. 17, 2020, 5:48 -->
                 <?php echo e($time::parse($data['created'])->locale('ru')->translatedFormat('d F Y, H:i:s')); ?>
 
             </span>
@@ -60,8 +59,8 @@
                 Распечатать
             </a> 
             <?php if(isset($data['invoicesOut'])): ?>
-            <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
-<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'a','size' => 'sm','color' => 'danger','href' => '/dashboard/payment/order/'.e($data['invoicesOut'][0]['id']).'','text' => 'Запросить счёт','icon' => 'credit_score']); ?>
+                <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'a','size' => 'sm','color' => 'secondary','href' => '/dashboard/payment/order/'.e($data['invoicesOut'][0]['id']).'','text' => 'Посмотреть счёт','icon' => 'visibility']); ?>
 <?php $component->withName('button'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
@@ -72,6 +71,24 @@
 <?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
 <?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
 <?php endif; ?>
+            <?php else: ?>
+            <form action="/dashboard/create/invoice" method="post">
+                <?php echo csrf_field(); ?>
+                <input type="hidden" name="id" value="<?php echo e($order); ?>">
+                <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'submit','size' => 'sm','color' => 'danger','text' => 'Запросить счёт','icon' => 'credit_score']); ?>
+<?php $component->withName('button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940)): ?>
+<?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
+<?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
+<?php endif; ?>
+            </form>
+
             <?php endif; ?>
             
             <div class="dropdown">
@@ -355,6 +372,6 @@
         </div>
     </div>
 <?php endif; ?>
-
+<pre><?php var_dump($data);?></pre>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layout/main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/dashboard/payment/reports-detail.blade.php ENDPATH**/ ?>

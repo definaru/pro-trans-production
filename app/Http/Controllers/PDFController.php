@@ -17,8 +17,8 @@ class PDFController extends Controller
         ];
         $pdf = PDF::loadView('document.pdf', $data, [], 'UTF-8');
         return $pdf->stream();
-        
         //->download('Документ №'.$data['order']['name'].'.pdf');
+        // 
         //return $pdf
     }
 }

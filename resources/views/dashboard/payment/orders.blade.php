@@ -2,6 +2,10 @@
 @section('title', 'Счета')
 
 @section('content')
+
+@if(session('message'))
+    <x-alert type="success" close="false" message="{{ session('message') }}" />
+@endif
 <div class="row mt-2">
     <div class="col-md-12">
         <div class="card bg-white border-0 shadow-sm">
@@ -90,7 +94,8 @@
                 <table class="table table-hover m-0">
                     <thead class="bg-light">
                         <tr>
-                            <th scope="col" class="text-muted"><div class="ms-3">№</div></th>
+                            <th scope="col" class="ps-3 text-muted">#</td>
+                            <th scope="col" class="text-muted"><div class="ms-3">№ Заказа</div></th>
                             <th scope="col" class="text-muted"><small>Дата заказа</small></th>
                             <!-- <th scope="col" class="text-muted"><small>Контрагент</small></th> -->
                             <th scope="col" class="text-muted"><small>Сумма</small></th>
@@ -103,6 +108,7 @@
                     <tbody>
                         @foreach($orders['list'] as $ord)
                         <tr class="align-middle">
+                            <td class="ps-3" style="vertical-align: middle">{{$loop->iteration}}.</td>
                             <td>
                                 <a href="order/{{$ord['id']}}" class="ms-3 text-decoration-none fw-bold text-dark">
                                     #{{$ord['name']}}
@@ -139,7 +145,7 @@
                                     type="a" 
                                     size="sm" 
                                     color="dark"
-                                    href="/dashboard/doc/{{$ord['id']}}/{{time()}}.pdf" 
+                                    href="/dashboard/doc/{{$ord['id']}}/{{$ord['name']}}.pdf"
                                     text="Скачать в PDF" 
                                     icon="download" 
                                 />

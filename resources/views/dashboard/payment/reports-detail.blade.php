@@ -23,7 +23,6 @@
             <x-badge color="{{$data['state']['color']}}" text="{{$data['state']['name']}}"/>
             <span class="d-flex align-items-center gap-2 ms-2 ms-sm-3 text-secondary">
                 <span class="material-symbols-outlined">calendar_month</span> 
-                <!-- Сен. 17, 2020, 5:48 -->
                 {{$time::parse($data['created'])->locale('ru')->translatedFormat('d F Y, H:i:s')}}
             </span>
         </div>
@@ -37,14 +36,27 @@
                 Распечатать
             </a> 
             @if(isset($data['invoicesOut']))
-            <x-button 
-                type="a" 
-                size="sm" 
-                color="danger"
-                href="/dashboard/payment/order/{{$data['invoicesOut'][0]['id']}}" 
-                text="Запросить счёт" 
-                icon="credit_score" 
-            />
+                <x-button 
+                    type="a" 
+                    size="sm" 
+                    color="secondary"
+                    href="/dashboard/payment/order/{{$data['invoicesOut'][0]['id']}}" 
+                    text="Посмотреть счёт" 
+                    icon="visibility" 
+                />
+            @else
+            <form action="/dashboard/create/invoice" method="post">
+                @csrf
+                <input type="hidden" name="id" value="{{$order}}">
+                <x-button 
+                    type="submit" 
+                    size="sm" 
+                    color="danger"
+                    text="Запросить счёт" 
+                    icon="credit_score" 
+                />
+            </form>
+
             @endif
             
             <div class="dropdown">
@@ -293,5 +305,5 @@
         </div>
     </div>
 @endif
-
+<pre><?php var_dump($data);?></pre>
 @endsection

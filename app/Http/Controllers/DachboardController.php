@@ -22,9 +22,23 @@ class DachboardController extends Controller
         return view('dashboard');
     }
 
+    public function createInvoice(Request $request)
+    {
+        // dd($request->id);
+        MoySklad::createInvoiceout($request->id);
+        $message = 'Счёт выставлен';
+        return redirect()->route('orders')->with(['message' => $message]);
+    }
+
     public function noSearch()
     {
         return redirect()->route('dashboard');
+    }
+
+    public function RecordDetail($id)
+    {
+        $demand = MoySklad::getOneDemand($id);
+        return view('dashboard.payment.demand', ['id' => $id, 'demand' => $demand]);
     }
 
     public function EditSettings(SettingEdit $request)
@@ -32,8 +46,6 @@ class DachboardController extends Controller
         $request->validate(SettingEdit::rules());
         $message = 'Настройки обновлены.';
         MoySklad::editSetting($request);
-        // $res = 
-        // dd($res);
         return redirect()->route('settings')->with(['message' => $message]);
     }
 
@@ -208,6 +220,7 @@ class DachboardController extends Controller
             'order' => $order
         ]);
     }
+
 
     public function Сard()
     {
