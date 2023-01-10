@@ -482,10 +482,6 @@ class GetMenu
                             [
                                 'name' => 'divider',
                                 'href' => ''
-                            ],
-                            [
-                                'name' => 'Предзаказы',
-                                'href' => 'payment/account'
                             ]
                         ]
                     ],
@@ -493,6 +489,13 @@ class GetMenu
                         'icon' => 'shopping_cart',
                         'name' => 'Корзина',
                         'slug' => 'card',
+                        'count' => '3',
+                        'list' => ''
+                    ],                    
+                    [
+                        'icon' => 'upcoming',
+                        'name' => 'Предзаказы',
+                        'slug' => 'account',
                         'count' => '3',
                         'list' => ''
                     ],                    

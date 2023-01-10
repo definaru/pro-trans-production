@@ -1,10 +1,9 @@
-@extends('layout/main')
-
 @php
     $datetime = $time::now()->addHours(3)->locale('ru')->translatedFormat('l, j F Y, H:i');
     $uuid = auth()->user()->verified;
 @endphp
 
+@extends('layout/main')
 @section('title', $product['name'])
 
 @section('breadcrumbs')
@@ -68,17 +67,6 @@
                         {!! DNS1D::getBarcodeSVG($product['barcodes'], 'EAN13', 1.7,60) !!}
                         @endif
                     </div>
-                    @if($product['quantity'] != 0)
-                    <div 
-                        id="cards1" 
-                        class="d-flex flex-column"
-                        data-card="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,{{$product['salePrices']}},{{$product['salePrices']}}" 
-                        v-on:click="addToCard('s1')"
-                    >
-                    <x-button type="button" color="dark" text="В корзину" icon="shopping_cart" />
-                    </div>
-                    @endif
-                    
                 </div>
                 <div class="col-md-9">
                     <p class="mb-1">
@@ -112,8 +100,9 @@
                         <input type="text" name="id" class="form-control" value="{{--$product['id']--}}" placeholder="Идентификатор..." />
                         <div class="form-text">Вы можете сообщить этот ID менеджеру при поиске данной позиции</div>
                     </div> -->
+
                     <p>
-                        @if($product['quantity'] == 0)
+                        @if($product['quantity'] == 0 || $product['quantity'] < 0)
                         <div class="badge bg-soft-danger text-danger px-3">
                             Нет в наличии
                         </div>
@@ -122,12 +111,30 @@
                             <div class="d-flex align-items-center gap-2 text-success">
                                 В наличии 
                                 <span class="badge bg-success">
-                                {{$product['quantity']}}
+                                    {{$product['quantity']}}
                                 </span>                                
                             </div>
                         </div>
                         @endif
                     </p>
+                    @if($product['quantity'] == 0 || $product['quantity'] < 0)
+                        <div  
+                            id="preorders1"
+                            data-order="{{$product['id']}},{{$product['article']}},{{$product['name']}},1"
+                            v-on:click="addToOrder('s1')"
+                        >
+                            <x-button type="button" color="secondary" text="Предзаказ" icon="shopping_cart" />
+                        </div>
+                    @else
+                        <div 
+                            id="cards1" 
+                            class="d-flex flex-column"
+                            data-card="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,{{$product['salePrices']}},{{$product['salePrices']}}" 
+                            v-on:click="addToCard('s1')"
+                        >
+                            <x-button type="button" color="dark" text="В корзину" icon="shopping_cart" />
+                        </div>
+                    @endif
                 </div>
             </div>            
         </div>

@@ -116,7 +116,7 @@ class DachboardController extends Controller
 
     public function Account() 
     {
-        return view('dashboard.payment.account');
+        return view('dashboard.account');
     }
 
     public function updateAgreement(MakeContract $request)

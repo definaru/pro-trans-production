@@ -1,8 +1,8 @@
-@extends('layout/main')
 
-@section('title', isset($catalog['name']) ? $catalog['name'] : array_column($catalogTrucks, 'name', 'href')[$name])
 
-@section('content')
+<?php $__env->startSection('title', isset($catalog['name']) ? $catalog['name'] : array_column($catalogTrucks, 'name', 'href')[$name]); ?>
+
+<?php $__env->startSection('content'); ?>
 <div class="row mt-4">
     <div class="col">
         <div class="card border-0 w-100 rounded shadow-sm">
@@ -91,21 +91,23 @@
                         </tr>
                     </thead>
                     <tbody class="list" style="font-size: 14px">
-                        @foreach($product['rows'] as $item)
-                            @if(empty($item['code']))
-                            @else
-                                <x-product-card 
-                                    :id="$offset+$loop->iteration"
-                                    :image="$item['images']['rows']"
-                                    href="{{$item['id']}}"
-                                    name="{{$item['name']}}"
-                                    vendorcode="{{$item['code']}}"
-                                    price="{{$item['salePrices'][0]['value']}}"
-                                    availability="{{$item['quantity']}}"
-                                    :modifications="$name"
-                                />
-                            @endif
-                        @endforeach
+                        <?php $__currentLoopData = $product['rows']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php if(empty($item['code'])): ?>
+                            <?php else: ?>
+                                <?php if (isset($component)) { $__componentOriginal5e109b4b7def75bd69cfe491f655f877e39a59a5 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\ProductCard::class, ['id' => $offset+$loop->iteration,'image' => $item['images']['rows'],'href' => ''.e($item['id']).'','name' => ''.e($item['name']).'','vendorcode' => ''.e($item['code']).'','price' => ''.e($item['salePrices'][0]['value']).'','availability' => ''.e($item['quantity']).'','modifications' => $name]); ?>
+<?php $component->withName('product-card'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal5e109b4b7def75bd69cfe491f655f877e39a59a5)): ?>
+<?php $component = $__componentOriginal5e109b4b7def75bd69cfe491f655f877e39a59a5; ?>
+<?php unset($__componentOriginal5e109b4b7def75bd69cfe491f655f877e39a59a5); ?>
+<?php endif; ?>
+                            <?php endif; ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
                 </table>
             </div>
@@ -113,15 +115,17 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="me-5 text-secondary small">
                         Показано: 
-                        <span>{{$offset == 0 ? 1 : $product['meta']['limit']}}</span> - 
+                        <span><?php echo e($offset == 0 ? 1 : $product['meta']['limit']); ?></span> - 
                         <span>
-                            @if($product['meta']['size']-$offset < $limit)
-                                {{$offset+$product['meta']['size']-$offset}}
-                            @else
-                                {{$offset == 0 ? $limit : $offset}}
-                            @endif
+                            <?php if($product['meta']['size']-$offset < $limit): ?>
+                                <?php echo e($offset+$product['meta']['size']-$offset); ?>
+
+                            <?php else: ?>
+                                <?php echo e($offset == 0 ? $limit : $offset); ?>
+
+                            <?php endif; ?>
                         </span> из 
-                        <span>{{$product['meta']['size']}}</span>
+                        <span><?php echo e($product['meta']['size']); ?></span>
                     </div>
                     <!-- <ul class="pagination list-pagination mb-0 d-flex">
                         <li class="page-item active"><a href="javascript: void(0);" class="page page-link">1</a></li>
@@ -130,18 +134,18 @@
                     </ul> -->
                     <nav aria-label="...">
                         <ul class="pagination m-0">
-                            @if($offset != 0)
+                            <?php if($offset != 0): ?>
                             <li class="page-item">
                                 <!-- <span class="page-link">Previous</span> disabled -->
-                                <a class="page-link text-muted" href="{{$offset-$limit}}">&larr; Предыдущие</a>
+                                <a class="page-link text-muted" href="<?php echo e($offset-$limit); ?>">&larr; Предыдущие</a>
                             </li>
-                            @endif
+                            <?php endif; ?>
 
-                            @if($product['meta']['size']-$offset > $limit)
+                            <?php if($product['meta']['size']-$offset > $limit): ?>
                             <li class="page-item">
-                                <a class="page-link text-muted" href="{{$offset === 0 ? $name.'/'.($limit+$offset).'/'.$offset : $limit+$offset}}">Далее &rarr;</a>
+                                <a class="page-link text-muted" href="<?php echo e($offset === 0 ? $name.'/'.($limit+$offset).'/'.$offset : $limit+$offset); ?>">Далее &rarr;</a>
                             </li>
-                            @endif
+                            <?php endif; ?>
                         </ul>
                     </nav>
                 </div>
@@ -149,4 +153,5 @@
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout/main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/dashboard/catalog-detail.blade.php ENDPATH**/ ?>

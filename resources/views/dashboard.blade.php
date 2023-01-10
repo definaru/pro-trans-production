@@ -16,9 +16,6 @@
 @section('title', $deal::status() === '1' ? 'Поиск запчастей' : 'Статус договора')
 
 @section('content')
-{{--$deal::status()--}}
-
-
 
     @if($deal::status() === '0')
         <x-alert type="info" message="Договор составлен. Нужно прислать подписанный договор с печатю. Два экземпляра" />   

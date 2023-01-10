@@ -613,7 +613,6 @@ class MoySklad
             'paymentPlannedMoment' => date('Y-m-d H:i:s', strtotime($items->original['created'].'+3 days')) 
         ];
         self::changeStatusCustomerorder($id);
-        // https://online.moysklad.ru/api/remap/1.2/entity/invoiceout
         $url = self::msUrl().'invoiceout';
         $response = self::post($url, json_encode($arr));
         return $response->json();

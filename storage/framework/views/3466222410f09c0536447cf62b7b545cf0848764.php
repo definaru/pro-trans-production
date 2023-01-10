@@ -1,20 +1,36 @@
-@extends('layout/main')
-@section('title', 'Корзина')
 
-@section('content')
+<?php $__env->startSection('title', 'Корзина'); ?>
 
-@if(session('status'))
-    <x-alert type="success" close="false" message="{{ session('status') }}" />
+<?php $__env->startSection('content'); ?>
+
+<?php if(session('status')): ?>
+    <?php if (isset($component)) { $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Alert::class, ['type' => 'success','close' => 'false','message' => ''.e(session('status')).'']); ?>
+<?php $component->withName('alert'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975)): ?>
+<?php $component = $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975; ?>
+<?php unset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975); ?>
+<?php endif; ?>
     <div class="w-25">
-        <x-button 
-            type="a" 
-            text="Перейти к заказу"
-            icon="arrow_right_alt"
-            href="/dashboard/payment/reports/{{session('id')}}" 
-            color="dark"  
-        />
+        <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'a','text' => 'Перейти к заказу','icon' => 'arrow_right_alt','href' => '/dashboard/payment/reports/'.e(session('id')).'','color' => 'dark']); ?>
+<?php $component->withName('button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940)): ?>
+<?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
+<?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
+<?php endif; ?>
     </div>
-@else
+<?php else: ?>
 <template v-if="card.length === 0">
     <div class="card border-0 shadow-sm mt-4">
         <div class="card-body">
@@ -24,14 +40,25 @@
                     <span>Ваша корзина пуста</span> 
                 </div>
                 <div>
-                    <x-button type="a" href="/dashboard" color="dark" text="Выбрать товар" />
+                    <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'a','href' => '/dashboard','color' => 'dark','text' => 'Выбрать товар']); ?>
+<?php $component->withName('button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940)): ?>
+<?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
+<?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
+<?php endif; ?>
                 </div>
             </div>
         </div>
     </div>
 </template>
-@endif
-@verbatim
+<?php endif; ?>
+
 <template v-else>
     <template v-if="!loading">
         <h6 class="text-muted">Всего {{card.length+' '+countGoods(card.length, 'товар', 'товара', 'товаров')}}</h6>
@@ -39,7 +66,7 @@
             <li v-for="(item, id) in card" class="list-group-item d-flex justify-content-between align-items-center rounded shadow-sm border-0">
                 <small class="d-flex align-items-center gap-3" style="width: 320px">
                     <img src="/img/no_photo.jpg" class="rounded" style="width: 50px" :alt="item.name" />
-                    <a :href=`/dashboard/product/details/${item.id}` class="d-flex align-items-center text-muted text-decoration-none">
+                    <a :href=`http://prospektrans.host/dashboard/product/details/${item.id}` class="d-flex align-items-center text-muted text-decoration-none">
                         <div class="d-flex justify-content-start flex-column">
                             <span>{{item.article}}</span>
                             <p class="fw-bold text-dark m-0">{{item.name}}</p>
@@ -101,5 +128,6 @@
         <h6 class="text-muted">Подгружаем товары...</h6>
     </template>
 </template>
-@endverbatim
-@endsection
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout/main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/сard.blade.php ENDPATH**/ ?>

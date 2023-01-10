@@ -16,10 +16,6 @@
 @else
     <div class="d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center">
-            <!-- <span class="badge bg-soft-success text-success">
-                <span class="legend-indicator bg-success"></span>
-                Оплачено 
-            </span>  -->
             <x-badge color="{{$data['state']['color']}}" text="{{$data['state']['name']}}"/>
             <span class="d-flex align-items-center gap-2 ms-2 ms-sm-3 text-secondary">
                 <span class="material-symbols-outlined">calendar_month</span> 

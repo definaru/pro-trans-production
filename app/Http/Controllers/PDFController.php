@@ -16,9 +16,9 @@ class PDFController extends Controller
             'order' => MoySklad::getInvoiceOne($id)
         ];
         $pdf = PDF::loadView('document.pdf', $data, [], 'UTF-8');
-        return $pdf->stream();
-        //->download('Документ №'.$data['order']['name'].'.pdf');
-        // 
+        return $pdf->download('Документ №'.$data['order']['name'].'.pdf');
+        //
+        //->stream(); 
         //return $pdf
     }
 }

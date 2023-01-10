@@ -1,14 +1,14 @@
-@extends('layout/main')
-@section('title', 'Предзаказы')
 
-@section('content')
+<?php $__env->startSection('title', 'Предзаказы'); ?>
+
+<?php $__env->startSection('content'); ?>
 <h6 class="text-muted">Всего 2 товара</h6>
 
 <ul class="list-group list-group-flush mt-4 d-grid gap-2">
     <li class="list-group-item d-flex justify-content-between align-items-center rounded shadow-sm border-0">
         <small class="d-flex align-items-center gap-3" style="width: 320px;">
             <img src="/img/no_photo.jpg" alt="ПРОКЛАДКА СЕПАРАТОРА МАСЛ" class="rounded" style="width: 50px" /> 
-            <a href="http://prospektrans.host/dashboard/product/details/42919327-5064-11ed-0a80-05bf003d0d2b" class="d-flex align-items-center text-muted text-decoration-none">
+            <a href="/dashboard/product/details/42919327-5064-11ed-0a80-05bf003d0d2b" class="d-flex align-items-center text-muted text-decoration-none">
                 <div class="d-flex justify-content-start flex-column">
                     <span>A5410150980</span> 
                     <p class="fw-bold text-dark m-0">ПРОКЛАДКА СЕПАРАТОРА МАСЛ</p>
@@ -35,7 +35,7 @@
     <li class="list-group-item d-flex justify-content-between align-items-center rounded shadow-sm border-0">
         <small class="d-flex align-items-center gap-3" style="width: 320px;">
             <img src="/img/no_photo.jpg" alt="КАРТРИДЖ ФИЛЬТРА ТОПЛИВНО" class="rounded" style="width: 50px" /> 
-            <a href="http://prospektrans.host/dashboard/product/details/49f64444-5064-11ed-0a80-05bf003d1191" class="d-flex align-items-center text-muted text-decoration-none">
+            <a href="/dashboard/product/details/49f64444-5064-11ed-0a80-05bf003d1191" class="d-flex align-items-center text-muted text-decoration-none">
                 <div class="d-flex justify-content-start flex-column">
                     <span>A9604770503</span> 
                     <p class="fw-bold text-dark m-0">КАРТРИДЖ ФИЛЬТРА ТОПЛИВНО</p>
@@ -80,4 +80,5 @@
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout/main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/dashboard/payment/account.blade.php ENDPATH**/ ?>

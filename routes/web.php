@@ -28,7 +28,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('payment/order/{invoice}', [DachboardController::class, 'Invoice']);
     Route::get('payment/record', [DachboardController::class, 'Record']);
     Route::get('payment/record/{id}', [DachboardController::class, 'RecordDetail']);
-    Route::get('payment/account', [DachboardController::class, 'Account']);
+    Route::get('account', [DachboardController::class, 'Account']);
     Route::get('payment/reports', [DachboardController::class, 'Reports']);
     Route::get('payment/reports/{order}', [DachboardController::class, 'ReportsDetail'])->name('order');
     Route::get('doc/{id}/{name}{extension?}', [PDFController::class, 'generatePDF'])->where(['extension' => '^(.pdf)|(.csv)|(.json)$']);

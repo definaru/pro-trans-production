@@ -75,6 +75,10 @@
                         <span class="badge bg-danger rounded-pill me-3" v-if="card.length" :class="[!isOpen ? 'label-menu' : '']">
                             @{{card.length}}
                         </span>
+                    @elseif($i['name'] === 'Предзаказы')
+                        <span class="badge bg-danger rounded-pill me-3" v-if="preorder.length" :class="[!isOpen ? 'label-menu' : '']"> 
+                            @{{preorder.length}}
+                        </span>
                     @else
                     <span class="badge bg-danger rounded-pill me-3" :class="[!isOpen ? 'label-menu' : '']">
                         {{ $i['count'] }}
