@@ -1,8 +1,8 @@
-@extends('layout/page')
 
-@section('title', 'Политика конфиденциальности')
 
-@section('content')
+<?php $__env->startSection('title', 'Политика конфиденциальности'); ?>
+
+<?php $__env->startSection('content'); ?>
 <div class="col-md-8 offset-md-2 my-5">
     <h5 class="mt-5">1. Общие положения</h5>
     <p>
@@ -384,4 +384,5 @@
 </div>
 
 <p class="text-center"><a href="/doc" class="btn btn-dark px-4">Юридическая информация</a></p>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout/page', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/doc/privatepolice.blade.php ENDPATH**/ ?>

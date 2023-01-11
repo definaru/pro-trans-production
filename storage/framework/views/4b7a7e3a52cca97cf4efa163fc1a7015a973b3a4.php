@@ -1,8 +1,8 @@
-@extends('layout/page')
 
-@section('title', 'Юридическая информация')
 
-@section('content')
+<?php $__env->startSection('title', 'Юридическая информация'); ?>
+
+<?php $__env->startSection('content'); ?>
 <div class="col-md-8 offset-md-2 my-5">
     <div class="py-5">
         <ul class="list-group list-group-flush">
@@ -39,4 +39,5 @@
         </ul>
     </div>    
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout/page', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/doc.blade.php ENDPATH**/ ?>

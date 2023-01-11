@@ -1,8 +1,8 @@
-@extends('layout/page')
 
-@section('title', 'Правила возврата')
 
-@section('content')
+<?php $__env->startSection('title', 'Правила возврата'); ?>
+
+<?php $__env->startSection('content'); ?>
 
 <div class="col-md-8 offset-md-2 my-5">
     <strong class="mt-5">1. ОБЩИЕ УСЛОВИЯ ВОЗВРАТА И ОБМЕНА ТОВАРА НАДЛЕЖАЩЕГО КАЧЕСТВА</strong>          
@@ -188,4 +188,5 @@
         <p><a href="/doc" class="btn btn-dark px-4">Юридическая информация</a></p>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout/page', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/doc/return-policy.blade.php ENDPATH**/ ?>

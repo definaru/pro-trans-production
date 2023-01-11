@@ -17,9 +17,6 @@
 
 <?php $__env->startSection('content'); ?>
 
-
-
-
     <?php if($deal::status() === '0'): ?>
         <?php if (isset($component)) { $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975 = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\Alert::class, ['type' => 'info','message' => 'Договор составлен. Нужно прислать подписанный договор с печатю. Два экземпляра']); ?>

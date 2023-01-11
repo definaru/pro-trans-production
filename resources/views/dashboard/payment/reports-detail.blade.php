@@ -301,5 +301,5 @@
         </div>
     </div>
 @endif
-<pre><?php var_dump($data);?></pre>
+
 @endsection

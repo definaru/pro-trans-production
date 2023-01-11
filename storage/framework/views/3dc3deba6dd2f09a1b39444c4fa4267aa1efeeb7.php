@@ -8,7 +8,7 @@
         <div class="card-body">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center gap-4">
-                    <i class="material-symbols-outlined icon-card bg-soft-danger text-danger">shopping_cart</i> 
+                    <i class="material-symbols-outlined icon-card bg-soft-danger text-danger">upcoming</i> 
                     <span>Пусто, заказов на рассмотрении нет.</span> 
                 </div>
                 <div>
@@ -64,27 +64,27 @@
             </div>
         </li>
     </ul>
+    <div class="d-flex justify-content-between">
+        <div class="col-md-6 mt-3">
+            <p class="m-0 text-muted"><small>
+                Нажимая кнопку "Оформить предзаказ" вы соглашаетесь с нашей 
+                <a href="/doc/privatepolice" target="_blank" class="text-muted">политикой конфиденциальности</a> и
+                <a href="/doc/license" target="_blank" class="text-muted">пользовательским соглашением</a></small>
+            </p>
+        </div>
+        <div class="d-flex justify-content-end gap-4 align-items-center mt-3 mb-5">
+            <div class="py-2"></div>
+            <div class="py-2 fw-bold pe-4"></div>
+            <div class="py-2">2 (шт.)</div>
+            <div>
+                <button class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
+                    <span class="material-symbols-outlined">check</span>
+                    Оформить предзаказ
+                </button>
+            </div>
+        </div>
+    </div>    
 </template>
 
-<div class="d-flex justify-content-between">
-    <div class="col-md-6 mt-3">
-        <p class="m-0 text-muted"><small>
-            Нажимая кнопку "Оформить предзаказ" вы соглашаетесь с нашей 
-            <a href="/doc/privatepolice" target="_blank" class="text-muted">политикой конфиденциальности</a> и
-            <a href="/doc/license" target="_blank" class="text-muted">пользовательским соглашением</a></small>
-        </p>
-    </div>
-    <div class="d-flex justify-content-end gap-4 align-items-center mt-3 mb-5">
-        <div class="py-2"></div>
-        <div class="py-2 fw-bold pe-4"></div>
-        <div class="py-2">2 (шт.)</div>
-        <div>
-            <button class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
-                <span class="material-symbols-outlined">check</span>
-                Оформить предзаказ
-            </button>
-        </div>
-    </div>
-</div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layout/main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/dashboard/account.blade.php ENDPATH**/ ?>

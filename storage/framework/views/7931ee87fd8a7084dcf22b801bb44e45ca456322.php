@@ -1,11 +1,11 @@
-@extends('layout/auth')
 
-@section('title', 'Регистрация')
 
-@section('content')
-@include('layout.main.logo')
+<?php $__env->startSection('title', 'Регистрация'); ?>
 
-@verbatim
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('layout.main.logo', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+
 <div class="text-center">
     <template v-if="result.length > 0">
         <span 
@@ -26,7 +26,7 @@
     </template>
     <template v-else></template>
 </div>
-@endverbatim
+
 <form v-if="result.length === 0">
     <div class="mt-4 mb-2">
         <input type="text" class="form-control" name="inn" v-model.trim="inn" v-on:change="onChange" placeholder="Ваш ИНН" />
@@ -61,14 +61,28 @@
                     autocapitalize="words"
                     v-model="email"
                     v-on:change="onChangeContact"
-                    class="form-control ps-5 @error('email') is-invalid @enderror" 
+                    class="form-control ps-5 <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
                     placeholder="Укажите ваш рабочий e-mail" 
                 />
                 <i class="material-symbols-outlined fs-5" style="position: absolute;top: 8px;left: 11px;color: #999">mark_as_unread</i>
             </div>
-            @error('email')
-                <small class="valid-feedback d-block text-danger m-0">{{ $message }}</small>
-            @enderror
+            <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                <small class="valid-feedback d-block text-danger m-0"><?php echo e($message); ?></small>
+            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
         </div>
         <div class="mt-2">
             <div class="position-relative">
@@ -80,14 +94,28 @@
                     spellcheck="false"
                     v-model="phone"
                     v-on:change="onChangeContact"
-                    class="form-control ps-5 @error('phone') is-invalid @enderror" 
+                    class="form-control ps-5 <?php $__errorArgs = ['phone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
                     placeholder="Укажите ваш рабочий телефон" 
                 />
                 <i class="material-symbols-outlined fs-5" style="position: absolute;top: 8px;left: 11px;color: #999">call</i>
             </div>
-            @error('phone')
-                <small class="valid-feedback d-block text-danger m-0">{{ $message }}</small>
-            @enderror
+            <?php $__errorArgs = ['phone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                <small class="valid-feedback d-block text-danger m-0"><?php echo e($message); ?></small>
+            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
         </div>
 
         <div class="mt-3 d-grid">
@@ -99,5 +127,6 @@
 
 
 
-<pre>@{{ moysklad.length ? JSON.stringify(moysklad, null, 4) : '' }}</pre>
-@endsection
+<pre>{{ moysklad.length ? JSON.stringify(moysklad, null, 4) : '' }}</pre>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout/auth', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/signup.blade.php ENDPATH**/ ?>
