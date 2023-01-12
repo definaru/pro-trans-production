@@ -39,9 +39,6 @@
             <?php endif; ?>
             
             <?php if($availability === '0' || $availability < 0): ?>
-                <!-- <a href="#">
-                    <small class="badge text-bg-secondary">Заказать</small>
-                </a> -->
                 <?php if (isset($component)) { $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94 = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\Badge::class, ['color' => 'danger','text' => 'Нет в наличии']); ?>
 <?php $component->withName('badge'); ?>
@@ -56,7 +53,7 @@
 <?php endif; ?>
             <?php else: ?>
                 <?php if (isset($component)) { $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94 = $component; } ?>
-<?php $component = $__env->getContainer()->make(App\View\Components\Badge::class, ['color' => '34617','text' => 'В наличии - '.e($availability).' шт.']); ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Badge::class, ['color' => '34617','text' => 'В наличии '.e($availability).' шт.']); ?>
 <?php $component->withName('badge'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>

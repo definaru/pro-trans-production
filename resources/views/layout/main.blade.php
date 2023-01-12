@@ -14,8 +14,7 @@
     <link rel="canonical" href="{{ url()->current() }}" />
 </head>
 <body>
-
-    <div id="admin" :class="[isOpen ? 'panel' : 'panel-close']" class="d-print-block">
+    <div id="admin" :class="[isOpen ? 'panel' : 'panel-close']" class="d-print-block" v-cloak>
         @include('layout.main.aside')
         <div class="bg-light content d-print-table w-100">
             @include('layout.main.header')

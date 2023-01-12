@@ -117,6 +117,7 @@
                         </div>
                         @endif
                     </p>
+                    <div class="d-grid w-25">
                     @if($product['quantity'] == 0 || $product['quantity'] < 0)
                         <div  
                             id="preorders1"
@@ -134,7 +135,8 @@
                         >
                             <x-button type="button" color="dark" text="В корзину" icon="shopping_cart" />
                         </div>
-                    @endif
+                    @endif                        
+                    </div>
                 </div>
             </div>            
         </div>

@@ -22,7 +22,6 @@ class MoySklad
 
     public static function put($url, $req)
     {
-        //$req = response()->json($req);
         return Http::withBasicAuth(
             config('app.ms_login'), 
             config('app.ms_password')
@@ -31,12 +30,20 @@ class MoySklad
 
     public static function post($url, $req)
     {
-        //$req = response()->json($req);
         return Http::withBasicAuth(
             config('app.ms_login'), 
             config('app.ms_password')
         )->withBody($req, 'application/json')->post($url);
     }
+
+
+    public static function viewOnePreOrder($id)
+    {
+        $url = self::msUrl().'internalorder/'.$id.'?expand=state,positions,positions.assortment';
+        $response = self::get($url);
+        return $response->json();
+    }
+
 
     public static function editSetting($data)
     {
@@ -70,48 +77,6 @@ class MoySklad
         return $response->json();
     }
 
-    public static function enterIntoAcontract($deal, $accountId)
-    {
-        $id = self::getAgreementID();
-        $token = base64_encode(config('app.ms_login').':'.config('app.ms_password'));
-        $url = self::msUrl().'contract/'.$id.'?expand=state';
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'PUT',
-            CURLOPT_POSTFIELDS => '{
-                "state": {
-                    "meta": {
-                        "href": "https://online.moysklad.ru/api/remap/1.2/entity/contract/metadata/states/'.$deal.'",
-                        "metadataHref": "https://online.moysklad.ru/api/remap/1.2/entity/contract/metadata",
-                        "type": "state",
-                        "mediaType": "application/json"
-                    },
-                    "id": "'.$deal.'",
-                    "accountId": "'.$accountId.'",
-                    "name": "Заключён",
-                    "color": 34617,
-                    "stateType": "Regular",
-                    "entityType": "contract"
-                }
-            }',
-            CURLOPT_HTTPHEADER => array(
-                'Authorization: Basic '.$token,
-                'Content-Type: application/json'
-            ),
-        ));
-
-        $response = curl_exec($curl);
-
-        curl_close($curl);
-        return $response;
-    }
 
     public static function getAgreementID()
     {
@@ -122,8 +87,32 @@ class MoySklad
         if($item === []) {
             return null;
         }
-        //dd($response->json());
         return $item[0]['id'];
+    }
+
+
+    public static function viewAllPreOrders()
+    {
+        $uuid = auth()->user()->verified;
+        $url = self::msUrl().'internalorder?filter=description='.$uuid;
+        $response = self::get($url);
+        $items = $response->json();
+        $array = [];
+        foreach($items['rows'] as $item) {
+            $array[] = [
+                'id' => $item['id'],
+                'name' => $item['name'],
+                'created' => $item['created'],
+                'sum' => $item['sum'],
+                'vatSum' => $item['vatSum'],
+                'size' => $item['positions']['meta']['size'],
+                'state' => self::getInvoiceoutMetadataStates(isset($item['state']['meta']['href']) ? $item['state']['meta']['href'] : ''),
+            ];
+        }
+        return [
+            'count' => $items['meta']['size'],
+            'rows' => $array
+        ];
     }
 
 
@@ -336,7 +325,6 @@ class MoySklad
 
     public static function getCustomerOrderPositions($url) 
     {
-        //$url = self::msUrl().'customerorder/'.$id.'/positions';
         $response = self::get($url);
         $items = $response->json();
         $array = [];
@@ -615,6 +603,13 @@ class MoySklad
         self::changeStatusCustomerorder($id);
         $url = self::msUrl().'invoiceout';
         $response = self::post($url, json_encode($arr));
+        return $response->json();
+    }
+
+    public static function getImage()
+    {
+        $url = 'https://online.moysklad.ru/api/remap/1.2/download/062010a6-a3ed-46be-bcef-fb0fa028d6b4?miniature=true';
+        $response = self::get($url);
         return $response->json();
     }
     

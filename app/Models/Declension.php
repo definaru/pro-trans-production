@@ -42,6 +42,11 @@ class Declension
     {
         return '<b>'.$num.'</b> &#160;'. self::diff($num, 'позиция', 'позиции', 'позиций');
     }
+
+    public static function preorders($num)
+    {
+        return '<b>'.$num.'</b> &#160;'. self::diff($num, 'предзаказ', 'предзаказа', 'предзаказов');
+    }
     
     public static function search($num)
     {

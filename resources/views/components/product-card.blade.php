@@ -36,12 +36,9 @@
             @endrole
             
             @if($availability === '0' || $availability < 0)
-                <!-- <a href="#">
-                    <small class="badge text-bg-secondary">Заказать</small>
-                </a> -->
                 <x-badge color="danger" text="Нет в наличии" />
             @else
-                <x-badge color="34617" text="В наличии - {{$availability}} шт." />
+                <x-badge color="34617" text="В наличии {{$availability}} шт." />
             @endif            
         </div>
     </td>

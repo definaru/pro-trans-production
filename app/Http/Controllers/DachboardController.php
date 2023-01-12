@@ -22,9 +22,21 @@ class DachboardController extends Controller
         return view('dashboard');
     }
 
+    public function preOrderViewOne($id)
+    {
+        $pre = MoySklad::viewOnePreOrder($id);
+        return view('dashboard.payment.preorder-detail', ['id' => $id, 'pre' => $pre]);
+    }
+
+    public function preOrders()
+    {
+        $order = MoySklad::viewAllPreOrders();
+        // return response()->json($order);
+        return view('dashboard.payment.preorders', ['order' => $order]);
+    }
+
     public function createInvoice(Request $request)
     {
-        // dd($request->id);
         MoySklad::createInvoiceout($request->id);
         $message = 'Счёт выставлен';
         return redirect()->route('orders')->with(['message' => $message]);
@@ -165,11 +177,7 @@ class DachboardController extends Controller
     {
         $contract = MoySklad::getContract();
         //return response()->json($contract);
-        //$bank = DaData::bank($contract['agent']['inn']);
-        return view('document.agreement', [
-            'contract' => $contract,
-            //'bank' => $bank
-        ]);
+        return view('document.agreement', ['contract' => $contract]);
     }
 
     public function Record() 
@@ -198,6 +206,7 @@ class DachboardController extends Controller
 
     public function CatalogDetail($name, $limit = 10, $offset = 0)
     {
+        MoySklad::getImage();
         $catalog = MoySklad::getCategory($name);
         $product = MoySklad::getAllProduct($limit, $offset);
         //$pagination = new Pagination();

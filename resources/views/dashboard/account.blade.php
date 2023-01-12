@@ -42,12 +42,15 @@
                 </span>
             </div>
             <div class="input-group" style="width: 140px;">
-                <button class="btn btn-sm material-symbols-outlined pe-0">add</button> 
-                <div class="form-control form-control-sm fs-6 border-0 text-center">1</div>
-                <button class="btn btn-sm material-symbols-outlined ps-0">remove</button>
+                <button class="btn btn-sm material-symbols-outlined pe-0" @click="inPreCrement(item.id)">add</button> 
+                <div class="form-control form-control-sm fs-6 border-0 text-center">
+                    @{{item.count}}
+                </div>
+                <button class="btn btn-sm material-symbols-outlined ps-0" v-if="item.count == 1">remove</button>
+                <button class="btn btn-sm material-symbols-outlined ps-0" @click="dePreCrement(item.id)" v-else>remove</button>
             </div>
             <div class="btn-group">
-                <button class="btn text-danger rounded material-symbols-outlined">
+                <button @click="removePreOrder(id)" class="btn text-danger rounded material-symbols-outlined">
                     delete
                 </button>
             </div>
@@ -64,7 +67,7 @@
         <div class="d-flex justify-content-end gap-4 align-items-center mt-3 mb-5">
             <div class="py-2"></div>
             <div class="py-2 fw-bold pe-4"></div>
-            <div class="py-2">2 (шт.)</div>
+            <div class="py-2">@{{preamount}} (шт.)</div>
             <div>
                 <button class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
                     <span class="material-symbols-outlined">check</span>
@@ -73,6 +76,7 @@
             </div>
         </div>
     </div>    
+    @{{totalPreAmount}}
 </template>
 
 @endsection

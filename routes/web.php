@@ -24,6 +24,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::match(['get', 'post'],'product/details/{id}', [DachboardController::class, 'DetailProduct']);
     Route::get('catalog', [DachboardController::class, 'Catalog']);
     Route::get('catalog/category/{name}/{limit?}/{offset?}', [DachboardController::class, 'CatalogDetail']);
+    Route::get('payment/preorder/{id}', [DachboardController::class, 'preOrderViewOne']);
+    Route::get('payment/preorders', [DachboardController::class, 'preOrders'])->name('preorders');
     Route::get('payment/orders', [DachboardController::class, 'Orders'])->name('orders');
     Route::get('payment/order/{invoice}', [DachboardController::class, 'Invoice']);
     Route::get('payment/record', [DachboardController::class, 'Record']);

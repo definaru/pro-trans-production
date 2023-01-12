@@ -66,7 +66,7 @@
             <li v-for="(item, id) in card" class="list-group-item d-flex justify-content-between align-items-center rounded shadow-sm border-0">
                 <small class="d-flex align-items-center gap-3" style="width: 320px">
                     <img src="/img/no_photo.jpg" class="rounded" style="width: 50px" :alt="item.name" />
-                    <a :href=`http://prospektrans.host/dashboard/product/details/${item.id}` class="d-flex align-items-center text-muted text-decoration-none">
+                    <a :href=`/dashboard/product/details/${item.id}` class="d-flex align-items-center text-muted text-decoration-none">
                         <div class="d-flex justify-content-start flex-column">
                             <span>{{item.article}}</span>
                             <p class="fw-bold text-dark m-0">{{item.name}}</p>

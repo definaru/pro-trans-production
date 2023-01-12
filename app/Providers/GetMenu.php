@@ -480,8 +480,8 @@ class GetMenu
                                 'href' => 'payment/record'
                             ],
                             [
-                                'name' => 'divider',
-                                'href' => ''
+                                'name' => 'Мои предзаказы',
+                                'href' => 'payment/preorders'
                             ]
                         ]
                     ],

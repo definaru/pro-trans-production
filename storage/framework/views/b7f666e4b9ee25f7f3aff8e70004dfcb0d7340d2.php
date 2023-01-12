@@ -14,8 +14,7 @@
     <link rel="canonical" href="<?php echo e(url()->current()); ?>" />
 </head>
 <body>
-
-    <div id="admin" :class="[isOpen ? 'panel' : 'panel-close']" class="d-print-block">
+    <div id="admin" :class="[isOpen ? 'panel' : 'panel-close']" class="d-print-block" v-cloak>
         <?php echo $__env->make('layout.main.aside', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         <div class="bg-light content d-print-table w-100">
             <?php echo $__env->make('layout.main.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
