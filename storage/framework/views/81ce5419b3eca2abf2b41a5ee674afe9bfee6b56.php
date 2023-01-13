@@ -79,7 +79,7 @@
         <?php if($availability === '0' || $availability < 0): ?>
         <div
             id="preorder<?php echo e($href); ?>"
-            data-order="<?php echo e($href); ?>,<?php echo e($code); ?>,<?php echo e($name); ?>,1"
+            data-order="<?php echo e($href); ?>,<?php echo e($code); ?>,<?php echo e($name); ?>,1,<?php echo e($price); ?>"
             v-on:click="addToOrder('<?php echo e($href); ?>')"
         >
             <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>

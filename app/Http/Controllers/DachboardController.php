@@ -259,6 +259,18 @@ class DachboardController extends Controller
         return redirect()->route('card')->with(['status' => $message, 'id' => $account['id']]);
     }
 
+    public function preCheckout(Request $request)
+    {
+        $message = 'Ваш предзаказ оформлен.';
+        $account = MoySklad::getPreCheckout($request->name);
+        if(isset($account['id'])) {
+            Telegram::getMessageTelegram($account['id'], $account['name'], '', 'preсheckout');
+            return redirect()->route('account')->with(['status' => $message, 'id' => $account['id']]);
+        } else {
+            return redirect()->back()->withErrors(['error' => 'Не удалось создать предзаказ.']);
+        } 
+    }
+
     public function addedCounterAgent(CounterAgent $request)
     {
         $request->validate(CounterAgent::rules());

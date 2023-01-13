@@ -2,6 +2,20 @@
 @section('title', 'Предзаказы')
 
 @section('content')
+
+@if(session('status'))
+    <x-alert type="success" close="false" message="{{ session('status') }}" />
+    <div class="w-25">
+        <x-button 
+            type="a" 
+            text="Посмотреть"
+            icon="arrow_right_alt"
+            href="/dashboard/payment/preorder/{{session('id')}}" 
+            color="dark"  
+        />
+    </div>
+@else
+
 <template v-if="preorder.length === 0">
     <h6 class="text-muted">Заказов нет</h6>
     <div class="card border-0 shadow-sm mt-4">
@@ -68,15 +82,25 @@
             <div class="py-2"></div>
             <div class="py-2 fw-bold pe-4"></div>
             <div class="py-2">@{{preamount}} (шт.)</div>
-            <div>
-                <button class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
-                    <span class="material-symbols-outlined">check</span>
-                    Оформить предзаказ
+            <form action="/api/precheckout" method="post">
+                <input type="hidden" name="_token" value="<?=csrf_token();?>" />
+                <input type="hidden" name="name" :value="JSON.stringify(preсheckout)" />
+                <button v-on:click="preCheckout('<?=$user->verified?>')" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
+                    <span class="material-symbols-outlined" v-if="preсheckout.length === 0">check</span>
+                    <span class="material-symbols-outlined spin" v-else>autorenew</span>
+                    @{{preсheckout.length !== 0 ? 'Отправляем...' : 'Оформить предзаказ'}}
                 </button>
-            </div>
+            </form>
+            @error('error')
+                <label class="text-danger">{{ $message }}</label>
+            @enderror   
         </div>
     </div>    
     @{{totalPreAmount}}
 </template>
+@endif
+<?php /*
+<pre>@{{JSON.stringify(preсheckout, null, 4)}}</pre>
+*/ ?>
 
 @endsection

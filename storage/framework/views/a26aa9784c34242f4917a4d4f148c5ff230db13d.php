@@ -93,14 +93,14 @@
                 </tbody>
             </table>
         </div>
+        <?php if(isset($pre['deliveryPlannedMoment'])): ?>
         <p class="d-flex gap-2 align-items-center mt-4">
             <span class="material-symbols-outlined text-muted">update</span> 
             <b>Запланированное время доставки:</b>  
-            <?php echo e(isset($pre['deliveryPlannedMoment']) 
-                ? $time::parse($pre['deliveryPlannedMoment'])->locale('ru')->translatedFormat('d F Y, H:i') : ''); ?>
+            <?php echo e($time::parse($pre['deliveryPlannedMoment'])->locale('ru')->translatedFormat('d F Y, H:i')); ?>
 
         </p>
-        <pre><?php // var_dump($pre);?></pre>
+        <?php endif; ?>
     </div>
 </div>
 <?php $__env->stopSection(); ?>

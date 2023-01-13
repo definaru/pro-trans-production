@@ -2,6 +2,36 @@
 <?php $__env->startSection('title', 'Предзаказы'); ?>
 
 <?php $__env->startSection('content'); ?>
+
+<?php if(session('status')): ?>
+    <?php if (isset($component)) { $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Alert::class, ['type' => 'success','close' => 'false','message' => ''.e(session('status')).'']); ?>
+<?php $component->withName('alert'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975)): ?>
+<?php $component = $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975; ?>
+<?php unset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975); ?>
+<?php endif; ?>
+    <div class="w-25">
+        <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'a','text' => 'Посмотреть','icon' => 'arrow_right_alt','href' => '/dashboard/payment/preorder/'.e(session('id')).'','color' => 'dark']); ?>
+<?php $component->withName('button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940)): ?>
+<?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
+<?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
+<?php endif; ?>
+    </div>
+<?php else: ?>
+
 <template v-if="preorder.length === 0">
     <h6 class="text-muted">Заказов нет</h6>
     <div class="card border-0 shadow-sm mt-4">
@@ -79,16 +109,33 @@
             <div class="py-2"></div>
             <div class="py-2 fw-bold pe-4"></div>
             <div class="py-2">{{preamount}} (шт.)</div>
-            <div>
-                <button class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
-                    <span class="material-symbols-outlined">check</span>
-                    Оформить предзаказ
+            <form action="/api/precheckout" method="post">
+                <input type="hidden" name="_token" value="<?=csrf_token();?>" />
+                <input type="hidden" name="name" :value="JSON.stringify(preсheckout)" />
+                <button v-on:click="preCheckout('<?=$user->verified?>')" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
+                    <span class="material-symbols-outlined" v-if="preсheckout.length === 0">check</span>
+                    <span class="material-symbols-outlined spin" v-else>autorenew</span>
+                    {{preсheckout.length !== 0 ? 'Отправляем...' : 'Оформить предзаказ'}}
                 </button>
-            </div>
+            </form>
+            <?php $__errorArgs = ['error'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                <label class="text-danger"><?php echo e($message); ?></label>
+            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>   
         </div>
     </div>    
     {{totalPreAmount}}
 </template>
+<?php endif; ?>
+<?php /*
+<pre>@{{JSON.stringify(preсheckout, null, 4)}}</pre>
+*/ ?>
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layout/main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/dashboard/account.blade.php ENDPATH**/ ?>

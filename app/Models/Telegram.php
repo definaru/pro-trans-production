@@ -20,6 +20,9 @@ class Telegram
             case 'сheckout':
                 return self::сheckout($num, $product, $link);
                 break;
+            case 'preсheckout':
+                return self::preсheckout($num, $product, $link);
+                break;
             case 'manager':
                 return self::manager($num, $product, $link);
                 break;
@@ -52,11 +55,21 @@ class Telegram
         return $msd;
     }
 
+    public static function preсheckout($num, $product, $link)
+    {
+        $msd = '<b>Предаказ #'.$product.'</b>'.PHP_EOL.
+        '------'.PHP_EOL.
+        'Дата: '.date('d.m.Y | H:i').PHP_EOL.
+        '==========.'.PHP_EOL.
+        '<a href="https://online.moysklad.ru/app/#internalorder/edit?id='.$num.'">[Подробнее]</a>';
+        return $msd;
+    }
+
     public static function сheckout($num, $product, $link)
     {   
         $msd = '<b>Заказ #'.$product.'</b>'.PHP_EOL.
         '------'.PHP_EOL.
-        'Дата: '.date('d.m.Y | H:i:s').PHP_EOL.
+        'Дата: '.date('d.m.Y | H:i').PHP_EOL.
         'На вашем сервисе '.config('app.name').' был оформлен заказ товаров.'.PHP_EOL.
         '<a href="https://online.moysklad.ru/app/#customerorder/edit?id='.$num.'">[Подробнее]</a>';
         return $msd;

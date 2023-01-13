@@ -54,7 +54,7 @@
         @if($availability === '0' || $availability < 0)
         <div
             id="preorder{{$href}}"
-            data-order="{{$href}},{{$code}},{{$name}},1"
+            data-order="{{$href}},{{$code}},{{$name}},1,{{$price}}"
             v-on:click="addToOrder('{{$href}}')"
         >
             <x-button 

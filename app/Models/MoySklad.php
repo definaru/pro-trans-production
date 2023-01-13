@@ -70,6 +70,15 @@ class MoySklad
         return $response->json();
     }
 
+
+    public static function getPreCheckout($req)
+    {
+        $url = self::msUrl().'internalorder';
+        $response = self::post($url, $req);
+        return $response->json();
+    }
+    
+
     public static function getCounterAgent($req)
     {
         $url = self::msUrl().'counterparty';
@@ -94,7 +103,7 @@ class MoySklad
     public static function viewAllPreOrders()
     {
         $uuid = auth()->user()->verified;
-        $url = self::msUrl().'internalorder?filter=description='.$uuid;
+        $url = self::msUrl().'internalorder?order=name,desc;created&filter=description='.$uuid;
         $response = self::get($url);
         $items = $response->json();
         $array = [];
