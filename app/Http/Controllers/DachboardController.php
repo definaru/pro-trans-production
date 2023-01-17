@@ -22,6 +22,11 @@ class DachboardController extends Controller
         return view('dashboard');
     }
 
+    public function Test()
+    {
+        return view('test');
+    }
+
     public function preOrderViewOne($id)
     {
         $pre = MoySklad::viewOnePreOrder($id);
@@ -255,8 +260,10 @@ class DachboardController extends Controller
         $account = MoySklad::getCheckout($request->name);
         if(isset($account['id'])) {
             Telegram::getMessageTelegram($account['id'], $account['name'], '', 'сheckout');
+            return redirect()->route('card')->with(['status' => $message, 'id' => $account['id']]);
+        } else {
+            return redirect()->back()->withErrors(['error' => 'Не удалось создать заказ.']);
         }
-        return redirect()->route('card')->with(['status' => $message, 'id' => $account['id']]);
     }
 
     public function preCheckout(Request $request)

@@ -3,6 +3,9 @@
 
 @section('content')
 
+@error('error')
+    <x-alert type="danger" close="false" message="{{ $message }}" />
+@enderror 
 @if(session('status'))
     <x-alert type="success" close="false" message="{{ session('status') }}" />
     <div class="w-25">
@@ -83,6 +86,7 @@
                     {{getTotalsumma(totalsumma)}}
                 </div>
                 <div class="py-2">{{amount}} (шт.)</div>
+
                 <form action="/api/checkout" method="post" class="py-2">
                     <input type="hidden" name="_token" value="<?=csrf_token();?>" />
                     <input type="hidden" name="name" :value="JSON.stringify(сheckout)" />
@@ -92,6 +96,7 @@
                         {{сheckout.length !== 0 ? 'Отправляем...' : 'Оформить заказ'}}
                     </button>
                 </form>
+
             </div>    
         </div>
         {{totalSum}}
@@ -102,4 +107,5 @@
     </template>
 </template>
 @endverbatim
+
 @endsection

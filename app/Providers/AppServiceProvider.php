@@ -39,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
 
         View::share([
             'menu'          => GetMenu::dataMenu(),
+            'adminmenu'     => GetMenu::adminMenu(),
             'nouser'        => GetMenu::nouser(),
             'stop'          => GetMenu::dataMenuStop(),
             'usermenu'      => GetMenu::user(),

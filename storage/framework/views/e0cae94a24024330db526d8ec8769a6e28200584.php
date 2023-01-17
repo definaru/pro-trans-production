@@ -160,6 +160,10 @@ unset($__errorArgs, $__bag); ?>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     <?php endif; ?>
 
+    <?php if(auth()->check() && auth()->user()->hasRole('admin')): ?>
+        <strong>Admin-Панель</strong> 
+    <?php endif; ?>
+
     
     <!-- <?php if(auth()->check() && auth()->user()->hasRole('customer')): ?>
         <p>Project Manager Panel</p> 
@@ -262,20 +266,20 @@ unset($__errorArgs, $__bag); ?>
     </div>
 
 <?php if($deal::status() === 'z'): ?>
-<div data-bs-backdrop="static" data-bs-keyboard="false" class="modal fade show" aria-modal="true" role="dialog" style="display: block;">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content border-0">
-            <div class="modal-header border-0">
-                <h1 class="modal-title fs-5 fw-bold">Здравствуйте</h1>
-            </div>
-            <div class="modal-body py-0">
-                <p>
-                    В настоящий момент, вы не можете пользоваться нашей платформой,
-                    так как у вас не заключён договор. Чтобы начать пользоваться, нажмите кнопку:
-                </p>
-            </div>
-            <div class="modal-footer border-0">
-                <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+    <div data-bs-backdrop="static" data-bs-keyboard="false" class="modal fade show" aria-modal="true" role="dialog" style="display: block;">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0">
+                <div class="modal-header border-0">
+                    <h1 class="modal-title fs-5 fw-bold">Здравствуйте</h1>
+                </div>
+                <div class="modal-body py-0">
+                    <p>
+                        В настоящий момент, вы не можете пользоваться нашей платформой,
+                        так как у вас не заключён договор. Чтобы начать пользоваться, нажмите кнопку:
+                    </p>
+                </div>
+                <div class="modal-footer border-0">
+                    <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'a','href' => '/dashboard/document/agreement','color' => 'dark','icon' => 'quick_reference','text' => 'Заключить договор']); ?>
 <?php $component->withName('button'); ?>
 <?php if ($component->shouldRender()): ?>
@@ -287,11 +291,11 @@ unset($__errorArgs, $__bag); ?>
 <?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
 <?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
 <?php endif; ?>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="modal-backdrop fade show"></div>
+    <div class="modal-backdrop fade show"></div>
 <?php endif; ?>
 
 <?php $__env->stopSection(); ?>

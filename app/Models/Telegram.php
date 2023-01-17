@@ -107,7 +107,7 @@ class Telegram
         $url = config('app.tg_url').config('app.tg_apikey').'/sendMessage';
         $response = Http::asForm()->post($url, [
             'text' => htmlspecialchars_decode($msd),
-            'chat_id' => 201726918,
+            'chat_id' => -1001776424850,
             'parse_mode' => 'HTML'
         ]);
         return $response;

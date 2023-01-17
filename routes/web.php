@@ -40,6 +40,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::post('/agreements', [DachboardController::class, 'sendAgreement']);
     Route::post('/agreements/update', [DachboardController::class, 'updateAgreement']);
     Route::post('/action/deal', [DachboardController::class, 'sendDeal']);
+
+    // Admin-Панель
+    // admin/doc
 });
 
 Route::prefix('api')->group(function () {
@@ -73,6 +76,8 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('/signup', 'register')->name('signup');
 });
 
+
+Route::get('/test', [DachboardController::class, 'Test']);
 
 Route::get('/contact', [MainController::class, 'Сontact']);
 Route::get('/doc', [MainController::class, 'Documentation']);

@@ -3,6 +3,27 @@
 
 <?php $__env->startSection('content'); ?>
 
+<?php $__errorArgs = ['error'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+    <?php if (isset($component)) { $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Alert::class, ['type' => 'danger','close' => 'false','message' => ''.e($message).'']); ?>
+<?php $component->withName('alert'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975)): ?>
+<?php $component = $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975; ?>
+<?php unset($__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975); ?>
+<?php endif; ?>
+<?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?> 
 <?php if(session('status')): ?>
     <?php if (isset($component)) { $__componentOriginald4c8f106e1e33ab85c5d037c2504e2574c1b0975 = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\Alert::class, ['type' => 'success','close' => 'false','message' => ''.e(session('status')).'']); ?>
@@ -110,6 +131,7 @@
                     {{getTotalsumma(totalsumma)}}
                 </div>
                 <div class="py-2">{{amount}} (шт.)</div>
+
                 <form action="/api/checkout" method="post" class="py-2">
                     <input type="hidden" name="_token" value="<?=csrf_token();?>" />
                     <input type="hidden" name="name" :value="JSON.stringify(сheckout)" />
@@ -119,6 +141,7 @@
                         {{сheckout.length !== 0 ? 'Отправляем...' : 'Оформить заказ'}}
                     </button>
                 </form>
+
             </div>    
         </div>
         {{totalSum}}
@@ -128,6 +151,7 @@
         <h6 class="text-muted">Подгружаем товары...</h6>
     </template>
 </template>
+
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layout/main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/сard.blade.php ENDPATH**/ ?>

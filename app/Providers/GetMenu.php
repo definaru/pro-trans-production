@@ -448,6 +448,24 @@ class GetMenu
         ];        
     }
 
+    public static function adminMenu()
+    {
+        return [
+            [
+                'header' => 'Управление',
+                'list' => [
+                    [
+                        'icon' => 'bolt',
+                        'name' => 'Документооборот',
+                        'slug' => 'admin/doc',
+                        'count' => '',
+                        'list' => ''
+                    ]
+                ]
+            ]
+        ];
+    }
+
     public static function dataMenu()
     {
         return [

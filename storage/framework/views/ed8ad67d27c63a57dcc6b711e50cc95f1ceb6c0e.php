@@ -13,6 +13,23 @@
         
         <?php if($deal::status() === '1'): ?>
         <div id="inner-content">
+            <?php if(auth()->check() && auth()->user()->hasRole('admin')): ?>
+                <?php $__currentLoopData = $adminmenu; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php if (isset($component)) { $__componentOriginald0b4154eafa6ddf1d90e70a636ac005452fbb4c9 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Menu::class, ['header' => ''.e($item['header']).'','list' => $item['list']]); ?>
+<?php $component->withName('menu'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald0b4154eafa6ddf1d90e70a636ac005452fbb4c9)): ?>
+<?php $component = $__componentOriginald0b4154eafa6ddf1d90e70a636ac005452fbb4c9; ?>
+<?php unset($__componentOriginald0b4154eafa6ddf1d90e70a636ac005452fbb4c9); ?>
+<?php endif; ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>  
+            <?php endif; ?>  
+
             <?php $__currentLoopData = $menu; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <?php if (isset($component)) { $__componentOriginald0b4154eafa6ddf1d90e70a636ac005452fbb4c9 = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\Menu::class, ['header' => ''.e($item['header']).'','list' => $item['list']]); ?>

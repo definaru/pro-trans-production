@@ -13,6 +13,12 @@
         
         @if($deal::status() === '1')
         <div id="inner-content">
+            @role('admin')
+                @foreach($adminmenu as $item)
+                    <x-menu header="{{$item['header']}}" :list="$item['list']" />
+                @endforeach  
+            @endrole  
+
             @foreach($menu as $item)
                 <x-menu header="{{$item['header']}}" :list="$item['list']" />
             @endforeach
