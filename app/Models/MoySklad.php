@@ -621,5 +621,29 @@ class MoySklad
         $response = self::get($url);
         return $response->json();
     }
+
+    public static function getUPDfileExport($id)
+    {
+        // use Illuminate\Http\Response;
+        // use Illuminate\Support\Facades\Response;        
+        $arr = [
+            'template' => [
+                'meta' => [
+                    'href' => 'https://online.moysklad.ru/api/remap/1.2/entity/demand/metadata/embeddedtemplate/4fdd996f-d2fd-4500-baf2-fea33b6db077',
+                    'type' => 'embeddedtemplate',
+                    'mediaType' => 'application/json'                   
+                ]               
+            ],
+            'extension' => 'pdf'
+        ];
+        $url = self::msUrl().'demand/'.$id.'/export';
+        $response = self::post($url, json_encode($arr));
+        //dd($response->transferStats->getHandlerStats()['url']);
+        //return response()->json($response);
+        return $response->transferStats->getHandlerStats()['url'];
+        // response()->streamDownload(function () {
+        //     echo $response->transferStats->getHandlerStats()['url'];
+        // }, time().'-readme.pdf');
+    }
     
 }

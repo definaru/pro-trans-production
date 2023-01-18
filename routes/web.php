@@ -28,7 +28,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('payment/preorders', [DachboardController::class, 'preOrders'])->name('preorders');
     Route::get('payment/orders', [DachboardController::class, 'Orders'])->name('orders');
     Route::get('payment/order/{invoice}', [DachboardController::class, 'Invoice']);
-    Route::get('payment/record', [DachboardController::class, 'Record']);
+    Route::get('payment/record', [DachboardController::class, 'Record'])->name('record');
     Route::get('payment/record/{id}', [DachboardController::class, 'RecordDetail']);
     Route::get('account', [DachboardController::class, 'Account'])->name('account');;
     Route::get('payment/reports', [DachboardController::class, 'Reports']);
@@ -40,6 +40,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::post('/agreements', [DachboardController::class, 'sendAgreement']);
     Route::post('/agreements/update', [DachboardController::class, 'updateAgreement']);
     Route::post('/action/deal', [DachboardController::class, 'sendDeal']);
+    Route::post('upd/pdf/export', [DachboardController::class, 'getUPD']);
 
     // Admin-Панель
     // admin/doc

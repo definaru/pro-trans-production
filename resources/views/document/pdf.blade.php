@@ -8,8 +8,6 @@
     <link rel="shortcut icon" href="{{ asset('img/prospectdesktopicon.png') }}" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
     <style type="text/css">
-        /* * {font-family: "DejaVu Sans", sans-serif;} */
-        /* Calibri, Candara, Segoe, Segoe UI, Optima, Arial,  */
         @page {
             margin: 20px;
         }
@@ -94,8 +92,12 @@
                 <tr>
                     <td class="font-weight-normal px-1" style="font-size:12px">Основание:</td>
                     <td class="font-weight-bold" style="font-size:12px;">
+                    @if(isset($order['contract']))
                         Договор №{{$order['contract']['name']}} / MS-{{$order['customerOrder']['name']}} 
                         от {{date_format(date_create($order['customerOrder']['created']), 'd.m.Y')}}
+                    @else
+                        Без договора
+                    @endif
                     </td>
                 <tr> 
             </tbody>

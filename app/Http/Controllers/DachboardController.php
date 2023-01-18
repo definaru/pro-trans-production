@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 use App\Http\Requests\MakeContract;
 use App\Http\Requests\SettingEdit;
@@ -276,6 +278,17 @@ class DachboardController extends Controller
         } else {
             return redirect()->back()->withErrors(['error' => 'Не удалось создать предзаказ.']);
         } 
+    }
+
+    // getUPDfileExport($id)
+    public function getUPD(Request $request)
+    {
+        $pdf = MoySklad::getUPDfileExport($request->name);
+        if($pdf) {
+            return redirect()->route('record')->with(['pdf' => $pdf]);
+        } else {
+            return redirect()->back()->withErrors(['error' => 'Не удалось получить УПД']);
+        }
     }
 
     public function addedCounterAgent(CounterAgent $request)

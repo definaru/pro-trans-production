@@ -3,6 +3,12 @@
 
 @section('content')
 <h6 class="text-muted">Всего {{$demand['count']}} {{$decl::demand($demand['count'])}}</h6>
+@if(session('pdf'))
+    <div id="upd_download" class="d-none">{{ session('pdf') }}</div>
+@endif
+@error('error')
+    <x-alert type="danger" close="false" message="{{ $message }}" />
+@enderror 
 <div class="row mt-2">
     <div class="col-md-12">
         <div class="card bg-white border-0 shadow-sm">
@@ -13,7 +19,7 @@
             <div class="table-responsive">
                 <table class="table table-hover m-0">
                     <thead class="bg-light">
-                        <tr>
+                        <tr style="font-size: 13px">
                             <th scope="col" class="text-muted ps-4">#</th>
                             <th scope="col" class="text-muted">Заказ</th>
                             <th scope="col" class="text-muted">Кол-во</th>
@@ -60,20 +66,24 @@
                                     <x-button 
                                         size="sm"
                                         type="button" 
-                                        color="dark" 
+                                        color="success" 
                                         text="Оплатить" 
                                         icon="credit_card" 
                                         data-bs-toggle="modal" 
                                         data-bs-target="#manager" 
                                     />
                                 @else
+                                <form action="/dashboard/upd/pdf/export" method="post">
+                                    @csrf
+                                    <input type="hidden" name="name" value="{{$item['id']}}" />
                                     <x-button 
                                         size="sm"
-                                        type="button" 
-                                        color="light" 
-                                        text="Отгрузка" 
-                                        icon="credit_score"
+                                        type="submit" 
+                                        color="dark" 
+                                        text="Скачать УПД" 
+                                        icon="download"
                                     />
+                                </form>
                                 @endif
                             </td>
                         </tr>
@@ -81,7 +91,6 @@
                     </tbody>
                 </table>
             </div>
-            <pre><?php //var_dump($demand);?></pre>
         </div>
     </div>
 </div>
