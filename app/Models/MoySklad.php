@@ -45,6 +45,14 @@ class MoySklad
     }
 
 
+    public static function viewPrintDocument()
+    {
+        $url = self::msUrl().'demand/metadata/embeddedtemplate';
+        $response = self::get($url);
+        return $response->json();
+    }
+
+
     public static function editSetting($data)
     {
         $uuid = auth()->user()->verified;
@@ -624,8 +632,6 @@ class MoySklad
 
     public static function getUPDfileExport($id)
     {
-        // use Illuminate\Http\Response;
-        // use Illuminate\Support\Facades\Response;        
         $arr = [
             'template' => [
                 'meta' => [
@@ -638,9 +644,13 @@ class MoySklad
         ];
         $url = self::msUrl().'demand/'.$id.'/export';
         $response = self::post($url, json_encode($arr));
-        //dd($response->transferStats->getHandlerStats()['url']);
-        //return response()->json($response);
-        return $response->transferStats->getHandlerStats()['url'];
+        $parse = $response->transferStats->getRequest()->getUri();
+        $res = [
+            'scheme' => $parse->getScheme().'://',
+            'host' => $parse->getHost(),
+            'path' => $parse->getPath()
+        ];
+        return implode('', $res);
         // response()->streamDownload(function () {
         //     echo $response->transferStats->getHandlerStats()['url'];
         // }, time().'-readme.pdf');

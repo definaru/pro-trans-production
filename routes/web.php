@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DachboardController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PDFController;
@@ -44,6 +45,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 
     // Admin-Панель
     // admin/doc
+    Route::get('admin/doc', [AdminController::class, 'adminDoc']);
+    Route::get('admin/accounting', [AdminController::class, 'Accounting']);
 });
 
 Route::prefix('api')->group(function () {

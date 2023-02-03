@@ -39,6 +39,18 @@ class ContactService
         return $phone;
     }
 
+    public static function format_nds($nds)
+    {
+        return preg_replace("/([A-ZА-ЯЁ]{3})([0-9]{2})/", '$1 $2%', $nds);
+        // @"([a-zа-яё])([A-ZА-ЯЁ])","$1 $2"
+    }
+
+    public static function format_spz($status)
+    {
+        $status = preg_replace("/(?=[A-ZА-ЯЁ])(?<=[^\\sA-ZА-ЯЁ])/u", ' ', $status);
+        return mb_strtolower($status);
+    }
+
 
     public static function getPhone($phone, $class = [])
     {

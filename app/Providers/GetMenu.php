@@ -460,6 +460,13 @@ class GetMenu
                         'slug' => 'admin/doc',
                         'count' => '',
                         'list' => ''
+                    ],
+                    [
+                        'icon' => 'receipt_long',
+                        'name' => 'Бухгалтерия',
+                        'slug' => 'admin/accounting',
+                        'count' => '',
+                        'list' => ''
                     ]
                 ]
             ]
