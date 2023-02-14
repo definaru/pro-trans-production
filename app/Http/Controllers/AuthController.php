@@ -31,6 +31,11 @@ class AuthController extends Controller
         return view('reset');
     }
 
+    public function Signin()
+    {
+        return view('signin');
+    }
+
     public function SendMail(Request $request)
     {
         $user = User::where('email', $request->email)->first();
@@ -90,7 +95,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
             return redirect()->intended('dashboard');
         }
-        return redirect()->route('index');
+        return redirect()->route('signin');
     }
 
     public function logout(Request $request)
@@ -98,7 +103,8 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect()->route('signin');
+        //redirect('/');
     }
 
 }

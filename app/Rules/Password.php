@@ -23,12 +23,24 @@ class Password implements Rule
     public function passes($attribute, $value)
     {
         $user = User::where('email', $_COOKIE['email'])->first();
-        if (! Hash::check($value, $user['password'])) {
+        try {
+            if($user === null) {
+                throw ValidationException::withMessages([
+                    'email' => ['Не верно указан e-mail.'],
+                ]);
+            } else {
+                if (! Hash::check($value, $user['password'])) {
+                    throw ValidationException::withMessages([
+                        'password' => ['Пароль указан не верно.'],
+                    ]);
+                }
+                return true;                
+            }
+        } catch (Exception $e) {
             throw ValidationException::withMessages([
-                'password' => ['Пароль указан не верно.'],
+                'password' => [$e->getMessage()],
             ]);
         }
-        return true;  
     }
 
     /**

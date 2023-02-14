@@ -24,11 +24,6 @@ class DachboardController extends Controller
         return view('dashboard');
     }
 
-    public function Test()
-    {
-        return view('test');
-    }
-
     public function preOrderViewOne($id)
     {
         $pre = MoySklad::viewOnePreOrder($id);

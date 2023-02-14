@@ -12,6 +12,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\GetMenu;
+use App\Providers\GetOrder;
 use App\Models\UiComponent;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -46,6 +47,9 @@ class AppServiceProvider extends ServiceProvider
             'helpmenu'      => GetMenu::help(),
             'catalog'       => GetMenu::catalog(),
             'catalogTrucks' => GetMenu::catalogTrucks(),
+            'listorder'     => GetOrder::GoodsAreAvailable(),
+            'bestsellers'   => GetOrder::Bestsellers(),
+            'alllist'       => GetOrder::list(),
             'contact'       => new ContactService(),
             'time'          => new Carbon(),
             'MoySklad'      => new MoySklad(),
