@@ -7,6 +7,34 @@ html, body {
     height: 100%;
     font-family: 'PT Sans Narrow', sans-serif;
 }
+
+[v-cloak] { display:none; }
+
+::selection {
+    background: transparent;
+    text-shadow: none;
+}
+
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-thumb{    
+    border-width:1px 1px 1px 2px;    
+    border-color: #777;    
+    background-color: #999;    
+    margin-left: -5px;
+}
+::-webkit-scrollbar-thumb:hover{    
+    border-width: 1px 1px 1px 2px;    
+    border-color: #555;    
+    background-color: #777;
+}
+::-webkit-scrollbar-track{    
+    border-width:0;
+}
+::-webkit-scrollbar-track:hover{    
+    border-left: solid 1px #aaa;    
+    background-color: #eee;
+}
+
 a.nav-link.active {
     text-decoration: 5px underline #8630a3;
     text-underline-offset: 22px;

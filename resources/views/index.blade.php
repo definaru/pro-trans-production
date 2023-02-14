@@ -1,15 +1,34 @@
 <!DOCTYPE html>
 <html lang="ru">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Prospekt Parts</title>
-        <link rel="shortcut icon" href="/img/logotype.jpg" />
+    <head itemscope itemtype="http://schema.org/WPHeader">
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content="ремонт, ремонт машин, ремонт в москве, ремонт в мытищи, ремонт двигателя, сервис, service, чинить, автосервис, мерседес бенц, актрос" />
+        <meta name="description" content="Интернет-магазин `Prospekt Parts` - уникальная торговая платформа, которая позволяет мгновенно, в режиме реального времени, получать информацию о реальных остатках и условиях поставки" />
+        
+        <meta name="theme-color" content="#8630a3"/>
+        <meta name="msapplication-navbutton-color" content="#8630a3"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="#8630a3"/>
+
+        <title itemprop="headline">Prospekt Parts</title>
+
+        <meta property="og:title" content="Prospekt Parts" />
+        <meta property="og:description" content="Интернет-магазин `Prospekt Parts` - уникальная торговая платформа, которая позволяет мгновенно, в режиме реального времени, получать информацию о реальных остатках и условиях поставки"/>
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="<?=((!empty($_SERVER['HTTPS'])) ? 'https' : 'http'). '://' .$_SERVER['HTTP_HOST'];?>" />
+        <meta property="og:image" content="/img/logotype.jpg" />
+        <meta property="og:site_name" content="Проспект Транс" />
+        <meta property="og:locale" content="ru_RU" />
+
+        <link rel="canonical" href="<?=((!empty($_SERVER['HTTPS'])) ? 'https' : 'http'). '://' .$_SERVER['HTTP_HOST'];?>" />
+        <link rel="shortcut icon" href="/img/logotype.jpg" type='image/x-icon'/>
+        <link rel="apple-touch-icon" href="/img/logotype.jpg" />	
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
     </head>
-    <body>
+    <body itemscope itemtype="http://schema.org/Organization">
         <div class="parent">
             <nav class="navbar fixed-top navbar-expand-lg bg-white shadow">
                 <div class="container">
@@ -19,6 +38,9 @@
                             <b class="text-dark">Prospekt</b> 
                             <span class="fw-lighter">Parts</span> 
                         </span> 
+                        <span class="d-none" itemprop="name">
+                            Prospekt Parts
+                        </span>
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
                         <span class="navbar-toggler-icon"></span>
@@ -623,7 +645,7 @@
             <div class="modal-dialog modal-sm modal-dialog-centered">
                 <div class="modal-content border-0">
                     <div class="modal-header border-0 pb-0">
-                        <h1 class="modal-title fs-5 text" id="order">Выбрать действие</h1>
+                        <h1 class="modal-title fs-5 text" id="login">Выбрать действие</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body d-grid gap-2">
@@ -641,35 +663,114 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="order" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal fade" id="order" data-bs-backdrop="static" data-bs-keyboard="false" v-cloak>
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
+
+                <form novalidate @submit.prevent="onSubmit" v-if="!send" class="modal-content border-0">
                     <div class="modal-header border-0 pb-0">
-                        <h1 class="modal-title fs-5 text" id="order">Обратная связь</h1>
+                        <h1 class="modal-title fs-5 text" id="order">@{{header}}</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-2">
-                            <input type="text" class="form-control" placeholder="Ваше имя" />
+                            <input 
+                                type="text" 
+                                autocomplete="off" 
+                                autocorrect="off" 
+                                autocapitalize="words" 
+                                spellcheck="false"
+                                class="form-control" 
+                                name="name" 
+                                :class="[error_names && name === '' ? 'is-invalid' : '']"
+                                placeholder="Ваше имя"
+                                v-model.trim="name"
+                            >
+                            <small class="invalid-feedback" v-if="error_names && name === ''">
+                                Напишите свое имя                            
+                            </small>
                         </div>
                         <div class="mb-2">
-                            <input type="text" class="form-control" placeholder="Ваш телефон" />
+                            <input 
+                                type="text"
+                                autocomplete="off" 
+                                autocorrect="off" 
+                                autocapitalize="words" 
+                                spellcheck="false"
+                                class="form-control" 
+                                name="phone" 
+                                :class="[error_phone && phone === '' ? 'is-invalid' : '']"
+                                placeholder="Ваш телефон"
+                                v-model.trim="phone"
+                            >
+                            <small class="invalid-feedback" v-if="error_phone && phone === ''">
+                                Напишите свой телефон                            
+                            </small>
                         </div>
                         <div class="mb-2">
-                            <input type="email" class="form-control" placeholder="Ваш e-mail" />
+                            <input 
+                                type="text"
+                                autocomplete="off" 
+                                autocorrect="off" 
+                                autocapitalize="words" 
+                                spellcheck="false"
+                                class="form-control" 
+                                name="email" 
+                                :class="[error_email && email === '' ? 'is-invalid' : '']"
+                                placeholder="Ваш e-mail"
+                                v-model.trim="email"
+                            >
+                            <small class="invalid-feedback" v-if="error_email && email === ''">
+                                Напишите свою электронную почту                            
+                            </small>                            
+                            <small class="invalid-feedback" v-if="email_invalid">
+                                Пожалуйста, введите действительный адрес электронной почты                            
+                            </small>
                         </div>
                         <div>
-                            <textarea name="message" class="form-control" rows="3" placeholder="Ваше сообщение..."></textarea>
+                            <textarea 
+                                class="form-control resize" 
+                                rows="4" 
+                                name="message" 
+                                placeholder="Ваше сообщение..."
+                                :class="[error_message && message === '' ? 'is-invalid' : '']"
+                                v-model="message"
+                            >
+                            </textarea>
+                            <small class="invalid-feedback" v-if="error_message && message === ''">
+                                Напишите свое сообщение                            
+                            </small>
                         </div>
                     </div>
                     <div class="modal-footer border-0 pt-0">
                         <button type="button" class="btn btn-light text px-4" data-bs-dismiss="modal">Закрыть</button>
-                        <button type="button" class="btn btn-primary text px-4 d-flex gap-1">
-                            <span class="material-symbols-outlined">send</span> 
-                            Отправить
+                        <button type="button" class="btn btn-primary text px-4" v-on:click="Send">
+                            <span v-if="loading">
+                                Загружаем...
+                            </span>
+                            <span class="d-flex gap-1" v-else>
+                                <span class="material-symbols-outlined">send</span> 
+                                Отправить                           
+                            </span>
                         </button>
                     </div>
+                </form>
+
+                <div class="modal-content border-0" v-else>
+                    <div class="modal-body bg-success text-white rounded d-flex justify-content-between">
+                        <div class="modal-title d-flex align-items-center gap-2">
+                            <span class="material-symbols-outlined">check_circle</span>
+                            <strong>Успешно!</strong> Ваше сообщение было получено.                        
+                        </div>
+                        <div 
+                            type="button" 
+                            class="btn-close" 
+                            data-bs-dismiss="modal" 
+                            aria-label="Close"
+                        >  
+                        </div>
+                    </div>                    
                 </div>
+
             </div>
         </div>
 
@@ -678,7 +779,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content border-0">
                     <div class="modal-header border-0 pb-0">
-                        <h1 class="modal-title fs-5 text" id="order">Оформление подписки</h1>
+                        <h1 class="modal-title fs-5 text" id="subscription">Оформление подписки</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">

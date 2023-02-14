@@ -10,12 +10,12 @@ class GetOrder
         return [
             [
                 'article' => 'A0018206945',
-                'name' => 'Щетка стеклоочистителя 700 мм Mercedes-Benz',
+                'name' => 'Щетки стеклоочистителя Actros Mercedes-Benz',
                 'image' => '/img/material/A0018206945.png'
             ],
             [
                 'article' => 'A9424230212',
-                'name' => 'Оригинальный тормозной диск для Мерседес Актрос и КАМАЗ 54901',
+                'name' => 'Оригинальный тормозной диск для Мерседес Актрос 54901',
                 'image' => '/img/material/A9424230212.png'
             ],
             [
@@ -45,7 +45,7 @@ class GetOrder
             ],	
             [
                 'article' => 'A9061800209',
-                'name' => 'Фильтр масляный КАМАЗ-5490 MERCEDES Atego, Axor MAHLE',
+                'name' => 'Фильтр масляный MERCEDES Atego, Axor MAHLE',
                 'image' => '/img/material/A9061800209.png'
             ],	
             [
@@ -95,7 +95,7 @@ class GetOrder
             ],	
             [
                 'article' => 'A5410304637',
-                'name' => 'Комплект поршней двигателя для Mercedes-Benz',
+                'name' => 'Поршень-гильза для двигателя Mercedes-Benz',
                 'image' => '/img/material/A5410304637.png'
             ]
         ];
