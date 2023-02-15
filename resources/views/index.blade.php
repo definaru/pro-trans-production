@@ -39,7 +39,7 @@
                             <span class="fw-lighter">Parts</span> 
                         </span> 
                         <span class="d-none" itemprop="name">
-                            Prospekt Parts
+                            Проспект Транс
                         </span>
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
@@ -192,7 +192,7 @@
                 </section>
 
                 <section id="bestsellers" class="bg-secondary-subtle">
-                    <div class="container">
+                    <div class="container" itemscope itemtype="https://schema.org/ItemList">
                         <div class="row">
                             <div class="col-8 offset-2 text-center">
                                 <h2 class="fw-bold display-5">Хиты продаж 🔥</h2>
@@ -203,16 +203,20 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="row py-4">
+                        <div class="row py-4" itemprop="itemListElement" itemscope itemtype="http://schema.org/Product">
                             @foreach ($bestsellers as $best)
                             <div class="col-12 col-lg-3">
                                 <div class="card card-data border-0 shadow order">
                                     <div class="card-body pb-0 position-relative">
-                                        <div class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2">
+                                        <div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating" class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2">
                                             <span class="material-symbols-outlined fs-6 text-danger">favorite</span>
                                             <small><?=$best['raiting'];?> рейтинг</small> 
+                                            <meta itemprop="worstRating" content="1" />
+                                            <meta itemprop="ratingValue" content="<?=$best['raiting'];?>" />
+                                            <meta itemprop="bestRating" content="5" />
                                         </div>
                                         <img 
+                                            itemprop="image"
                                             src="<?=$best['image'];?>" 
                                             class="card-img-top rounded" 
                                             data-bs-toggle="modal" 
@@ -221,18 +225,20 @@
                                         />
                                     </div>
                                     <div class="card-body pb-0">
-                                        <h5 class="card-title fw-bold fs-6" data-bs-toggle="modal" data-bs-target="#order">
+                                        <h5 itemprop="name" class="card-title fw-bold fs-6" data-bs-toggle="modal" data-bs-target="#order">
                                             <?=$best['name'];?>
                                         </h5>
                                         <hr style="color: #ddd" />
-                                        <div class="d-flex justify-content-between">
+                                        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="d-flex justify-content-between">
                                             <div class="lh-sm">
                                                 <small class="text-muted d-block w-100">Марка</small>
-                                                <strong class="text-secondary">Mercedes-Benz</strong>
+                                                <strong itemprop="brand" class="text-secondary">Mercedes-Benz</strong>
                                             </div>
                                             <div class="lh-sm">
+                                                <meta itemprop="priceCurrency" content="RUB">
+                                                <link itemprop="availability" href="http://schema.org/InStock">
                                                 <small class="text-muted d-block w-100">Артикул</small>
-                                                <strong class="text-secondary">
+                                                <strong itemprop="model" class="text-secondary">
                                                     <?=$best['article'];?>
                                                 </strong>
                                             </div>
@@ -273,18 +279,19 @@
                                 <button 
                                     data-bs-toggle="modal" 
                                     data-bs-target="#login"
-                                    class="btn btn-sm btn-primary px-4"
+                                    class="btn btn-sm btn-outline-dark px-4"
                                 >
                                     Смотреть все&#160; &rarr;
                                 </button>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" itemprop="itemListElement" itemtype="https://schema.org/Product">
                             @foreach ($alllist as $detail)
                             <div class="col-12 col-md-4">
                                 <div class="consumables bg-white rounded p-2 shadow d-flex align-items-center mb-4">
                                     <div class="rounded me-3" style="background: #ebcaa1">
-                                        <img 
+                                        <img
+                                            itemprop="image" 
                                             src="<?=$detail['image'];?>" 
                                             class="material rounded" 
                                             data-bs-toggle="modal" 
@@ -295,13 +302,20 @@
                                     </div>
                                     <div class="d-flex flex-column w-75">
                                         <small class="w-75">
-                                            <strong data-bs-toggle="modal" data-bs-target="#order">
+                                            <strong itemprop="name" data-bs-toggle="modal" data-bs-target="#order">
                                                 <?=$detail['name'];?>
                                             </strong>
                                         </small>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <i><?=$detail['article'];?></i>
-                                            <div class="d-flex align-items-center gap-1">
+                                        <div itemscope itemprop="offers" itemtype="http://schema.org/Offer" class="d-flex align-items-center justify-content-between">
+                                            <meta itemprop="priceCurrency" content="RUB">
+                                            <meta itemprop="availability" content="http://schema.org/InStock" />
+                                            <span class="d-none" itemprop="brand">Mercedes-Benz</span>
+                                            <i itemprop="model"><?=$detail['article'];?></i>
+                                            <div class="d-flex align-items-center gap-1" itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
+                                                <meta itemprop="worstRating" content="1">
+                                                <meta itemprop="ratingValue" content="5" />
+                                                <meta itemprop="bestRating" content="5" />
+                                                
                                                 <span class="material-symbols-outlined text-warning fs-6">star_rate</span>
                                                 <span class="material-symbols-outlined text-warning fs-6">star_rate</span>
                                                 <span class="material-symbols-outlined text-warning fs-6">star_rate</span>
@@ -374,16 +388,25 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row py-4 ng position-relative">
+                        <div itemscope itemtype="https://schema.org/Product" class="row py-4 ng position-relative">
                             @foreach ($listorder as $item)
                                 <div class="col-lg-3 col-12 mb-3">
                                     <div class="card card-data border-0 shadow order">
                                         <div class="card-body pb-0 position-relative">
-                                            <div class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2">
+                                            <div 
+                                                itemprop="aggregateRating" 
+                                                itemscope 
+                                                itemtype="https://schema.org/AggregateRating" 
+                                                class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2"
+                                            >
                                                 <span class="material-symbols-outlined fs-6 text-danger">favorite</span>
                                                 <small><?=$item['raiting']?> рейтинг</small> 
+                                                <meta itemprop="worstRating" content="1" />
+                                                <meta itemprop="ratingValue" content="<?=$item['raiting'];?>" />
+                                                <meta itemprop="bestRating" content="5" />
                                             </div>
                                             <img 
+                                                itemprop="image"
                                                 src="<?=$item['image']?>" 
                                                 data-bs-toggle="modal" 
                                                 data-bs-target="#order"
@@ -392,15 +415,21 @@
                                             />
                                         </div>
                                         <div class="card-body">
-                                            <h5 data-bs-toggle="modal" data-bs-target="#order" class="card-title fw-bold fs-6">
+                                            <h5 itemprop="name" data-bs-toggle="modal" data-bs-target="#order" class="card-title fw-bold fs-6">
                                                 <?=$item['name']?>
                                             </h5>
-                                            <p class="label">В наличии</p>
+                                            <p itemprop="offers" itemscope itemtype="https://schema.org/Offer" class="label">
+                                                <link itemprop="availability" href="https://schema.org/InStock" />В наличии
+                                            </p>
                                             <hr style="color: #ddd">
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <div class="d-flex align-items-center gap-2">
                                                     <div>
-                                                        <img src="/img/mercedes-benz.svg" style="width: 40px;height: 40px">
+                                                        <img 
+                                                            src="/img/mercedes-benz.svg" 
+                                                            alt="Mercedes-Benz" 
+                                                            style="width: 40px;height: 40px"
+                                                        />
                                                     </div>
                                                     <div class="lh-sm">
                                                         <small class="text-muted d-block w-100">
@@ -548,7 +577,9 @@
 
             </main>
 
-            <footer id="contact" class="bg-dark text-white">
+            <footer id="contact" class="bg-dark text-white" itemscope itemtype="http://schema.org/WPFooter">
+                <meta itemprop="copyrightYear" content="2023">
+                <meta itemprop="copyrightHolder" content="Проспект Транс">
                 <div class="container">
                     <div class="row">
                         <div class="col-12 col-md-3">
@@ -589,30 +620,37 @@
                         </div>
                         <div class="col-12 col-md-3">
                             <h4 class="mb-4">Контакты</h4> 
-                            <ul class="d-grid gap-3 list-unstyled">
+                            <ul class="d-grid gap-3 list-unstyled" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
                                 <li class="d-flex align-items-center gap-2">
                                     <span class="material-symbols-outlined fs-5 text-primary">location_on</span>
                                     <a href="https://yandex.ru/maps/-/CCUCFDAwwA" target="_blank">
-                                        MO, г. Мытищи, проезд 4536, с 10
+                                        <span itemprop="postalCode">141006</span>, 
+                                        <span itemprop="addressRegion">Московская обл</span>,
+                                        <span itemprop="addressLocality">г Мытищи</span>, 
+                                        <span itemprop="streetAddress">проезд 4536, стр 10</span>
                                     </a>
                                 </li>
                                 <li class="d-flex align-items-center gap-2">
                                     <span class="material-symbols-outlined fs-5 text-primary">call</span>
                                     <a href="tel:+79672916470">
-                                        +7 (967) 291-64-70
+                                        <span itemprop="telephone">+7 (967) 291-64-70</span>
                                     </a>
                                 </li>
                                 <li class="d-flex align-items-center gap-2">
                                     <span class="material-symbols-outlined fs-5 text-primary">mark_as_unread</span>
                                     <a href="mailto:info@prospekt-parts.com">
-                                        info@prospekt-parts.com
+                                        <span itemprop="email">info@prospekt-parts.com</span>
                                     </a>
                                 </li>
                                 <li class="d-flex align-items-center gap-2">
                                     <span class="material-symbols-outlined fs-5 text-primary">alarm</span>
                                     Время работы:
                                 </li>
-                                <li><b>Пн-Пт, 09:00 - 19:00</b></li>
+                                <li itemscope itemtype="http://schema.org/LocalBusiness">
+                                    <time itemprop="openingHours" datetime="Mo-Fr, 09:00-19:00">
+                                        <b>Пн-Пт, 09:00 - 19:00</b>
+                                    </time>
+                                </li>
                             </ul>
                         </div>
                         <div class="col-12 pt-5">
@@ -641,171 +679,176 @@
             </footer>
         </div>
 
-        <div class="modal fade" id="login" data-bs-backdrop="static" data-bs-keyboard="false">
-            <div class="modal-dialog modal-sm modal-dialog-centered">
-                <div class="modal-content border-0">
-                    <div class="modal-header border-0 pb-0">
-                        <h1 class="modal-title fs-5 text" id="login">Выбрать действие</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body d-grid gap-2">
-                        <a href="/signin" class="btn btn-lg fw-bold d-flex justify-content-center align-items-center gap-2 btn-dark">
-                            <span class="material-symbols-outlined fs-6">login</span>
-                            Авторизоваться
-                        </a>
-                        <a href="/signup" class="btn btn-lg fw-bold d-flex justify-content-center align-items-center gap-2 btn-primary">
-                            <span class="material-symbols-outlined">open_in_new</span>
-                            Зарегистрироваться
-                        </a>
+        @verbatim
+            <div class="modal fade" id="login" data-bs-backdrop="static" data-bs-keyboard="false">
+                <div class="modal-dialog modal-sm modal-dialog-centered">
+                    <div class="modal-content border-0">
+                        <div class="modal-header border-0 pb-0">
+                            <h1 class="modal-title fs-5 text" id="login">Выбрать действие</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body d-grid gap-2">
+                            <a href="/signin" class="btn btn-lg fw-bold d-flex justify-content-center align-items-center gap-2 btn-dark">
+                                <span class="material-symbols-outlined fs-6">login</span>
+                                Авторизоваться
+                            </a>
+                            <a href="/signup" class="btn btn-lg fw-bold d-flex justify-content-center align-items-center gap-2 btn-primary">
+                                <span class="material-symbols-outlined">open_in_new</span>
+                                Зарегистрироваться
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Modal -->
-        <div class="modal fade" id="order" data-bs-backdrop="static" data-bs-keyboard="false" v-cloak>
-            <div class="modal-dialog modal-dialog-centered">
 
-                <form novalidate @submit.prevent="onSubmit" v-if="!send" class="modal-content border-0">
-                    <div class="modal-header border-0 pb-0">
-                        <h1 class="modal-title fs-5 text" id="order">@{{header}}</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal fade" id="order" data-bs-backdrop="static" data-bs-keyboard="false" v-cloak>
+                <div class="modal-dialog modal-dialog-centered">
+
+                    <form novalidate @submit.prevent="onSubmit" v-if="!send" class="modal-content border-0">
+                        <div class="modal-header border-0 pb-0">
+                            <h1 class="modal-title fs-5 text" id="order">{{header}}</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-2">
+                                <input 
+                                    type="text" 
+                                    autocomplete="off" 
+                                    autocorrect="off" 
+                                    autocapitalize="words" 
+                                    spellcheck="false"
+                                    class="form-control" 
+                                    name="name" 
+                                    :class="[error_names && name === '' ? 'is-invalid' : '']"
+                                    placeholder="Ваше имя"
+                                    v-model.trim="name"
+                                >
+                                <small class="invalid-feedback" v-if="error_names && name === ''">
+                                    Напишите свое имя                            
+                                </small>
+                            </div>
+                            <div class="mb-2">
+                                <input 
+                                    type="text"
+                                    autocomplete="off" 
+                                    autocorrect="off" 
+                                    autocapitalize="words" 
+                                    spellcheck="false"
+                                    class="form-control" 
+                                    name="phone" 
+                                    :class="[error_phone && phone === '' ? 'is-invalid' : '']"
+                                    placeholder="Ваш телефон"
+                                    v-model.trim="phone"
+                                >
+                                <small class="invalid-feedback" v-if="error_phone && phone === ''">
+                                    Напишите свой телефон                            
+                                </small>
+                            </div>
+                            <div class="mb-2">
+                                <input 
+                                    type="text"
+                                    autocomplete="off" 
+                                    autocorrect="off" 
+                                    autocapitalize="words" 
+                                    spellcheck="false"
+                                    class="form-control" 
+                                    name="email" 
+                                    :class="[error_email && email === '' ? 'is-invalid' : '']"
+                                    placeholder="Ваш e-mail"
+                                    v-model.trim="email"
+                                >
+                                <small class="invalid-feedback" v-if="error_email && email === ''">
+                                    Напишите свою электронную почту                            
+                                </small>                            
+                                <small class="invalid-feedback" v-if="email_invalid">
+                                    Пожалуйста, введите действительный адрес электронной почты                            
+                                </small>
+                            </div>
+                            <div>
+                                <textarea 
+                                    class="form-control resize" 
+                                    rows="4" 
+                                    name="message" 
+                                    placeholder="Ваше сообщение..."
+                                    :class="[error_message && message === '' ? 'is-invalid' : '']"
+                                    v-model="message"
+                                >
+                                </textarea>
+                                <small class="invalid-feedback" v-if="error_message && message === ''">
+                                    Напишите свое сообщение                            
+                                </small>
+                            </div>
+                        </div>
+                        <div class="modal-footer border-0 pt-0">
+                            <button type="button" class="btn btn-light text px-4" data-bs-dismiss="modal">Закрыть</button>
+                            <button type="button" class="btn btn-primary text px-4" v-on:click="Send">
+                                <span v-if="loading">
+                                    Загружаем...
+                                </span>
+                                <span class="d-flex gap-1" v-else>
+                                    <span class="material-symbols-outlined">send</span> 
+                                    Отправить                           
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="modal-content border-0" v-else>
+                        <div class="modal-body bg-success text-white rounded d-flex justify-content-between">
+                            <div class="modal-title d-flex align-items-center gap-2">
+                                <span class="material-symbols-outlined">check_circle</span>
+                                <strong>Успешно!</strong> Ваше сообщение было получено.                        
+                            </div>
+                            <div 
+                                type="button" 
+                                class="btn-close" 
+                                data-bs-dismiss="modal" 
+                                aria-label="Close"
+                            >  
+                            </div>
+                        </div>                    
                     </div>
-                    <div class="modal-body">
-                        <div class="mb-2">
-                            <input 
-                                type="text" 
-                                autocomplete="off" 
-                                autocorrect="off" 
-                                autocapitalize="words" 
-                                spellcheck="false"
-                                class="form-control" 
-                                name="name" 
-                                :class="[error_names && name === '' ? 'is-invalid' : '']"
-                                placeholder="Ваше имя"
-                                v-model.trim="name"
-                            >
-                            <small class="invalid-feedback" v-if="error_names && name === ''">
-                                Напишите свое имя                            
-                            </small>
+
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="subscription" data-bs-backdrop="static" data-bs-keyboard="false">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content border-0">
+                        <div class="modal-header border-0 pb-0">
+                            <h1 class="modal-title fs-5 text" id="subscription">Оформление подписки</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="mb-2">
-                            <input 
-                                type="text"
-                                autocomplete="off" 
-                                autocorrect="off" 
-                                autocapitalize="words" 
-                                spellcheck="false"
-                                class="form-control" 
-                                name="phone" 
-                                :class="[error_phone && phone === '' ? 'is-invalid' : '']"
-                                placeholder="Ваш телефон"
-                                v-model.trim="phone"
-                            >
-                            <small class="invalid-feedback" v-if="error_phone && phone === ''">
-                                Напишите свой телефон                            
-                            </small>
+                        <div class="modal-body">
+                            <div class="mb-2">
+                                <input type="text" class="form-control" placeholder="Ваше имя" />
+                            </div>
+                            <div class="mb-2">
+                                <input type="email" class="form-control" placeholder="Ваш e-mail" />
+                            </div>                        
+                            <div class="mb-2">
+                                <input type="text" class="form-control" placeholder="VIN номер" />
+                            </div>
+                            <div>
+                                <textarea name="message" class="form-control" rows="3" placeholder="Список запчастей..."></textarea>
+                            </div>
                         </div>
-                        <div class="mb-2">
-                            <input 
-                                type="text"
-                                autocomplete="off" 
-                                autocorrect="off" 
-                                autocapitalize="words" 
-                                spellcheck="false"
-                                class="form-control" 
-                                name="email" 
-                                :class="[error_email && email === '' ? 'is-invalid' : '']"
-                                placeholder="Ваш e-mail"
-                                v-model.trim="email"
-                            >
-                            <small class="invalid-feedback" v-if="error_email && email === ''">
-                                Напишите свою электронную почту                            
-                            </small>                            
-                            <small class="invalid-feedback" v-if="email_invalid">
-                                Пожалуйста, введите действительный адрес электронной почты                            
-                            </small>
-                        </div>
-                        <div>
-                            <textarea 
-                                class="form-control resize" 
-                                rows="4" 
-                                name="message" 
-                                placeholder="Ваше сообщение..."
-                                :class="[error_message && message === '' ? 'is-invalid' : '']"
-                                v-model="message"
-                            >
-                            </textarea>
-                            <small class="invalid-feedback" v-if="error_message && message === ''">
-                                Напишите свое сообщение                            
-                            </small>
-                        </div>
-                    </div>
-                    <div class="modal-footer border-0 pt-0">
-                        <button type="button" class="btn btn-light text px-4" data-bs-dismiss="modal">Закрыть</button>
-                        <button type="button" class="btn btn-primary text px-4" v-on:click="Send">
-                            <span v-if="loading">
-                                Загружаем...
-                            </span>
-                            <span class="d-flex gap-1" v-else>
+                        <div class="modal-footer border-0 pt-0">
+                            <button type="button" class="btn btn-light text px-4" data-bs-dismiss="modal">Закрыть</button>
+                            <button type="button" class="btn btn-primary text px-4 d-flex gap-1">
                                 <span class="material-symbols-outlined">send</span> 
-                                Отправить                           
-                            </span>
-                        </button>
-                    </div>
-                </form>
-
-                <div class="modal-content border-0" v-else>
-                    <div class="modal-body bg-success text-white rounded d-flex justify-content-between">
-                        <div class="modal-title d-flex align-items-center gap-2">
-                            <span class="material-symbols-outlined">check_circle</span>
-                            <strong>Успешно!</strong> Ваше сообщение было получено.                        
+                                Отправить
+                            </button>
                         </div>
-                        <div 
-                            type="button" 
-                            class="btn-close" 
-                            data-bs-dismiss="modal" 
-                            aria-label="Close"
-                        >  
-                        </div>
-                    </div>                    
-                </div>
-
-            </div>
-        </div>
-
-
-        <div class="modal fade" id="subscription" data-bs-backdrop="static" data-bs-keyboard="false">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                    <div class="modal-header border-0 pb-0">
-                        <h1 class="modal-title fs-5 text" id="subscription">Оформление подписки</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="mb-2">
-                            <input type="text" class="form-control" placeholder="Ваше имя" />
-                        </div>
-                        <div class="mb-2">
-                            <input type="email" class="form-control" placeholder="Ваш e-mail" />
-                        </div>                        
-                        <div class="mb-2">
-                            <input type="text" class="form-control" placeholder="VIN номер" />
-                        </div>
-                        <div>
-                            <textarea name="message" class="form-control" rows="3" placeholder="Список запчастей..."></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer border-0 pt-0">
-                        <button type="button" class="btn btn-light text px-4" data-bs-dismiss="modal">Закрыть</button>
-                        <button type="button" class="btn btn-primary text px-4 d-flex gap-1">
-                            <span class="material-symbols-outlined">send</span> 
-                            Отправить
-                        </button>
                     </div>
                 </div>
             </div>
-        </div>
+        @endverbatim
+
+
+
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
