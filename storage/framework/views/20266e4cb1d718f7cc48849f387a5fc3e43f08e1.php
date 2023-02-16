@@ -18,9 +18,10 @@
         <meta property="og:description" content="Интернет-магазин `Prospekt Parts` - уникальная торговая платформа, которая позволяет мгновенно, в режиме реального времени, получать информацию о реальных остатках и условиях поставки"/>
         <meta property="og:type" content="website" />
         <meta property="og:url" content="<?=((!empty($_SERVER['HTTPS'])) ? 'https' : 'http'). '://' .$_SERVER['HTTP_HOST'];?>" />
-        <meta property="og:image" content="/img/logotype.jpg" />
+        <meta property="og:image" content="https://prospekt-parts.com/img/5464765787695.jpg" />
         <meta property="og:site_name" content="Проспект Транс" />
         <meta property="og:locale" content="ru_RU" />
+        <meta name="yandex-verification" content="72cdbb4ff48f387f" />
 
         <link rel="canonical" href="<?=((!empty($_SERVER['HTTPS'])) ? 'https' : 'http'). '://' .$_SERVER['HTTP_HOST'];?>" />
         <link rel="shortcut icon" href="/img/logotype.jpg" type='image/x-icon'/>
@@ -33,7 +34,12 @@
             <nav class="navbar fixed-top navbar-expand-lg bg-white shadow">
                 <div class="container">
                     <a class="d-flex align-items-center gap-2 navbar-brand" href="/">
-                        <img src="/img/logotype.jpg" class="rounded" alt="Prospekt Parts" style="width: 40px">
+                        <img 
+                            src="/img/logotype/dark-logo.png" 
+                            class="rounded" 
+                            alt="Prospekt Parts" 
+                            style="width: 54px" 
+                        />
                         <span class="text-secondary">
                             <b class="text-dark">Prospekt</b> 
                             <span class="fw-lighter">Parts</span> 
@@ -246,14 +252,10 @@
                                         <hr class="mb-1" style="color: #ddd" />
                                     </div>
                                     <div class="card-footer border-top-0 bg-white d-grid">
-                                        <button 
-                                            data-bs-toggle="modal" 
-                                            data-bs-target="#order" 
-                                            class="btn btn-primary mb-2 text d-flex align-items-center justify-content-center gap-2 py-2"
-                                        >
+                                        <a href="/signup" class="btn btn-primary mb-2 text d-flex align-items-center justify-content-center gap-2 py-2">
                                             <span class="material-symbols-outlined">add_shopping_cart</span>
                                             <strong>В корзину</strong> 
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>                                
@@ -439,9 +441,9 @@
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <button data-bs-toggle="modal" data-bs-target="#order" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
+                                                    <a href="/signup" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
                                                         <span class="material-symbols-outlined">add_shopping_cart</span>
-                                                    </button>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -584,7 +586,7 @@
                     <div class="row">
                         <div class="col-12 col-md-3">
                             <a class="d-flex align-items-center gap-3 logo-footer" href="/">
-                                <img src="/img/logotype.jpg" class="rounded" alt="Prospekt Parts" style="filter: invert(100%);width: 60px;">
+                                <img src="/img/logotype/light-logo.png" class="rounded" alt="Prospekt Parts" style="width: 60px" />
                                 <span class="text-white fs-2">
                                     <b class="text-white">Prospekt</b> 
                                     <span class="fw-lighter">Parts</span> 
@@ -659,8 +661,8 @@
                         <div class="col-12">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div>
-                                    © <?=date('Y');?> <b>"Prospekt Parts"</b>.  Все права защищены.<br />
-                                    <small>
+                                    © <?=date('Y');?> <b>"Prospekt Parts"</b>. Все права защищены.<br />
+                                    <small class="text-secondary">
                                         Сайт не является публичной офертой
                                         согласно положениям статьи 437 ГК РФ
                                     </small>
@@ -846,9 +848,6 @@
                 </div>
             </div>
         
-
-
-
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

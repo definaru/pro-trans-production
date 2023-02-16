@@ -1,2 +1,11 @@
+User-agent: Googlebot
+Allow: /
+Disallow: /dashboard
+
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /dashboard
+
+Host: prospekt-parts.com
+
+Sitemap: https://prospekt-parts.com/sitemap.xml
