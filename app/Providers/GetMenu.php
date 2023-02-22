@@ -467,6 +467,26 @@ class GetMenu
                         'slug' => 'admin/accounting',
                         'count' => '',
                         'list' => ''
+                    ],
+                    [
+                        'icon' => 'group',
+                        'name' => 'Пользователи',
+                        'slug' => 'admin',
+                        'count' => '',
+                        'list' => [
+                            [
+                                'name' => 'Контрагенты',
+                                'href' => 'admin/users'
+                            ],
+                            [
+                                'name' => 'Права и роли',
+                                'href' => 'admin/access'
+                            ],
+                            [
+                                'name' => 'Договоры',
+                                'href' => 'admin/contracts'
+                            ],
+                        ]
                     ]
                 ]
             ]

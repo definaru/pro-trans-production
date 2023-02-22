@@ -18,6 +18,31 @@ class Declension
         return $s1;
     }
 
+    public static function year($num)
+    {
+        return self::diff($num, 'год', 'года', 'лет');
+    }
+
+    public static function month($num)
+    {
+        return self::diff($num, 'месяц', 'месяца', 'месяцев');
+    }
+
+    public static function day($num)
+    {
+        return self::diff($num, 'день', 'дня', 'дней');
+    }
+
+    public static function hour($num)
+    {
+        return self::diff($num, 'час', 'часа', 'часов');
+    }
+
+    public static function minutes($num)
+    {
+        return self::diff($num, 'минута', 'минуты', 'минут');
+    }
+
     public static function rub($num)
     {
         return self::diff($num, 'рубль', 'рубля', 'рублей');

@@ -45,4 +45,12 @@ class DaData
         return $response->json();
     }
 
+    public static function okved($number)
+    {
+        $response = Http::withHeaders(self::header())->post(self::url().'okved2', ['query' => $number]);
+        return $response->json();
+    }
+
+    
+
 }

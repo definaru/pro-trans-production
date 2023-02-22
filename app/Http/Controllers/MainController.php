@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MoySklad;
 use Illuminate\Http\Request;
 use App\Providers\ContactService;
 
@@ -48,6 +49,16 @@ class MainController extends Controller
     public function Private()
     {
         return view('doc.privatepolice');
+    }
+
+    public function DetailProduct($id)
+    {
+        $product = MoySklad::getOneProduct($id);
+        return view('product', [
+            'id' => $id,
+            'product' => $product
+        ]);
+        //return view('product', ['id' => $id]);
     }
 
 }

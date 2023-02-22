@@ -52,16 +52,27 @@ class ContactService
     }
 
 
-    public static function getPhone($phone, $class = [])
+    public static function getPhone($phone, $class = [], $og = false)
     {
         $class = implode(' ', $class);
+        if($og) {
+            return '
+            <a href="tel:'.$phone.'" class="'.$class.'">
+                <span itemprop="telephone">
+                    '.self::format_phone($phone).'
+                </span>
+            </a>';
+        }
         return '<a href="tel:'.$phone.'" class="'.$class.'">'.self::format_phone($phone).'</a>';
     }
 
 
-    public static function getEmail($email, $class = [])
+    public static function getEmail($email, $class = [], $og = false)
     {
         $class = implode(' ', $class);
+        if($og) {
+            return '<a href="mailto:'.$email.'" class="'.$class.'"><span itemprop="email">'.$email.'</span></a>';
+        }
         return '<a href="mailto:'.$email.'" class="'.$class.'">'.$email.'</a>';
     }
 

@@ -46,6 +46,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     // Admin-Панель
     Route::get('admin/doc', [AdminController::class, 'adminDoc']);
     Route::get('admin/accounting', [AdminController::class, 'Accounting']);
+    Route::get('admin/users', [AdminController::class, 'Users']);
+    Route::get('admin/users/okved/{okved}', [AdminController::class, 'Okved']);
+    Route::get('admin/user/{uuid}', [AdminController::class, 'User']);
 });
 
 Route::prefix('api')->group(function () {
@@ -80,11 +83,14 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('/signup', 'register')->name('signup');
 });
 
+Route::controller(MainController::class)->group(function () {
+    Route::get('/contact', 'Сontact');
+    Route::get('/doc', 'Documentation');    
+    Route::get('/product/mersedes-benz/{id}', 'DetailProduct');
+});
 
-Route::get('/test', [DachboardController::class, 'Test']);
 
-Route::get('/contact', [MainController::class, 'Сontact']);
-Route::get('/doc', [MainController::class, 'Documentation']);
+
 Route::prefix('doc')->group(function () {
     // Страницы с Юр.документами
     Route::get('license', [MainController::class, 'License']);
