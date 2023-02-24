@@ -85,7 +85,8 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::controller(MainController::class)->group(function () {
     Route::get('/contact', 'Сontact');
-    Route::get('/doc', 'Documentation');    
+    Route::get('/doc', 'Documentation');
+    Route::get('/product/mersedes-benz', 'Catalog');
     Route::get('/product/mersedes-benz/{id}', 'DetailProduct');
 });
 

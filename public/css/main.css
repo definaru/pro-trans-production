@@ -88,6 +88,29 @@ a.nav-link.active {
     left: 8px;
     top: 7px;
 }
+
+.label-danger {
+    position: relative;
+    background: #dc35452b;
+    color: #dc3545;
+    display: inline;
+    border-radius: 5px;
+    padding: 2px 12px 2px 25px;
+    line-height: 0px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+}
+.label-danger::before {
+    position: absolute;
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50em;
+    background: #dc3545;
+    left: 8px;
+    top: 7px; 
+}
 .modal-open > .parent{
     filter: blur(4px);
 }
@@ -220,8 +243,21 @@ a.nav-link.active {
 /* img.material {
     opacity: .75;
 } */
-.consumables strong:hover{
-    text-decoration: 3px underline #8630a3;
+.consumables strong a:hover{
+    text-decoration: 3px underline #8630a3 !important;
+    cursor: pointer;
+}
+.card-title a:hover{
+    text-decoration: 3px underline #8630a3 !important;
+    cursor: pointer;
+}
+.card-title a,
+.breadcrumb a {
+    color: #000;
+    text-decoration: none !important;
+}
+.breadcrumb a:hover{
+    text-decoration: 3px underline #8630a3 !important;
     cursor: pointer;
 }
 .bg-primary {

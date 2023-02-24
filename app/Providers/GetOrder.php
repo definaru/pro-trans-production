@@ -36,7 +36,7 @@ class GetOrder
                 'article' => 'A4572010080',
                 'name' => 'Прокладка уплотнительная для Mercedes-Benz',
                 'image' => '/img/material/A4572010080.png',
-                'href' => ''
+                'href' => 'a8300305-b443-11ed-0a80-09360034bc8e'
             ],	
             [
                 'article' => 'A4700908352',
@@ -128,28 +128,28 @@ class GetOrder
                 'image' => 'https://26.img.avito.st/image/1/1.Y_tzvraBzxIFGz0UOfNA0bwdyxTRG88Utn7LFAUbPRTFGcMWxR_PVg.p_oBFEAS78eDlOEEOQMSBG9mdKV6jJiGc-Q_nYTCBt0',
                 'name' => 'Насос водяной Мерседес ом 501',
                 'article' => 'A5412002301',
-                'href' => ''
+                'href' => '56944025-90e3-11ed-0a80-0f4a0011b0b7'
             ],
             [
                 'raiting' => '5.0',
                 'image' => 'https://61.img.avito.st/image/1/1.xKc-hraBaE5II5pIOtm6lvUlbEicI2hI-0ZsSEgjmkiIIWRKiCdoCg.myvLcmFXs1Vur5pAWqBy_k_WMDf9Xl8QASOd5q_1020',
                 'name' => 'Гбц с клапанами и дросселем OM501',
                 'article' => 'A5410105021',
-                'href' => ''
+                'href' => 'a8352455-b443-11ed-0a80-09360034bc94'
             ],
             [
                 'raiting' => '5.0',
                 'image' => 'https://86.img.avito.st/image/1/1.80q6KbaBX6PMjK2l0Cq2aHGKW6UYjF-lf-lbpcyMraUMjlOnDIhf5w.Twf8N1eudI-N7K6sHuV9eVuab1PMafHfjz45_icESkU',
                 'name' => 'Гайка медная Mercedes пневмосистемы',
                 'article' => 'A0009978134',
-                'href' => ''
+                'href' => 'a83b6c0b-b443-11ed-0a80-09360034bc98'
             ],
             [
                 'raiting' => '5.0',
                 'image' => 'https://99.img.avito.st/image/1/1.Gu_mPbaBtgaQmEQA3n1_1S2esgBEmLYAI_2yAJCYRABQmroCUJy2Qg.wzaUwMg1g-vLvnJ4aYRzXgUDOu7TECAFJQTUx3lRxZM',
                 'name' => 'Фара Actros оригинал Mercedes',
                 'article' => 'A9618205139',
-                'href' => ''
+                'href' => 'a84081f8-b443-11ed-0a80-09360034bc9c'
             ]
         ];
     }
@@ -163,56 +163,56 @@ class GetOrder
                 'image' => 'https://75.img.avito.st/image/1/1.0tEXabaBfjhhzIw-P07lz8nKej61zH4-0ql6PmHMjD6hznI8och-fA.Xwpuo4f900T4FWO77TZVh2Km_4MQj-OacBcf3YFNbqQ',
                 'name' => 'Поршень гильза Актрос Mercedes-Benz',
                 'article' => 'A5410304837',
-                'href' => ''
+                'href' => '7c9e5522-5064-11ed-0a80-05bf003d2fd1'
             ],
             [
                 'raiting' => '4.3',
                 'image' => 'https://81.img.avito.st/image/1/1.eILLsraB1Gu9FyZtt_M9-RUR0G1pF9RtDnLQbb0XJm19FdhvfRPULw.VoqU0puu-E4dJdR4YizlNvtT5x7rKlb5t8ATC-ReAnE',
                 'name' => 'Топливный фильтр ракор / сепаратор',
                 'article' => 'A9604770503',
-                'href' => ''
+                'href' => '49f64444-5064-11ed-0a80-05bf003d1191'
             ],
             [
                 'raiting' => '4.5',
                 'image' => 'https://44.img.avito.st/image/1/1.hfv3bbaBKRKByNsU8TOs3DzOLRRVyCkUMq0tFIHI2xRByiUWQcwpVg.WfTvJokKIUl9Mp56X8beStNFsAd_1hmHgzGmuTn4_dI',
                 'name' => 'Блок управл двигателем Mercedes Actros',
                 'article' => 'A0554463302',
-                'href' => ''
+                'href' => 'a845d136-b443-11ed-0a80-09360034bca0'
             ],
             [
                 'raiting' => '4.9',
                 'image' => 'https://05.img.avito.st/image/1/1.TK2egraB4EToJxJCiv8njFUh5EI8J-BCW0LkQugnEkIoJexAKCPgAA.8ISCDjQJOPAsXBIvP72RQcWSQHVX4qrD6cnKsZwPspo',
                 'name' => 'Фара ПТФ Mercedes левая Actros MP4',
                 'article' => 'A9608202956',
-                'href' => ''
+                'href' => 'a84b53d8-b443-11ed-0a80-09360034bca4'
             ],
             [
                 'raiting' => '4.8',
                 'image' => 'https://95.img.avito.st/image/1/1.1v3qI7aBehSchogSynTVvCKAfhJIhnoSL-N-EpyGiBJchHYQXIJ6UA.6nA9QIi3FCvbvYG6uxo2qkXyks1bXTO9CIbQMkCVhxM',
                 'name' => 'Амортизатор кабины задни Mercedes Axor',
                 'article' => 'A5410304837',
-                'href' => ''
+                'href' => '7c9e5522-5064-11ed-0a80-05bf003d2fd1'
             ],
             [
                 'raiting' => '4.5',
                 'image' => 'https://42.img.avito.st/image/1/1.xxFI6LaBa_g-TZn-SsPLaoZLb_7qTWv-jShv_j5Nmf7-T2f8_klrvA.cI4xpTBeH1icSNf6lp2gWDyZhddVpjOXJl2WTIfoQrk',
                 'name' => 'Цилиндр кпп Мерседес Бенц Actros',
                 'article' => 'A0032605963',
-                'href' => ''
+                'href' => '62ac3a25-5064-11ed-0a80-05bf003d212c'
             ],
             [
                 'raiting' => '5.0',
                 'image' => 'https://80.img.avito.st/image/1/1.nRpt37aBMfMbesP1W7WhXbR8NfXPejH1qB819Rt6w_XbeD33234xtw.-hfoMAi3Bfn1juqgWVil3uU0rjphv4CeeOxGfrPv4H4',
                 'name' => 'Колодки тормозные Мерседес Бенц Актрос',
                 'article' => 'A9604200420',
-                'href' => ''
+                'href' => '5590f0e9-90e3-11ed-0a80-0f4a0011b040'
             ],
             [
                 'raiting' => '4.9',
                 'image' => 'https://03.img.avito.st/image/1/1.7qIoxraBQkteY7BNeLWj4PFlRk2KY0JN7QZGTV5jsE2eYU5PnmdCDw.9QHbhClqWGxkr6omjwiDv5hKmGSmVGG3Hun3ydevY6E',
                 'name' => 'Тормозной диск Мерседес Бенц Актрос',
                 'article' => 'A9434210412',
-                'href' => ''
+                'href' => '7a2f163d-5064-11ed-0a80-05bf003d2edc'
             ]
         ];
     }

@@ -29,6 +29,37 @@ for (let link of links) {
     })
 }
 
+
+var price = document.getElementById("price");
+var summa = document.getElementById("summa");
+console.log('price', price.innerText );
+
+
+function changeTotal(value) {
+    var count = document.getElementById('count');
+    var quantity = document.getElementById('quantity');
+    var total = document.getElementById('total');
+    var remove = document.getElementById('remove');
+    count.innerText === total.innerText || count.innerText === 1 ? 
+        remove.disabled = true : remove.disabled = false;  
+    console.log('summa', summa.innerText );      
+    if(value === 'add') {
+        count.innerText > 1 ? remove.disabled = true : remove.disabled = false;
+        summa.innerText = parseFloat(price.innerText)*(Number(count.innerText)+1);
+        total.innerText === count.innerText ? count.innerText = total.innerText : count.innerText++
+        quantity.innerText <= 0 ? quantity.innerText = 'больше нет' : quantity.innerText--
+    } else {
+        summa.innerText = price.innerText === summa.innerText ? 
+            price.innerText : 
+            summa.innerText-parseFloat(price.innerText);
+        
+        quantity.innerText <= 0 ? quantity.innerText-- : quantity.innerText++
+        count.innerText <= 1 ? count.innerText = 1 : count.innerText--
+    } 
+}
+//summa.innerHTML = parseInt(summa.innerText).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+
 new Vue({
     el: '#order',
     data: {

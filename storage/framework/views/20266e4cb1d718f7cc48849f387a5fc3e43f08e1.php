@@ -118,7 +118,7 @@
                 <?php $__currentLoopData = $bestsellers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $best): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="col-12 col-lg-3">
                     <div class="card card-data border-0 shadow order">
-                        <div class="card-body pb-0 position-relative">
+                        <a href="/product/mersedes-benz/<?=$best['href'];?>" class="card-body pb-0 position-relative">
                             <div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating" class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2">
                                 <span class="material-symbols-outlined fs-6 text-danger">favorite</span>
                                 <small><?=$best['raiting'];?> рейтинг</small> 
@@ -129,15 +129,13 @@
                             <img 
                                 itemprop="image"
                                 src="<?=$best['image'];?>" 
-                                class="card-img-top rounded" 
-                                data-bs-toggle="modal" 
-                                data-bs-target="#order"
+                                class="card-img-top rounded"
                                 alt="<?=$best['name'];?>, Проспект Транс" 
                             />
-                        </div>
+                        </a>
                         <div class="card-body pb-0">
-                            <h5 itemprop="name" class="card-title fw-bold fs-6" data-bs-toggle="modal" data-bs-target="#order">
-                                <?=$best['name'];?>
+                            <h5 class="card-title fw-bold fs-6">
+                                <a itemprop="name" href="/product/mersedes-benz/<?=$best['href'];?>"><?=$best['name'];?></a>
                             </h5>
                             <hr style="color: #ddd" />
                             <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="d-flex justify-content-between">
@@ -200,9 +198,7 @@
                             <img
                                 itemprop="image" 
                                 src="<?=$detail['image'];?>" 
-                                class="material rounded" 
-                                data-bs-toggle="modal" 
-                                data-bs-target="#order"
+                                class="material rounded"
                                 alt="<?=$detail['name'];?>, Проспект Транс"
                                 style="opacity: 0.7;cursor:pointer" 
                             />
@@ -301,7 +297,7 @@
                 <?php $__currentLoopData = $listorder; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-lg-3 col-12 mb-3">
                         <div class="card card-data border-0 shadow order">
-                            <div class="card-body pb-0 position-relative">
+                            <a href="/product/mersedes-benz/<?=$item['href'];?>" class="card-body pb-0 position-relative">
                                 <div 
                                     itemprop="aggregateRating" 
                                     itemscope 
@@ -316,16 +312,14 @@
                                 </div>
                                 <img 
                                     itemprop="image"
-                                    src="<?=$item['image']?>" 
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#order"
+                                    src="<?=$item['image']?>"
                                     class="card-img-top rounded" 
                                     alt="<?=$item['name']?>, Проспект Транс"
                                 />
-                            </div>
+                            </a>
                             <div class="card-body">
-                                <h5 itemprop="name" data-bs-toggle="modal" data-bs-target="#order" class="card-title fw-bold fs-6">
-                                    <?=$item['name']?>
+                                <h5 data-bs-toggle="modal" data-bs-target="#order" class="card-title fw-bold fs-6">
+                                    <a itemprop="name" href="/product/mersedes-benz/<?=$item['href'];?>"><?=$item['name']?></a>
                                 </h5>
                                 <p itemprop="offers" itemscope itemtype="https://schema.org/Offer" class="label">
                                     <link itemprop="availability" href="https://schema.org/InStock" />В наличии

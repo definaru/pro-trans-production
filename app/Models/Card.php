@@ -47,4 +47,13 @@ class Card extends Model
         return $status === null ? 'z' : $status->id_card;
     }
 
+    public static function image($result, $id)
+    {
+        try {
+            return array_column($result, 'image', 'href')[$id];
+        } catch (Exception $e) {
+            return '/img/placeholder.png';
+        }
+    }
+
 }
