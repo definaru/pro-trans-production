@@ -13,7 +13,7 @@
                 <tr>
                     <th scope="col" class="text-muted ps-4">№</th>
                     <th scope="col" class="text-muted">
-                        <small>Контрагент</small> 
+                        <small class="d-block" style="width: 310px">Контрагент</small> 
                     </th>
                     <th scope="col" class="text-muted">
                         <small style="display: block;width: 120px">Сумма Платежа</small> 
@@ -31,7 +31,7 @@
                         <small>Возврат</small> 
                     </th>
                     <th scope="col" class="text-muted pe-4">
-                        <small>Способ Погашения Задолженности</small>
+                        <small class="d-block" style="width: 256px">Способ Погашения Задолженности</small>
                     </th>                    
                 </tr>
             </thead>
@@ -40,15 +40,15 @@
             <tr class="align-middle cp" onclick="getStartLink(`/dashboard/admin/accounting/details/{{$item['id']}}`)">
                 <td class="ps-4">{{$loop->iteration}})</td>
                 <td>{{$item['org']['name']}}</td>
-                <td>{!! $currency::summa($item['pay']) !!}</td>
-                <td>{!! $currency::summa($item['return_pay']) !!}</td>
-                <td>{!! $currency::summa($item['sum_tax']) !!}</td>
+                <td>{!! $currency::value($item['pay']) !!}</td>
+                <td>{!! $currency::value($item['return_pay']) !!}</td>
+                <td>{!! $currency::value($item['sum_tax']) !!}</td>
                 <td>
                     <small class="text-muted">
                         {{$contact::format_nds($item['tax'])}}
                     </small>
                 </td>
-                <td class="text-center">{!! $currency::summa($item['return_sum']) !!}</td>
+                <td class="text-center">{!! $currency::value($item['return_sum']) !!}</td>
                 <td class="text-start">
                     @if ($item['status'] === '')
                         <x-badge color="danger" text="нет данных" />

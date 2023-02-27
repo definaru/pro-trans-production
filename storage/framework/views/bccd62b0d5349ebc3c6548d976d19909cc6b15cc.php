@@ -62,12 +62,7 @@
                                     <span class="list-sort"></span>
                                 </a>
                             </th>                            
-                            <th>
-                                <a href="javascript: void0;" class="text-muted text-decoration-none d-block" style="width: 112px">
-                                    ОГРН дата&#160;
-                                    <span class="list-sort"></span>
-                                </a>
-                            </th>
+                            
                             <th class="d-flex align-items-center gap-2 text-center border-0" style="width: 165px; height: 40px">
                                 Опции
                                 <span class="material-symbols-outlined fs-6 text-secondary">settings</span>
@@ -152,9 +147,7 @@
                                 <?php echo e($item['ogrn']); ?>
 
                             </td>                             
-                            <td>
-                                <?php echo e(date('d.m.Y', $item['ogrn_date'])); ?> г.
-                            </td> 
+                            
                             
                             <td>
                                 <div id="card3292240d-5e7f-11ed-0a80-0eca004678fc" data-card="3292240d-5e7f-11ed-0a80-0eca004678fc,A9061800109,Фильтр масляный,1,133006,133006">

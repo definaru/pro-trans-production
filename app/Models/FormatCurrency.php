@@ -6,6 +6,13 @@ namespace App\Models;
 class FormatCurrency
 {
     
+    public static function value($value)
+    {
+        $sum = number_format($value, 2, '.', ' ');
+        $sum = explode('.', $sum);
+        return $sum[0].'<small class="text-muted">.'.$sum[1].'</small>'.' ₽';
+    }
+
     public static function rub($value)
     {
         $value = explode('.', number_format($value, 2, '.', ''));

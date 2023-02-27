@@ -83,7 +83,7 @@
                         @foreach ($model as $item)
                         <tr>
                             <td>
-                                <div class="ms-2">1</div>
+                                <div class="ms-2">{{$loop->iteration}}</div>
                             </td> 
                             <td>
                                 <a href="/dashboard/admin/user/{{$item['uuid']}}" class="text-danger text-decoration-none">

@@ -40,16 +40,16 @@
             <tr class="align-middle cp" onclick="getStartLink(`/dashboard/admin/accounting/details/<?php echo e($item['id']); ?>`)">
                 <td class="ps-4"><?php echo e($loop->iteration); ?>)</td>
                 <td><?php echo e($item['org']['name']); ?></td>
-                <td><?php echo $currency::summa($item['pay']); ?></td>
-                <td><?php echo $currency::summa($item['return_pay']); ?></td>
-                <td><?php echo $currency::summa($item['sum_tax']); ?></td>
+                <td><?php echo $currency::value($item['pay']); ?></td>
+                <td><?php echo $currency::value($item['return_pay']); ?></td>
+                <td><?php echo $currency::value($item['sum_tax']); ?></td>
                 <td>
                     <small class="text-muted">
                         <?php echo e($contact::format_nds($item['tax'])); ?>
 
                     </small>
                 </td>
-                <td class="text-center"><?php echo $currency::summa($item['return_sum']); ?></td>
+                <td class="text-center"><?php echo $currency::value($item['return_sum']); ?></td>
                 <td class="text-start">
                     <?php if($item['status'] === ''): ?>
                         <?php if (isset($component)) { $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94 = $component; } ?>

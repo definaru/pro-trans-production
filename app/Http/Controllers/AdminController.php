@@ -22,8 +22,8 @@ class AdminController extends Controller
     public function Accounting()
     {
         $receipt= Api1CFresh::DocumentReceiptToCurrentAccount();
-        return response()->json($receipt);
-        //return view('dashboard.admin.accounting', ['receipt' => $receipt]);
+        //return response()->json($receipt);
+        return view('dashboard.admin.accounting', ['receipt' => $receipt]);
     }
 
     public function Users()
@@ -56,5 +56,16 @@ class AdminController extends Controller
         //return response()->json($model);
         return view('dashboard.admin.user', ['uuid' => $uuid, 'model' => $model]);
     }
+
+    public function Contracts()
+    {
+        $model = Customer::query()
+            ->join('card', 'customer.uuid', '=', 'card.user_id')
+            ->join('contract', 'customer.uuid', '=', 'contract.uuid')->get();
+            //->get(['customer.uuid', 'users.name', 'customer.company', 'users.email', 'users.created_at', 'card.id_card', 'customer.okved', 'customer.inn', 'customer.ogrn', 'customer.kpp', 'customer.ogrn_date']);
+        //return response()->json($model);
+        return view('dashboard.admin.contracts', ['model' => $model]);
+    }
+
 
 }

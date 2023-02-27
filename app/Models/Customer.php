@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Card;
+use App\Models\Contract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,4 +18,16 @@ class Customer extends Model
     protected $fillable = [
         'uuid', 'superintendant', 'company', 'okved', 'inn', 'ogrn', 'kpp', 'address', 'ogrn_date',
     ];
+
+
+    public function contract()
+    {
+        return $this->hasOne(Contract::class, 'uuid', 'uuid');
+    }
+
+    public function status()
+    {
+        return $this->hasOne(Card::class, 'user_id', 'uuid');
+    }
+
 }
