@@ -16,6 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable, HasRolesAndPermissions;
 
+    protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *

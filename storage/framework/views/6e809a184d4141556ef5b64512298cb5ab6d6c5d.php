@@ -149,25 +149,5 @@
         </div>
     </div>
 </div>
-{
-
-    "inn": "4909096032",
-    "ogrn": "1074910002980",
-    "kpp": "490901001",
-    "address": "685017, Магаданская обл, г Магадан, ул Советская, д 23",
-    "ogrn_date": "1189728000",
-    "user_id": "8f8fe2c0-55e8-11ed-0a80-09d6000ea9fc",
-    "id_card": "1",
-    "created_at": "2023-01-05 09:45:38",
-    "updated_at": "2023-01-05 09:45:38",
-    "name": "Захаров Михаил Ярославович",
-    "action": "устава",
-    "bank": "АО \"Альфа-Банк\"",
-    "rs": "40702810400260004427",
-    "bik": "4645786856",
-    "ks": "30101810200000000593",
-    "email": "admin@admin.org",
-    "phone": "89615450538"
-}
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layout/main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/dashboard/admin/contracts.blade.php ENDPATH**/ ?>

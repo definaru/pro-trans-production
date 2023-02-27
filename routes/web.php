@@ -48,6 +48,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('admin/accounting', [AdminController::class, 'Accounting']);
     Route::get('admin/users', [AdminController::class, 'Users']);
     Route::get('admin/contracts', [AdminController::class, 'Contracts']);
+    Route::get('admin/access', [AdminController::class, 'Access']);
     Route::get('admin/users/okved/{okved}', [AdminController::class, 'Okved']);
     Route::get('admin/user/{uuid}', [AdminController::class, 'User']);
 });

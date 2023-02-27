@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 use App\Models\Customer;
 use App\Models\DaData;
 use App\Models\MoySklad;
@@ -62,10 +63,20 @@ class AdminController extends Controller
         $model = Customer::query()
             ->join('card', 'customer.uuid', '=', 'card.user_id')
             ->join('contract', 'customer.uuid', '=', 'contract.uuid')->get();
-            //->get(['customer.uuid', 'users.name', 'customer.company', 'users.email', 'users.created_at', 'card.id_card', 'customer.okved', 'customer.inn', 'customer.ogrn', 'customer.kpp', 'customer.ogrn_date']);
         //return response()->json($model);
         return view('dashboard.admin.contracts', ['model' => $model]);
     }
 
+    public function Access()
+    {
+        $model = Role::query()
+            ->join('users_roles', 'roles.id', '=', 'users_roles.role_id')
+            ->join('users', 'users_roles.user_id', '=', 'users.id')
+            ->join('customer', 'users.verified', '=', 'customer.uuid')
+            //->join('permissions', 'users_permissions.permission_id', '=', 'permissions.id')
+            ->get();
+        //return response()->json($model);
+        return view('dashboard.admin.access', ['model' => $model]);
+    }
 
 }
