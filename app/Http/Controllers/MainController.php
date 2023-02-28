@@ -68,4 +68,16 @@ class MainController extends Controller
         return view('catalog', ['product' => $product]);
     }
 
+    public function Product(Request $request)
+    {
+        $request->validate([
+            'type' => 'nullable',
+            'text' => 'required',
+        ]);
+        $search = MoySklad::searchByProduct('article', $request->text);
+        $text = $request->input('text');
+        return redirect()->route('search')->with(['search' => $search, 'text' => $text]);
+        //return view('catalog', ['search' => $search, 'text' => $request->text]);
+    }
+
 }

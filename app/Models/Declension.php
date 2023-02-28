@@ -65,7 +65,7 @@ class Declension
 
     public static function positions($num)
     {
-        return '<b>'.$num.'</b> &#160;'. self::diff($num, 'позиция', 'позиции', 'позиций');
+        return '<b>'.$num.'</b>&#160;'. self::diff($num, 'позиция', 'позиции', 'позиций');
     }
 
     public static function preorders($num)

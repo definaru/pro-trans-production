@@ -51,6 +51,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('admin/access', [AdminController::class, 'Access']);
     Route::get('admin/users/okved/{okved}', [AdminController::class, 'Okved']);
     Route::get('admin/user/{uuid}', [AdminController::class, 'User']);
+    Route::get('admin/nomenclature', [AdminController::class, 'Nomenclature']);
+    Route::get('/admin/nomenclature/gtd/{id}', [AdminController::class, 'Gtd']);
 });
 
 Route::prefix('api')->group(function () {
@@ -86,9 +88,10 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::controller(MainController::class)->group(function () {
+    Route::post('/product', 'Product');
     Route::get('/contact', 'Сontact');
     Route::get('/doc', 'Documentation');
-    Route::get('/product/mersedes-benz', 'Catalog');
+    Route::get('/product/mersedes-benz', 'Catalog')->name('search');
     Route::get('/product/mersedes-benz/{id}', 'DetailProduct');
 });
 

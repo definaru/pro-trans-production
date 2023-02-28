@@ -286,6 +286,22 @@ footer a:hover {
     color: #fff;
     text-decoration: underline;
 }
+#search::placeholder {
+    color: #8f8f8f;
+    opacity: 1;
+    font-size: 15px;
+}
+  
+#search:-ms-input-placeholder {
+   color: #8f8f8f;
+   font-size: 15px;
+}
+  
+#search::-ms-input-placeholder {
+   color: #8f8f8f;
+   font-size: 15px;
+}
+
 @media screen and (max-width:767px) {}
 @media screen and (min-width:768px) and (max-width:991px) {}
 @media screen and (min-width:992px) and (max-width:1199px) {}

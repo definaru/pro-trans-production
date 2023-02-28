@@ -2,7 +2,6 @@
 @section('title', 'Пользователи')
 
 @section('content')
-      
 <div class="row">
     <div class="col">
         <div class="card border-0 shadow-sm">
@@ -14,7 +13,7 @@
                                 <div class="text-muted mb-0">#</div>
                             </th> 
                             <th>
-                                <a href="javascript: void0;" class="text-muted text-decoration-none d-block" style="width: 205px">
+                                <a href="javascript: void0;" class="text-muted text-decoration-none d-block" style="width: 210px">
                                     Название компании&#160;
                                     <span class="list-sort"></span>
                                 </a>
@@ -86,7 +85,7 @@
                                 <div class="ms-2">{{$loop->iteration}}</div>
                             </td> 
                             <td>
-                                <a href="/dashboard/admin/user/{{$item['uuid']}}" class="text-danger text-decoration-none">
+                                <a href="/dashboard/admin/user/{{$item['uuid']}}" class="text-danger text-decoration-none fw-bold">
                                     {{$item['company']}}
                                 </a>
                             </td>                             
@@ -96,7 +95,9 @@
                                 </div>
                             </td>  --}}
 
-                            <td onclick="alert('E-mail письма пока отправить нельзя')">{!!$contact::getEmail($item['email'])!!}</td> 
+                            <td onclick="alert('E-mail письма пока отправить нельзя')">
+                                {!!$contact::getEmail($item['email'], ['text-dark'])!!}
+                            </td> 
                             <td>
                                 <small>
                                     {{date('d/m/Y, H:i', strtotime($item['created_at']))}}

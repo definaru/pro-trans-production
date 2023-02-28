@@ -2,6 +2,7 @@
 @section('title', 'Права и роли')
 
 @section('content')
+<h6 class="text-muted">Права выдаются администратором при выборе пользователя.</h6>
 <div class="row">
     <div class="col">
         <div class="card border-0 shadow-sm">
@@ -50,10 +51,12 @@
                                     <x-badge color="40931" text="Покупатель" />  
                                 @endif
                             </td>
-                            <td>{{$role['email']}}</td>
+                            <td onclick="alert('E-mail письма пока отправить нельзя')">
+                                {!!$contact::getEmail($role['email'], ['text-dark'])!!}
+                            </td> 
                             <td>
                                 <small>
-                                    {{date('d/m/Y, H:i', strtotime($role['created_at']))}}
+                                    {{date('d F Y, H:i', strtotime($role['created_at']))}}
                                 </small>
                             </td>                            
                         </tr>

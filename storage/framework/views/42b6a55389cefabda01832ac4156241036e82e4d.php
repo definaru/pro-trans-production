@@ -61,6 +61,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <?php if($_SERVER['REQUEST_URI'] === '/'): ?>
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active" href="#about">
@@ -92,8 +93,34 @@
                                 Контакты
                             </a>
                         </li>
-                    </ul>
-                    <div class="d-flex" role="search">
+                    </ul>                        
+                    <?php else: ?>
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/about">
+                                О компании
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/product/mersedes-benz">
+                                Запасные части
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/doc">
+                                Документы
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/contact">
+                                Контакты
+                            </a>
+                        </li>
+                    </ul> 
+                    <?php endif; ?>
+
+                    <div class="d-flex gap-2" role="search">
+                        <button class="material-symbols-outlined btn" data-bs-toggle="modal" data-bs-target="#searchForm">search</button>
                         <a href="/signin" class="btn btn-primary px-5 shadow-sm fw-bold d-flex align-items-center gap-2">
                             <span class="material-symbols-outlined fs-6">login</span>
                             Войти
@@ -208,6 +235,29 @@
                 </div>
             </div>
         </footer>
+    </div>
+
+
+    <div class="modal fade" id="searchForm" aria-hidden="true" aria-labelledby="searchForm" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+            <div class="modal-content" style="background-color: transparent">
+                <div class="modal-header border-0">
+                    <h1 class="modal-title fs-5" id="searchForm"></h1>
+                    <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container position-relative">
+                        <div class="row d-flex align-items-center vh-100 pb-5">
+                            <form action="/product" method="POST" class="col-12 position-relative mb-5">
+                                <?php echo csrf_field(); ?>
+                                <input type="search" id="search" name="text" class="form-control form-control-lg px-4 text border-0 shadow" placeholder="Введите Артикул или Название запчасти...">
+                                <span class="material-symbols-outlined position-absolute text-muted" style="right: 28px;top: 11px">search</span>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     

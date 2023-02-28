@@ -20,6 +20,7 @@ class AdminController extends Controller
         return view('dashboard.admin.doc', ['list' => $list]);
     }
 
+
     public function Accounting()
     {
         $receipt= Api1CFresh::DocumentReceiptToCurrentAccount();
@@ -27,9 +28,9 @@ class AdminController extends Controller
         return view('dashboard.admin.accounting', ['receipt' => $receipt]);
     }
 
+
     public function Users()
     {
-
         $model = User::query()
             ->join('card', 'users.verified', '=', 'card.user_id')
             ->join('customer', 'users.verified', '=', 'customer.uuid')
@@ -42,11 +43,13 @@ class AdminController extends Controller
         return view('dashboard.admin.users', ['model' => $model]);
     }
 
+
     public function Okved($okved)
     {
         $data = DaData::okved($okved);
         return view('dashboard.admin.okved', ['okved' => $okved, 'data' => $data]);
     }
+
 
     public function User($uuid)
     {
@@ -58,6 +61,7 @@ class AdminController extends Controller
         return view('dashboard.admin.user', ['uuid' => $uuid, 'model' => $model]);
     }
 
+
     public function Contracts()
     {
         $model = Customer::query()
@@ -66,6 +70,7 @@ class AdminController extends Controller
         //return response()->json($model);
         return view('dashboard.admin.contracts', ['model' => $model]);
     }
+
 
     public function Access()
     {
@@ -78,5 +83,20 @@ class AdminController extends Controller
         //return response()->json($model);
         return view('dashboard.admin.access', ['model' => $model]);
     }
+
+    public function Nomenclature()
+    {
+        $list = Api1CFresh::nomenclature();
+        //return response()->json($list);
+        return view('dashboard.admin.nomenclature', ['list' => $list]);
+    }
+
+    public function Gtd($id)
+    {
+        $model = Api1CFresh::gtd($id);
+        //return response()->json($model);
+        return view('dashboard.admin.gtd', ['model' => $model]);
+    }
+    
 
 }

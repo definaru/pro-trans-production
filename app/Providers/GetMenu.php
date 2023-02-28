@@ -457,9 +457,14 @@ class GetMenu
                     [
                         'icon' => 'bolt',
                         'name' => 'Документооборот',
-                        'slug' => 'admin/doc',
+                        'slug' => 'admin/nomenclature',
                         'count' => '',
-                        'list' => ''
+                        'list' => [
+                            [
+                                'name' => 'Номенклатура',
+                                'href' => 'admin/nomenclature'
+                            ],
+                        ]
                     ],
                     [
                         'icon' => 'receipt_long',
@@ -471,7 +476,7 @@ class GetMenu
                     [
                         'icon' => 'group',
                         'name' => 'Пользователи',
-                        'slug' => 'admin',
+                        'slug' => 'admin/users',
                         'count' => '',
                         'list' => [
                             [

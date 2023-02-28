@@ -2,6 +2,7 @@
 <?php $__env->startSection('title', 'Права и роли'); ?>
 
 <?php $__env->startSection('content'); ?>
+<h6 class="text-muted">Права выдаются администратором при выборе пользователя.</h6>
 <div class="row">
     <div class="col">
         <div class="card border-0 shadow-sm">
@@ -73,10 +74,13 @@
 <?php endif; ?>  
                                 <?php endif; ?>
                             </td>
-                            <td><?php echo e($role['email']); ?></td>
+                            <td onclick="alert('E-mail письма пока отправить нельзя')">
+                                <?php echo $contact::getEmail($role['email'], ['text-dark']); ?>
+
+                            </td> 
                             <td>
                                 <small>
-                                    <?php echo e(date('d/m/Y, H:i', strtotime($role['created_at']))); ?>
+                                    <?php echo e(date('d F Y, H:i', strtotime($role['created_at']))); ?>
 
                                 </small>
                             </td>                            

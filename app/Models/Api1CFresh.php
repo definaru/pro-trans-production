@@ -7,13 +7,11 @@ use Illuminate\Support\Facades\Http;
 class Api1CFresh
 {
 
-
-    
-
     public static function odataUrl()
     {
         return 'https://1cfresh.com/a/ea/1080462/odata/standard.odata/';
     }
+
 
     public static function get($url)
     {
@@ -24,6 +22,7 @@ class Api1CFresh
             $password
         )->get($url);
     }
+
 
     public static function DocumentReceiptToCurrentAccount()
     {
@@ -53,6 +52,7 @@ class Api1CFresh
 
     }
 
+
     public static function BuyerInvoice($document)
     {
         $param = '?$format=json&$inlinecount=allpages';
@@ -66,6 +66,31 @@ class Api1CFresh
             'rn' => isset($data['РегистрационныйНомер']) ? $data['РегистрационныйНомер'] : '..',
             'code' => isset($data['Code']) ? $data['Code'] : '.',
         ];
+    }
+
+
+    public static function nomenclature()
+    {
+        // &$top=10
+        // Parent@navigationLinkUrl,
+        // ВидНоменклатуры@navigationLinkUrl,
+        $select = '$select=Ref_Key,Code,Description,Артикул,ЕдиницаИзмерения@navigationLinkUrl,НоменклатурнаяГруппа@navigationLinkUrl,СтранаПроисхождения@navigationLinkUrl,НомерГТД@navigationLinkUrl&';
+        $param = '&$format=json&$inlinecount=allpages';
+        $filter = "Артикул ne ''";
+        $url = self::odataUrl().'Catalog_Номенклатура?$filter='.$filter.$param;
+        //return $url;
+        $response = self::get($url);
+        return $response->json();
+    }
+
+    public static function gtd($id)
+    {
+        $param = '?$format=json'; // &$inlinecount=allpages
+        $guid = "'$id'";
+        $url = self::odataUrl().'Catalog_Номенклатура(guid'.$guid.')/НомерГТД'.$param;
+        //return $url;
+        $response = self::get($url);
+        return $response->json();
     }
 
 }
