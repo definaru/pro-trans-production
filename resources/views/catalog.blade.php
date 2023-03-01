@@ -12,11 +12,63 @@
 @section('content')
 <section class="bg-secondary-subtle">
     <div class="container position-relative">
-        <div class="row">
-            <form action="/product" method="POST" class="col-12 my-4 position-relative">
+        <div class="d-print-none row">
+            <form id="sendForm" action="/product" method="POST" class="col-12 my-4 position-relative">
                 @csrf
-                <input type="search" id="search" name="text" class="form-control form-control-lg px-4 text border-0 shadow" placeholder="Введите Артикул или Название запчасти..." />
-                <span class="material-symbols-outlined position-absolute text-muted" style="right: 28px;top: 11px">search</span>
+                <input type="search" list="searchlist" id="search" name="text" class="form-control form-control-lg ps-4 pe-5 text border-0 shadow" placeholder="Введите Артикул или Название запчасти..." />
+                <span class="material-symbols-outlined position-absolute text-muted" onclick="getResult()" style="cursor: pointer;right: 28px;top: 11px">search</span>
+                <datalist id="searchlist">
+                    <option value="Насос-форсунка топливная цилиндра"></option>
+                    <option value="Ресивер воздушный"></option>
+                    <option value="Поршень-гильза комплект"></option>
+                    <option value="Водяной насос с муфтой"></option>
+                    <option value="Насос водяной с прокладкой"></option>
+                    <option value="Тормозной шланг переднего моста"></option>
+                    <option value="Трос открывания"></option>
+                    <option value="Втулка шатуна верхняя"></option>
+                    <option value="Кольцо гильзы"></option>
+                    <option value="Прокладка блока цилиндров"></option>
+                    <option value="Комплект щеток стеклоочистителя"></option>
+                    <option value="Комплект сцепления"></option>
+                    <option value="Датчик уровня топлива в баке"></option>
+                    <option value="Цапфа задней полуоси"></option>
+                    <option value="Кронштейн стабилизатора"></option>
+                    <option value="Гайка шестигранная"></option>
+                    <option value="Напорный трубопровод турбины"></option>
+                    <option value="Усилитель привода сцепления"></option>
+                    <option value="Фильтр топливный"></option>
+                    <option value="Радиатор охлаждения"></option>
+                    <option value="Панель кабины боковая левая"></option>
+                    <option value="Прокладка выпускного коллектора"></option>
+                    <option value="Кольцо уплотнительное"></option>
+                    <option value="Втулка распредвала"></option>
+                    <option value="Сальник ступицы"></option>
+                    <option value="Фиттинг ГБЦ"></option>
+                    <option value="Трубка топливная"></option>
+                    <option value="Вискомуфта вентилятора"></option>
+                    <option value="Втулка распредвала с буртиком"></option>
+                    <option value="Насос ГУР"></option>
+                    <option value="Прокладка"></option>
+                    <option value="Фильтр масляный"></option>
+                    <option value="Комплект топливных фильтров"></option>
+                    <option value="Фиттинг электропроводки"></option>
+                    <option value="Блок переключения передач"></option>
+                    <option value="Уплотнение"></option>
+                    <option value="Уплотнение масляного насоса"></option>
+                    <option value="Щетки стеклоочистителя"></option>
+                    <option value="Клапан обратный"></option>
+                    <option value="Рычаг стеклоочистителя"></option>
+                    <option value="Стартер"></option>
+                    <option value="Вилка блокировки"></option>
+                    <option value="Генератор"></option>
+                    <option value="Трубка"></option>
+                    <option value="Прокладка коллектора"></option>
+                    <option value="Втулка стабилизатора"></option>
+                    <option value="Вязкостная муфта"></option>
+                    <option value="Подушка передняя кабины"></option>
+                    <option value="Блок подготовки воздуха"></option>
+                    <option value="Термостат охлаждения двигателя"></option>
+                <datalist>
             </form>
         </div>
         <div class="row">
@@ -28,7 +80,7 @@
         </div>
         @if(session('search'))
             @if($size === 0)
-                <p>По запросу <strong>"{{session('text')}}"</strong> ничего не найдено</p>
+                <p class="w-100" style="height: 600px">По запросу <strong>"{{session('text')}}"</strong> ничего не найдено</p>
             @else
                 <p>{{$decl::search($size)}} <span class="badge bg-soft-danger text-danger rounded-pill">{{$size}}</span></p>
                 {{-- <pre><?php //var_dump(session('search')['rows']);?></pre> --}}

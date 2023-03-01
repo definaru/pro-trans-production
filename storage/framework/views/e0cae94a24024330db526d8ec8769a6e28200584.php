@@ -116,7 +116,11 @@ unset($__errorArgs, $__bag); ?>
         <?php if($size === 0): ?>
         <p>По запросу <strong>"<?php echo e(session('text')); ?>"</strong> ничего не найдено</p>
         <?php else: ?>
-        <p><?php echo e($decl::search($size)); ?> <span class="badge bg-soft-danger text-danger rounded-pill"><?php echo e($size); ?></span> </p>        
+        <p><?php echo e($decl::search($size)); ?> 
+            <?php if($size !== 1): ?>
+                <span class="badge bg-danger rounded-pill"><?php echo e($size); ?></span>
+            <?php endif; ?>
+        </p>        
         <?php endif; ?>
 
         <?php $__currentLoopData = session('search')['rows']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

@@ -65,7 +65,11 @@
         @if($size === 0)
         <p>По запросу <strong>"{{session('text')}}"</strong> ничего не найдено</p>
         @else
-        <p>{{$decl::search($size)}} <span class="badge bg-danger rounded-pill">{{$size}}</span> </p>        
+        <p>{{$decl::search($size)}} 
+            @if ($size !== 1)
+                <span class="badge bg-danger rounded-pill">{{$size}}</span>
+            @endif
+        </p>        
         @endif
 
         @foreach(session('search')['rows'] as $item)

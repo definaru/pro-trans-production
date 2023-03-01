@@ -8,14 +8,16 @@
 @section('title', 'Контакты')
 
 @section('content')
-<div class="w-100" style="background-image: url(/img/5464765787695.jpg);background-position: 0px -382px;background-attachment: fixed;background-size: cover;height: 250px;"></div>
+<div class="w-100" style="background-image: url(/img/5464765787695.jpg);background-position: 0px -382px;background-attachment: fixed;background-size: cover;height: 250px;">
+    <div style="height: 100%;display: flex;justify-content: center;align-items: center;background-color: #00000059">
+        <h2 class="text-white pt-5 mb-0">Контакты</h2>
+    </div>
+</div>
 <section class="bg-white">
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="mt-5 text">
-                    <h6 class="text-secondary">Контакты</h6> 
-                    
+                <div class="text">
                     <h3 class="text-dark mb-4">{{ config('app.name') }}</h3>
                     <div class="row">
                         <div class="col-12 col-md-4">

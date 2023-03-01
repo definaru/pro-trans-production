@@ -32,7 +32,7 @@ for (let link of links) {
 
 var price = document.getElementById("price");
 var summa = document.getElementById("summa");
-console.log('price', price.innerText );
+//console.log('price', price.innerText );
 
 
 function changeTotal(value) {
@@ -122,5 +122,62 @@ new Vue({
             console.log('data:', formdata);
             this.loading = false;
         }
+    }
+});
+
+let modal = new bootstrap.Modal(document.querySelector('#searchForm'));
+let input = document.querySelector('input[type="search"]');
+//let searchlist = document.getElementById('searchlist');
+// document.getElementById('searchForm').addEventListener('keydown', function () {
+//     input.focus();
+// })
+function getResult()
+{
+    document.querySelector('#sendForm').submit()
+}
+
+document.querySelectorAll('input[list]').forEach( (formfield) => {
+    var datalist = document.getElementById(formfield.getAttribute('list'));
+    var lastlength = formfield.value.length;
+    var checkInputValue = function (inputValue) {
+        if (inputValue.length - lastlength > 1) {
+            datalist.querySelectorAll('option').forEach( function (item) {
+            if (item.value === inputValue) {
+                formfield.form.submit();
+            }
+            });
+        }
+        lastlength = inputValue.length;
+    };
+    formfield.addEventListener('input', function () {
+        checkInputValue(this.value);
+    }, false);
+});
+
+
+
+// searchlist.addEventListener('click', () => {
+//     document.querySelector('#sendForm').submit()
+// })
+
+window.addEventListener('keydown', (e) => {
+    if (e.code == 'KeyX' && (e.ctrlKey || e.shiftKey || e.metaKey)) {
+        modal.hide();
+        e.preventDefault();
+    }
+});
+
+document.addEventListener('keydown', (event) => {
+    if (event.code == 'KeyF' && (event.ctrlKey || event.shiftKey || event.metaKey)) {
+        modal.show();
+        event.preventDefault();
+    }
+});
+
+document.addEventListener('keydown', (event) => {
+    if (event.code == 'KeyS' && (event.ctrlKey || event.metaKey)) {
+        let confirmAction = confirm('Хотите распечатать страницу ?');
+        confirmAction ? window.print() : '';
+        event.preventDefault();
     }
 });
