@@ -138,7 +138,7 @@ a.nav-link.active {
     background-color: #8630a3;
 }
 .card-data.order {
-    width: 17rem;
+    width: 100%;
 }
 .card h5, .card-data h5 {
     font-family: 'Jost', sans-serif;
@@ -157,7 +157,7 @@ a.nav-link.active {
 .card img {
     opacity: 0.6;
     height: 15em;
-    width: 15rem;
+    width: 100%;
     object-fit: cover;
     filter: saturate(300%);
 }
@@ -302,7 +302,51 @@ footer a:hover {
    font-size: 15px;
 }
 
-@media screen and (max-width:767px) {}
-@media screen and (min-width:768px) and (max-width:991px) {}
-@media screen and (min-width:992px) and (max-width:1199px) {}
-@media screen and (min-width: 1200px) {}
+@media screen and (max-width:767px) {
+    h1 {
+        font-size: 40px !important;
+    }
+    footer, section {
+        padding: 70px 0;
+    }
+    .parent {
+        display: block !important;
+    }
+    .spates::after {
+        position: absolute;
+        content: '';
+        width: 100px;
+        height: 100px;
+        filter: blur(5.5rem);
+        border-radius: 50em;
+        right: 90px;
+        top: 93%;
+        z-index: 0;
+    }
+    .ng::before {
+        width: 100%;
+    }
+    .card img {
+        height: 20em;
+    }
+    nav ul li {
+        padding: 10px;
+    }
+    .navbar-toggler:focus {
+        text-decoration: none;
+        outline: none !important;
+        box-shadow: none !important;
+    }
+    .brand img {
+        width: 40% !important;
+    }
+}
+@media screen and (min-width:768px) and (max-width:991px) {
+
+}
+@media screen and (min-width:992px) and (max-width:1199px) {
+
+}
+@media screen and (min-width: 1200px) {
+
+}

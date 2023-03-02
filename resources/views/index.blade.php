@@ -7,46 +7,48 @@
 @section('title', 'Prospekt Parts | Проспект Транс')
 @section('content')
     <section id="about" class="bg-hero coral position-relative overflow-hidden">
-        <div class="container h-100 ">
-            <p class="copyright">© 2022 &middot; Все права защищены</p>
+        <div class="container h-100">
+            <p class="d-none d-lg-inline copyright">© 2022 &middot; Все права защищены</p>
             <div class="row pt-4 h-100">
-                <div class="d-flex justify-content-start flex-column align-items-center gap-3 align-self-center col-7">
-                    <h1 class="fw-bold lh-1 display-4">
-                        <span class="text-primary shock-wive">Поставляем запчасти</span>, комплектующие 
-                        и расходные материалы 
-                        <br />
-                        <span class="fw-light display-5 shock-wive-inline">для грузовых автомобилей.</span> 
-                    </h1>
-                    <p class="fs-6 w-100 text">
-                        Широкий ассортимент инструментов и оборудования 
-                        <br />для станций технического обслуживания.
-                    </p>
-                    <div class="d-flex align-items-center gap-4 w-100">
-                        <a href="/signup" class="btn btn-lg btn-primary px-5 py-3 d-flex align-items-center gap-2">
-                            <span class="material-symbols-outlined">open_in_new</span>
-                            Зарегистрироваться
-                        </a>
-                        <a href="#bestsellers" class="btn btn-lg btn-dark px-5 py-3">
-                            &#8618;&#160; Подробнее
-                        </a>
-                    </div>
-                    <div class="d-flex align-items-center w-100 py-2">
-                        <div class="border-end border-dark-subtle pe-4 lh-1">
-                            <strong class="fs-1 text fw-bold">8+</strong>
-                            <p class="m-0">Лет на рынке</p>
+                <div class="col-12 col-lg-7 d-block d-lg-flex justify-content-start align-items-center align-self-center">
+                    <div class="d-flex flex-column gap-3 position-relative z-3 p-3 p-lg-0">
+                        <h1 class="fw-bold lh-1 display-4">
+                            <span class="text-primary shock-wive">Поставляем запчасти</span>, комплектующие 
+                            и расходные материалы 
+                            <br />
+                            <span class="fw-light display-5 shock-wive-inline">для грузовых автомобилей.</span> 
+                        </h1>
+                        <p class="fs-6 w-100 text">
+                            Широкий ассортимент инструментов и оборудования 
+                            <br />для станций технического обслуживания.
+                        </p>
+                        <div class="d-grid d-lg-flex align-items-center gap-3 gap-lg-4 w-100">
+                            <a href="/signup" class="btn btn-lg btn-primary px-5 py-3 d-flex justify-content-center align-items-center gap-2">
+                                <span class="material-symbols-outlined">open_in_new</span>
+                                Зарегистрироваться
+                            </a>
+                            <a href="#bestsellers" class="btn btn-lg btn-dark px-5 py-3">
+                                &#8618;&#160; Подробнее
+                            </a>
                         </div>
-                        <div class="border-end border-dark-subtle px-4 lh-1">
-                            <strong class="fs-1 text fw-bold">3+</strong>
-                            <p class="m-0">Производителей</p>
-                        </div>
-                        <div class="px-4 lh-1">
-                            <strong class="fs-1 text fw-bold">9K+</strong>
-                            <p class="m-0">Запчастей</p>
+                        <div class="d-flex align-items-center w-100 py-2">
+                            <div class="border-end border-dark-subtle pe-3 pe-lg-4 lh-1">
+                                <strong class="fs-1 text fw-bold">8+</strong>
+                                <p class="m-0">Лет на рынке</p>
+                            </div>
+                            <div class="border-end border-dark-subtle px-3 px-lg-4 lh-1">
+                                <strong class="fs-1 text fw-bold">3+</strong>
+                                <p class="m-0">Производителей</p>
+                            </div>
+                            <div class="px-3 px-lg-4 lh-1">
+                                <strong class="fs-1 text fw-bold">9K+</strong>
+                                <p class="m-0">Запчастей</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-5">
-                    <div class="d-flex gap-2 position-absolute z-3">
+                <div class="col-12 col-lg-5">
+                    <div class="d-none d-lg-flex gap-2 position-absolute z-3">
                         <div class="card border-0 shadow" style="width: 17rem">
                             <div class="card-body pb-0 position-relative">
                                 <div class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2">
@@ -110,7 +112,7 @@
     <section id="bestsellers" class="bg-secondary-subtle">
         <div class="container" itemscope itemtype="https://schema.org/ItemList">
             <div class="row">
-                <div class="col-8 offset-2 text-center">
+                <div class="col-12 col-lg-8 offset-lg-2 text-center">
                     <h2 class="fw-bold display-5">Хиты продаж 🔥</h2>
                     <p class="text-muted text">
                         Самые ходовые товары из Германии с проверенным ГТД. 
@@ -121,7 +123,7 @@
             </div>
             <div class="row py-4" itemprop="itemListElement" itemscope itemtype="http://schema.org/Product">
                 @foreach ($bestsellers as $best)
-                <div class="col-12 col-lg-3">
+                <div class="col-12 col-lg-3 mb-4 mb-lg-1">
                     <div class="card card-data border-0 shadow order">
                         <a href="/product/mersedes-benz/<?=$best['href'];?>" class="card-body pb-0 position-relative">
                             <div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating" class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2">
@@ -184,7 +186,7 @@
                 </div>
             </div>
             <div class="row py-4">
-                <div class="d-flex justify-content-between align-items-center col-12 mt-5">
+                <div class="d-flex flex-column flex-lg-row justify-content-between align-items-center col-12 mt-5">
                     <h2 class="fw-bold display-6">Расходные материалы</h2>
                     <button 
                         data-bs-toggle="modal" 
@@ -244,7 +246,7 @@
     <section id="spareparts" class="bg-white">
         <div class="container position-relative">
             <div class="row">
-                <div class="col-6 offset-3 text-center">
+                <div class="col-12 col-lg-6 offset-lg-3 text-center">
                     <h2 class="fw-bold display-5">Запасные части</h2>
                     <p class="text-muted text">
                         В наличии и под заказ есть запчасти
@@ -259,7 +261,7 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card card-data border-light shadow-lg">
                         <div class="card-body text-center pt-5" data-bs-toggle="modal" data-bs-target="#order">
-                            <img src="/img/actros___kopiya.png" style="opacity: 1" class="w-100" alt="Mercedes-Benz">
+                            <img src="/img/actros___kopiya.png" style="height: auto;opacity: 1" class="w-100" alt="Mercedes-Benz">
                             <h5 class="fw-bold mt-3">Mercedes-Benz</h5>
                         </div>
                     </div>
@@ -267,7 +269,7 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card card-data border-light shadow-lg">
                         <div class="card-body text-center pt-5" data-bs-toggle="modal" data-bs-target="#order">
-                            <img src="/img/volvo.png" style="opacity: 1" class="w-100" alt="Volvo">
+                            <img src="/img/volvo.png" style="height: auto;opacity: 1" class="w-100" alt="Volvo">
                             <h5 class="fw-bold mt-3">Volvo</h5>
                         </div>
                     </div>
@@ -275,7 +277,7 @@
                 <div class="col-12 col-md-4 mb-4 z-3 position-relative">
                     <div class="card card-data border-light shadow-lg">
                         <div class="card-body text-center pt-5" data-bs-toggle="modal" data-bs-target="#order">
-                            <img src="/img/Renault.png" style="opacity: 1" class="w-100" alt="Renault Trucks">
+                            <img src="/img/Renault.png" style="height: auto;opacity: 1" class="w-100" alt="Renault Trucks">
                             <h5 class="fw-bold mt-3">Renault Trucks</h5>
                         </div>
                     </div>
@@ -287,7 +289,7 @@
     <section id="brand" class="bg-secondary-subtle pb-3">
         <div class="container">
             <div class="row">
-                <div class="d-flex justify-content-between align-items-center col-12">
+                <div class="d-flex flex-column flex-lg-row justify-content-between align-items-center col-12">
                     <h2 class="fw-bold display-6">Товары в наличии</h2>
                     <div>
                         <select class="form-control px-5" name="brand">
@@ -366,10 +368,11 @@
             </div>
             <div class="row">
                 <div class="col-12 pt-5">
-                    <div class="p-5 bg-dark text-white rounded" style="background-image: url(/img/banner.png);background-size: cover;background-position: top right">
+                    <div class="p-5 bg-dark text-white rounded" 
+                    style="background-image: url(/img/banner.png);background-size: cover;background-position: top right;box-shadow: inset 0px -48px 254px 86px #000000bf">
                         <h2 class="display-3 mb-4 fw-bold">Присоединяйтейсь<br> к нашему сообществу</h2>
-                        <div class="d-flex gap-3">
-                            <a href="/signup" class="btn btn-lg btn-primary px-5 d-flex align-items-center gap-2">
+                        <div class="d-grid d-lg-flex gap-3">
+                            <a href="/signup" class="btn btn-lg btn-primary px-5 d-flex justify-content-center align-items-center gap-2">
                                 <span class="material-symbols-outlined">add</span>
                                 Присоедиится
                             </a>
@@ -399,7 +402,7 @@
                         src="/img/stacey-gabrielle-koenitz-rozells.jpg" 
                         style="filter: saturate(250%);opacity: 0.7" 
                         alt="Наши преимущества" 
-                        class="w-100 rounded" 
+                        class="w-100 rounded mb-5 mb-lg-0" 
                     />
                 </div>
                 <div class="col-12 col-lg-7">
@@ -443,19 +446,19 @@
 
             <div class="row mt-5">
                 <div class="col-12 col-lg-6">
-                    <div class="p-5 bg-primary text-white rounded text-center">
+                    <div class="p-5 bg-primary text-white rounded text-center mb-4 mb-lg-0">
                         <h4 class="fw-lighter text-warning">Скоро для мобильного</h4>
                         <h3 class="fw-bold text">Скачать и установить</h3>
                         <p class="text">Наш сервис на следующих платформах:</p>
-                        <div class="d-flex gap-3 pt-3">
-                            <button class="d-flex gap-2 btn btn-dark w-50 px-4 py-2" disabled>
+                        <div class="d-flex justify-content-center flex-column flex-lg-row gap-3 pt-3">
+                            <button class="d-flex justify-content-center gap-2 btn btn-dark px-4 py-2" disabled>
                                 <img src="/img/google_play.svg" style="width: 40px" alt="Google Play">
                                 <div class="d-flex align-self-center flex-column lh-sm text-start">
                                     <small class="text">Скачать на</small>
                                     <strong class="fw-bold text">Google Play</strong> 
                                 </div>
                             </button>
-                            <button class="d-flex gap-2 btn btn-dark w-50 px-4 py-2" disabled>
+                            <button class="d-flex justify-content-center gap-2 btn btn-dark px-4 py-2" disabled>
                                 <img src="/img/apple_store.svg" style="width: 40px" alt="App Store" />
                                 <div class="d-flex align-self-center flex-column lh-sm text-start">
                                     <small class="text">Скачать на</small>
@@ -470,11 +473,11 @@
                         <h4 class="fw-lighter text-primary">Наши партнёры</h4>
                         <h3 class="fw-bold text">В наличии и под заказ</h3>
                         <p class="text">мы работаем со следующими брендами:</p>
-                        <div class="d-flex justify-content-center gap-5" style="opacity: 0.6">
-                            <img src="/img/logo-daf.png" style="width: 100px" alt="DAF">
-                            <img src="/img/renault.svg" style="width: 60px;" alt="Renault">
-                            <img src="/img/volvo.svg" style="width: 62px;" alt="Volvo">
-                            <img src="/img/mercedes-benz.svg" style="width: 74px;" alt="Mercedes Benz">
+                        <div class="d-flex row justify-content-center gap-5 pt-4 brand" style="opacity: 0.6">
+                            <img src="/img/logo-daf.png" class="col-6 col-lg-3" style="width: 100px" alt="DAF">
+                            <img src="/img/renault.svg" class="col-6 col-lg-3" style="width: 60px;" alt="Renault">
+                            <img src="/img/volvo.svg" class="col-6 col-lg-3" style="width: 62px;" alt="Volvo">
+                            <img src="/img/mercedes-benz.svg" class="col-6 col-lg-3" style="width: 74px;" alt="Mercedes Benz">
                         </div>
                     </div>
                 </div>

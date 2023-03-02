@@ -1,6 +1,8 @@
 <?php
     $str = mb_convert_case($product['name'], MB_CASE_TITLE, "UTF-8");
     $result = array_merge($listorder, $bestsellers, $alllist);
+    $url = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
+
     try {
         $first_names = array_column($result, 'image', 'href')[$id];
         $image = $first_names; 
@@ -14,7 +16,7 @@
     <section class="bg-secondary-subtle">
         <div class="container">
             <div class="row">
-                <div class="col-12 mb-4">
+                <div class="col-12 mb-4 mt-5 mt-lg-0">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/">Главная</a></li>
@@ -32,7 +34,7 @@
                     </nav>
                 </div>
                 <div class="col-12 col-lg-6">
-                    <div class="pe-5">
+                    <div class="pe-0 pe-lg-5">
                         <img 
                             src="<?php echo e($image); ?>" 
                             class="w-100 rounded " 
@@ -42,7 +44,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-6">
-                    <h1 class="fw-bold lh-1 display-5"><?php echo e($str); ?></h1>
+                    <h1 class="fw-bold lh-1 display-5 mt-5 mt-lg-0"><?php echo e($str); ?></h1>
                     <p class="fs-5 w-100 text text-secondary"><strong>Артикул:</strong> <?php echo e($product['article']); ?></p>
                     <span id="price" class="d-none"><?php echo number_format(($product['salePrices']) / 100, 2, '.', '') ?></span>
                     <p class="fs-4 w-100 text"><?php echo $currency::summa($product['salePrices']); ?> <span id="summa"></span></p>
@@ -62,26 +64,24 @@
                         <?php endif; ?>
                     </div>
                     <hr style="color: #ddd" />
-                    <div class="d-flex align-items-center gap-4 w-100">
+                    <div class="d-grid d-lg-flex align-items-center gap-4 w-100">
                         <?php if($product['quantity'] == 0 || $product['quantity'] < 0): ?>
-                            <button class="btn btn-lg btn-primary px-5 py-3 d-flex align-items-center gap-2">
+                            <button class="btn btn-lg btn-primary px-5 py-3 d-flex justify-content-center align-items-center gap-2">
                                 <span class="material-symbols-outlined">drive_file_rename_outline</span>
                                 Подписаться на товар
                             </button>   
                         <?php else: ?>
-                            <div class="rounded p-3 bg-white">
+                            <div class="d-flex justify-content-center rounded p-3 bg-white">
                                 <span onclick="changeTotal('add');" class="material-symbols-outlined btn py-1">add</span>
                                 <span id="count" class="btn py-1">1</span>
                                 <button id="remove" onclick="changeTotal('remove');" class="material-symbols-outlined btn py-1 border-0" disabled>remove</button>
                             </div>
-                            <a href="/signup" class="btn btn-lg btn-primary px-5 py-3 d-flex align-items-center gap-2">
+                            <a href="/signup" class="btn btn-lg btn-primary px-5 py-3 d-flex justify-content-center align-items-center gap-2">
                                 <span class="material-symbols-outlined">add_shopping_cart</span>
                                 В корзину
                             </a>                        
                         <?php endif; ?>
-                        
                     </div>
-
                 </div>
             </div>
         </div>
@@ -90,6 +90,6 @@
 <?php echo $__env->make('layout/index', [
     'title' => $str.' | Проспект Транс',
     'keywords' => 'ремонт, ремонт машин, ремонт в москве, ремонт в мытищи, ремонт двигателя, сервис, service, чинить, автосервис, мерседес бенц, актрос',
-    'description' => '...',
-    'image' => 'https://prospekt-parts.com/img/5464765787695.jpg'
+    'description' => number_format(($product['salePrices']) / 100, 2, '.', '').' ₽',
+    'image' => $url.$image
 ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/product.blade.php ENDPATH**/ ?>
