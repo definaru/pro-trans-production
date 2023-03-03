@@ -10,7 +10,16 @@
         <div class="d-print-none row">
             <form id="sendForm" action="/product" method="POST" class="col-12 my-4 position-relative">
                 <?php echo csrf_field(); ?>
-                <input type="search" list="searchlist" id="search" name="text" class="form-control form-control-lg ps-4 pe-5 text border-0 shadow" placeholder="Введите Артикул или Название запчасти..." />
+                <input 
+                    type="search" 
+                    list="searchlist" 
+                    min="5"
+                    max="5"
+                    id="search" 
+                    name="text" 
+                    class="form-control form-control-lg ps-4 pe-5 text border-0 shadow" 
+                    placeholder="Введите Артикул или Название запчасти..." 
+                />
                 <span class="material-symbols-outlined position-absolute text-muted" onclick="getResult()" style="cursor: pointer;right: 28px;top: 11px">search</span>
                 <datalist id="searchlist">
                     <option value="Насос-форсунка топливная цилиндра"></option>

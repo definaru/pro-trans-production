@@ -260,10 +260,10 @@
             <div class="row pt-4 spates">
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card card-data border-light shadow-lg">
-                        <div class="card-body text-center pt-5" data-bs-toggle="modal" data-bs-target="#order">
+                        <a href="/product/mersedes-benz" class="card-body text-center pt-5 text-decoration-none">
                             <img src="/img/actros___kopiya.png" style="height: auto;opacity: 1" class="w-100" alt="Mercedes-Benz">
                             <h5 class="fw-bold mt-3">Mercedes-Benz</h5>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-12 col-md-4 mb-4">

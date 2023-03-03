@@ -18,29 +18,29 @@
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <div>
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush text">
                         <li class="list-group-item">
-                            <a href="/doc/license" class="text-decoration-none">
+                            <a href="/doc/license" class="text-dark">
                                 Пользовательское соглашение
                             </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="/doc/privatepolice" class="text-decoration-none">
+                            <a href="/doc/privatepolice" class="text-dark">
                                 Политика конфиденциальности
                             </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="/doc/responsibility" class="text-decoration-none">
+                            <a href="/doc/responsibility" class="text-dark">
                                 Отказ от ответственности
                             </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="/doc/guaranty" class="text-decoration-none">
+                            <a href="/doc/guaranty" class="text-dark">
                                 Условия гарантии
                             </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="/doc/return-policy" class="text-decoration-none">
+                            <a href="/doc/return-policy" class="text-dark">
                                 Правила возврата
                             </a>            
                         </li>

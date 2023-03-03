@@ -13,7 +13,7 @@
 @extends('layout/index', [
     'title' => $str.' | Проспект Транс',
     'keywords' => 'ремонт, ремонт машин, ремонт в москве, ремонт в мытищи, ремонт двигателя, сервис, service, чинить, автосервис, мерседес бенц, актрос',
-    'description' => number_format(($product['salePrices']) / 100, 2, '.', '').' ₽',
+    'description' => $product['article']. ', MERCEDES-BENZ \ '.number_format(($product['salePrices']) / 100, 2, '.', ' ').' ₽',
     'image' => $url.$image
 ])
 @section('title', $str.' | Проспект Транс')

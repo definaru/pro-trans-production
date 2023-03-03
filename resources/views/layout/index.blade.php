@@ -121,10 +121,26 @@
 
                     <div class="d-grid d-lg-flex gap-2 pb-4 pb-lg-0" role="search">
                         <button class="material-symbols-outlined btn d-none d-lg-block" data-bs-toggle="modal" data-bs-target="#searchForm">search</button>
+                        @guest
                         <a href="/signin" class="btn btn-primary px-5 shadow-sm fw-bold d-flex justify-content-center align-items-center gap-2">
                             <span class="material-symbols-outlined fs-6">login</span>
                             Войти
+                        </a>                        
+                        @endguest
+                        @auth
+                        <a href="/dashboard" class="material-symbols-outlined btn">
+                            person
                         </a>
+                        <a href="/dashboard/card" class="material-symbols-outlined btn position-relative">
+                            shopping_cart
+                            <small 
+                                class="position-absolute translate-middle badge rounded-pill bg-danger text" 
+                                style="font-size: 10px;top: 8px;left: 35px;"
+                            >
+                                9
+                            </small>
+                        </a>
+                        @endauth
                     </div>
                 </div>
             </div>
@@ -317,7 +333,7 @@
                                     <option value="Подушка передняя кабины"></option>
                                     <option value="Блок подготовки воздуха"></option>
                                     <option value="Термостат охлаждения двигателя"></option>
-                                <datalist>
+                                </datalist>
                             </form>
                         </div>
                     </div>

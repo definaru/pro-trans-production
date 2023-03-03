@@ -18,7 +18,11 @@
                         <div class="col-12 col-md-4">
                             <p><strong>ИНН:</strong> 9715366031</p>
                             <p><strong>ОГРН:</strong> 1197746624107</p>
-                            <p><strong>КПП:</strong> 771501001</p>            
+                            <p><strong>КПП:</strong> 771501001</p>   
+                            <iframe src="https://yandex.ru/sprav/widget/rating-badge/8347363005?type=rating&theme=dark" width="150" height="50" frameborder="0"></iframe>         
+                            <div class="d-block mt-3">
+                                <a href="/doc" class="text-muted">Юридическая информация</a>
+                            </div>
                         </div>
                         <div class="col-12 col-md-8">
                             <p><strong>E-mail: </strong> <?php echo $contact::getEmail(config('app.email'), ['text-muted']); ?></p>
@@ -31,7 +35,7 @@
                                 <div>
                                     <strong>QR-code Визитка</strong>  
                                     <p class="m-0">для мобильного телефона.</p> 
-                                    <a href="https://yandex.ru/maps/-/CCUG7IeaKC" target="_blank" rel="noopener noreferrer">
+                                    <a href="https://yandex.ru/maps/-/CCUG7IeaKC" class="badge bg-dark text-decoration-none" target="_blank" rel="noopener noreferrer">
                                         Оставить отзыв
                                     </a>
                                 </div>                          
@@ -40,18 +44,16 @@
                         </div>
                     </div>
 
-                    <div class="d-block mt-3">
-                        <a href="/doc" class="btn btn-dark px-4">Юридическая информация</a>
-                    </div>
+                    
                 </div>
             </div>
         </div>
     </div>
 </section>
 <div class="bg-light border-top">
-    <p class="container mb-1">
+    <p class="container mb-1 text">
         <strong>Фактический Адрес:</strong> 
-        <a href="https://yandex.ru/maps/-/CCUG7IeaKC" target="_blank" rel="noopener noreferrer">
+        <a href="https://yandex.ru/maps/-/CCUG7IeaKC" class="text-dark" target="_blank" rel="noopener noreferrer">
             141006, г.Мытищи, Московская область, 4536-й проезд, стр. 10
         </a> 
     </p>

@@ -90,6 +90,6 @@
 <?php echo $__env->make('layout/index', [
     'title' => $str.' | Проспект Транс',
     'keywords' => 'ремонт, ремонт машин, ремонт в москве, ремонт в мытищи, ремонт двигателя, сервис, service, чинить, автосервис, мерседес бенц, актрос',
-    'description' => number_format(($product['salePrices']) / 100, 2, '.', '').' ₽',
+    'description' => $product['article']. ', MERCEDES-BENZ \ '.number_format(($product['salePrices']) / 100, 2, '.', ' ').' ₽',
     'image' => $url.$image
 ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/product.blade.php ENDPATH**/ ?>
