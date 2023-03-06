@@ -8,7 +8,9 @@
     'description' => 'Каталог запчастей Mercedes-Benz, широкий ассортимент комплектующих и расходных материалов для грузовых автомобилей',
     'image' => 'https://prospekt-parts.com/img/5464765787695.jpg'
 ])
+
 @section('title', 'Каталог запчастей Mercedes-Benz | Проспект Транс')
+
 @section('content')
 <section class="bg-secondary-subtle">
     <div class="container position-relative">
@@ -222,6 +224,48 @@
                     </div>
                 </div>               
                 @endforeach
+                <div class="col-12 mt-3">
+                    <hr />
+                    <div class="d-flex justify-content-center pt-4">
+                        <ul class="d-flex pagination pagination-lg gap-3">
+                            <li class="page-item">
+                                <a class="material-symbols-outlined shadow border-0 page-link text-dark d-flex align-items-center rounded px-3" href="#" style="height: 54px" disabled>
+                                    line_start_arrow_notch
+                                </a>
+                            </li>
+                            <li class="page-item active">
+                                <a class="page-link text-dark rounded shadow border-0" href="../products/mersedes-benz/32/32">1</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link text-dark rounded shadow border-0" href="../products/mersedes-benz/32/{{32+$limit}}">2</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link text-dark rounded shadow border-0" href="../products/mersedes-benz/32/32+{{$limit}}">3</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="material-symbols-outlined shadow border-0 page-link text-dark d-flex align-items-center rounded px-3" href="#" style="height: 54px">
+                                    line_end_arrow_notch
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    {{-- <p>{{$limit}}, {{$offset}}</p> --}}
+                    
+                    {{-- @for ($i = 1; $i <= $product['meta']['size']/$limit; $i++)
+                        <pre><?php //var_dump(explode(" ", array_slice($limit*$i, 0, 3)));?></pre> --}}
+                        <?php
+                            //$arr = $limit*$i.',';
+                            //$str = substr($arr, 0, -1);
+                            //echo $str;
+
+
+                            //$arr = explode('', $str);
+                            //echo '<pre>'.var_dump($arr).'</pre>';
+                            //$arr = array_slice($arr, 0, 3);
+                        ?>
+                    {{-- @endfor --}}
+                    <?php //var_dump(array_slice((array)$limit*$i, 0, 3));?>                    
+                </div>
             </div>        
         @endif
 

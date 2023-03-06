@@ -8,7 +8,7 @@
 @section('title', 'Контакты')
 
 @section('content')
-<div class="w-100" style="background-image: url(/img/5464765787695.jpg);background-position: 0px -382px;background-attachment: fixed;background-size: cover;height: 250px;">
+<div class="w-100" style="background-image: url(/img/5464765787695.jpg);background-position: 0px -382px;background-attachment: fixed;background-size: cover;height: 250px;text-shadow: 1px 2px 3px #000">
     <div style="height: 100%;display: flex;justify-content: center;align-items: center;background-color: #00000059">
         <h2 class="text-white pt-5 mb-0">Контакты</h2>
     </div>
@@ -30,8 +30,9 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-8">
-                            <p><strong>E-mail: </strong> {!! $contact::getEmail(config('app.email'), ['text-muted']) !!}</p>
-                            <p><strong>Телефон:</strong> {!! $contact::getPhone(config('app.phone'), ['text-muted']) !!}</p>
+                            <p><strong>По вопросам сотрудничества: </strong> {!! $contact::getEmail(config('app.email'), ['text-muted']) !!}</p>
+                            <p><strong>Связаться с менеджером:</strong> {!! $contact::getPhone(config('app.phone'), ['text-muted']) !!}</p>
+                            <p><strong>Связаться с тех.поддержкой:</strong> {!! $contact::getPhone('89151389077', ['text-muted']) !!}</p>
                             <p><strong>Юридический адрес:</strong> {{ config('app.address') }}</p>
                             <div class="d-flex align-items-center gap-3">
                                 <div class="border p-2" style="width:100px">

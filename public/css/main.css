@@ -301,6 +301,33 @@ footer a:hover {
    color: #8f8f8f;
    font-size: 15px;
 }
+#search::selection {
+    color: #fff;
+    background-color: #8630a3;
+}
+.active>.page-link, 
+.page-link.active {
+    color: #fff !important;
+    background-color: #1b1b27;
+}
+.dropdown-item:active {
+    background-color: #8630a3;
+}
+.dropdown-item:active span{
+    color: #f9e293 !important;
+}
+.text-justify {
+    text-align: justify;
+}
+.bar {
+    width: 15%;
+    padding-bottom: 4px;
+    margin: 0 auto 25px;
+    height: 2px;
+    background: #8630a3;
+    border: 0;
+    opacity: 1;
+}
 
 @media screen and (max-width:767px) {
     h1 {

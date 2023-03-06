@@ -255,7 +255,7 @@
             <div class="row pt-4 spates">
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card card-data border-light shadow-lg">
-                        <a href="/product/mersedes-benz" class="card-body text-center pt-5 text-decoration-none">
+                        <a href="/products/mersedes-benz" class="card-body text-center pt-5 text-decoration-none">
                             <img src="/img/actros___kopiya.png" style="height: auto;opacity: 1" class="w-100" alt="Mercedes-Benz">
                             <h5 class="fw-bold mt-3">Mercedes-Benz</h5>
                         </a>
@@ -323,9 +323,15 @@
                                 <h5 data-bs-toggle="modal" data-bs-target="#order" class="card-title fw-bold fs-6">
                                     <a itemprop="name" href="/product/mersedes-benz/<?=$item['href'];?>"><?=$item['name']?></a>
                                 </h5>
-                                <p itemprop="offers" itemscope itemtype="https://schema.org/Offer" class="label">
-                                    <link itemprop="availability" href="https://schema.org/InStock" />В наличии
-                                </p>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <p itemprop="offers" itemscope itemtype="https://schema.org/Offer" class="label">
+                                            <link itemprop="availability" href="https://schema.org/InStock" />В наличии
+                                        </p>                                           
+                                    </div>
+                                    <small>&#11088;&#11088;&#11088;&#11088;&#11088;</small> 
+                                </div>
+                                
                                 <hr style="color: #ddd">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="d-flex align-items-center gap-2">

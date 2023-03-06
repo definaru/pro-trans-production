@@ -39,7 +39,7 @@
     <!-- /Yandex.Metrika counter -->
 </head>
 <body itemscope itemtype="http://schema.org/Organization">
-    <div class="parent">
+    <div id="shop" class="parent">
         <nav class="d-print-none navbar fixed-top navbar-expand-lg bg-white shadow">
             <div class="container">
                 <a class="d-flex align-items-center gap-2 navbar-brand ps-2 ps-lg-0" href="/">
@@ -98,22 +98,27 @@
                     <?php else: ?>
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="/about">
+                            <a class="nav-link<?=($_SERVER['REQUEST_URI'] === '/about') ? ' active' : '';?>" href="/about">
                                 О компании
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/product/mersedes-benz">
+                            <a class="nav-link<?=($_SERVER['REQUEST_URI'] === '/products/mersedes-benz') ? ' active' : '';?>" href="/products/mersedes-benz">
                                 Запасные части
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/doc">
+                            <a class="nav-link<?=($_SERVER['REQUEST_URI'] === '/customers') ? ' active' : '';?>" href="/customers">
+                                Клиентам
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link<?=($_SERVER['REQUEST_URI'] === '/doc') ? ' active' : '';?>" href="/doc">
                                 Документы
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/contact">
+                            <a class="nav-link<?=($_SERVER['REQUEST_URI'] === '/contact') ? ' active' : '';?>" href="/contact">
                                 Контакты
                             </a>
                         </li>
@@ -157,7 +162,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-3 text-center text-lg-start">
-                        <a class="d-flex justify-content-lg-start justify-content-center align-items-center gap-3 logo-footer" href="/">
+                        <a href="/" class="d-flex justify-content-lg-start justify-content-center align-items-center gap-3 logo-footer" style="text-decoration: none">
                             <img src="/img/logotype/light-logo.png" class="rounded" alt="Prospekt Parts" style="width: 60px" />
                             <span class="text-white fs-2">
                                 <?php echo $names::company('Prospekt Parts'); ?>
@@ -180,7 +185,7 @@
                                 <li><a href="#">Оборудование для СТО</a></li>
                                 <li><a href="#">Поставщикам</a></li>
                                 <li><a href="#">Партнерам</a></li>
-                                <li><a href="/contact">Клиентам</a></li>
+                                <li><a href="/customers">Клиентам</a></li>
                             </ul>                            
                         </div>
                     </div>
@@ -259,8 +264,71 @@
                 </div>
             </div>
         </footer>
+
+        <ul id="contextmenu" class="dropdown-menu shadow">
+            <li>
+                <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                    <span class="material-symbols-outlined fs-5 text-secondary">headset_mic</span>
+                    <strong class="text">Написать в тех.поддержку</strong> 
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item d-flex align-items-center gap-2" style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#hotkey">
+                    <span class="material-symbols-outlined fs-5 text-secondary">keyboard_option_key</span>
+                    <strong class="text">Горячие клавиши</strong> 
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                    <span class="material-symbols-outlined fs-5 text-secondary">help</span>
+                    <strong class="text">Помощь</strong> 
+                </a>
+            </li>
+        </ul>
+
     </div>
 
+    <div class="modal fade d-print-none" id="hotkey">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h1 class="modal-title fs-5" id="hotkey">Горячие клавиши</h1>
+                    <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <details open="">
+                        <summary>Справочник</summary>
+                        <p>Из любой страницы сайта, вы можете вызвать поисковую строку.</p>
+                        <p>
+                            Поисковая строка ищет по артикулам и по названию. <br />
+                            <em class="text-danger">если ищите по артикулам, указывайте в начале "N" или "A"</em>    
+                        </p>
+                    </details>
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-4"><kbd>Ctrl+F</kbd></dt>
+                        <dd class="col-sm-8">- Вызов окна поиска</dd>
+                        <dt class="col-sm-4"><kbd>Ctrl+Shift+F</kbd></dt>
+                        <dd class="col-sm-8">- Вызов окна поиска</dd>
+                        <dt class="col-sm-4"><kbd>Shift+F</kbd></dt>
+                        <dd class="col-sm-8">- Вызов окна поиска</dd>
+                        <dt class="col-sm-12"><hr /></dt>
+                        <dt class="col-sm-4"><kbd>Ctrl+X</kbd></dt>
+                        <dd class="col-sm-8">- Закрытие окна поиска</dd>
+                        <dt class="col-sm-4"><kbd>Ctrl+Shift+X</kbd></dt>
+                        <dd class="col-sm-8">- Закрытие окна поиска</dd>
+                        <dt class="col-sm-4"><kbd>Shift+X</kbd></dt>
+                        <dd class="col-sm-8">- Закрытие окна поиска</dd>
+                        <dt class="col-sm-12"><hr /></dt>
+                        <dt class="col-sm-4"><kbd>Ctrl+S</kbd></dt>
+                        <dd class="col-sm-8">- Выбор для печати или сохранения страницы</dd>
+                        <dt class="col-sm-4"><kbd>Ctrl+P</kbd></dt>
+                        <dd class="col-sm-8">- Выбор для печати страницы</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="modal fade d-print-none" id="searchForm" aria-hidden="true" aria-labelledby="searchForm" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-fullscreen">

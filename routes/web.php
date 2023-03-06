@@ -88,10 +88,12 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::controller(MainController::class)->group(function () {
+    Route::get('/about', 'About');
     Route::post('/product', 'Product');
     Route::get('/contact', 'Сontact');
+    Route::get('/customers', 'Customers');
     Route::get('/doc', 'Documentation');
-    Route::get('/product/mersedes-benz', 'Catalog')->name('search');
+    Route::get('/products/mersedes-benz/{limit?}/{offset?}', 'Catalog')->name('search');
     Route::get('/product/mersedes-benz/{id}', 'DetailProduct');
 });
 

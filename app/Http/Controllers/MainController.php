@@ -10,9 +10,21 @@ use App\Providers\ContactService;
 class MainController extends Controller
 {
 
+    public function About()
+    {
+        return view('about');
+    }
+
+
     public function Сontact()
     {
         return view('contact');
+    }
+
+
+    public function Customers()
+    {
+        return view('customers');
     }
 
 
@@ -65,7 +77,7 @@ class MainController extends Controller
     {
         $product = MoySklad::getAllProduct($limit, $offset);
         //return response()->json($product);
-        return view('catalog', ['product' => $product]);
+        return view('catalog', ['product' => $product, 'limit' => $limit, 'offset' => $offset]);
     }
 
     public function Product(Request $request)

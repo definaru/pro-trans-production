@@ -154,11 +154,34 @@ document.querySelectorAll('input[list]').forEach( (formfield) => {
     }, false);
 });
 
+var contextmenu = document.getElementById('contextmenu');
+var menu = document.getElementById('shop');
+menu.oncontextmenu = function (e) { 
+    e.preventDefault();
+    const res = {
+        position: 'absolute',
+        display: 'block',
+        top: e.clientY+'px',
+        left: e.clientX+'px'
+    }
+    if(e.button === 2){
+        // console.log('res:', `
+        // Screen X/Y: ${e.screenX}, ${e.screenY}
+        // Client X/Y: ${e.clientX}, ${e.clientY}`)
+        contextmenu.style.cssText = Object.entries(res)
+            .map(([k, v]) => k + ':' + v)
+            .join(';');
+    }
+    return false;
+};
 
-
-// searchlist.addEventListener('click', () => {
-//     document.querySelector('#sendForm').submit()
-// })
+document.addEventListener('mouseup', function(e) {
+    
+    contextmenu.style.display = '';
+    if (!menu.contains(e.target)) {
+        //console.log('target:', e.target)
+    }
+});
 
 window.addEventListener('keydown', (e) => {
     if (e.code == 'KeyX' && (e.ctrlKey || e.shiftKey || e.metaKey)) {
