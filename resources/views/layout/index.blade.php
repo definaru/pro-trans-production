@@ -56,7 +56,7 @@
                         Проспект Транс
                     </span>
                 </a>
-                <button class="material-symbols-outlined btn d-lg-none d-block ms-5" data-bs-toggle="modal" data-bs-target="#searchForm">search</button>
+                <button class="material-symbols-outlined btn d-lg-none d-block ms-4 ms-sm-4" data-bs-toggle="modal" data-bs-target="#searchForm">search</button>
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
                     <span class="navbar-toggler-icon"></span>
                 </button>
