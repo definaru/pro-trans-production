@@ -1,7 +1,7 @@
 @php
     $result = array_merge($listorder, $bestsellers, $alllist);
-    //$size = session('search') ? session('search')['meta']['size'] : '';
-    $size = session('search') ? session('search')['count'] : '';
+    $size = session('search') ? session('search')['meta']['size'] : '';
+    //$size = session('search') ? session('search')['count'] : '';
 @endphp
 @extends('layout/index', [
     'title' => 'Каталог запчастей Mercedes-Benz | Проспект Транс',
@@ -98,10 +98,10 @@
                 {{-- <pre><?php //var_dump(session('search')['rows']);?></pre> --}}
                 <div class="row">
                 @foreach(session('search')['rows'] as $item)
-                    @if (array_key_exists('rows', $item))
+                    {{-- @if (array_key_exists('rows', $item)) --}}
                     <div class="col-lg-3 col-12 mb-3">
                         <div class="card card-data border-0 shadow order">
-                            <a href="/product/mersedes-benz/{{$item['rows'][0]['id']}}" class="card-body pb-0 position-relative">
+                            <a href="/product/mersedes-benz/{{$item['id']}}" class="card-body pb-0 position-relative">
                                 <div 
                                     itemprop="aggregateRating" 
                                     itemscope 
@@ -118,13 +118,13 @@
                                     itemprop="image"
                                     src="/img/placeholder.png" 
                                     class="card-img-top rounded" 
-                                    alt="{{$item['rows'][0]['name']}}, Проспект Транс, {{$item['rows'][0]['pathName']}}"
+                                    alt="{{$item['name']}}, Проспект Транс, {{$item['pathName']}}"
                                 />
                             </a>
                             <div class="card-body">
                                 <h5 class="card-title fw-bold fs-6" style="height: 39px">
-                                    <a itemprop="name" href="/product/mersedes-benz/{{$item['rows'][0]['id']}}">
-                                        {{mb_convert_case($item['rows'][0]['name'], MB_CASE_TITLE, "UTF-8")}}
+                                    <a itemprop="name" href="/product/mersedes-benz/{{$item['id']}}">
+                                        {{mb_convert_case($item['name'], MB_CASE_TITLE, "UTF-8")}}
                                     </a>
                                 </h5>
                                 <hr style="color: #ddd">
@@ -132,11 +132,11 @@
                                     <div>
                                         <p itemprop="offers" itemscope="" itemtype="https://schema.org/Offer" class="label">
                                             <link itemprop="availability" href="https://schema.org/InStock">В наличии 
-                                            {{$item['rows'][0]['quantity']}}
+                                            {{-- {{$item['quantity']}} --}}
                                         </p>                                
                                     </div>
                                     <strong>
-                                        {!!$currency::summa($item['rows'][0]['salePrices'][0]['value'])!!}
+                                        {!!$currency::summa($item['salePrices'][0]['value'])!!}
                                     </strong>                            
                                 </div>
                                 <hr style="color: #ddd">
@@ -147,7 +147,7 @@
                                         </div>
                                         <div class="lh-sm">
                                             <small class="text-muted d-block w-100">
-                                                {{$item['rows'][0]['article']}}                                            
+                                                {{$item['article']}}                                            
                                             </small>
                                             <strong class="text-secondary">Mercedes-Benz</strong>
                                         </div>
@@ -161,7 +161,7 @@
                             </div>
                         </div>
                     </div>
-                    @endif
+                    {{-- @endif --}}
                 @endforeach
                 </div>
             @endif

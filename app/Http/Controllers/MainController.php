@@ -95,8 +95,8 @@ class MainController extends Controller
             'type' => 'nullable',
             'text' => 'required',
         ]);
-        //  MoySklad::searchByProduct('article', $request->text);
-        $search = Steames::getResult($request->text);
+        $search = MoySklad::searchByProduct('article', $request->text);
+        // Steames::getResult($request->text);
         $text = $request->input('text');
         return redirect()->route('search')->with(['search' => $search, 'text' => $text]);
     }
