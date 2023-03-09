@@ -88,6 +88,7 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::controller(MainController::class)->group(function () {
+    Route::get('/test', 'Test');
     Route::get('/about', 'About');
     Route::post('/product', 'Product');
     Route::get('/contact', 'Сontact');

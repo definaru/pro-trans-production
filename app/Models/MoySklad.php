@@ -655,5 +655,12 @@ class MoySklad
         //     echo $response->transferStats->getHandlerStats()['url'];
         // }, time().'-readme.pdf');
     }
+
     
+    public static function getStreamData()
+    {
+        $url = self::msUrl().'product?expand=images,positions';
+        $response = self::get($url);
+        return $response->json();
+    }
 }

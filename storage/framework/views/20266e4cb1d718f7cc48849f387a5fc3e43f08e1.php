@@ -361,7 +361,7 @@
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
             <div class="row">
-                <div class="col-8 offset-2 text-center mt-3 mb-5">
+                <div class="col-12 col-lg-8 offset-lg-2 text-center mt-3 mb-5">
                     <button data-bs-toggle="modal" data-bs-target="#login" class="btn btn-lg btn-dark px-5">
                         Показать всё &nbsp; →
                     </button>

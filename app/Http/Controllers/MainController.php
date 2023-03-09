@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Steames;
 use App\Models\MoySklad;
 use Illuminate\Http\Request;
 use App\Providers\ContactService;
@@ -9,6 +10,14 @@ use App\Providers\ContactService;
 
 class MainController extends Controller
 {
+
+    public function Test()
+    {
+        $modal = Steames::getResult('гайка'); //  getListURL   
+        return response()->json($modal);
+        //return view('test', ['modal' => $modal]);
+    }
+
 
     public function About()
     {
@@ -86,10 +95,10 @@ class MainController extends Controller
             'type' => 'nullable',
             'text' => 'required',
         ]);
-        $search = MoySklad::searchByProduct('article', $request->text);
+        //  MoySklad::searchByProduct('article', $request->text);
+        $search = Steames::getResult($request->text);
         $text = $request->input('text');
         return redirect()->route('search')->with(['search' => $search, 'text' => $text]);
-        //return view('catalog', ['search' => $search, 'text' => $request->text]);
     }
 
 }
