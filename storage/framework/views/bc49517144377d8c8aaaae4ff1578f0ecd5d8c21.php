@@ -80,6 +80,18 @@
         </div>
         <div class="row">
             <div class="col-12">
+                
+                <pre><?php //var_dump(array_search('A9604770503', $result));?></pre>
+                <pre><?php //var_dump(array_values(array_column($result, 'href')));?></pre>
+                <pre><?php //var_dump($result);?></pre>
+                <?php
+                    // $res = [];
+                    // $arrayTest = array_values(array_column($result, 'href'));
+                    // array_walk_recursive($arrayTest, function ($item, $key) use (&$res) {
+                    //     $res[] = $item;    
+                    // });
+                    // echo '<pre>'.var_dump($res).'</pre>';
+                ?>
                 <?php $__errorArgs = ['text'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -256,12 +268,11 @@ unset($__errorArgs, $__bag); ?>
                             //$arr = array_slice($arr, 0, 3);
                         ?>
                     
-                    <?php //var_dump(array_slice((array)$limit*$i, 0, 3));?>                    
-                
+                    <?php //var_dump(array_slice((array)$limit*$i, 0, 3));?>
             </div>        
         <?php endif; ?>
 
-
+        
 
     </div>
 </section>

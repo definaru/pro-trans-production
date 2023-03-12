@@ -21,7 +21,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/">Главная</a></li>
                             <li class="breadcrumb-item">
-                                <a href="/product/mersedes-benz">
+                                <a href="/products/mersedes-benz">
                                     <?php echo e($product['catalog']['name']); ?>
 
                                 </a>

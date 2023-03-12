@@ -82,7 +82,7 @@ class MainController extends Controller
         //return view('product', ['id' => $id]);
     }
 
-    public function Catalog($limit = 2887, $offset = 0)
+    public function Catalog($limit = 2000, $offset = 0)
     {
         $product = MoySklad::getAllProduct($limit, $offset);
         //return response()->json($product);

@@ -9,8 +9,7 @@ class Steames
 
     public static function getListURL($fiter)
     {
-        // Steames::getListURL($fiter)
-        $modal = MoySklad::searchByProduct('', $fiter); // getStreamData()
+        $modal = MoySklad::searchByProduct('', $fiter);
         $array = [];
             foreach($modal["rows"] as $item) {
                 $array[] = 'https://online.moysklad.ru/api/remap/1.2/entity/assortment?filter=id='.$item['id'];
@@ -33,7 +32,12 @@ class Steames
             ));
             curl_multi_add_handle ($mh, $conn[$i]);
         }
-        do { curl_multi_exec($mh,$active); } while ($active);
+        do {
+            $status = curl_multi_exec($mh, $active);
+            if ($active) {
+                curl_multi_select($mh);
+            }
+        } while ($active && $status == CURLM_OK);
 
         for ($i = 0; $i < count($urls); $i++) {
             $res[$i] = curl_multi_getcontent($conn[$i]); 

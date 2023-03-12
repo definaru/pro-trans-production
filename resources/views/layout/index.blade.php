@@ -179,7 +179,7 @@
                         <div class="ps-4 ps-lg-5 pt-lg-0 pt-5">
                             <h4 class="mb-4">Продукты</h4> 
                             <ul class="d-grid gap-3 list-unstyled">
-                                <li><a href="#">Грузовые запчасти</a></li>
+                                <li><a href="/products/mersedes-benz">Грузовые запчасти</a></li>
                                 <li><a href="#">Оборудование для СТО</a></li>
                                 <li><a href="#">Поставщикам</a></li>
                                 <li><a href="#">Партнерам</a></li>
