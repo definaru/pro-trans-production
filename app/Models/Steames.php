@@ -17,6 +17,17 @@ class Steames
         return $array;
     }
 
+    public static function getListResult($fiter)
+    {
+        // Steames::getListResult($fiter)
+        $modal = MoySklad::searchByProduct('', $fiter);
+        $array = [];
+            foreach($modal["rows"] as $item) {
+                $array[] = $item['id'];
+            }
+        return $array;
+    }
+
     public static function getResult($fiter)
     {
         $urls = self::getListURL($fiter);

@@ -14,6 +14,9 @@ use App\Models\Contract;
 use App\Models\Telegram;
 use App\Models\MoySklad;
 use App\Models\DaData;
+use App\Models\Goods;
+use App\Models\User;
+use App\Models\Steames;
 
 
 class DachboardController extends Controller
@@ -72,14 +75,16 @@ class DachboardController extends Controller
         return view('dashboard.result.search', ['search' => $search, 'text' => $request->text]);
     }
 
-    public function searchDashboard(Request $request)
+    public function searchDashboard(Request $request)#..................................................................
     {
         $request->validate([
             'type' => 'nullable',
             'text' => 'required',
         ]);
-        $search = MoySklad::searchByProduct($request->type, $request->text);
         $text = $request->input('text');
+        $res = Steames::getListResult($text);
+        //MoySklad::searchByProduct($request->type, $request->text);
+        $search = Goods::whereIn('link', $res)->get();
         return redirect()->route('dashboard')->with(['search' => $search, 'text' => $text]);
     }
 
@@ -199,10 +204,12 @@ class DachboardController extends Controller
             Telegram::getMessageTelegram($request->num, $request->message, $request->id);
             return back()->with(['status' => 'Ваш тикет отправлен и получен. Ожидайте ответа от менеджера']);
         }
+        $image = Goods::where('link', $id)->get();
         $product = MoySklad::getOneProduct($id);
         return view('dashboard.product.details', [
             'id' => $id,
-            'product' => $product
+            'product' => $product,
+            'image' => $image
         ]);
     }
 
@@ -303,6 +310,12 @@ class DachboardController extends Controller
         $uuid = auth()->user()->verified;
         Telegram::getMessageTelegram($request->reports, $request->message, $uuid, 'manager');
         return redirect()->route('order')->with(['status' => $message]);
+    }
+
+    public function Users()
+    {
+        $model = User::all();
+        return view('dashboard.users', ['model' => $model]);
     }
     
 }

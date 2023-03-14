@@ -1,9 +1,9 @@
 <?php
-    if($url === '/dashboard') {
-        list($home, $section) = explode('/', $url);
+    if($_SERVER['REQUEST_URI'] === '/dashboard') {
+        list($home, $section) = explode('/', $_SERVER['REQUEST_URI']);
         $currenturl = $home.'/'.$section;        
     } else {
-        list($home, $section, $info) = explode('/', $url);
+        list($home, $section, $info) = explode('/', $_SERVER['REQUEST_URI']);
         $currenturl = $home.'/'.$section.'/'.$info;
     }
 ?>
@@ -45,7 +45,7 @@
                             <?php if($d['name'] !== 'divider'): ?>
                                 <a 
                                     href="<?php echo e('/dashboard/'.$d['href']); ?>" 
-                                    class="list-group-item bg-light <?php if('/dashboard/'.$d['href'] === $url): ?> fw-bold <?php endif; ?>" 
+                                    class="list-group-item bg-light <?php if('/dashboard/'.$d['href'] === $_SERVER['REQUEST_URI']): ?> fw-bold <?php endif; ?>" 
                                     style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 215px"
                                     title="<?php echo e($d['name']); ?>"
                                 >
@@ -63,7 +63,7 @@
             <a 
                 href="<?php echo e('/dashboard/'.$i['slug']); ?>"  
                 class="d-flex align-items-center text-decoration-none bg-white text-dark tooltips border-start border-4
-                <?php if($url === '/dashboard/'.$i['slug']): ?> border-danger <?php else: ?> border-white <?php endif; ?>"
+                <?php if($_SERVER['REQUEST_URI'] === '/dashboard/'.$i['slug']): ?> border-danger <?php else: ?> border-white <?php endif; ?>"
                 :class="[isOpen ? 'justify-content-between' : 'justify-content-center']"
             >
                 <span class="d-flex gap-2 px-3 py-2">

@@ -4,7 +4,7 @@
 <header class="d-flex gap-3 align-items-center justify-content-between border-bottom border-light bg-white py-3 px-4 shadow-sm d-print-none">
     <div class="d-flex align-items-center gap-3 w-50">
         <span class="material-symbols-outlined cp" v-on:click="toggleMenu">menu</span>
-        @if($url !== '/dashboard' && $deal::status() === '1')
+        @if($_SERVER['REQUEST_URI'] !== '/dashboard' && $deal::status() === '1')
         <form action="/dashboard/result/search" method="post" class="input-group">
             @csrf
             <span class="material-symbols-outlined input-group-text bg-light border-0 px-2 text-muted" id="basic-addon1">search</span>

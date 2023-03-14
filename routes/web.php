@@ -22,7 +22,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('work/schedule', [DachboardController::class, 'Schedule']);
     Route::post('settings', [DachboardController::class, 'EditSettings']);
     Route::get('settings/profile', [DachboardController::class, 'Settings'])->name('settings');
-    Route::match(['get', 'post'],'product/details/{id}', [DachboardController::class, 'DetailProduct']);
+    Route::match(['get', 'post'],'product/details/{id}', [DachboardController::class, 'DetailProduct'])->name('productdetails');
     Route::get('catalog', [DachboardController::class, 'Catalog']);
     Route::get('catalog/category/{name}/{limit?}/{offset?}', [DachboardController::class, 'CatalogDetail']);
     Route::get('payment/preorder/{id}', [DachboardController::class, 'preOrderViewOne']);
@@ -44,6 +44,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::post('upd/pdf/export', [DachboardController::class, 'getUPD']);
 
     // Admin-Панель
+    Route::get('users', [DachboardController::class, 'Users']);
     Route::get('admin/doc', [AdminController::class, 'adminDoc']);
     Route::get('admin/accounting', [AdminController::class, 'Accounting']);
     Route::get('admin/users', [AdminController::class, 'Users']);
@@ -56,6 +57,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 });
 
 Route::prefix('api')->group(function () {
+    Route::post('files', [MainController::class, 'Files']);
     Route::post('signup', [AuthController::class, 'Sigature']);
     Route::post('customer', [AuthController::class, 'Customer']);
     Route::post('mail', [AuthController::class, 'SendMail']);

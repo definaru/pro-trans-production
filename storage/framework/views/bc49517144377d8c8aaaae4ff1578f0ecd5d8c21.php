@@ -195,7 +195,7 @@ unset($__errorArgs, $__bag); ?>
                             <a href="/product/mersedes-benz/<?php echo e($item['id']); ?>" class="card-body pb-0 position-relative">
                                 <div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating" class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2">
                                     <span class="material-symbols-outlined fs-6 text-danger">favorite</span>
-                                    <small>4.9 рейтинг</small> 
+                                    <small><?php echo e(rand(4, 5)); ?>.<?php echo e(rand(0, 9)); ?> рейтинг</small> 
                                     <meta itemprop="worstRating" content="1">
                                     <meta itemprop="ratingValue" content="4.9">
                                     <meta itemprop="bestRating" content="5">

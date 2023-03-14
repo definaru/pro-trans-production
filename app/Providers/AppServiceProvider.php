@@ -60,8 +60,7 @@ class AppServiceProvider extends ServiceProvider
             'currency'      => new FormatCurrency(),
             'decl'          => new Declension(),
             'deal'          => new Card(),
-            'dadata'        => new DaData(),
-            'url'           => $_SERVER['REQUEST_URI']
+            'dadata'        => new DaData()
         ]);
     }
 }

@@ -60,7 +60,31 @@
         <div class="card-body">
             <div class="row mt-3">
                 <div class="col-md-3">
-                    <img src="{{$product['src']['images']}}" class="w-100 rounded" alt="{{$product['name']}}" />
+                    @role('customer')
+                        <img 
+                            src="<?=$image[0]['image'] !== '' ? '../../.'.$image[0]['image'] : '/img/placeholder.png';?>" 
+                            alt="{{$product['name']}}" 
+                            class="w-100 rounded" 
+                        /> 
+                    @endrole
+                    @role('admin')
+                    <form id="loaderphoto" onchange="loadPfoto()" action="/api/files" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <label>
+                            @if (session('text'))
+                                <div id="successphoto" class="d-none">{{ session('text') }}</div>
+                            @endif
+                            <img 
+                                src="<?=$image[0]['image'] !== '' ? '../../.'.$image[0]['image'] : '/img/placeholder.png';?>" 
+                                alt="{{$product['name']}}" 
+                                class="w-100 rounded" 
+                            />
+                            <input type="file" name="file" class="d-none" />
+                            <input type="hidden" name="uuid" value="{{$id}}" />
+                            <div id="isloader" class="d-flex align-items-center gap-1 mt-2"></div>
+                        </label>
+                    </form>
+                    @endrole
                     <div class="text-center py-3">
                         @if($product['barcodes'] === 'Нет данных')
                         @else

@@ -38,7 +38,7 @@
                             <hr class="bar ms-0">
                             <p>Мы учли тот факт, что не всегда есть ПК или ноутбук под рукой, но сотовый телефон есть у многих с собой. Было бы здорово заказать запчасть без лишних движений, особенно когда это нужно срочно и прямо сейчас. С нашим сервисом, оформлять заказы и отслеживать их стало на много проще. </p>
                             <em class="fs-4">Приятного пользования!</em>
-                            <div class="d-grid">
+                            <div class="d-flex mt-4">
                                 <a href="/signup" class="btn btn-primary px-5 py-3 d-flex justify-content-center align-items-center gap-2">
                                     <span class="material-symbols-outlined">open_in_new</span>
                                     Зарегистрироваться

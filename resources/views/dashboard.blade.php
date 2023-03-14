@@ -9,7 +9,7 @@
             'value' => 'name'
         ]
     ];
-    $size = session('search') ? session('search')['meta']['size'] : '';
+    $size = session('search') ? count(session('search')) : ''; // session('search')['meta']['size']
 @endphp
 @extends('layout/main')
 
@@ -130,44 +130,153 @@
             @endif
         </p>        
         @endif
-
-        @foreach(session('search')['rows'] as $item)
-        <div class="d-flex justify-content-between w-100 bg-white px-3 py-2 my-1 shadow-sm rounded">
-            <div>
-                <span class="ps-1 pe-0 btn">{{$loop->iteration}}.</span>
-                <a href="/dashboard/product/details/{{$item['id']}}" class="text-dark text-decoration-none btn">
-                    <b>{{$item['code']}}</b> &#160;&#160; 
-                    <?php
-                        $str = str_replace(mb_strtolower(session('text')), '<mark class="rounded py-0">'.mb_strtolower(session('text')).'</mark>', mb_strtolower($item['name']));
-                        $str = mb_strtoupper(mb_substr($str, 0, 1)) . mb_substr($str, 1, mb_strlen($str));
-                        echo $str;
-                    ?>
-                </a>                
-            </div>
-            <div class="d-flex gap-2">
-                
-                <div class="btn">
-                    @php echo number_format(($item['salePrices'][0]['value']) / 100, 2, '.', ' ') @endphp ₽
-                </div> 
-                <div 
-                    id="card{{$loop->iteration}}" 
-                    data-card="{{$item['id']}},{{$item['code']}},{{$item['name']}},1,{{$item['salePrices'][0]['value']}},{{$item['salePrices'][0]['value']}}" 
-                    v-on:click="addToCard({{$loop->iteration}})"
-                >
-                    <x-button 
-                        type="submit" 
-                        icon="add_shopping_cart" 
-                        color="dark" 
-                        text="В корзину" 
-                    />
+        <div class="row">
+            @foreach(session('search') as $item)
+            <div class="col-12 mb-3" :class="[!isOpen ? 'col-lg-3' : 'col-lg-4']">
+                <div class="card card-data border-0 shadow">
+                    <a href="/dashboard/product/details/{{$item['link']}}" class="card-body pb-0 position-relative">
+                        <div class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2">
+                            <span class="material-symbols-outlined fs-6 text-danger">favorite</span>
+                            <small>{{rand(4, 5)}} рейтинг</small>
+                        </div>
+                        <img 
+                            src="<?=$item['image'] !== '' ? '../../.'.$item['image'] : '/img/placeholder.png';?>" 
+                            class="card-img-top rounded" 
+                            alt="{{$item['name']}}" 
+                        />
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title fs-5 mb-3" style="height: 48px">
+                            <a href="/dashboard/product/details/{{$item['link']}}" class="text-dark fw-bold text-decoration-none">
+                                <?php
+                                    $str = str_replace(
+                                        mb_strtolower(session('text')), 
+                                        '<mark class="rounded py-0">'.mb_strtolower(session('text')).'</mark>', 
+                                        mb_strtolower($item['name'])
+                                    );
+                                    $str = mb_strtoupper(mb_substr($str, 0, 1)) . mb_substr($str, 1, mb_strlen($str));
+                                    echo $str;
+                                ?>
+                            </a>
+                        </h5>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                @if ($item['quantity'] == 0)
+                                    <x-badge color="danger" text="Нет в наличии" /> 
+                                @else
+                                    <x-badge color="34617" text="В наличии {{$item['quantity']}}" />  
+                                @endif                                          
+                            </div>
+                            <small>&#11088;&#11088;&#11088;&#11088;&#11088;</small> 
+                        </div>
+                        <hr style="color: #ddd" />
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center gap-2">
+                                <div>
+                                    <img 
+                                        src="/img/mercedes-benz.png" 
+                                        alt="Mercedes-Benz" 
+                                        style="width: 37px;height: 37px"
+                                    />
+                                </div>
+                                <div class="lh-sm">
+                                    <small class="text-muted d-block w-100">
+                                        {{$item['article']}}                                            
+                                    </small>
+                                    <strong class="text-secondary">Mercedes-Benz</strong>
+                                </div>
+                            </div>
+                            <div>
+                                @if ($item['quantity'] == 0)
+                                <div
+                                    id="preorder{{$item['link']}}"
+                                    data-order="{{$item['link']}},{{$item['article']}},{{$item['name']}},1,{{$item['price']}}"
+                                    v-on:click="addToOrder('{{$item['link']}}')"
+                                >
+                                    <x-button 
+                                        type="button"
+                                        icon="add_shopping_cart" 
+                                        color="secondary" 
+                                        text="" 
+                                    />             
+                                </div>
+                                @else
+                                    <div 
+                                        id="card{{$loop->iteration}}" 
+                                        data-card="{{$item['link']}},{{$item['article']}},{{$item['name']}},1,{{$item['price']}},{{$item['price']}}" 
+                                        v-on:click="addToCard({{$loop->iteration}})"
+                                    >
+                                        <x-button 
+                                            type="button" 
+                                            icon="add_shopping_cart" 
+                                            color="dark" 
+                                            text=""
+                                        />
+                                    </div>
+                                @endif 
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            @endforeach
         </div>
-        @endforeach
+        <pre><?php //var_dump(session('search'));?></pre>
     @endif
+
+
+    
+
 
     @role('admin')
         <strong>Admin-Панель</strong> 
+        <div class="row">
+            <div class="col-12 col-lg-4">
+                <div class="card shadow-sm border-0 mb-5 mt-3">
+                    <div class="card-body">
+                        <a href="/dashboard/accounts" class="d-flex align-items-center text-decoration-none">
+                            <div class="p-2">
+                                <span class="material-symbols-outlined text-secondary fs-1">inventory</span>
+                            </div> 
+                            <div class="p-2 flex-grow-1">
+                                <h5 class="fw-bold text-dark m-0">Счета</h5> 
+                                <small class="text-muted">Список всех счетов</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="card shadow-sm border-0 mb-5 mt-3">
+                    <div class="card-body">
+                        <a href="/dashboard/orders" class="d-flex align-items-center text-decoration-none">
+                            <div class="p-2">
+                                <span class="material-symbols-outlined text-secondary fs-1">order_approve</span>
+                            </div> 
+                            <div class="p-2 flex-grow-1">
+                                <h5 class="fw-bold text-dark m-0">Заказы</h5> 
+                                <small class="text-muted">Список всех заказов</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>            
+            <div class="col-12 col-lg-4">
+                <div class="card shadow-sm border-0 mb-5 mt-3">
+                    <div class="card-body">
+                        <a href="/dashboard/users" class="d-flex align-items-center text-decoration-none">
+                            <div class="p-2">
+                                <span class="material-symbols-outlined text-secondary fs-1">group</span>
+                            </div> 
+                            <div class="p-2 flex-grow-1">
+                                <h5 class="fw-bold text-dark m-0">Пользователи</h5> 
+                                <small class="text-muted">Список всех пользователей</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     @endrole
 
     

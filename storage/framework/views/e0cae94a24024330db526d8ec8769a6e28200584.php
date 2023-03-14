@@ -9,7 +9,7 @@
             'value' => 'name'
         ]
     ];
-    $size = session('search') ? session('search')['meta']['size'] : '';
+    $size = session('search') ? count(session('search')) : ''; // session('search')['meta']['size']
 ?>
 
 
@@ -181,32 +181,112 @@ unset($__errorArgs, $__bag); ?>
             <?php endif; ?>
         </p>        
         <?php endif; ?>
-
-        <?php $__currentLoopData = session('search')['rows']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <div class="d-flex justify-content-between w-100 bg-white px-3 py-2 my-1 shadow-sm rounded">
-            <div>
-                <span class="ps-1 pe-0 btn"><?php echo e($loop->iteration); ?>.</span>
-                <a href="/dashboard/product/details/<?php echo e($item['id']); ?>" class="text-dark text-decoration-none btn">
-                    <b><?php echo e($item['code']); ?></b> &#160;&#160; 
-                    <?php
-                        $str = str_replace(mb_strtolower(session('text')), '<mark class="rounded py-0">'.mb_strtolower(session('text')).'</mark>', mb_strtolower($item['name']));
-                        $str = mb_strtoupper(mb_substr($str, 0, 1)) . mb_substr($str, 1, mb_strlen($str));
-                        echo $str;
-                    ?>
-                </a>                
-            </div>
-            <div class="d-flex gap-2">
-                
-                <div class="btn">
-                    <?php echo number_format(($item['salePrices'][0]['value']) / 100, 2, '.', ' ') ?> ₽
-                </div> 
-                <div 
-                    id="card<?php echo e($loop->iteration); ?>" 
-                    data-card="<?php echo e($item['id']); ?>,<?php echo e($item['code']); ?>,<?php echo e($item['name']); ?>,1,<?php echo e($item['salePrices'][0]['value']); ?>,<?php echo e($item['salePrices'][0]['value']); ?>" 
-                    v-on:click="addToCard(<?php echo e($loop->iteration); ?>)"
-                >
-                    <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
-<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'submit','icon' => 'add_shopping_cart','color' => 'dark','text' => 'В корзину']); ?>
+        <div class="row">
+            <?php $__currentLoopData = session('search'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <div class="col-12 mb-3" :class="[!isOpen ? 'col-lg-3' : 'col-lg-4']">
+                <div class="card card-data border-0 shadow">
+                    <a href="/dashboard/product/details/<?php echo e($item['link']); ?>" class="card-body pb-0 position-relative">
+                        <div class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2">
+                            <span class="material-symbols-outlined fs-6 text-danger">favorite</span>
+                            <small><?php echo e(rand(4, 5)); ?> рейтинг</small>
+                        </div>
+                        <img 
+                            src="<?=$item['image'] !== '' ? '../../.'.$item['image'] : '/img/placeholder.png';?>" 
+                            class="card-img-top rounded" 
+                            alt="<?php echo e($item['name']); ?>" 
+                        />
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title fs-5 mb-3" style="height: 48px">
+                            <a href="/dashboard/product/details/<?php echo e($item['link']); ?>" class="text-dark fw-bold text-decoration-none">
+                                <?php
+                                    $str = str_replace(
+                                        mb_strtolower(session('text')), 
+                                        '<mark class="rounded py-0">'.mb_strtolower(session('text')).'</mark>', 
+                                        mb_strtolower($item['name'])
+                                    );
+                                    $str = mb_strtoupper(mb_substr($str, 0, 1)) . mb_substr($str, 1, mb_strlen($str));
+                                    echo $str;
+                                ?>
+                            </a>
+                        </h5>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <?php if($item['quantity'] == 0): ?>
+                                    <?php if (isset($component)) { $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Badge::class, ['color' => 'danger','text' => 'Нет в наличии']); ?>
+<?php $component->withName('badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94)): ?>
+<?php $component = $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94; ?>
+<?php unset($__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94); ?>
+<?php endif; ?> 
+                                <?php else: ?>
+                                    <?php if (isset($component)) { $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Badge::class, ['color' => '34617','text' => 'В наличии '.e($item['quantity']).'']); ?>
+<?php $component->withName('badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94)): ?>
+<?php $component = $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94; ?>
+<?php unset($__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94); ?>
+<?php endif; ?>  
+                                <?php endif; ?>                                          
+                            </div>
+                            <small>&#11088;&#11088;&#11088;&#11088;&#11088;</small> 
+                        </div>
+                        <hr style="color: #ddd" />
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center gap-2">
+                                <div>
+                                    <img 
+                                        src="/img/mercedes-benz.png" 
+                                        alt="Mercedes-Benz" 
+                                        style="width: 37px;height: 37px"
+                                    />
+                                </div>
+                                <div class="lh-sm">
+                                    <small class="text-muted d-block w-100">
+                                        <?php echo e($item['article']); ?>                                            
+                                    </small>
+                                    <strong class="text-secondary">Mercedes-Benz</strong>
+                                </div>
+                            </div>
+                            <div>
+                                <?php if($item['quantity'] == 0): ?>
+                                <div
+                                    id="preorder<?php echo e($item['link']); ?>"
+                                    data-order="<?php echo e($item['link']); ?>,<?php echo e($item['article']); ?>,<?php echo e($item['name']); ?>,1,<?php echo e($item['price']); ?>"
+                                    v-on:click="addToOrder('<?php echo e($item['link']); ?>')"
+                                >
+                                    <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'button','icon' => 'add_shopping_cart','color' => 'secondary','text' => '']); ?>
+<?php $component->withName('button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940)): ?>
+<?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
+<?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
+<?php endif; ?>             
+                                </div>
+                                <?php else: ?>
+                                    <div 
+                                        id="card<?php echo e($loop->iteration); ?>" 
+                                        data-card="<?php echo e($item['link']); ?>,<?php echo e($item['article']); ?>,<?php echo e($item['name']); ?>,1,<?php echo e($item['price']); ?>,<?php echo e($item['price']); ?>" 
+                                        v-on:click="addToCard(<?php echo e($loop->iteration); ?>)"
+                                    >
+                                        <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'button','icon' => 'add_shopping_cart','color' => 'dark','text' => '']); ?>
 <?php $component->withName('button'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
@@ -217,14 +297,71 @@ unset($__errorArgs, $__bag); ?>
 <?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
 <?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
 <?php endif; ?>
+                                    </div>
+                                <?php endif; ?> 
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        <pre><?php //var_dump(session('search'));?></pre>
     <?php endif; ?>
+
+
+    
+
 
     <?php if(auth()->check() && auth()->user()->hasRole('admin')): ?>
         <strong>Admin-Панель</strong> 
+        <div class="row">
+            <div class="col-12 col-lg-4">
+                <div class="card shadow-sm border-0 mb-5 mt-3">
+                    <div class="card-body">
+                        <a href="/dashboard/accounts" class="d-flex align-items-center text-decoration-none">
+                            <div class="p-2">
+                                <span class="material-symbols-outlined text-secondary fs-1">inventory</span>
+                            </div> 
+                            <div class="p-2 flex-grow-1">
+                                <h5 class="fw-bold text-dark m-0">Счета</h5> 
+                                <small class="text-muted">Список всех счетов</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="card shadow-sm border-0 mb-5 mt-3">
+                    <div class="card-body">
+                        <a href="/dashboard/orders" class="d-flex align-items-center text-decoration-none">
+                            <div class="p-2">
+                                <span class="material-symbols-outlined text-secondary fs-1">order_approve</span>
+                            </div> 
+                            <div class="p-2 flex-grow-1">
+                                <h5 class="fw-bold text-dark m-0">Заказы</h5> 
+                                <small class="text-muted">Список всех заказов</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>            
+            <div class="col-12 col-lg-4">
+                <div class="card shadow-sm border-0 mb-5 mt-3">
+                    <div class="card-body">
+                        <a href="/dashboard/users" class="d-flex align-items-center text-decoration-none">
+                            <div class="p-2">
+                                <span class="material-symbols-outlined text-secondary fs-1">group</span>
+                            </div> 
+                            <div class="p-2 flex-grow-1">
+                                <h5 class="fw-bold text-dark m-0">Пользователи</h5> 
+                                <small class="text-muted">Список всех пользователей</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     <?php endif; ?>
 
     

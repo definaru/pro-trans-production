@@ -283,6 +283,26 @@ class MoySklad
         return $response->json();
     }
 
+    public static function getAllGoods()
+    {
+        $url = self::msUrl().'assortment?expand=positions&limit=1000&offset=3000';
+        $response = self::get($url);
+        $items = $response->json();
+        $array = [];
+        foreach($items['rows'] as $item) {
+            $array[] = [
+                'link' => $item['id'], 
+                'image' => '', 
+                'article' => isset($item['article']) ? $item['article'] : '???',// ? $item['article'] :  
+                'name' => $item['name'], 
+                'description' => '', 
+                'price' => $item['salePrices'][0]['value'], 
+                'quantity' => $item['quantity']
+            ];
+        }
+        return $array;
+    }
+
     public static function getCategory($id)
     {
         $url = self::msUrl().'productfolder/'.$id;

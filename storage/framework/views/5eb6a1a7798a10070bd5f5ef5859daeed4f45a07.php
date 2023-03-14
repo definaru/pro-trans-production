@@ -94,7 +94,31 @@
         <div class="card-body">
             <div class="row mt-3">
                 <div class="col-md-3">
-                    <img src="<?php echo e($product['src']['images']); ?>" class="w-100 rounded" alt="<?php echo e($product['name']); ?>" />
+                    <?php if(auth()->check() && auth()->user()->hasRole('customer')): ?>
+                        <img 
+                            src="<?=$image[0]['image'] !== '' ? '../../.'.$image[0]['image'] : '/img/placeholder.png';?>" 
+                            alt="<?php echo e($product['name']); ?>" 
+                            class="w-100 rounded" 
+                        /> 
+                    <?php endif; ?>
+                    <?php if(auth()->check() && auth()->user()->hasRole('admin')): ?>
+                    <form id="loaderphoto" onchange="loadPfoto()" action="/api/files" method="post" enctype="multipart/form-data">
+                        <?php echo csrf_field(); ?>
+                        <label>
+                            <?php if(session('text')): ?>
+                                <div id="successphoto" class="d-none"><?php echo e(session('text')); ?></div>
+                            <?php endif; ?>
+                            <img 
+                                src="<?=$image[0]['image'] !== '' ? '../../.'.$image[0]['image'] : '/img/placeholder.png';?>" 
+                                alt="<?php echo e($product['name']); ?>" 
+                                class="w-100 rounded" 
+                            />
+                            <input type="file" name="file" class="d-none" />
+                            <input type="hidden" name="uuid" value="<?php echo e($id); ?>" />
+                            <div id="isloader" class="d-flex align-items-center gap-1 mt-2"></div>
+                        </label>
+                    </form>
+                    <?php endif; ?>
                     <div class="text-center py-3">
                         <?php if($product['barcodes'] === 'Нет данных'): ?>
                         <?php else: ?>

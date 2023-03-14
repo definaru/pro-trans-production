@@ -173,13 +173,9 @@
             </div>
             <div class="row">
                 <div class="col-8 offset-2 text-center mt-4">
-                    <button 
-                        data-bs-toggle="modal" 
-                        data-bs-target="#login" 
-                        class="btn btn-lg btn-dark px-5"
-                    >
+                    <a href="/products/mersedes-benz" class="btn btn-lg btn-dark px-5">
                         Показать всё &#160; &rarr;
-                    </button>
+                    </a>
                 </div>
                 <div class="col-12 mt-5">
                     <hr />
@@ -188,13 +184,9 @@
             <div class="row py-4">
                 <div class="d-flex flex-column flex-lg-row justify-content-between align-items-center col-12 mt-5">
                     <h2 class="fw-bold display-6">Расходные материалы</h2>
-                    <button 
-                        data-bs-toggle="modal" 
-                        data-bs-target="#login"
-                        class="btn btn-sm btn-outline-dark px-4"
-                    >
+                    <a href="/products/mersedes-benz" class="btn btn-sm btn-outline-dark px-4">
                         Смотреть все&#160; &rarr;
-                    </button>
+                    </a>
                 </div>
             </div>
             <div class="row" itemprop="itemListElement" itemtype="https://schema.org/Product">
@@ -325,7 +317,7 @@
                                 />
                             </a>
                             <div class="card-body">
-                                <h5 data-bs-toggle="modal" data-bs-target="#order" class="card-title fw-bold fs-6">
+                                <h5 class="card-title fw-bold fs-6">
                                     <a itemprop="name" href="/product/mersedes-benz/<?=$item['href'];?>"><?=$item['name']?></a>
                                 </h5>
                                 <div class="d-flex align-items-center justify-content-between">
@@ -367,9 +359,9 @@
             </div>
             <div class="row">
                 <div class="col-12 col-lg-8 offset-lg-2 text-center mt-3 mb-5">
-                    <button data-bs-toggle="modal" data-bs-target="#login" class="btn btn-lg btn-dark px-5">
+                    <a href="/products/mersedes-benz" class="btn btn-lg btn-dark px-5">
                         Показать всё &nbsp; →
-                    </button>
+                    </a>
                 </div>
             </div>
             <div class="row">

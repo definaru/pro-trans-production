@@ -6,6 +6,7 @@ use App\Models\Steames;
 use App\Models\MoySklad;
 use Illuminate\Http\Request;
 use App\Providers\ContactService;
+use App\Models\Goods;
 
 
 class MainController extends Controller
@@ -13,9 +14,24 @@ class MainController extends Controller
 
     public function Test()
     {
-        $modal = Steames::getResult('гайка'); //  getListURL   
-        return response()->json($modal);
-        //return view('test', ['modal' => $modal]);
+        $modal = MoySklad::getAllGoods(); //  getListURL   
+        //$list = response()->json($modal);
+
+        $data = [];
+        foreach($modal as $item) {
+            $data[] = [
+                'link' => $item['link'], 
+                'image' => $item['image'], 
+                'article' => $item['article'],
+                'name' => $item['name'], 
+                'description' => $item['description'], 
+                'price' => $item['price'], 
+                'quantity' => $item['quantity']
+            ];
+        }
+        Goods::upsert($data, ['article'], ['quantity']); // insert // updateOrCreate // create
+        return view('test', ['modal' => $data]);
+        // return redirect()->route('search')->with(['search' => $search, 'text' => $text]);
     }
 
 
@@ -87,6 +103,23 @@ class MainController extends Controller
         $product = MoySklad::getAllProduct($limit, $offset);
         //return response()->json($product);
         return view('catalog', ['product' => $product, 'limit' => $limit, 'offset' => $offset]);
+    }
+
+    public function Files(Request $request)
+    {
+        $request->validate([
+            'uuid' => 'required',
+            'file' => 'required'
+        ]);
+        $uuid = $request->input('uuid');
+        $uploaddir = './img/goods/';
+        $uploadfile = $uploaddir . basename($_FILES['file']['name']);
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
+            Goods::where('link', $uuid)->update(['image' => $uploadfile]);
+            return redirect('/dashboard/product/details/'.$uuid)->with(['text' => 'Фото товара загружено']);
+        } else {
+            print_r('Ошибка!');
+        }
     }
 
     public function Product(Request $request)
