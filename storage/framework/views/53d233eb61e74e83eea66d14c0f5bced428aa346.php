@@ -4,11 +4,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Счет покупателю №{{$order['name']}}</title>
-    <link rel="shortcut icon" href="{{ asset('img/prospectdesktopicon.png') }}" type="image/x-icon" />
+    <title>Счет покупателю №<?php echo e($order['name']); ?></title>
+    <link rel="shortcut icon" href="<?php echo e(asset('img/prospectdesktopicon.png')); ?>" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
     <style type="text/css">
-        @page {
+        @page  {
             margin: 20px;
         }
         @font-face {
@@ -31,12 +31,14 @@
             <tbody>
                 <tr>
                     <td class="px-1 py-0 border-bottom-0 border-dark" colspan="2" style="width:55%">
-                        {{$order['organization']['accounts']['rows'][0]['bankName']}}&#160;
-                        {{$order['organization']['accounts']['rows'][0]['bankLocation']}}
+                        <?php echo e($order['organization']['accounts']['rows'][0]['bankName']); ?>&#160;
+                        <?php echo e($order['organization']['accounts']['rows'][0]['bankLocation']); ?>
+
                     </td>
                     <td class="px-1 py-0 border-dark" style="width:70px">БИК</td>
                     <td class="px-1 py-0 border-bottom-0 border-dark">
-                        {{$order['organization']['accounts']['rows'][0]['bic']}}
+                        <?php echo e($order['organization']['accounts']['rows'][0]['bic']); ?>
+
                     </td>
                 </tr>
                 <tr>
@@ -45,22 +47,25 @@
                     </td>
                     <td class="px-1 py-0 border-dark">Сч. №</td>
                     <td class="px-1 py-0 border-top-0 border-dark">
-                        {{$order['organization']['accounts']['rows'][0]['correspondentAccount']}}
+                        <?php echo e($order['organization']['accounts']['rows'][0]['correspondentAccount']); ?>
+
                     </td>
                 </tr>
                 <tr>
                     <td class="px-1 py-0 border-dark">
-                        ИНН &nbsp; {{$order['organization']['inn']}}
+                        ИНН &nbsp; <?php echo e($order['organization']['inn']); ?>
+
                     </td>
-                    <td class="px-1 py-0 border-dark">КПП &nbsp; {{$order['organization']['kpp']}}</td>
+                    <td class="px-1 py-0 border-dark">КПП &nbsp; <?php echo e($order['organization']['kpp']); ?></td>
                     <td class="px-1 py-0 border-dark" rowspan="2">Сч. №</td>
                     <td class="px-1 py-0 border-dark" rowspan="2">
-                        {{$order['organization']['accounts']['rows'][0]['accountNumber']}}
+                        <?php echo e($order['organization']['accounts']['rows'][0]['accountNumber']); ?>
+
                     </td>
                 </tr>
                 <tr>
                     <td class="px-1 py-0 border-dark" colspan="2">
-                        <p class="mb-1">{{$order['organization']['name']}}</p>
+                        <p class="mb-1"><?php echo e($order['organization']['name']); ?></p>
                         <small>Получатель</small>
                     </td>
                 </tr>
@@ -68,7 +73,7 @@
         </table>
 
         <p class="p-0" class="font-weight-bold">
-            Счёт на оплату №{{$order['name']}} от {{$time::parse($order['created'])->locale('ru')->translatedFormat('d F Y')}} г.
+            Счёт на оплату №<?php echo e($order['name']); ?> от <?php echo e($time::parse($order['created'])->locale('ru')->translatedFormat('d F Y')); ?> г.
         </p>
         <hr class="border border-dark" />
         <table class="table table-borderless m-0">
@@ -76,30 +81,34 @@
                 <tr>
                     <td class="font-weight-normal px-1" style="font-size:12px;width:100px">Поставщик<br />(Исполнитель):</td>
                     <td class="font-weight-bold" style="font-size:12px;">
-                        {{$order['organization']['name']}}, 
-                        ИНН {{$order['organization']['inn']}}, 
-                        КПП {{$order['organization']['kpp']}}, 
-                        {{$order['organization']['legalAddress']}}
+                        <?php echo e($order['organization']['name']); ?>, 
+                        ИНН <?php echo e($order['organization']['inn']); ?>, 
+                        КПП <?php echo e($order['organization']['kpp']); ?>, 
+                        <?php echo e($order['organization']['legalAddress']); ?>
+
                     </td>
                 <tr> 
                 <tr>
                     <td class="font-weight-normal px-1" style="font-size:12px;">Покупатель<br />(Заказчик):</td>
                     <td class="font-weight-bold" style="font-size:12px;">
-                        {{$order['agent']['name']}}, 
-                        {{isset($order['agent']['inn']) ? 'ИНН '.$order['agent']['inn'].', ' : ''}}
-                        {{isset($order['agent']['kpp']) ? 'КПП '.$order['agent']['kpp'].', ' : ''}} 
-                        {{$order['agent']['actualAddress']}}
+                        <?php echo e($order['agent']['name']); ?>, 
+                        <?php echo e(isset($order['agent']['inn']) ? 'ИНН '.$order['agent']['inn'].', ' : ''); ?>
+
+                        <?php echo e(isset($order['agent']['kpp']) ? 'КПП '.$order['agent']['kpp'].', ' : ''); ?> 
+                        <?php echo e($order['agent']['actualAddress']); ?>
+
                     </td>
                 <tr>  
                 <tr>
                     <td class="font-weight-normal px-1" style="font-size:12px">Основание:</td>
                     <td class="font-weight-bold" style="font-size:12px;">
-                    @if(isset($order['contract']))
-                        Договор №{{$order['contract']['name']}} / MS-{{$order['customerOrder']['name']}} 
-                        от {{date_format(date_create($order['customerOrder']['created']), 'd.m.Y')}}
-                    @else
+                    <?php if(isset($order['contract'])): ?>
+                        Договор №<?php echo e($order['contract']['name']); ?> / MS-<?php echo e($order['customerOrder']['name']); ?> 
+                        от <?php echo e(date_format(date_create($order['customerOrder']['created']), 'd.m.Y')); ?>
+
+                    <?php else: ?>
                         Без договора
-                    @endif
+                    <?php endif; ?>
                     </td>
                 <tr> 
             </tbody>
@@ -116,20 +125,20 @@
                 </tr>
             </thead>
             <tbody style="font-size:12px">
-                @foreach($order['positions']['rows'] as $invoice)
+                <?php $__currentLoopData = $order['positions']['rows']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $invoice): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr class="font-weight-normal" style="font-size:12px;border-left: 2px solid #000 !important;border-right: 2px solid #000">
-                    <td class="px-1 py-0 text-center border-dark">{{ $loop->iteration }}</td>
-                    <td class="px-1 py-0 border-dark"><b>{{$invoice['assortment']['article']}}</b>&#160; {{$invoice['assortment']['name']}}</td>
-                    <td class="px-1 py-0 text-right border-dark">{{$invoice['quantity']}}</td>
+                    <td class="px-1 py-0 text-center border-dark"><?php echo e($loop->iteration); ?></td>
+                    <td class="px-1 py-0 border-dark"><b><?php echo e($invoice['assortment']['article']); ?></b>&#160; <?php echo e($invoice['assortment']['name']); ?></td>
+                    <td class="px-1 py-0 text-right border-dark"><?php echo e($invoice['quantity']); ?></td>
                     <td class="px-1 py-0 border-dark">шт</td>
                     <td class="px-1 py-0 text-right border-dark">
-                        @php echo number_format(($invoice['price']) / 100, 2, '.', ' ') @endphp
+                        <?php echo number_format(($invoice['price']) / 100, 2, '.', ' ') ?>
                     </td>
                     <td class="px-1 py-0 text-right border-dark">
-                        @php echo number_format(($invoice['price']*$invoice['quantity']) / 100, 2, '.', ' ') @endphp
+                        <?php echo number_format(($invoice['price']*$invoice['quantity']) / 100, 2, '.', ' ') ?>
                     </td>
                 </tr>
-                @endforeach 
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
                 <tr class="border-0 font-weight-bold tables-top">
                     <td colspan="2" class="border-0"></td>
                     <td colspan="3" class="border-0 text-right px-1">
@@ -138,22 +147,23 @@
                         <p class="m-0">Всего к оплате:</p>
                     </td>
                     <td class="border-0 text-right px-1">
-                        <p class="mb-1">@php echo number_format(($order['sum']) / 100, 2, '.', ' ') @endphp</p>
-                        <p class="mb-1">@php echo number_format(($order['vatSum']) / 100, 2, '.', ' ') @endphp</p>
-                        <p class="m-0">@php echo number_format(($order['sum']) / 100, 2, '.', ' ') @endphp</p>
+                        <p class="mb-1"><?php echo number_format(($order['sum']) / 100, 2, '.', ' ') ?></p>
+                        <p class="mb-1"><?php echo number_format(($order['vatSum']) / 100, 2, '.', ' ') ?></p>
+                        <p class="m-0"><?php echo number_format(($order['sum']) / 100, 2, '.', ' ') ?></p>
                     </td>
                 </tr>
             </tbody>
         </table>
 
         <p class="font-weight-normal m-0" style="font-size:12px;">
-            Всего {{$order['positions']['meta']['size']}} {{$decl::name($order['positions']['meta']['size'])}}, 
-            на сумму @php echo number_format(($order['sum']) / 100, 2, '.', ' ') @endphp руб.
+            Всего <?php echo e($order['positions']['meta']['size']); ?> <?php echo e($decl::name($order['positions']['meta']['size'])); ?>, 
+            на сумму <?php echo number_format(($order['sum']) / 100, 2, '.', ' ') ?> руб.
         </p>
-        <p class="mb-2 font-weight-bold" style="font-size:13px;">{!! $currency::rub(number_format(($order['sum']) / 100, 2, '.', '')) !!}</p>
+        <p class="mb-2 font-weight-bold" style="font-size:13px;"><?php echo $currency::rub(number_format(($order['sum']) / 100, 2, '.', '')); ?></p>
         <p class="font-weight-normal m-0" style="font-size:12px;">
             Оплатить не позднее&#160;
-            {{date_format(date_create($order['moment']), 'd.m.Y')}}
+            <?php echo e(date_format(date_create($order['moment']), 'd.m.Y')); ?>
+
         </p>
         <p class="font-weight-normal" style="font-size:12px;">
             Оплата данного счёта означает согласие с условиями поставки товара. 
@@ -186,4 +196,4 @@
         </table>
     </div>
 </body>
-</html>
+</html><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/document/pdf.blade.php ENDPATH**/ ?>

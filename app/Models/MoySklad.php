@@ -216,6 +216,34 @@ class MoySklad
         ];
     }
 
+
+    public static function getAllInvoices()
+    {
+        $url = self::msUrl().'invoiceout?order=created,desc;';
+        $response = self::get($url);
+        $items = $response->json();
+        $array = [];
+        foreach($items['rows'] as $item) {
+            $array[] = [
+                'id' => $item['id'],
+                'name' => $item['name'],
+                'sum' => $item['sum'],
+                'agent' => self::getInvoiceOne($item['id'])['agent']['name'],
+                //'agent' => self::getCounterParty($item['agent']['meta']['href']),
+                'state' => self::getInvoiceoutMetadataStates(isset($item['state']['meta']['href']) ? $item['state']['meta']['href'] : ''),
+                'created' => $item['created'],
+                'payedSum' => $item['payedSum'],
+                'moment' => $item['moment'],
+                'paymentPlannedMoment' => isset($item['paymentPlannedMoment']) ? $item['paymentPlannedMoment'] : 'Нет данных',
+            ];
+        }
+        return [
+            'list' => $array,
+            'count' => $items['meta']['size']
+        ];
+    }
+
+
     public static function getReports()
     {
         $uuid = auth()->user()->verified; // customerorder

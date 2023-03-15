@@ -131,7 +131,7 @@
                             <span>Поиск...</span>
                         </button>
                         <?php if(auth()->guard()->guest()): ?>
-                        <a href="/signin" class="btn btn-primary px-5 shadow-sm fw-bold d-flex justify-content-center align-items-center gap-2">
+                        <a href="/signin" class="btn btn-primary px-3 shadow-sm fw-bold d-flex justify-content-center align-items-center gap-2">
                             <span class="material-symbols-outlined fs-6">login</span>
                             Войти
                         </a>                        

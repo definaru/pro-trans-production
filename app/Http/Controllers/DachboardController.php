@@ -116,13 +116,6 @@ class DachboardController extends Controller
         return view('dashboard.notifications');
     }
 
-    public function Orders() 
-    {
-        $orders = MoySklad::getInvoices();
-        //return response()->json($orders);
-        return view('dashboard.payment.orders', ['orders' => $orders]);
-    }
-
     public function Invoice($invoice) 
     {
         $order = MoySklad::getInvoiceOne($invoice);
@@ -303,6 +296,14 @@ class DachboardController extends Controller
         }
         return redirect()->route('index')->with(['signup' => $message, 'id' => $account['id']]);
     }
+    
+
+    public function Orders() 
+    {
+        $orders = MoySklad::getInvoices();
+        return view('dashboard.payment.orders', ['orders' => $orders]);
+    }
+
 
     public function Manager(Request $request)
     {
@@ -312,10 +313,20 @@ class DachboardController extends Controller
         return redirect()->route('order')->with(['status' => $message]);
     }
 
+
     public function Users()
     {
         $model = User::all();
         return view('dashboard.users', ['model' => $model]);
     }
+
+    
+    public function Accounts()
+    {
+        $model = MoySklad::getAllInvoices();
+        //return response()->json($model);
+        return view('dashboard.accounts', ['model' => $model]);
+    }
+
     
 }
