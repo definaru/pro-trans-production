@@ -125,9 +125,12 @@
                     @endif
 
                     <div class="d-grid d-lg-flex gap-2 pb-4 pb-lg-0" role="search">
-                        <button class="material-symbols-outlined btn d-none d-lg-block" data-bs-toggle="modal" data-bs-target="#searchForm">search</button>
+                        <button class="d-lg-flex align-items-center gap-2 btn d-none border ps-2" data-bs-toggle="modal" data-bs-target="#searchForm" style="cursor: text">
+                            <span class="material-symbols-outlined">search</span>
+                            <span>Поиск...</span>
+                        </button>
                         @guest
-                        <a href="/signin" class="btn btn-primary px-5 shadow-sm fw-bold d-flex justify-content-center align-items-center gap-2">
+                        <a href="/signin" class="btn btn-primary px-3 shadow-sm fw-bold d-flex justify-content-center align-items-center gap-2">
                             <span class="material-symbols-outlined fs-6">login</span>
                             Войти
                         </a>                        
@@ -152,7 +155,7 @@
         </nav>
         <header class="blue section"></header>
         <main>
-        @yield('content')
+            @yield('content')
         </main>
 
         <footer id="contact" class="d-print-none bg-dark text-white" itemscope itemtype="http://schema.org/WPFooter">
@@ -214,9 +217,6 @@
                                 </li>
                                 <li class="d-flex align-items-center gap-2">
                                     <span class="material-symbols-outlined fs-5 text-primary">call</span>
-                                    {{-- <a href="tel:+79672916470">
-                                        <span itemprop="telephone">+7 (967) 291-64-70</span>
-                                    </a> --}}
                                     {!! $contact::getPhone(config('app.phone'), [], true) !!}
                                 </li>
                                 <li class="d-flex align-items-center gap-2">

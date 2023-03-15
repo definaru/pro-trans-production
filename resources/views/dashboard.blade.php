@@ -126,7 +126,7 @@
         @else
         <p>{{$decl::search($size)}} 
             @if ($size !== 1)
-                <span class="badge bg-danger rounded-pill">{{$size}}</span>
+                &#160;<span class="badge bg-danger rounded-pill">{{$size}}</span>
             @endif
         </p>        
         @endif
@@ -137,7 +137,7 @@
                     <a href="/dashboard/product/details/{{$item['link']}}" class="card-body pb-0 position-relative">
                         <div class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2">
                             <span class="material-symbols-outlined fs-6 text-danger">favorite</span>
-                            <small>{{rand(4, 5)}} рейтинг</small>
+                            <small>{{rand(4, 5)}}.0 рейтинг</small>
                         </div>
                         <img 
                             src="<?=$item['image'] !== '' ? '../../.'.$item['image'] : '/img/placeholder.png';?>" 
@@ -167,7 +167,7 @@
                                     <x-badge color="34617" text="В наличии {{$item['quantity']}}" />  
                                 @endif                                          
                             </div>
-                            <small>&#11088;&#11088;&#11088;&#11088;&#11088;</small> 
+                            <h5>{!! $currency::summa($item['price']) !!}</h5> 
                         </div>
                         <hr style="color: #ddd" />
                         <div class="d-flex align-items-center justify-content-between">
@@ -180,7 +180,7 @@
                                     />
                                 </div>
                                 <div class="lh-sm">
-                                    <small class="text-muted d-block w-100">
+                                    <small class="text-dark fw-bold d-block w-100">
                                         {{$item['article']}}                                            
                                     </small>
                                     <strong class="text-secondary">Mercedes-Benz</strong>

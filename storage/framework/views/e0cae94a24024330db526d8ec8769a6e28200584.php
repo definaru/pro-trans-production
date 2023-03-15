@@ -177,7 +177,7 @@ unset($__errorArgs, $__bag); ?>
         <?php else: ?>
         <p><?php echo e($decl::search($size)); ?> 
             <?php if($size !== 1): ?>
-                <span class="badge bg-danger rounded-pill"><?php echo e($size); ?></span>
+                &#160;<span class="badge bg-danger rounded-pill"><?php echo e($size); ?></span>
             <?php endif; ?>
         </p>        
         <?php endif; ?>
@@ -188,7 +188,7 @@ unset($__errorArgs, $__bag); ?>
                     <a href="/dashboard/product/details/<?php echo e($item['link']); ?>" class="card-body pb-0 position-relative">
                         <div class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2">
                             <span class="material-symbols-outlined fs-6 text-danger">favorite</span>
-                            <small><?php echo e(rand(4, 5)); ?> рейтинг</small>
+                            <small><?php echo e(rand(4, 5)); ?>.0 рейтинг</small>
                         </div>
                         <img 
                             src="<?=$item['image'] !== '' ? '../../.'.$item['image'] : '/img/placeholder.png';?>" 
@@ -240,7 +240,7 @@ unset($__errorArgs, $__bag); ?>
 <?php endif; ?>  
                                 <?php endif; ?>                                          
                             </div>
-                            <small>&#11088;&#11088;&#11088;&#11088;&#11088;</small> 
+                            <h5><?php echo $currency::summa($item['price']); ?></h5> 
                         </div>
                         <hr style="color: #ddd" />
                         <div class="d-flex align-items-center justify-content-between">
@@ -253,7 +253,7 @@ unset($__errorArgs, $__bag); ?>
                                     />
                                 </div>
                                 <div class="lh-sm">
-                                    <small class="text-muted d-block w-100">
+                                    <small class="text-dark fw-bold d-block w-100">
                                         <?php echo e($item['article']); ?>                                            
                                     </small>
                                     <strong class="text-secondary">Mercedes-Benz</strong>

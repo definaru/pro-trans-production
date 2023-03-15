@@ -312,7 +312,7 @@
                                 />
                             </a>
                             <div class="card-body">
-                                <h5 data-bs-toggle="modal" data-bs-target="#order" class="card-title fw-bold fs-6">
+                                <h5 class="card-title fw-bold fs-6">
                                     <a itemprop="name" href="/product/mersedes-benz/<?=$item['href'];?>"><?=$item['name']?></a>
                                 </h5>
                                 <div class="d-flex align-items-center justify-content-between">
