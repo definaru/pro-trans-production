@@ -229,7 +229,6 @@ class MoySklad
                 'name' => $item['name'],
                 'sum' => $item['sum'],
                 'agent' => self::getInvoiceOne($item['id'])['agent']['name'],
-                //'agent' => self::getCounterParty($item['agent']['meta']['href']),
                 'state' => self::getInvoiceoutMetadataStates(isset($item['state']['meta']['href']) ? $item['state']['meta']['href'] : ''),
                 'created' => $item['created'],
                 'payedSum' => $item['payedSum'],

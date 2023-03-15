@@ -101,8 +101,6 @@ Route::controller(MainController::class)->group(function () {
     Route::get('/product/mersedes-benz/{id}', 'DetailProduct');
 });
 
-
-
 Route::prefix('doc')->group(function () {
     // Страницы с Юр.документами
     Route::get('license', [MainController::class, 'License']);

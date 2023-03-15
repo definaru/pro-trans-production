@@ -75,7 +75,7 @@ class DachboardController extends Controller
         return view('dashboard.result.search', ['search' => $search, 'text' => $request->text]);
     }
 
-    public function searchDashboard(Request $request)#..................................................................
+    public function searchDashboard(Request $request)
     {
         $request->validate([
             'type' => 'nullable',
@@ -320,7 +320,7 @@ class DachboardController extends Controller
         return view('dashboard.users', ['model' => $model]);
     }
 
-    
+
     public function Accounts()
     {
         $model = MoySklad::getAllInvoices();
@@ -328,5 +328,4 @@ class DachboardController extends Controller
         return view('dashboard.accounts', ['model' => $model]);
     }
 
-    
 }
