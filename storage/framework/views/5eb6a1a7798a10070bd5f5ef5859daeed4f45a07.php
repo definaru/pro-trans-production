@@ -104,7 +104,7 @@
                     <?php if(auth()->check() && auth()->user()->hasRole('admin')): ?>
                     <form id="loaderphoto" onchange="loadPfoto()" action="/api/files" method="post" enctype="multipart/form-data">
                         <?php echo csrf_field(); ?>
-                        <label>
+                        <label class="position-relative">
                             <?php if(session('text')): ?>
                                 <div id="successphoto" class="d-none"><?php echo e(session('text')); ?></div>
                             <?php endif; ?>
@@ -113,7 +113,10 @@
                                 alt="<?php echo e($product['name']); ?>" 
                                 class="w-100 rounded" 
                             />
-                            <input type="file" name="file" class="d-none" />
+                            <div class="position-absolute delete-image">
+                                <span class="material-symbols-outlined">delete</span>
+                            </div>
+                            <input type="file" name="file" accept="image/png, image/jpeg" class="d-none" />
                             <input type="hidden" name="uuid" value="<?php echo e($id); ?>" />
                             <div id="isloader" class="d-flex align-items-center gap-1 mt-2"></div>
                         </label>
@@ -128,11 +131,7 @@
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <p class="mb-1">
-                        <b>Обновлён:</b>
-                        <?php echo e($time::parse($product['updated'])->locale('ru')->translatedFormat('d F Y, H:i')); ?>
 
-                    </p>
                     <p class="mb-1">
                         <b>Артикул:</b>
                         <?php echo e($product['article']); ?>
@@ -156,6 +155,13 @@
                         <b>Тип маркеровки:</b>
                         <?php echo e($product['trackingType']); ?>
 
+                    </p>
+                    <p class="mb-1">
+                        <b>Обновлён:</b>
+                        <small class="fw-light text-muted">
+                            <?php echo e($time::parse($product['updated'])->locale('ru')->translatedFormat('d F Y, H:i')); ?>
+
+                        </small>
                     </p>
                     <!-- <div class="mb-3">
                         <label class="form-label fw-bold m-0">ID а:</label>

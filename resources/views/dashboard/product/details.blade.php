@@ -70,7 +70,7 @@
                     @role('admin')
                     <form id="loaderphoto" onchange="loadPfoto()" action="/api/files" method="post" enctype="multipart/form-data">
                         @csrf
-                        <label>
+                        <label class="position-relative">
                             @if (session('text'))
                                 <div id="successphoto" class="d-none">{{ session('text') }}</div>
                             @endif
@@ -79,7 +79,10 @@
                                 alt="{{$product['name']}}" 
                                 class="w-100 rounded" 
                             />
-                            <input type="file" name="file" class="d-none" />
+                            <div class="position-absolute delete-image">
+                                <span class="material-symbols-outlined">delete</span>
+                            </div>
+                            <input type="file" name="file" accept="image/png, image/jpeg" class="d-none" />
                             <input type="hidden" name="uuid" value="{{$id}}" />
                             <div id="isloader" class="d-flex align-items-center gap-1 mt-2"></div>
                         </label>
@@ -93,10 +96,7 @@
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <p class="mb-1">
-                        <b>Обновлён:</b>
-                        {{$time::parse($product['updated'])->locale('ru')->translatedFormat('d F Y, H:i')}}
-                    </p>
+
                     <p class="mb-1">
                         <b>Артикул:</b>
                         {{$product['article']}}
@@ -118,6 +118,12 @@
                     <p class="mb-1">
                         <b>Тип маркеровки:</b>
                         {{$product['trackingType']}}
+                    </p>
+                    <p class="mb-1">
+                        <b>Обновлён:</b>
+                        <small class="fw-light text-muted">
+                            {{$time::parse($product['updated'])->locale('ru')->translatedFormat('d F Y, H:i')}}
+                        </small>
                     </p>
                     <!-- <div class="mb-3">
                         <label class="form-label fw-bold m-0">ID {{--$product['paymentItemType']--}}а:</label>

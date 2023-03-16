@@ -68,7 +68,7 @@
         </table>
 
         <p class="p-0" class="font-weight-bold">
-            Счёт на оплату №{{$order['name']}} от {{$time::parse($order['created'])->locale('ru')->translatedFormat('d F Y')}} г.
+            Счёт на оплату № A{{$order['name']}} от {{$time::parse($order['created'])->locale('ru')->translatedFormat('d F Y')}} г.
         </p>
         <hr class="border border-dark" />
         <table class="table table-borderless m-0">

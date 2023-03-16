@@ -78,6 +78,11 @@ class Declension
         return $num.' '. self::diff($num, 'счёт', 'счёта', 'счетов');
     }
     
+    public static function custom($num)
+    {
+        return $num.' '. self::diff($num, 'заказ', 'заказа', 'заказов');
+    }
+    
     public static function search($num)
     {
         $start = self::diff($num, 'Найден', 'Найдено', 'Найдено');

@@ -328,4 +328,11 @@ class DachboardController extends Controller
         return view('dashboard.accounts', ['model' => $model]);
     }
 
+    public function OrdersList()
+    {
+        $model = MoySklad::getAllReports();
+        //return response()->json($model);
+        return view('dashboard.orders', ['model' => $model]);
+    }
+
 }

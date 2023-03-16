@@ -60,12 +60,14 @@
                     <div class="col-md">
                         <strong>Плательщик:</strong> 
                         <h5>{{$order['agent']['name']}}</h5>
-                        <address class="row text-muted">
-                            <div class="col-6">
-                                {{$order['agent']['legalAddress']}}
-                            </div>
-                            <div class="col-6"></div>
-                        </address>
+                        @if (isset($order['agent']['legalAddress']))
+                            <address class="row text-muted">
+                                <div class="col-6">
+                                    {{$order['agent']['legalAddress']}}
+                                </div>
+                                <div class="col-6"></div>
+                            </address>                            
+                        @endif
                     </div> 
                     <div class="col-md text-md-end">
                         <dl class="row">

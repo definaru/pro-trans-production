@@ -270,6 +270,32 @@ class MoySklad
         return $return;
     }
 
+    public static function getAllReports()
+    {
+        $url = self::msUrl().'customerorder';
+        $response = self::get($url);
+        $items = $response->json();
+        $array = [];
+        foreach($items['rows'] as $item) {
+            $array[] = [
+                'id' => $item['id'],
+                'name' => $item['name'],
+                'sum' => $item['sum'],
+                'agent' => self::getCounterParty($item['agent']['meta']['href']),
+                'state' => self::getInvoiceoutMetadataStates(isset($item['state']['meta']['href']) ? $item['state']['meta']['href'] : ''),
+                'created' => $item['created'],
+                'payedSum' => $item['payedSum'],
+                'moment' => $item['moment'],
+                'paymentPlannedMoment' => isset($item['paymentPlannedMoment']) ? $item['paymentPlannedMoment'] : 'Нет данных',
+            ];
+        }
+        $return = [
+            'list' => $array,
+            'count' => $items['meta']['size']
+        ];
+        return $return;
+    }
+
 
     public static function getStatusTrackingType($value)
     {
@@ -480,14 +506,14 @@ class MoySklad
             'type' => $item['companyType'],
             'updated' => $item['updated'],
             'created' => $item['created'],
-            'address' => $item['legalAddress'],
-            'inn' => $item['inn'],
-            'kpp' => $item['kpp'],
-            'ogrn' => $item['ogrn'],
-            'okpo' => $item['okpo'],
-            'email' => $item['email'] ? $item['email'] : '',
-            'phone' => $item['phone'] ? $item['phone'] : '',
-            'actualAddress' => $item['actualAddress'] ? $item['actualAddress'] : ''
+            'address' => isset($item['legalAddress']) ? $item['legalAddress'] : 'Адрес не указан',
+            'inn' => isset($item['inn']) ? $item['inn'] : '',
+            'kpp' => isset($item['kpp']) ? $item['kpp'] : '',
+            'ogrn' => isset($item['ogrn']) ? $item['ogrn'] : '',
+            'okpo' => isset($item['okpo']) ? $item['okpo'] : '',
+            'email' => isset($item['email']) ? $item['email'] : 'E-mail не указан',
+            'phone' => isset($item['phone']) ? $item['phone'] : 'Телефон не указан',
+            'actualAddress' => isset($item['actualAddress']) ? $item['actualAddress'] : 'Фактический адрес отсутствует'
         ];
     }
 

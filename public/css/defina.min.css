@@ -18,6 +18,29 @@ input:focus {
 .nav-link:focus, .nav-link:hover {
     color: #333;
 }
+.delete-image {
+    top: 0;
+    background: #00000030;
+    color: #ffffff;
+    padding: 5px 4px 0px 4px;
+    margin: 8px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+::selection {
+    color: red;
+    background-color: yellow;
+}
+.accordion-button:not(.collapsed)::after {
+    background-image: url(/img/arrow-top.svg) !important;
+    background-size: 90% !important;
+    background-position: 0px 5px;
+}
+.accordion-button::after {
+    width: 0.8rem !important;
+    background-size: 90% !important;
+    background-position: 0px 2px;
+}
 
 .page-link:focus {
     outline: none !important;

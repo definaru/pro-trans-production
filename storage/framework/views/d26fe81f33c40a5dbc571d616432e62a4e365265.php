@@ -30,10 +30,10 @@
                                     <span class="list-sort"></span>
                                 </a>
                             </th>
-                            <th>
-                                <span class="text-muted">
+                            <th class="d-flex justify-content-end gap-1">
+                                <span class="d-flex align-items-center gap-2 text-muted me-2">
                                     Управление
-                                    <span class="material-symbols-outlined">settings</span>
+                                    <span class="material-symbols-outlined fs-6 text-muted">settings</span>
                                 </span>
                             </th>
                         </tr>

@@ -464,6 +464,18 @@ class GetMenu
                                 'name' => 'Номенклатура',
                                 'href' => 'admin/nomenclature'
                             ],
+                            [
+                                'name' => 'Договоры',
+                                'href' => 'admin/contracts'
+                            ],
+                            [
+                                'name' => 'Счета',
+                                'href' => 'accounts'
+                            ],                     
+                            [
+                                'name' => 'Заказы',
+                                'href' => 'orders'
+                            ]                         
                         ]
                     ],
                     [
@@ -488,9 +500,9 @@ class GetMenu
                                 'href' => 'admin/access'
                             ],
                             [
-                                'name' => 'Договоры',
-                                'href' => 'admin/contracts'
-                            ],
+                                'name' => 'Все пользователи',
+                                'href' => 'users'
+                            ]
                         ]
                     ]
                 ]
@@ -509,7 +521,7 @@ class GetMenu
                         'name' => 'Каталоги',
                         'slug' => 'catalog',
                         'count' => '',
-                        'list' => GetMenu::getMenuCatalog()                 
+                        'list' => self::getMenuCatalog()                 
                     ],
                     [
                         'icon' => 'inventory',

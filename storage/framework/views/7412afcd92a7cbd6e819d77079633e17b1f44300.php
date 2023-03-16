@@ -22,7 +22,7 @@
                     <thead class="bg-light">
                         <tr>
                             <th scope="col" class="ps-3 text-muted"><small>#</small></td>
-                            <th scope="col" class="text-muted"><small class="ms-3">№ Заказа</small></th>
+                            <th scope="col" class="text-muted"><small class="ms-3">№ Счёта</small></th>
                             <th scope="col" class="text-muted"><small>Контрагент</small></th>
                             <th scope="col" class="text-muted"><small>Сумма</small></th>
                             <th scope="col" class="text-muted"><small>Оплачено</small></th>

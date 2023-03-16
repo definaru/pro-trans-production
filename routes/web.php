@@ -45,6 +45,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 
     // Admin-Панель
     Route::get('users', [DachboardController::class, 'Users']);
+    Route::get('orders', [DachboardController::class, 'OrdersList']);
     Route::get('accounts', [DachboardController::class, 'Accounts']);
     Route::get('admin/doc', [AdminController::class, 'adminDoc']);
     Route::get('admin/accounting', [AdminController::class, 'Accounting']);
