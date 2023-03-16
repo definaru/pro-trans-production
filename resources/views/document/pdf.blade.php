@@ -68,7 +68,7 @@
         </table>
 
         <p class="p-0" class="font-weight-bold">
-            Счёт на оплату № A{{$order['name']}} от {{$time::parse($order['created'])->locale('ru')->translatedFormat('d F Y')}} г.
+            Счёт на оплату №{{$order['name']}} от {{$time::parse($order['created'])->locale('ru')->translatedFormat('d F Y')}} г.
         </p>
         <hr class="border border-dark" />
         <table class="table table-borderless m-0">
@@ -95,8 +95,9 @@
                     <td class="font-weight-normal px-1" style="font-size:12px">Основание:</td>
                     <td class="font-weight-bold" style="font-size:12px;">
                     @if(isset($order['contract']))
-                        Договор №{{$order['contract']['name']}} / MS-{{$order['customerOrder']['name']}} 
+                        Договор №{{$order['contract']['name']}}&#160; 
                         от {{date_format(date_create($order['customerOrder']['created']), 'd.m.Y')}}
+                        &#160;/ Заказ MS-{{$order['customerOrder']['name']}}
                     @else
                         Без договора
                     @endif
@@ -153,7 +154,8 @@
         <p class="mb-2 font-weight-bold" style="font-size:13px;">{!! $currency::rub(number_format(($order['sum']) / 100, 2, '.', '')) !!}</p>
         <p class="font-weight-normal m-0" style="font-size:12px;">
             Оплатить не позднее&#160;
-            {{date_format(date_create($order['moment']), 'd.m.Y')}}
+            {{$timer::addDays($order['moment'], 3)}}
+            {{-- {{date_format(date_create($order['moment']), 'd.m.Y')}} --}}
         </p>
         <p class="font-weight-normal" style="font-size:12px;">
             Оплата данного счёта означает согласие с условиями поставки товара. 

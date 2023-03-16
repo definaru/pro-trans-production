@@ -7,6 +7,10 @@ use App\Models\Declension;
 class TimeFormat
 {
 
+    public static function addDays($datatime, $day)
+    {
+        return Carbon::parse($datatime)->addDays($day)->locale('ru')->translatedFormat('d.m.Y');
+    }
 
     public static function datatime($datatime)
     {

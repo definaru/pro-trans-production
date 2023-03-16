@@ -1,1 +1,1 @@
-<pre><?php var_dump($modal);?></pre>
+{{$timer::addDays('10.03.2023', 3)}}

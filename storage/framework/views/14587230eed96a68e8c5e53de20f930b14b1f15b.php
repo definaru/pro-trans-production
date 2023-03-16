@@ -15,10 +15,13 @@
     </div>
     <div class="d-flex align-items-center gap-1">
         <span class="material-symbols-outlined text-secondary">call</span>
-        <a href="tel:<?php echo e(config('app.phone')); ?>" class="fw-bold text-dark text-decoration-none"><?php echo e($contact::format_phone(config('app.phone'))); ?></a>
+        <a href="tel:<?php echo e(config('app.phone')); ?>" class="fw-bold text-dark text-decoration-none" style="width: 140px">
+            <?php echo e($contact::format_phone(config('app.phone'))); ?>
+
+        </a>
     </div>
     <div class="d-flex align-items-center gap-3">
-        <div class="dropdown">
+        <div class="dropdown" style="width: 239px">
             <div class="d-flex align-items-center gap-2 cp py-0" data-bs-toggle="dropdown">
                 <span class="material-symbols-outlined fs-2 text-white bg-soft-danger rounded-circle">account_circle</span>
                 <?php echo $__env->make('layout.main.company.name', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

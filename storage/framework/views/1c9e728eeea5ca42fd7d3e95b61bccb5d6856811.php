@@ -1,1 +1,1 @@
-<pre><?php var_dump($modal);?></pre><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/test.blade.php ENDPATH**/ ?>
+<?php echo e($timer::addDays('10.03.2023', 3)); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/test.blade.php ENDPATH**/ ?>
