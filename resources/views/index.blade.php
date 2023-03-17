@@ -183,7 +183,10 @@
             </div>
             <div class="row py-4">
                 <div class="d-flex flex-column flex-lg-row justify-content-between align-items-center col-12 mt-5">
-                    <h2 class="fw-bold display-6">Расходные материалы</h2>
+                    <h2 class="fw-bold display-6">
+                        Расходные материалы
+                        <span class="d-block w-100 fw-light fs-5 text-secondary text">Mercedes-Benz</span>
+                    </h2>
                     <a href="/products/mersedes-benz" class="btn btn-sm btn-outline-dark px-4">
                         Смотреть все&#160; &rarr;
                     </a>

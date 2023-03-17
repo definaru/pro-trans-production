@@ -85,18 +85,6 @@
         </div>
         <div class="row">
             <div class="col-12">
-                {{-- {{$deal::image($result, '426d5688-5064-11ed-0a80-05bf003d0d1a')}} --}}
-                <pre><?php //var_dump(array_search('A9604770503', $result));?></pre>
-                <pre><?php //var_dump(array_values(array_column($result, 'href')));?></pre>
-                <pre><?php //var_dump($result);?></pre>
-                <?php
-                    // $res = [];
-                    // $arrayTest = array_values(array_column($result, 'href'));
-                    // array_walk_recursive($arrayTest, function ($item, $key) use (&$res) {
-                    //     $res[] = $item;    
-                    // });
-                    // echo '<pre>'.var_dump($res).'</pre>';
-                ?>
                 @error('text')
                     <p>Получен пустой запрос.</p>
                 @enderror
@@ -128,7 +116,7 @@
                                 </div>
                                 <img 
                                     itemprop="image"
-                                    src="/img/placeholder.png" 
+                                    src="{{$images::src($item['id'])}}" 
                                     class="card-img-top rounded" 
                                     alt="{{$item['name']}}, Проспект Транс, {{$item['pathName']}}"
                                 />
@@ -197,9 +185,8 @@
                                     <meta itemprop="bestRating" content="5">
                                 </div>
                                 <img 
-                                    itemprop="image" 
-                                    {{-- src="{{$deal::image($result, $item['id'])}}"  --}}
-                                    src="/img/placeholder.png" 
+                                    itemprop="image"
+                                    src="{{$images::src($item['id'])}}" 
                                     class="card-img-top rounded" 
                                     alt="{{$item['name']}}, Проспект Транс, {{$item['pathName']}}"
                                 />

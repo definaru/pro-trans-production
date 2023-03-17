@@ -62,7 +62,7 @@
                 <div class="col-md-3">
                     @role('customer')
                         <img 
-                            src="<?=$image[0]['image'] !== '' ? '../../.'.$image[0]['image'] : '/img/placeholder.png';?>" 
+                            src="<?=isset($image[0]['image']) ? '../../.'.$image[0]['image'] : '/img/placeholder.png';?>" 
                             alt="{{$product['name']}}" 
                             class="w-100 rounded" 
                         /> 
@@ -75,7 +75,7 @@
                                 <div id="successphoto" class="d-none">{{ session('text') }}</div>
                             @endif
                             <img 
-                                src="<?=$image[0]['image'] !== '' ? '../../.'.$image[0]['image'] : '/img/placeholder.png';?>" 
+                                src="<?=isset($image[0]['image']) ? '../../.'.$image[0]['image'] : '/img/placeholder.png';?>" 
                                 alt="{{$product['name']}}" 
                                 class="w-100 rounded" 
                             />

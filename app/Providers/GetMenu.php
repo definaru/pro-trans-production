@@ -486,6 +486,13 @@ class GetMenu
                         'list' => ''
                     ],
                     [
+                        'icon' => 'mail',
+                        'name' => 'E-почта',
+                        'slug' => 'mail/inbox',
+                        'count' => '1',
+                        'list' => ''
+                    ],
+                    [
                         'icon' => 'group',
                         'name' => 'Пользователи',
                         'slug' => 'admin/users',

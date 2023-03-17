@@ -65,22 +65,22 @@
                                 </a>
                             </th>
                             <th>
-                                <a href="javascript: void(0);" class="text-muted text-decoration-none" style="width: 120px;display: block">
+                                <a href="javascript: void(0);" class="d-block text-muted text-decoration-none" style="width: 120px">
                                     Артикул<span class="list-sort"></span>
                                 </a>
                             </th>
                             <th>
-                                <a href="javascript: void(0);" data-sort="status" class="text-muted text-decoration-none" style="width: 90px;display: block;">
+                                <a href="javascript: void(0);" class="d-block text-muted text-decoration-none" style="width: 80px">
                                     Цена<span class="list-sort"></span>
                                 </a>
                             </th>
                             <th>
-                                <a href="javascript: void(0);" data-sort="status" class="text-muted text-decoration-none" style="display: block;width: 85px;">
+                                <a href="javascript: void(0);" class="d-block text-muted text-decoration-none" style="width: 85px">
                                     Наличие<span class="list-sort"></span>
                                 </a>
                             </th>
                             <th>
-                                <a href="javascript: void(0);" data-sort="status" class="text-muted text-decoration-none" style="display: block;width: 160px;">
+                                <a href="javascript: void(0);" class="text-muted text-decoration-none" style="width: 160px">
                                     Бренд<span class="list-sort"></span>
                                 </a>
                             </th>

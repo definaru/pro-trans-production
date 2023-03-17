@@ -80,18 +80,6 @@
         </div>
         <div class="row">
             <div class="col-12">
-                
-                <pre><?php //var_dump(array_search('A9604770503', $result));?></pre>
-                <pre><?php //var_dump(array_values(array_column($result, 'href')));?></pre>
-                <pre><?php //var_dump($result);?></pre>
-                <?php
-                    // $res = [];
-                    // $arrayTest = array_values(array_column($result, 'href'));
-                    // array_walk_recursive($arrayTest, function ($item, $key) use (&$res) {
-                    //     $res[] = $item;    
-                    // });
-                    // echo '<pre>'.var_dump($res).'</pre>';
-                ?>
                 <?php $__errorArgs = ['text'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -130,7 +118,7 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                                 <img 
                                     itemprop="image"
-                                    src="/img/placeholder.png" 
+                                    src="<?php echo e($images::src($item['id'])); ?>" 
                                     class="card-img-top rounded" 
                                     alt="<?php echo e($item['name']); ?>, Проспект Транс, <?php echo e($item['pathName']); ?>"
                                 />
@@ -201,9 +189,8 @@ unset($__errorArgs, $__bag); ?>
                                     <meta itemprop="bestRating" content="5">
                                 </div>
                                 <img 
-                                    itemprop="image" 
-                                    
-                                    src="/img/placeholder.png" 
+                                    itemprop="image"
+                                    src="<?php echo e($images::src($item['id'])); ?>" 
                                     class="card-img-top rounded" 
                                     alt="<?php echo e($item['name']); ?>, Проспект Транс, <?php echo e($item['pathName']); ?>"
                                 />

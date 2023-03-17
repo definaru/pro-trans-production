@@ -97,6 +97,12 @@ class AdminController extends Controller
         //return response()->json($model);
         return view('dashboard.admin.gtd', ['model' => $model]);
     }
+
+    public function Email()
+    {
+        $model = [];
+        return view('dashboard.admin.email', ['model' => $model]);
+    }
     
 
 }

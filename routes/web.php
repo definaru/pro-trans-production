@@ -44,6 +44,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::post('upd/pdf/export', [DachboardController::class, 'getUPD']);
 
     // Admin-Панель
+    Route::get('mail/inbox', [AdminController::class, 'Email']);
     Route::get('users', [DachboardController::class, 'Users']);
     Route::get('orders', [DachboardController::class, 'OrdersList']);
     Route::get('accounts', [DachboardController::class, 'Accounts']);

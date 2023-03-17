@@ -1,9 +1,4 @@
 @php
-    if($image === []) {
-        $img = '/img/placeholder.png';
-    } else {
-        $img = $image[0]['miniature']['href'];
-    }
     $code = isset($vendorcode) ? $vendorcode : 'Нет данных';
     $href = isset($href) ? $href : 0;
 @endphp
@@ -15,7 +10,7 @@
     </td>
     <td>
         <div class="d-flex align-items-center gap-2">
-            <img src="{{ $img }}" alt="{{$name}}" class="rounded image-product border border-muted" />
+            <img src="{{$images::src($href)}}" alt="{{$name}}" class="rounded image-product border border-muted" />
             <small>
                 <a href="/dashboard/product/details/{{$href}}" class="name fw-bold text-decoration-none text-dark">
                     {{$name}}
@@ -28,7 +23,14 @@
             {{$code}}
         </a>
     </td>
-    <td><small><strong>@php echo number_format(($price) / 100, 2, '.', ' ') @endphp ₽</strong></small></td>
+    <td>
+        <small>
+            <strong>
+                {!!$currency::summa($price)!!}
+                {{-- @php echo number_format(($price) / 100, 2, '.', ' ') @endphp ₽ --}}
+            </strong>
+        </small>
+    </td>
     <td>
         <div class="d-flex gap-2">
             @role('admin')
@@ -43,11 +45,9 @@
         </div>
     </td>
     <td>
-        <div class="card-body p-0 d-flex align-items-center">
-            <div class="icon-brand">
-                <img src="/img/guayaquillib/mercedes-benz.png" alt="MERCEDES-BENZ" class="w-50" />
-            </div>
-            <span>MERCEDES-BENZ</span>
+        <div class="d-flex align-items-center gap-2">
+            <img src="/img/guayaquillib/mercedes-benz.png" alt="MERCEDES-BENZ" style="width: 30px" />
+            <small>MERCEDES-BENZ</small>
         </div>
     </td>
     <td>

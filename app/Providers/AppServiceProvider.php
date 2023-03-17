@@ -9,6 +9,7 @@ use App\Models\Declension;
 use App\Models\FormatCurrency;
 use App\Models\Card;
 use App\Models\Names;
+use App\Models\Image;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
@@ -60,7 +61,8 @@ class AppServiceProvider extends ServiceProvider
             'currency'      => new FormatCurrency(),
             'decl'          => new Declension(),
             'deal'          => new Card(),
-            'dadata'        => new DaData()
+            'dadata'        => new DaData(),
+            'images'         => new Image()
         ]);
     }
 }

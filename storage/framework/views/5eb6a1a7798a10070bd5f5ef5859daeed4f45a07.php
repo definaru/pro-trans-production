@@ -96,7 +96,7 @@
                 <div class="col-md-3">
                     <?php if(auth()->check() && auth()->user()->hasRole('customer')): ?>
                         <img 
-                            src="<?=$image[0]['image'] !== '' ? '../../.'.$image[0]['image'] : '/img/placeholder.png';?>" 
+                            src="<?=isset($image[0]['image']) ? '../../.'.$image[0]['image'] : '/img/placeholder.png';?>" 
                             alt="<?php echo e($product['name']); ?>" 
                             class="w-100 rounded" 
                         /> 
@@ -109,7 +109,7 @@
                                 <div id="successphoto" class="d-none"><?php echo e(session('text')); ?></div>
                             <?php endif; ?>
                             <img 
-                                src="<?=$image[0]['image'] !== '' ? '../../.'.$image[0]['image'] : '/img/placeholder.png';?>" 
+                                src="<?=isset($image[0]['image']) ? '../../.'.$image[0]['image'] : '/img/placeholder.png';?>" 
                                 alt="<?php echo e($product['name']); ?>" 
                                 class="w-100 rounded" 
                             />

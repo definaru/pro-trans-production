@@ -16,7 +16,7 @@
     </td>
     <td>
         <div class="d-flex align-items-center gap-2">
-            <img src="<?php echo e($img); ?>" alt="<?php echo e($name); ?>" class="rounded image-product border border-muted" />
+            <img src="<?php echo e($images::src($href)); ?>" alt="<?php echo e($name); ?>" class="rounded image-product border border-muted" />
             <small>
                 <a href="/dashboard/product/details/<?php echo e($href); ?>" class="name fw-bold text-decoration-none text-dark">
                     <?php echo e($name); ?>
@@ -31,7 +31,15 @@
 
         </a>
     </td>
-    <td><small><strong><?php echo number_format(($price) / 100, 2, '.', ' ') ?> ₽</strong></small></td>
+    <td>
+        <small>
+            <strong>
+                <?php echo $currency::summa($price); ?>
+
+                
+            </strong>
+        </small>
+    </td>
     <td>
         <div class="d-flex gap-2">
             <?php if(auth()->check() && auth()->user()->hasRole('admin')): ?>
@@ -68,11 +76,9 @@
         </div>
     </td>
     <td>
-        <div class="card-body p-0 d-flex align-items-center">
-            <div class="icon-brand">
-                <img src="/img/guayaquillib/mercedes-benz.png" alt="MERCEDES-BENZ" class="w-50" />
-            </div>
-            <span>MERCEDES-BENZ</span>
+        <div class="d-flex align-items-center gap-2">
+            <img src="/img/guayaquillib/mercedes-benz.png" alt="MERCEDES-BENZ" style="width: 30px" />
+            <small>MERCEDES-BENZ</small>
         </div>
     </td>
     <td>
