@@ -24,58 +24,7 @@
                     placeholder="Введите Артикул или Название запчасти..." 
                 />
                 <span class="material-symbols-outlined position-absolute text-muted" onclick="getResult()" style="cursor: pointer;right: 28px;top: 11px">search</span>
-                <datalist id="searchlist">
-                    <option value="Насос-форсунка топливная цилиндра"></option>
-                    <option value="Ресивер воздушный"></option>
-                    <option value="Поршень-гильза комплект"></option>
-                    <option value="Водяной насос с муфтой"></option>
-                    <option value="Насос водяной с прокладкой"></option>
-                    <option value="Тормозной шланг переднего моста"></option>
-                    <option value="Трос открывания"></option>
-                    <option value="Втулка шатуна верхняя"></option>
-                    <option value="Кольцо гильзы"></option>
-                    <option value="Прокладка блока цилиндров"></option>
-                    <option value="Комплект щеток стеклоочистителя"></option>
-                    <option value="Комплект сцепления"></option>
-                    <option value="Датчик уровня топлива в баке"></option>
-                    <option value="Цапфа задней полуоси"></option>
-                    <option value="Кронштейн стабилизатора"></option>
-                    <option value="Гайка шестигранная"></option>
-                    <option value="Напорный трубопровод турбины"></option>
-                    <option value="Усилитель привода сцепления"></option>
-                    <option value="Фильтр топливный"></option>
-                    <option value="Радиатор охлаждения"></option>
-                    <option value="Панель кабины боковая левая"></option>
-                    <option value="Прокладка выпускного коллектора"></option>
-                    <option value="Кольцо уплотнительное"></option>
-                    <option value="Втулка распредвала"></option>
-                    <option value="Сальник ступицы"></option>
-                    <option value="Фиттинг ГБЦ"></option>
-                    <option value="Трубка топливная"></option>
-                    <option value="Вискомуфта вентилятора"></option>
-                    <option value="Втулка распредвала с буртиком"></option>
-                    <option value="Насос ГУР"></option>
-                    <option value="Прокладка"></option>
-                    <option value="Фильтр масляный"></option>
-                    <option value="Комплект топливных фильтров"></option>
-                    <option value="Фиттинг электропроводки"></option>
-                    <option value="Блок переключения передач"></option>
-                    <option value="Уплотнение"></option>
-                    <option value="Уплотнение масляного насоса"></option>
-                    <option value="Щетки стеклоочистителя"></option>
-                    <option value="Клапан обратный"></option>
-                    <option value="Рычаг стеклоочистителя"></option>
-                    <option value="Стартер"></option>
-                    <option value="Вилка блокировки"></option>
-                    <option value="Генератор"></option>
-                    <option value="Трубка"></option>
-                    <option value="Прокладка коллектора"></option>
-                    <option value="Втулка стабилизатора"></option>
-                    <option value="Вязкостная муфта"></option>
-                    <option value="Подушка передняя кабины"></option>
-                    <option value="Блок подготовки воздуха"></option>
-                    <option value="Термостат охлаждения двигателя"></option>
-                </datalist>
+                <?php echo $__env->make('layout.main.ui.selest.list', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             </form>
         </div>
         <div class="row">
@@ -171,14 +120,13 @@ unset($__errorArgs, $__bag); ?>
             <?php endif; ?>
 
         <?php else: ?>
-            <div class="row" itemscope itemtype="https://schema.org/Product">
+            <div class="row g-2" itemscope itemtype="https://schema.org/Product">
                 <div class="col-12">
                     <p class="text text-muted">Всего <?php echo e($product['meta']['size']); ?> товаров</p>
                 </div>
                 <?php $__currentLoopData = $product["rows"]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <?php if($item['quantity'] == 0): ?>
-                    <?php else: ?>
-                    <div class="col-lg-3 col-12 mb-4">
+                    
+                    <div class="col-lg-3 col-12">
                         <div class="card card-data border-0 shadow-sm order">
                             <a href="/product/mersedes-benz/<?php echo e($item['id']); ?>" class="card-body pb-0 position-relative">
                                 <div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating" class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2">
@@ -205,17 +153,22 @@ unset($__errorArgs, $__bag); ?>
                                 <hr style="color: #ddd">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div>
+                                        <?php if($item['quantity'] == 0): ?>
+                                        <p itemprop="offers" itemscope="" itemtype="https://schema.org/Offer" class="label-danger">
+                                            Нет наличии
+                                        </p>
+                                        <?php else: ?>
                                         <p itemprop="offers" itemscope="" itemtype="https://schema.org/Offer" class="label">
                                             <link itemprop="availability" href="https://schema.org/InStock">В наличии <?php echo e($item['quantity']); ?>
 
-                                        </p>                                
+                                        </p>  
+                                        <?php endif; ?>
                                     </div>
                                     <strong>
                                         <?php echo $currency::summa($item['salePrices'][0]['value']); ?>
 
                                     </strong>                            
                                 </div>
-                                
                                 <hr style="color: #ddd">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="d-flex align-items-center gap-2">
@@ -230,15 +183,21 @@ unset($__errorArgs, $__bag); ?>
                                         </div>
                                     </div>
                                     <div>
-                                        <a href="/signup" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
+                                        <?php if($item['quantity'] == 0): ?>
+                                        <div onclick="isNotSignUp()" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
                                             <span class="material-symbols-outlined">add_shopping_cart</span>
-                                        </a>
+                                        </div>
+                                        <?php else: ?>
+                                        <div onclick="addInCard()" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
+                                            <span class="material-symbols-outlined">add_shopping_cart</span>
+                                        </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>  
-                    <?php endif; ?>             
+                                 
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 
                     

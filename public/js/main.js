@@ -59,71 +59,14 @@ function changeTotal(value) {
 }
 //summa.innerHTML = parseInt(summa.innerText).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 
-
 new Vue({
-    el: '#order',
+    el: '#shop', 
     data: {
-        header: 'Обратная связь',
-        name: '',
-        phone: '',
-        email: '',
-        message: '',
-        send: false,
-        loading: false,
-        error_phone: false,
-        error_email: false,
-        error_names: false,
-        error_agree: false,
-        error_message: false,
-        email_invalid: false,
-    },
-    computed: {
-        isValid () {
-            return this.name && this.phone && this.email && this.message
-        }
-    },
-    methods: {
-        validEmail() {
-            var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            return re.test(this.email);
-        },
-        Send() {
-            if (this.isValid) {
-                setTimeout(function () {
-                    this.send = true
-                }.bind(this), 1000)
-            }
-            if(!this.name) {
-                this.error_names = true;
-            } 
-            if(!this.phone) {
-                this.error_phone = true;
-            }
-            if(!this.message) {
-                this.error_message = true;
-            }
-            if(!this.email) {
-                this.error_email = true;
-            }
-            if (this.email !== '' && this.validEmail()) {
-                this.email_invalid = true;
-            }
-        },
-        onSubmit() {
-            if (!this.isValid) return false;
-            alert('Достал!');
-            this.loading = true;
-            var formdata = new FormData();
-            formdata.append('name', this.name);
-            formdata.append('email', this.email);
-            formdata.append('phone', this.phone);
-            formdata.append('message', this.message);
-            
-            console.log('data:', formdata);
-            this.loading = false;
-        }
+        card: 0
     }
 });
+
+
 
 let modal = new bootstrap.Modal(document.querySelector('#searchForm'));
 let input = document.querySelector('input[type="search"]');
@@ -204,3 +147,81 @@ document.addEventListener('keydown', (event) => {
         event.preventDefault();
     }
 });
+
+function isError()
+{
+    Swal.fire({
+        title: 'Материал временно не доступен',
+        text: 'Ведутся технические работы.',
+        icon: 'warning',
+        confirmButtonColor: '#8630a3',
+        confirmButtonText: 'Закрыть'
+    })
+}
+
+async function isUserSubscribe()
+{
+    const { value: email } = await Swal.fire({
+        title: 'Подписка на запчасть',
+        text: 'Данной запчасти нет в наличии, поэтому, вы можете подписаться, чтобы первыми узнать о поступлении товара в наш интернет магазин.',
+        input: 'email',
+        //inputLabel: 'Your email address',
+        inputPlaceholder: 'Укажите ваш e-mail...',
+        showCancelButton: true,
+        confirmButtonText: '<span class="material-symbols-outlined">edit_note</span>Подписаться',
+        cancelButtonText: '<span class="material-symbols-outlined">close</span>Отмена',
+        confirmButtonColor: '#8630a3',
+        cancelButtonColor: '#111',
+        allowOutsideClick: false,
+        customClass: {
+            icon: ['text-danger', 'border-danger'],
+            title: 'text-dark',
+            cancelButton: ['d-flex', 'align-items-center', 'gap-2'],
+            confirmButton: ['d-flex', 'align-items-center', 'gap-2'],
+            container: 'text'
+        }
+        // inputValidator: (value) => {
+        //     if (!value) {
+        //         return 'Неверный адрес электронной почты !'
+        //     }
+        // }
+    });
+    if (email) {
+        Swal.fire(`Entered email: ${email}`)
+    }
+}
+
+function isNotSignUp()
+{
+    Swal.fire({
+        title: 'Товара нет в наличии',
+        html: 'Не зарегистрированные пользователи<br /> не могут оформить предзаказ.',
+        icon: false,
+        iconHtml: '<span class="material-symbols-outlined">production_quantity_limits</span>',
+        showCancelButton: true,
+        confirmButtonText: '<span class="material-symbols-outlined">edit_note</span>Регистрация',
+        cancelButtonText: '<span class="material-symbols-outlined">close</span>Закрыть',
+        confirmButtonColor: '#8630a3',
+        cancelButtonColor: '#111',
+        allowOutsideClick: false,
+        customClass: {
+            icon: ['text-danger', 'border-danger'],
+            title: 'text-dark',
+            cancelButton: ['d-flex', 'align-items-center', 'gap-2'],
+            confirmButton: ['d-flex', 'align-items-center', 'gap-2'],
+            htmlContainer: 'text'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.assign('/signup');
+        }
+    });
+}
+
+function addInCard()
+{
+    toastr.success('Маслянный фмльтр', 'Товар добавлен в карзину', {
+        positionClass:"toast-bottom-left",
+        containerId:"toast-bottom-left"
+    });
+}

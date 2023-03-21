@@ -25,7 +25,7 @@
                                 </a>
                             </th> --}}
                             <th>
-                                <a href="javascript: void0;" class="text-muted text-decoration-none d-block" style="width: 170px">
+                                <a href="javascript: void();" class="text-muted text-decoration-none d-block" style="width: 200px">
                                     E-mail&#160;
                                     <span class="list-sort"></span>
                                 </a>

@@ -88,17 +88,18 @@ class MainController extends Controller
         return view('doc.privatepolice');
     }
 
-    public function DetailProduct($id)
+    public function DetailProduct($id)#...................................................................
     {
         $product = MoySklad::getOneProduct($id);
+        $data = Goods::where('link', $id)->get();
         return view('product', [
             'id' => $id,
-            'product' => $product
+            'product' => $product,
+            'data' => $data
         ]);
-        //return view('product', ['id' => $id]);
     }
 
-    public function Catalog($limit = 2000, $offset = 0)
+    public function Catalog($limit = 64, $offset = 0)
     {
         $product = MoySklad::getAllProduct($limit, $offset);
         //return response()->json($product);
@@ -132,6 +133,21 @@ class MainController extends Controller
         // Steames::getResult($request->text);
         $text = $request->input('text');
         return redirect()->route('search')->with(['search' => $search, 'text' => $text]);
+    }
+
+    public function Partner()
+    {
+        return view('partner');
+    }
+
+    public function Shipper()
+    {
+        return view('shipper');
+    }
+
+    public function Developers()
+    {
+        return view('developers');
     }
 
 }

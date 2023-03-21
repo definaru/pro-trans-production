@@ -15,7 +15,9 @@
     @include('layout.main.seo.data')
     <link rel="shortcut icon" href="/img/logotype.jpg" type='image/x-icon'/>
     <link rel="apple-touch-icon" href="/img/logotype.jpg" />	
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.29/dist/sweetalert2.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ asset('css/toastr.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" /> 
     
     <link rel="canonical" href="{{ url()->current() }}" />
@@ -39,7 +41,7 @@
     <!-- /Yandex.Metrika counter -->
 </head>
 <body itemscope itemtype="http://schema.org/Organization">
-    <div id="shop" class="parent">
+    <div id="shop" class="parent" v-cloak>
         <nav class="d-print-none navbar fixed-top navbar-expand-lg bg-white shadow">
             <div class="container">
                 <a class="d-flex align-items-center gap-2 navbar-brand ps-2 ps-lg-0" href="/">
@@ -64,7 +66,7 @@
                     @if ($_SERVER['REQUEST_URI'] === '/')
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#about">
+                            <a class="nav-link" href="/about">
                                 О компании
                             </a>
                         </li>
@@ -133,7 +135,16 @@
                         <a href="/signin" class="btn btn-primary px-3 shadow-sm fw-bold d-flex justify-content-center align-items-center gap-2">
                             <span class="material-symbols-outlined fs-6">login</span>
                             Войти
-                        </a>                        
+                        </a>     
+                        <a href="/card" v-if="card > 0" class="material-symbols-outlined btn position-relative">
+                            shopping_cart
+                            <small 
+                                class="position-absolute translate-middle badge rounded-pill bg-danger text" 
+                                style="font-size: 10px;top: 8px;left: 35px;"
+                            >
+                                @{{card}}
+                            </small>
+                        </a>                   
                         @endguest
                         @auth
                         <a href="/dashboard" class="material-symbols-outlined btn">
@@ -183,9 +194,9 @@
                             <h4 class="mb-4">Продукты</h4> 
                             <ul class="d-grid gap-3 list-unstyled">
                                 <li><a href="/products/mersedes-benz">Грузовые запчасти</a></li>
-                                <li><a href="#">Оборудование для СТО</a></li>
-                                <li><a href="#">Поставщикам</a></li>
-                                <li><a href="#">Партнерам</a></li>
+                                <li><a href="/developers">Разработчикам</a></li>
+                                <li><a href="/shipper">Поставщикам</a></li>
+                                <li><a href="/partner">Партнерам</a></li>
                                 <li><a href="/customers">Клиентам</a></li>
                             </ul>                            
                         </div>
@@ -350,58 +361,7 @@
                                     autofocus 
                                 />
                                 <span class="material-symbols-outlined position-absolute text-muted" onclick="getResult()" style="cursor: pointer;right: 28px;top: 11px">search</span>
-                                <datalist id="searchlist">
-                                    <option value="Насос-форсунка топливная цилиндра"></option>
-                                    <option value="Ресивер воздушный"></option>
-                                    <option value="Поршень-гильза комплект"></option>
-                                    <option value="Водяной насос с муфтой"></option>
-                                    <option value="Насос водяной с прокладкой"></option>
-                                    <option value="Тормозной шланг переднего моста"></option>
-                                    <option value="Трос открывания"></option>
-                                    <option value="Втулка шатуна верхняя"></option>
-                                    <option value="Кольцо гильзы"></option>
-                                    <option value="Прокладка блока цилиндров"></option>
-                                    <option value="Комплект щеток стеклоочистителя"></option>
-                                    <option value="Комплект сцепления"></option>
-                                    <option value="Датчик уровня топлива в баке"></option>
-                                    <option value="Цапфа задней полуоси"></option>
-                                    <option value="Кронштейн стабилизатора"></option>
-                                    <option value="Гайка шестигранная"></option>
-                                    <option value="Напорный трубопровод турбины"></option>
-                                    <option value="Усилитель привода сцепления"></option>
-                                    <option value="Фильтр топливный"></option>
-                                    <option value="Радиатор охлаждения"></option>
-                                    <option value="Панель кабины боковая левая"></option>
-                                    <option value="Прокладка выпускного коллектора"></option>
-                                    <option value="Кольцо уплотнительное"></option>
-                                    <option value="Втулка распредвала"></option>
-                                    <option value="Сальник ступицы"></option>
-                                    <option value="Фиттинг ГБЦ"></option>
-                                    <option value="Трубка топливная"></option>
-                                    <option value="Вискомуфта вентилятора"></option>
-                                    <option value="Втулка распредвала с буртиком"></option>
-                                    <option value="Насос ГУР"></option>
-                                    <option value="Прокладка"></option>
-                                    <option value="Фильтр масляный"></option>
-                                    <option value="Комплект топливных фильтров"></option>
-                                    <option value="Фиттинг электропроводки"></option>
-                                    <option value="Блок переключения передач"></option>
-                                    <option value="Уплотнение"></option>
-                                    <option value="Уплотнение масляного насоса"></option>
-                                    <option value="Щетки стеклоочистителя"></option>
-                                    <option value="Клапан обратный"></option>
-                                    <option value="Рычаг стеклоочистителя"></option>
-                                    <option value="Стартер"></option>
-                                    <option value="Вилка блокировки"></option>
-                                    <option value="Генератор"></option>
-                                    <option value="Трубка"></option>
-                                    <option value="Прокладка коллектора"></option>
-                                    <option value="Втулка стабилизатора"></option>
-                                    <option value="Вязкостная муфта"></option>
-                                    <option value="Подушка передняя кабины"></option>
-                                    <option value="Блок подготовки воздуха"></option>
-                                    <option value="Термостат охлаждения двигателя"></option>
-                                </datalist>
+                                @include('layout.main.ui.selest.list')
                             </form>
                         </div>
                     </div>
@@ -575,7 +535,10 @@
         </div>
     @endverbatim
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
+    <script src="{{ asset('js/toastr.min.js') }}"></script>
     <script src="{{ asset('js/vue.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
 </body>

@@ -95,6 +95,9 @@ Route::controller(AuthController::class)->group(function () {
 Route::controller(MainController::class)->group(function () {
     Route::get('/test', 'Test');
     Route::get('/about', 'About');
+    Route::get('/shipper', 'Shipper');
+    Route::get('/developers', 'Developers');
+    Route::get('/partner', 'Partner');
     Route::post('/product', 'Product');
     Route::get('/contact', 'Сontact');
     Route::get('/customers', 'Customers');

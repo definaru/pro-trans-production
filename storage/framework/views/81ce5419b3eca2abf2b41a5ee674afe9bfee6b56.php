@@ -1,9 +1,4 @@
 <?php
-    if($image === []) {
-        $img = '/img/placeholder.png';
-    } else {
-        $img = $image[0]['miniature']['href'];
-    }
     $code = isset($vendorcode) ? $vendorcode : 'Нет данных';
     $href = isset($href) ? $href : 0;
 ?>

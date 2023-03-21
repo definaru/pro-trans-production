@@ -54,6 +54,12 @@ a.nav-link.active {
     text-decoration-style: wavy;
     display: block;
 }
+.swal2-styled.swal2-default-outline:focus {
+    box-shadow: none !important;
+}
+.swal2-icon-content .material-symbols-outlined {
+    font-size: 40px;
+}
 .ng::before {
     position: absolute;
     content: '';

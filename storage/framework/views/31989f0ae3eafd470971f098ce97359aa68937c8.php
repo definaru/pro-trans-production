@@ -3,12 +3,13 @@
     $result = array_merge($listorder, $bestsellers, $alllist);
     $url = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
 
-    try {
-        $first_names = array_column($result, 'image', 'href')[$id];
-        $image = $first_names; 
-    } catch (Exception $e) {
-        $image = $product['src']['images'];
-    }
+    // try {
+    //     $first_names = array_column($result, 'image', 'href')[$id];
+    //     $image = $first_names; 
+    // } catch (Exception $e) {
+    //     $image = $product['src']['images'];
+    // }
+    $image = isset($data[0]['image']) ? trim($data[0]['image'], '.') : '/img/placeholder.png';
 ?>
 
 <?php $__env->startSection('title', $str.' | Проспект Транс'); ?>
@@ -17,21 +18,27 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 mb-4 mt-5 mt-lg-0">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/">Главная</a></li>
-                            <li class="breadcrumb-item">
-                                <a href="/products/mersedes-benz">
-                                    <?php echo e($product['catalog']['name']); ?>
+                    <div class="d-flex justify-content-between">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                                <li class="breadcrumb-item">
+                                    <a href="/products/mersedes-benz">
+                                        <?php echo e($product['catalog']['name']); ?>
 
-                                </a>
-                            </li>
-                            <li class="breadcrumb-item active" aria-current="page">
-                                <?php echo e($str); ?>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    <?php echo e($str); ?>
 
-                            </li>
-                        </ol>
-                    </nav>
+                                </li>
+                            </ol>
+                        </nav>                        
+                        <?php if(auth()->check() && auth()->user()->hasRole('admin')): ?>
+                            <a href="/dashboard/product/details/<?php echo e($id); ?>">ред.</a>
+                        <?php endif; ?>
+                    </div>
+
                 </div>
                 <div class="col-12 col-lg-6">
                     <div class="pe-0 pe-lg-5">
@@ -66,7 +73,7 @@
                     <hr style="color: #ddd" />
                     <div class="d-grid d-lg-flex align-items-center gap-4 w-100">
                         <?php if($product['quantity'] == 0 || $product['quantity'] < 0): ?>
-                            <button class="btn btn-lg btn-primary px-5 py-3 d-flex justify-content-center align-items-center gap-2">
+                            <button onclick="isUserSubscribe()" class="btn btn-lg btn-primary px-5 py-3 d-flex justify-content-center align-items-center gap-2">
                                 <span class="material-symbols-outlined">drive_file_rename_outline</span>
                                 Подписаться на товар
                             </button>   
@@ -76,10 +83,10 @@
                                 <span id="count" class="btn py-1">1</span>
                                 <button id="remove" onclick="changeTotal('remove');" class="material-symbols-outlined btn py-1 border-0" disabled>remove</button>
                             </div>
-                            <a href="/signup" class="btn btn-lg btn-primary px-5 py-3 d-flex justify-content-center align-items-center gap-2">
+                            <div onclick="addInCard()" class="btn btn-lg btn-primary px-5 py-3 d-flex justify-content-center align-items-center gap-2">
                                 <span class="material-symbols-outlined">add_shopping_cart</span>
                                 В корзину
-                            </a>                        
+                            </div>                        
                         <?php endif; ?>
                     </div>
                 </div>

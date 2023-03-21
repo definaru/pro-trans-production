@@ -116,9 +116,9 @@
                     </p>
                 </div>
             </div>
-            <div class="row py-4" itemprop="itemListElement" itemscope itemtype="http://schema.org/Product">
+            <div class="row g-2 py-4" itemprop="itemListElement" itemscope itemtype="http://schema.org/Product">
                 <?php $__currentLoopData = $bestsellers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $best): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <div class="col-12 col-lg-3 mb-4 mb-lg-1">
+                <div class="col-12 col-lg-3">
                     <div class="card card-data border-0 shadow order">
                         <a href="/product/mersedes-benz/<?=$best['href'];?>" class="card-body pb-0 position-relative">
                             <div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating" class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2">
@@ -187,10 +187,10 @@
                     </a>
                 </div>
             </div>
-            <div class="row" itemprop="itemListElement" itemtype="https://schema.org/Product">
+            <div class="row g-3" itemprop="itemListElement" itemtype="https://schema.org/Product">
                 <?php $__currentLoopData = $alllist; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $detail): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="col-12 col-md-4">
-                    <div class="consumables bg-white rounded p-2 shadow d-flex align-items-center mb-4">
+                    <div class="consumables bg-white rounded p-2 shadow d-flex align-items-center">
                         <a href="/product/mersedes-benz/<?=$detail['href'];?>" class="rounded me-3" style="background: #ebcaa1">
                             <img
                                 itemprop="image" 
@@ -290,9 +290,9 @@
                     </div>
                 </div>
             </div>
-            <div itemscope itemtype="https://schema.org/Product" class="row py-4 ng position-relative">
+            <div itemscope itemtype="https://schema.org/Product" class="row g-2 py-4 ng position-relative">
                 <?php $__currentLoopData = $listorder; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="col-lg-3 col-12 mb-3">
+                    <div class="col-lg-3 col-12">
                         <div class="card card-data border-0 shadow order">
                             <a href="/product/mersedes-benz/<?=$item['href'];?>" class="card-body pb-0 position-relative">
                                 <div 
