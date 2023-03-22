@@ -11,6 +11,9 @@
 @if(session('signup'))
     <x-alert type="success" close="false" message="{{ session('signup') }}" />
 @endif
+@if(session('error'))
+    <x-alert type="danger" close="false" message="{{ session('error') }}" />
+@endif
 
 <form action="/login" method="post" class="mt-4">
     @csrf

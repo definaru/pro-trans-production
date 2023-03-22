@@ -45,12 +45,10 @@ unset($__errorArgs, $__bag); ?>
             <?php if($size === 0): ?>
                 <p class="w-100" style="height: 600px">По запросу <strong>"<?php echo e(session('text')); ?>"</strong> ничего не найдено</p>
             <?php else: ?>
-                <p><?php echo e($decl::search($size)); ?> <span class="badge bg-soft-danger text-danger rounded-pill"><?php echo e($size); ?></span></p>
-                
-                <div class="row">
+                <p><?php echo e($decl::search($size)); ?> <span class="badge bg-danger text-white rounded-pill"><?php echo e($size); ?></span></p>
+                <div class="row g-2">
                 <?php $__currentLoopData = session('search')['rows']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    
-                    <div class="col-lg-3 col-12 mb-3">
+                    <div class="col-lg-3 col-12">
                         <div class="card card-data border-0 shadow order">
                             <a href="/product/mersedes-benz/<?php echo e($item['id']); ?>" class="card-body pb-0 position-relative">
                                 <div 
@@ -60,7 +58,7 @@ unset($__errorArgs, $__bag); ?>
                                     class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2"
                                 >
                                     <span class="material-symbols-outlined fs-6 text-danger">favorite</span>
-                                    <small>4.9 рейтинг</small> 
+                                    <small><?php echo e(rand(4, 5)); ?>.<?php echo e(rand(0, 9)); ?> рейтинг</small> 
                                     <meta itemprop="worstRating" content="1">
                                     <meta itemprop="ratingValue" content="4.9">
                                     <meta itemprop="bestRating" content="5">
@@ -82,10 +80,17 @@ unset($__errorArgs, $__bag); ?>
                                 <hr style="color: #ddd">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div>
-                                        <p itemprop="offers" itemscope="" itemtype="https://schema.org/Offer" class="label">
-                                            <link itemprop="availability" href="https://schema.org/InStock">В наличии 
+                                        <p 
+                                            itemprop="offers" 
+                                            itemscope
+                                            itemtype="https://schema.org/Offer" 
+                                            class="<?php echo e($images::quantity($item['id'])['class']); ?>"
+                                        >
+                                            <link itemprop="availability" href="https://schema.org/InStock">
+                                            <?php echo e($images::quantity($item['id'])['text']); ?>
+
                                             
-                                        </p>                                
+                                        </p>                              
                                     </div>
                                     <strong>
                                         <?php echo $currency::summa($item['salePrices'][0]['value']); ?>
@@ -106,9 +111,15 @@ unset($__errorArgs, $__bag); ?>
                                         </div>
                                     </div>
                                     <div>
-                                        <a href="/signup" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
+                                        <?php if($images::quantity($item['id'])['quantity'] == 0): ?>
+                                        <div onclick="isNotSignUp()" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
                                             <span class="material-symbols-outlined">add_shopping_cart</span>
-                                        </a>
+                                        </div>
+                                        <?php else: ?>
+                                        <div onclick="addInCard()" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
+                                            <span class="material-symbols-outlined">add_shopping_cart</span>
+                                        </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>

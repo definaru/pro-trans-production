@@ -9,7 +9,7 @@
     // } catch (Exception $e) {
     //     $image = $product['src']['images'];
     // }
-    $image = isset($data[0]['image']) ? trim($data[0]['image'], '.') : '/img/placeholder.png';
+    $image = $data[0]['image'] !== '' ? trim($data[0]['image'], '.') : '/img/placeholder.png';
 ?>
 
 <?php $__env->startSection('title', $str.' | Проспект Транс'); ?>

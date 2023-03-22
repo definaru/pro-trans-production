@@ -62,7 +62,7 @@ class AppServiceProvider extends ServiceProvider
             'decl'          => new Declension(),
             'deal'          => new Card(),
             'dadata'        => new DaData(),
-            'images'         => new Image()
+            'images'        => new Image()
         ]);
     }
 }

@@ -85,8 +85,8 @@ Route::controller(PasswordController::class)->group(function () {
 
 Route::controller(AuthController::class)->group(function () {
     // Авторизация и Регистрация
-    Route::match(['get', 'post'], '/', 'home')->name('index');
-    Route::get('/signin', 'Signin')->name('signin');
+    Route::get('/', 'home')->name('index');
+    Route::match(['get', 'post'], '/signin', 'Signin')->name('signin');
     Route::get('/logout', 'logout')->name('logout');
     Route::post('/login', 'login')->name('login');
     Route::get('/signup', 'register')->name('signup');

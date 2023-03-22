@@ -9,4 +9,18 @@ class Image
         //return response()->json($item);
         return $item[0]['image'] === '' ? '/img/placeholder.png' : trim($item[0]['image'], ".");
     }
+
+    public static function quantity($uuid)
+    {
+        $item = Goods::where('link', $uuid)->get();
+        $quantity = $item[0]['quantity'];
+        $class = $quantity == 0 ? 'label-danger' : 'label';
+        $text = $quantity == 0 ? 'Нет в наличии' : 'В наличии '.$quantity;
+        return [
+            'class' => $class,
+            'text' => $text,
+            'quantity' => $quantity
+        ];
+    }
+
 }

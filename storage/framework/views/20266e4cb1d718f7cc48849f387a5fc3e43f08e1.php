@@ -136,7 +136,7 @@
                             />
                         </a>
                         <div class="card-body pb-0">
-                            <h5 class="card-title fw-bold fs-6">
+                            <h5 class="card-title fw-bold fs-6" style="height: 38px">
                                 <a itemprop="name" href="/product/mersedes-benz/<?=$best['href'];?>"><?=$best['name'];?></a>
                             </h5>
                             <hr style="color: #ddd" />
@@ -157,10 +157,10 @@
                             <hr class="mb-1" style="color: #ddd" />
                         </div>
                         <div class="card-footer border-top-0 bg-white d-grid">
-                            <a href="/signup" class="btn btn-primary mb-2 text d-flex align-items-center justify-content-center gap-2 py-2">
+                            <div onclick="addInCard()" class="btn btn-primary mb-2 text d-flex align-items-center justify-content-center gap-2 py-2">
                                 <span class="material-symbols-outlined">add_shopping_cart</span>
                                 <strong>В корзину</strong> 
-                            </a>
+                            </div>
                         </div>
                     </div>
                 </div>                                
@@ -345,9 +345,9 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <a href="/signup" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
+                                        <div onclick="addInCard()" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
                                             <span class="material-symbols-outlined">add_shopping_cart</span>
-                                        </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -43,12 +43,10 @@
             @if($size === 0)
                 <p class="w-100" style="height: 600px">По запросу <strong>"{{session('text')}}"</strong> ничего не найдено</p>
             @else
-                <p>{{$decl::search($size)}} <span class="badge bg-soft-danger text-danger rounded-pill">{{$size}}</span></p>
-                {{-- <pre><?php //var_dump(session('search')['rows']);?></pre> --}}
-                <div class="row">
+                <p>{{$decl::search($size)}} <span class="badge bg-danger text-white rounded-pill">{{$size}}</span></p>
+                <div class="row g-2">
                 @foreach(session('search')['rows'] as $item)
-                    {{-- @if (array_key_exists('rows', $item)) --}}
-                    <div class="col-lg-3 col-12 mb-3">
+                    <div class="col-lg-3 col-12">
                         <div class="card card-data border-0 shadow order">
                             <a href="/product/mersedes-benz/{{$item['id']}}" class="card-body pb-0 position-relative">
                                 <div 
@@ -58,7 +56,7 @@
                                     class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2"
                                 >
                                     <span class="material-symbols-outlined fs-6 text-danger">favorite</span>
-                                    <small>4.9 рейтинг</small> 
+                                    <small>{{rand(4, 5)}}.{{rand(0, 9)}} рейтинг</small> 
                                     <meta itemprop="worstRating" content="1">
                                     <meta itemprop="ratingValue" content="4.9">
                                     <meta itemprop="bestRating" content="5">
@@ -79,10 +77,16 @@
                                 <hr style="color: #ddd">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div>
-                                        <p itemprop="offers" itemscope="" itemtype="https://schema.org/Offer" class="label">
-                                            <link itemprop="availability" href="https://schema.org/InStock">В наличии 
+                                        <p 
+                                            itemprop="offers" 
+                                            itemscope
+                                            itemtype="https://schema.org/Offer" 
+                                            class="{{$images::quantity($item['id'])['class']}}"
+                                        >
+                                            <link itemprop="availability" href="https://schema.org/InStock">
+                                            {{$images::quantity($item['id'])['text']}}
                                             {{-- {{$item['quantity']}} --}}
-                                        </p>                                
+                                        </p>                              
                                     </div>
                                     <strong>
                                         {!!$currency::summa($item['salePrices'][0]['value'])!!}
@@ -102,9 +106,15 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <a href="/signup" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
+                                        @if($images::quantity($item['id'])['quantity'] == 0)
+                                        <div onclick="isNotSignUp()" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
                                             <span class="material-symbols-outlined">add_shopping_cart</span>
-                                        </a>
+                                        </div>
+                                        @else
+                                        <div onclick="addInCard()" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
+                                            <span class="material-symbols-outlined">add_shopping_cart</span>
+                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

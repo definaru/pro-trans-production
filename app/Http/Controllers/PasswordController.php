@@ -46,7 +46,7 @@ class PasswordController extends Controller
         $status = Password::sendResetLink($request->only('email'));
         $text = 'Пожалуйста подтвердите свой e-mail адрес';
         return $status === Password::RESET_LINK_SENT
-            ? back()->with(['status' => 'Мы отправили ссылку для сброса пароля на '.$email, 'text' => $text]) // __($status)
+            ? back()->with(['status' => 'Мы отправили ссылку для сброса пароля на '.$email, 'text' => $text])
             : back()->withErrors(['email' => __($status)]);
     }
 
@@ -62,13 +62,13 @@ class PasswordController extends Controller
             function ($user, $password) {
                 $user->forceFill([
                     'password' => Hash::make($password)
-                ])->setRememberToken(Str::random(60));
+                ])->setRememberToken(Str::random(30));
                 $user->save();
                 event(new PasswordReset($user));
             }
         );
         return $status === Password::PASSWORD_RESET
-                ? redirect()->route('index')->with(['status' => 'Ваш пароль изменён.'])
+                ? redirect()->route('signin')->with(['status' => 'Ваш пароль изменён.'])
                 : back()->withErrors(['email' => [__($status)]]);
     }
     

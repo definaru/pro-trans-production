@@ -70,10 +70,7 @@ new Vue({
 
 let modal = new bootstrap.Modal(document.querySelector('#searchForm'));
 let input = document.querySelector('input[type="search"]');
-//let searchlist = document.getElementById('searchlist');
-// document.getElementById('searchForm').addEventListener('keydown', function () {
-//     input.focus();
-// })
+
 function getResult()
 {
     document.querySelector('#sendForm').submit()
