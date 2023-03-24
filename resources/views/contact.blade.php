@@ -8,9 +8,9 @@
 @section('title', 'Контакты')
 
 @section('content')
-<div class="w-100" style="background-image: url(/img/5464765787695.jpg);background-position: 0px -382px;background-attachment: fixed;background-size: cover;height: 250px;text-shadow: 1px 2px 3px #000">
-    <div style="height: 100%;display: flex;justify-content: center;align-items: center;background-color: #00000059">
-        <h2 class="text-white pt-5 mb-0">Контакты</h2>
+<div class="w-100 bg-primary" style="height: 170px">
+    <div class="d-flex justify-content-center align-items-center h-100" style="background-color: #00000059">
+        <h2 class="text-white pt-5 mb-0 mt-1">Контакты</h2>
     </div>
 </div>
 <section class="bg-white">
@@ -18,23 +18,16 @@
         <div class="row">
             <div class="col-12">
                 <div class="text">
-                    <h3 class="text-dark mb-4">{{ config('app.name') }}</h3>
+                    <h3 class="text-dark mb-4">ООО «Проспект Транс»</h3>
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p><strong>ИНН:</strong> 9715366031</p>
                             <p><strong>ОГРН:</strong> 1197746624107</p>
                             <p><strong>КПП:</strong> 771501001</p>   
-                            <iframe src="https://yandex.ru/sprav/widget/rating-badge/8347363005?type=rating&theme=dark" width="150" height="50" frameborder="0"></iframe>         
-                            <div class="d-block mt-3">
-                                <a href="/doc" class="text-muted">Юридическая информация</a>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-8">
-                            <p><strong>По вопросам сотрудничества: </strong> {!! $contact::getEmail(config('app.email'), ['text-muted']) !!}</p>
-                            <p><strong>Связаться с менеджером:</strong> {!! $contact::getPhone(config('app.phone'), ['text-muted']) !!}</p>
-                            <p><strong>Связаться с тех.поддержкой:</strong> {!! $contact::getPhone('89151389077', ['text-muted']) !!}</p>
-                            <p><strong>Юридический адрес:</strong> {{ config('app.address') }}</p>
-                            <div class="d-flex align-items-center gap-3">
+                            
+                            <iframe src="https://yandex.ru/sprav/widget/rating-badge/8347363005?type=rating" width="150" height="50" frameborder="0"></iframe>         
+                            {{-- &theme=dark --}}
+                            <div class="d-flex align-items-center gap-3 mt-5">
                                 <div class="border p-2" style="width:100px">
                                     <img src="/img/qr.png" class="w-100" alt="QR код" />
                                 </div>      
@@ -46,7 +39,28 @@
                                     </a>
                                 </div>                          
                             </div>
-
+                            <div class="d-block mt-3">
+                                <a href="/doc" class="text-muted">Юридическая информация</a>
+                                
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <p class="d-flex flex-column border rounded p-3">
+                                <strong>По вопросам сотрудничества: </strong> 
+                                {!! $contact::getEmail(config('app.email'), ['text-muted']) !!}
+                            </p>
+                            <p class="d-flex flex-column border rounded p-3">
+                                <strong>Связаться с менеджером:</strong> 
+                                {!! $contact::getPhone(config('app.phone'), ['text-muted']) !!}
+                            </p>
+                            <p class="d-flex flex-column border rounded p-3">
+                                <strong>Связаться с тех.поддержкой:</strong> 
+                                {!! $contact::getPhone('89151389077', ['text-muted']) !!}
+                            </p>
+                            <p class="d-flex flex-column border rounded p-3">
+                                <strong>Юридический адрес:</strong> 
+                                {{ config('app.address') }}
+                            </p>
                         </div>
                     </div>
 

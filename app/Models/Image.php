@@ -7,7 +7,8 @@ class Image
     {
         $item = Goods::where('link', $uuid)->get();
         //return response()->json($item);
-        return $item[0]['image'] === '' ? '/img/placeholder.png' : trim($item[0]['image'], ".");
+        return isset($item[0]['image']) && $item[0]['image'] !== ''  ? trim($item[0]['image'], '.') : '/img/placeholder.png';
+        // $item[0]['image'] === '' ? '/img/placeholder.png' : trim($item[0]['image'], ".");
     }
 
     public static function quantity($uuid)

@@ -1,17 +1,17 @@
 <?php
     $result = array_merge($listorder, $bestsellers, $alllist);
     $size = session('search') ? session('search')['meta']['size'] : '';
-    //$size = session('search') ? session('search')['count'] : '';
 ?>
 
 
 <?php $__env->startSection('title', 'Каталог запчастей Mercedes-Benz | Проспект Транс'); ?>
 
 <?php $__env->startSection('content'); ?>
-<section class="bg-secondary-subtle">
+<section class="bg-secondary-subtle catalog">
     <div class="container position-relative">
         <div class="d-print-none row">
-            <form id="sendForm" action="/product" method="POST" class="col-12 my-4 position-relative">
+            <div id="loadingpage" class="d-flex gap-2 text"></div>
+            <form onsubmit="loadingPage()" id="sendForm" action="/product" method="POST" class="col-12 my-4 position-relative">
                 <?php echo csrf_field(); ?>
                 <input 
                     type="search" 
@@ -89,7 +89,6 @@ unset($__errorArgs, $__bag); ?>
                                             <link itemprop="availability" href="https://schema.org/InStock">
                                             <?php echo e($images::quantity($item['id'])['text']); ?>
 
-                                            
                                         </p>                              
                                     </div>
                                     <strong>
@@ -116,7 +115,12 @@ unset($__errorArgs, $__bag); ?>
                                             <span class="material-symbols-outlined">add_shopping_cart</span>
                                         </div>
                                         <?php else: ?>
-                                        <div onclick="addInCard()" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
+                                        <div
+                                            id="card<?php echo e($item['id']); ?>" 
+                                            data-card="<?php echo e($item['id']); ?>,<?php echo e($item['article']); ?>,<?php echo e($item['name']); ?>,1,<?php echo e($item['salePrices'][0]['value']); ?>,<?php echo e($item['salePrices'][0]['value']); ?>" 
+                                            v-on:click="addToCard('<?php echo e($item['id']); ?>')"
+                                            class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2"
+                                        >
                                             <span class="material-symbols-outlined">add_shopping_cart</span>
                                         </div>
                                         <?php endif; ?>
@@ -199,7 +203,12 @@ unset($__errorArgs, $__bag); ?>
                                             <span class="material-symbols-outlined">add_shopping_cart</span>
                                         </div>
                                         <?php else: ?>
-                                        <div onclick="addInCard()" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
+                                        <div 
+                                            id="card<?php echo e($item['id']); ?>" 
+                                            data-card="<?php echo e($item['id']); ?>,<?php echo e($item['article']); ?>,<?php echo e($item['name']); ?>,1,<?php echo e($item['salePrices'][0]['value']); ?>,<?php echo e($item['salePrices'][0]['value']); ?>" 
+                                            v-on:click="addToCard('<?php echo e($item['id']); ?>')"
+                                            class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2"
+                                        >
                                             <span class="material-symbols-outlined">add_shopping_cart</span>
                                         </div>
                                         <?php endif; ?>
@@ -228,9 +237,6 @@ unset($__errorArgs, $__bag); ?>
                     <?php //var_dump(array_slice((array)$limit*$i, 0, 3));?>
             </div>        
         <?php endif; ?>
-
-        
-
     </div>
 </section>
 <?php $__env->stopSection(); ?>

@@ -1,3 +1,130 @@
+new Vue({
+    el: '#shop', 
+    data: {
+        card: [],
+        сheckout: [],
+        loading: true,
+        cookie: true,
+        amount: 0,
+        totalsumma: 0
+    },
+    computed: {
+        totalSum: function () {
+            var sum = this.card.reduce(
+                (acc, current) => acc + Number(current.summa), 0
+            );
+            this.totalsumma = sum        
+        },
+        totalAmount: function () {
+            var value = this.card.reduce(
+                (acc, current) => acc + Number(current.count), 0
+            );
+            this.amount = value;
+        }
+    },
+    mounted() {
+        this.cookie = JSON.parse(localStorage.getItem("cookie")) || [];
+        this.card = JSON.parse(localStorage.getItem('cart')) || [];
+        console.log('Card:', this.card.length)
+               
+        if (localStorage.getItem('cart')) {
+            try {
+                setTimeout(function () {
+                    this.loading = false;
+                }.bind(this), 500);
+                var goods = JSON.parse(localStorage.getItem('cart'));
+                var set = new Set(goods.map(JSON.stringify));
+                var uniqArray = Array.from(set).map(JSON.parse);
+                this.card = uniqArray;
+            } catch(e) {
+                localStorage.removeItem('cart');
+                console.log('Error:', e)
+            }
+        }
+    },
+    methods: {
+        countGoods(n,s1,s2,s3, b = false) {
+            let m = n % 10; j = n % 100;
+            if(b) {n = n;}
+            if(m==0 || m>=5 || (j>=10 && j<=20)) {return s3;}
+            if(m>=2 && m<=4) {return s2;}
+            return s1;
+        },
+        getTotalsumma(digital) {
+            var rub = digital.toString().substr(0, String(digital).length-2).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+            var cent = digital.toString().slice(-2);
+            return rub+'.'+cent+' ₽';
+        },
+        priceFormat(digital) { 
+            var rub = digital.toString().substr(0, String(digital).length-2)
+            var cent = digital.toString().substr(-2)
+            var num = rub+'.'+cent
+            var result = new Intl.NumberFormat("ru-RU", {
+                style: "currency",
+                currency: "RUB",
+                minimumFractionDigits: 2,
+                currencyDisplay: "symbol",
+            }).format(num);
+            return result
+        },
+        inCrement(id) {
+            var item = this.card.find(item => item.id === id);
+            item.count++;
+            item.summa = parseFloat(item.summa)*Number(item.count);
+            this.saveCart();
+        },
+        deCrement(id) {
+            var item = this.card.find(item => item.id === id);
+            if(item.count = 1) {
+                item.count = 1
+                item.summa = parseFloat(item.summa)/2;
+            } else {
+                item.count--;
+                item.summa = parseFloat(item.summa)/item.count;                
+            }
+            this.saveCart();
+        },
+        addToCard(e) {
+            var added = JSON.parse(localStorage.getItem('cart'));
+            var arr = added ? added : [added];
+            const el = document.querySelector('#card'+e);
+            // e.target.dataset.card;
+            const {...card} = el.dataset.card.split(',');
+            const add = {
+                id: card[0],
+                article: card[1],
+                name: card[2],
+                count: card[3],
+                price: card[4],
+                summa: card[5]
+            }
+            var total = arr.filter(el => el != null).concat(add);
+            toastr.success(`Добавлен в корзину`, `Товар "${card[2]}"`, {
+                positionClass:"toast-bottom-left",
+                containerId:"toast-bottom-left"
+            });
+            localStorage.setItem('cart', JSON.stringify(total));
+            this.card.push(add);
+            this.saveCart();
+        },
+        removeCart(x) {
+            this.card.splice(x, 1);
+            this.saveCart();
+            if(this.card.length === 0) {
+                window.location.assign('/products/mersedes-benz');
+            }
+        },
+        saveCart() {
+            const parsed = JSON.stringify(this.card);
+            localStorage.setItem('cart', parsed); 
+        },
+        getApproveCookie() {
+            this.cookie = false
+            localStorage.setItem('cookie', JSON.stringify('false'));
+        }
+    }
+});
+
 var scroll_position = 0;
 window.addEventListener('scroll', function () {
     scroll_position = window.scrollY;
@@ -59,23 +186,37 @@ function changeTotal(value) {
 }
 //summa.innerHTML = parseInt(summa.innerText).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 
-new Vue({
-    el: '#shop', 
-    data: {
-        card: 0
-    }
-});
+
 
 
 
 let modal = new bootstrap.Modal(document.querySelector('#searchForm'));
 let input = document.querySelector('input[type="search"]');
 
-function getResult()
-{
-    document.querySelector('#sendForm').submit()
-}
 
+var loadingpage = document.getElementById('loadingpage');
+const loaderText = '<span class="material-symbols-outlined spin">autorenew</span> Ищем деталь...';
+function move() {
+    var elem = document.getElementById("progressbar");
+    document.querySelector('.progress').style.display = 'block';
+    var width = 0;
+    var id = setInterval(frame, 100);
+    function frame() {
+        if (width >= 100) {
+            clearInterval(id);
+        } else {
+            width++;
+            elem.style.width = width + '%';
+        }
+    }
+}
+function loadingPage() {
+    // if (document.readyState === "complete") {
+    //     console.log('Страница загрузилась');
+    // }
+    move();
+    if(loadingpage) loadingpage.innerHTML = loaderText;
+}
 document.querySelectorAll('input[list]').forEach( (formfield) => {
     var datalist = document.getElementById(formfield.getAttribute('list'));
     var lastlength = formfield.value.length;
@@ -83,6 +224,8 @@ document.querySelectorAll('input[list]').forEach( (formfield) => {
         if (inputValue.length - lastlength > 1) {
             datalist.querySelectorAll('option').forEach( function (item) {
             if (item.value === inputValue) {
+                move();
+                if(loadingpage) loadingpage.innerHTML = loaderText;
                 formfield.form.submit();
             }
             });
@@ -93,6 +236,14 @@ document.querySelectorAll('input[list]').forEach( (formfield) => {
         checkInputValue(this.value);
     }, false);
 });
+function getResult()
+{
+    move();
+    if(loadingpage) loadingpage.innerHTML = loaderText;
+    document.querySelector('#sendForm').submit()
+}
+
+
 
 var contextmenu = document.getElementById('contextmenu');
 var menu = document.getElementById('shop');
@@ -116,7 +267,6 @@ menu.oncontextmenu = function (e) {
 };
 
 document.addEventListener('mouseup', function(e) {
-    
     contextmenu.style.display = '';
     if (!menu.contains(e.target)) {
         //console.log('target:', e.target)
@@ -159,10 +309,11 @@ function isError()
 async function isUserSubscribe()
 {
     const { value: email } = await Swal.fire({
-        title: 'Подписка на запчасть',
-        text: 'Данной запчасти нет в наличии, поэтому, вы можете подписаться, чтобы первыми узнать о поступлении товара в наш интернет магазин.',
+        title: 'Данной запчасти нет в наличии',
+        html: `Вы можете подписаться, чтобы первыми узнать о поступлении товара, 
+        либо связаться с нашим менеджером 
+        <br /><a href="tel:89017331866" class="text-decoration-none fw-bold">+7 (901) 733-18-66</a>`,
         input: 'email',
-        //inputLabel: 'Your email address',
         inputPlaceholder: 'Укажите ваш e-mail...',
         showCancelButton: true,
         confirmButtonText: '<span class="material-symbols-outlined">edit_note</span>Подписаться',
@@ -175,7 +326,7 @@ async function isUserSubscribe()
             title: 'text-dark',
             cancelButton: ['d-flex', 'align-items-center', 'gap-2'],
             confirmButton: ['d-flex', 'align-items-center', 'gap-2'],
-            container: 'text'
+            htmlContainer: 'text'
         }
         // inputValidator: (value) => {
         //     if (!value) {
@@ -192,7 +343,8 @@ function isNotSignUp()
 {
     Swal.fire({
         title: 'Товара нет в наличии',
-        html: 'Не зарегистрированные пользователи<br /> не могут оформить предзаказ.',
+        html: `Вы можете связаться с нашим менеджером чтобы оформить предзаказ, или зарегистрироваться.
+        <br /><a href="tel:89017331866" class="text-decoration-none fw-bold">+7 (901) 733-18-66</a>`,
         icon: false,
         iconHtml: '<span class="material-symbols-outlined">production_quantity_limits</span>',
         showCancelButton: true,
@@ -212,13 +364,5 @@ function isNotSignUp()
         if (result.isConfirmed) {
             window.location.assign('/signup');
         }
-    });
-}
-
-function addInCard()
-{
-    toastr.success('Маслянный фмльтр', 'Товар добавлен в карзину', {
-        positionClass:"toast-bottom-left",
-        containerId:"toast-bottom-left"
     });
 }

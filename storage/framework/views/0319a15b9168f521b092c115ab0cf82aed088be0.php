@@ -15,7 +15,7 @@
             <span class="text-danger material-symbols-outlined fs-1">warning</span>
             <h1 class="text-danger"><?php echo e($title); ?> <?php echo e($errorCode); ?></h1>
             <p class="text-xl text-muted">               
-                <?php echo e($text); ?>
+                <?php echo $text; ?>
 
                 <div>
                     <a href="<?php echo e(url('/dashboard')); ?>" class="btn btn-primary px-5">Назад</a>

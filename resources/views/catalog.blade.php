@@ -1,7 +1,6 @@
 @php
     $result = array_merge($listorder, $bestsellers, $alllist);
     $size = session('search') ? session('search')['meta']['size'] : '';
-    //$size = session('search') ? session('search')['count'] : '';
 @endphp
 @extends('layout/index', [
     'title' => 'Каталог запчастей Mercedes-Benz | Проспект Транс',
@@ -13,10 +12,11 @@
 @section('title', 'Каталог запчастей Mercedes-Benz | Проспект Транс')
 
 @section('content')
-<section class="bg-secondary-subtle">
+<section class="bg-secondary-subtle catalog">
     <div class="container position-relative">
         <div class="d-print-none row">
-            <form id="sendForm" action="/product" method="POST" class="col-12 my-4 position-relative">
+            <div id="loadingpage" class="d-flex gap-2 text"></div>
+            <form onsubmit="loadingPage()" id="sendForm" action="/product" method="POST" class="col-12 my-4 position-relative">
                 @csrf
                 <input 
                     type="search" 
@@ -85,7 +85,6 @@
                                         >
                                             <link itemprop="availability" href="https://schema.org/InStock">
                                             {{$images::quantity($item['id'])['text']}}
-                                            {{-- {{$item['quantity']}} --}}
                                         </p>                              
                                     </div>
                                     <strong>
@@ -111,7 +110,12 @@
                                             <span class="material-symbols-outlined">add_shopping_cart</span>
                                         </div>
                                         @else
-                                        <div onclick="addInCard()" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
+                                        <div
+                                            id="card{{$item['id']}}" 
+                                            data-card="{{$item['id']}},{{$item['article']}},{{$item['name']}},1,{{$item['salePrices'][0]['value']}},{{$item['salePrices'][0]['value']}}" 
+                                            v-on:click="addToCard('{{$item['id']}}')"
+                                            class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2"
+                                        >
                                             <span class="material-symbols-outlined">add_shopping_cart</span>
                                         </div>
                                         @endif
@@ -193,7 +197,12 @@
                                             <span class="material-symbols-outlined">add_shopping_cart</span>
                                         </div>
                                         @else
-                                        <div onclick="addInCard()" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
+                                        <div 
+                                            id="card{{$item['id']}}" 
+                                            data-card="{{$item['id']}},{{$item['article']}},{{$item['name']}},1,{{$item['salePrices'][0]['value']}},{{$item['salePrices'][0]['value']}}" 
+                                            v-on:click="addToCard('{{$item['id']}}')"
+                                            class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2"
+                                        >
                                             <span class="material-symbols-outlined">add_shopping_cart</span>
                                         </div>
                                         @endif
@@ -248,9 +257,6 @@
                     <?php //var_dump(array_slice((array)$limit*$i, 0, 3));?>
             </div>        
         @endif
-
-        
-
     </div>
 </section>
 @endsection

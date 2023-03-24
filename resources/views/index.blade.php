@@ -162,7 +162,12 @@
                             <hr class="mb-1" style="color: #ddd" />
                         </div>
                         <div class="card-footer border-top-0 bg-white d-grid">
-                            <div onclick="addInCard()" class="btn btn-primary mb-2 text d-flex align-items-center justify-content-center gap-2 py-2">
+                            <div 
+                                id="card{{$loop->iteration}}" 
+                                data-card="{{$best['href']}},{{$best['article']}},{{$best['name']}},1,{{$best['price']}},{{$best['price']}}" 
+                                v-on:click="addToCard({{$loop->iteration}})"
+                                class="btn btn-primary mb-2 text d-flex align-items-center justify-content-center gap-2 py-2"
+                            >
                                 <span class="material-symbols-outlined">add_shopping_cart</span>
                                 <strong>В корзину</strong> 
                             </div>
@@ -255,15 +260,15 @@
             <div class="row pt-4 spates">
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card card-data border-light shadow-lg">
-                        <a href="/products/mersedes-benz" class="card-body text-center pt-5 text-decoration-none">
+                        <div class="card-body text-center pt-5">
                             <img src="/img/actros___kopiya.png" style="height: auto;opacity: 1" class="w-100" alt="Mercedes-Benz">
                             <h5 class="fw-bold mt-3">Mercedes-Benz</h5>
-                        </a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card card-data border-light shadow-lg">
-                        <div class="card-body text-center pt-5" data-bs-toggle="modal" data-bs-target="#order">
+                        <div class="card-body text-center pt-5">
                             <img src="/img/volvo.png" style="height: auto;opacity: 1" class="w-100" alt="Volvo">
                             <h5 class="fw-bold mt-3">Volvo</h5>
                         </div>
@@ -271,7 +276,7 @@
                 </div>
                 <div class="col-12 col-md-4 mb-4 z-3 position-relative">
                     <div class="card card-data border-light shadow-lg">
-                        <div class="card-body text-center pt-5" data-bs-toggle="modal" data-bs-target="#order">
+                        <div class="card-body text-center pt-5">
                             <img src="/img/Renault.png" style="height: auto;opacity: 1" class="w-100" alt="Renault Trucks">
                             <h5 class="fw-bold mt-3">Renault Trucks</h5>
                         </div>

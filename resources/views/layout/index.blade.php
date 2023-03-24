@@ -41,6 +41,9 @@
     <!-- /Yandex.Metrika counter -->
 </head>
 <body itemscope itemtype="http://schema.org/Organization">
+    <div class="progress">
+        <div id="progressbar"></div>
+    </div>
     <div id="shop" class="parent" v-cloak>
         <nav class="d-print-none navbar fixed-top navbar-expand-lg bg-white shadow">
             <div class="container">
@@ -76,7 +79,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#spareparts">
+                            <a class="nav-link" href="/products/mersedes-benz">
                                 Запасные части
                             </a>
                         </li>
@@ -135,30 +138,35 @@
                         <a href="/signin" class="btn btn-primary px-3 shadow-sm fw-bold d-flex justify-content-center align-items-center gap-2">
                             <span class="material-symbols-outlined fs-6">login</span>
                             Войти
-                        </a>     
-                        <a href="/card" v-if="card > 0" class="material-symbols-outlined btn position-relative">
-                            shopping_cart
-                            <small 
-                                class="position-absolute translate-middle badge rounded-pill bg-danger text" 
-                                style="font-size: 10px;top: 8px;left: 35px;"
-                            >
-                                @{{card}}
-                            </small>
-                        </a>                   
+                        </a>   
+                        <template v-if="card.length">
+                            <a href="/card" class="material-symbols-outlined btn position-relative">
+                                shopping_cart
+                                <small 
+                                    class="position-absolute translate-middle badge rounded-pill bg-danger text" 
+                                    style="font-size: 10px;top: 8px;left: 35px;"
+                                >
+                                    @{{card.length}}
+                                </small>
+                            </a>                             
+                        </template>
+                        
                         @endguest
                         @auth
                         <a href="/dashboard" class="material-symbols-outlined btn">
                             person
                         </a>
-                        <a href="/dashboard/card" class="material-symbols-outlined btn position-relative">
-                            shopping_cart
-                            <small 
-                                class="position-absolute translate-middle badge rounded-pill bg-danger text" 
-                                style="font-size: 10px;top: 8px;left: 35px;"
-                            >
-                                9
-                            </small>
-                        </a>
+                        <template v-if="card.length">
+                            <a href="/dashboard/card" class="material-symbols-outlined btn position-relative">
+                                shopping_cart
+                                <small 
+                                    class="position-absolute translate-middle badge rounded-pill bg-danger text" 
+                                    style="font-size: 10px;top: 8px;left: 35px;"
+                                >
+                                    @{{card.length}}
+                                </small>
+                            </a>
+                        </template>
                         @endauth
                     </div>
                 </div>
@@ -294,7 +302,7 @@
                 </a>
             </li>
         </ul>
-
+        @include('layout.main.ui.cookie.cookie')
     </div>
 
     <div class="modal fade d-print-none" id="hotkey">
@@ -371,138 +379,6 @@
     </div>
 
     @verbatim
-        <div class="modal fade" id="login" data-bs-backdrop="static" data-bs-keyboard="false">
-            <div class="modal-dialog modal-sm modal-dialog-centered">
-                <div class="modal-content border-0">
-                    <div class="modal-header border-0 pb-0">
-                        <h1 class="modal-title fs-5 text" id="login">Выбрать действие</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body d-grid gap-2">
-                        <a href="/signin" class="btn btn-lg fw-bold d-flex justify-content-center align-items-center gap-2 btn-dark">
-                            <span class="material-symbols-outlined fs-6">login</span>
-                            Авторизоваться
-                        </a>
-                        <a href="/signup" class="btn btn-lg fw-bold d-flex justify-content-center align-items-center gap-2 btn-primary">
-                            <span class="material-symbols-outlined">open_in_new</span>
-                            Зарегистрироваться
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="order" data-bs-backdrop="static" data-bs-keyboard="false" v-cloak>
-            <div class="modal-dialog modal-dialog-centered">
-
-                <form novalidate @submit.prevent="onSubmit" v-if="!send" class="modal-content border-0">
-                    <div class="modal-header border-0 pb-0">
-                        <h1 class="modal-title fs-5 text" id="order">{{header}}</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="mb-2">
-                            <input 
-                                type="text" 
-                                autocomplete="off" 
-                                autocorrect="off" 
-                                autocapitalize="words" 
-                                spellcheck="false"
-                                class="form-control" 
-                                name="name" 
-                                :class="[error_names && name === '' ? 'is-invalid' : '']"
-                                placeholder="Ваше имя"
-                                v-model.trim="name"
-                            >
-                            <small class="invalid-feedback" v-if="error_names && name === ''">
-                                Напишите свое имя                            
-                            </small>
-                        </div>
-                        <div class="mb-2">
-                            <input 
-                                type="text"
-                                autocomplete="off" 
-                                autocorrect="off" 
-                                autocapitalize="words" 
-                                spellcheck="false"
-                                class="form-control" 
-                                name="phone" 
-                                :class="[error_phone && phone === '' ? 'is-invalid' : '']"
-                                placeholder="Ваш телефон"
-                                v-model.trim="phone"
-                            >
-                            <small class="invalid-feedback" v-if="error_phone && phone === ''">
-                                Напишите свой телефон                            
-                            </small>
-                        </div>
-                        <div class="mb-2">
-                            <input 
-                                type="text"
-                                autocomplete="off" 
-                                autocorrect="off" 
-                                autocapitalize="words" 
-                                spellcheck="false"
-                                class="form-control" 
-                                name="email" 
-                                :class="[error_email && email === '' ? 'is-invalid' : '']"
-                                placeholder="Ваш e-mail"
-                                v-model.trim="email"
-                            >
-                            <small class="invalid-feedback" v-if="error_email && email === ''">
-                                Напишите свою электронную почту                            
-                            </small>                            
-                            <small class="invalid-feedback" v-if="email_invalid">
-                                Пожалуйста, введите действительный адрес электронной почты                            
-                            </small>
-                        </div>
-                        <div>
-                            <textarea 
-                                class="form-control resize" 
-                                rows="4" 
-                                name="message" 
-                                placeholder="Ваше сообщение..."
-                                :class="[error_message && message === '' ? 'is-invalid' : '']"
-                                v-model="message"
-                            >
-                            </textarea>
-                            <small class="invalid-feedback" v-if="error_message && message === ''">
-                                Напишите свое сообщение                            
-                            </small>
-                        </div>
-                    </div>
-                    <div class="modal-footer border-0 pt-0">
-                        <button type="button" class="btn btn-light text px-4" data-bs-dismiss="modal">Закрыть</button>
-                        <button type="button" class="btn btn-primary text px-4" v-on:click="Send">
-                            <span v-if="loading">
-                                Загружаем...
-                            </span>
-                            <span class="d-flex gap-1" v-else>
-                                <span class="material-symbols-outlined">send</span> 
-                                Отправить                           
-                            </span>
-                        </button>
-                    </div>
-                </form>
-
-                <div class="modal-content border-0" v-else>
-                    <div class="modal-body bg-success text-white rounded d-flex justify-content-between">
-                        <div class="modal-title d-flex align-items-center gap-2">
-                            <span class="material-symbols-outlined">check_circle</span>
-                            <strong>Успешно!</strong> Ваше сообщение было получено.                        
-                        </div>
-                        <div 
-                            type="button" 
-                            class="btn-close" 
-                            data-bs-dismiss="modal" 
-                            aria-label="Close"
-                        >  
-                        </div>
-                    </div>                    
-                </div>
-
-            </div>
-        </div>
-
         <div class="modal fade" id="subscription" data-bs-backdrop="static" data-bs-keyboard="false">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content border-0">
@@ -535,6 +411,7 @@
         </div>
     @endverbatim
 
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>

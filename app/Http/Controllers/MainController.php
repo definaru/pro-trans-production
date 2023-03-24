@@ -150,4 +150,9 @@ class MainController extends Controller
         return view('developers');
     }
 
+    public function Card()
+    {
+        return view('card');
+    }
+
 }

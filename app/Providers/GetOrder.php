@@ -128,28 +128,32 @@ class GetOrder
                 'image' => 'https://26.img.avito.st/image/1/1.Y_tzvraBzxIFGz0UOfNA0bwdyxTRG88Utn7LFAUbPRTFGcMWxR_PVg.p_oBFEAS78eDlOEEOQMSBG9mdKV6jJiGc-Q_nYTCBt0',
                 'name' => 'Насос водяной Мерседес ом 501',
                 'article' => 'A5412002301',
-                'href' => '56944025-90e3-11ed-0a80-0f4a0011b0b7'
+                'href' => '56944025-90e3-11ed-0a80-0f4a0011b0b7',
+                'price' => '2900000'
             ],
             [
                 'raiting' => '5.0',
                 'image' => 'https://61.img.avito.st/image/1/1.xKc-hraBaE5II5pIOtm6lvUlbEicI2hI-0ZsSEgjmkiIIWRKiCdoCg.myvLcmFXs1Vur5pAWqBy_k_WMDf9Xl8QASOd5q_1020',
                 'name' => 'Гбц с клапанами и дросселем OM501',
-                'article' => 'A5410105021',
-                'href' => 'a8352455-b443-11ed-0a80-09360034bc94'
+                'article' => 'A5410304440',
+                'href' => 'a8352455-b443-11ed-0a80-09360034bc94',
+                'price' => '13440000'
             ],
             [
                 'raiting' => '5.0',
                 'image' => 'https://86.img.avito.st/image/1/1.80q6KbaBX6PMjK2l0Cq2aHGKW6UYjF-lf-lbpcyMraUMjlOnDIhf5w.Twf8N1eudI-N7K6sHuV9eVuab1PMafHfjz45_icESkU',
                 'name' => 'Гайка медная Mercedes пневмосистемы',
                 'article' => 'A0009978134',
-                'href' => 'a83b6c0b-b443-11ed-0a80-09360034bc98'
+                'href' => 'a83b6c0b-b443-11ed-0a80-09360034bc98',
+                'price' => '185700'
             ],
             [
                 'raiting' => '5.0',
                 'image' => 'https://99.img.avito.st/image/1/1.Gu_mPbaBtgaQmEQA3n1_1S2esgBEmLYAI_2yAJCYRABQmroCUJy2Qg.wzaUwMg1g-vLvnJ4aYRzXgUDOu7TECAFJQTUx3lRxZM',
                 'name' => 'Фара Actros оригинал Mercedes',
                 'article' => 'A9618205139',
-                'href' => 'a84081f8-b443-11ed-0a80-09360034bc9c'
+                'href' => 'a84081f8-b443-11ed-0a80-09360034bc9c',
+                'price' => '3500000'
             ]
         ];
     }

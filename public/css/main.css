@@ -143,6 +143,43 @@ a.nav-link.active {
     border: 1px solid #8630a3;
     background-color: #8630a3;
 }
+
+.spin {
+    animation: 1s linear 0s normal none infinite running load;
+    -webkit-animation: 1s linear 0s normal none infinite running load;
+}
+@keyframes load {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    }
+    @-webkit-keyframes load {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.progress {
+    position: fixed;
+    top: 0;
+    z-index: 1500;
+    width: 100%;
+    height: 5px;
+    background-color: #ddd;
+    display: none;
+}
+#progressbar {
+    position: absolute;
+    width: 0%;
+    height: 100%;
+    background-color: #ec0b29;
+}
+
 .card-data.order {
     width: 100%;
 }
@@ -160,6 +197,7 @@ a.nav-link.active {
     object-fit: cover;
     filter: saturate(300%);
 }
+
 .card img {
     opacity: 0.6;
     height: 15em;
@@ -172,6 +210,19 @@ a.nav-link.active {
     cursor: pointer;
     filter: saturate(200%);
 }
+.catalog .card img {
+    opacity: 0.6;
+    height: 15em;
+    width: 100%;
+    object-fit: cover;
+    filter: saturate(100%);
+}
+.catalog .card-data:hover img {
+    opacity: 0.9;
+    cursor: pointer;
+    filter: saturate(100%);
+}
+
 .parent {
     display: grid;
     grid-template-rows: auto 1fr auto;

@@ -235,7 +235,7 @@ class DachboardController extends Controller
 
     public function Сard()
     {
-        return view('сard');
+        return view('dashboard.сard');
     }
 
     public function Reports()

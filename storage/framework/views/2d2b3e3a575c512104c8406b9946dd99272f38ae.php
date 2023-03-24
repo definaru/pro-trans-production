@@ -13,7 +13,7 @@
                 <tr>
                     <th scope="col" class="text-muted ps-4">№</th>
                     <th scope="col" class="text-muted">
-                        <small>Контрагент</small> 
+                        <small class="d-block" style="width: 310px">Контрагент</small> 
                     </th>
                     <th scope="col" class="text-muted">
                         <small style="display: block;width: 120px">Сумма Платежа</small> 
@@ -31,7 +31,7 @@
                         <small>Возврат</small> 
                     </th>
                     <th scope="col" class="text-muted pe-4">
-                        <small>Способ Погашения Задолженности</small>
+                        <small class="d-block" style="width: 256px">Способ Погашения Задолженности</small>
                     </th>                    
                 </tr>
             </thead>

@@ -2,14 +2,7 @@
     $str = mb_convert_case($product['name'], MB_CASE_TITLE, "UTF-8");
     $result = array_merge($listorder, $bestsellers, $alllist);
     $url = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
-
-    // try {
-    //     $first_names = array_column($result, 'image', 'href')[$id];
-    //     $image = $first_names; 
-    // } catch (Exception $e) {
-    //     $image = $product['src']['images'];
-    // }
-    $image = $data[0]['image'] !== '' ? trim($data[0]['image'], '.') : '/img/placeholder.png';
+    $image = isset($data[0]['image']) && $data[0]['image'] !== ''  ? trim($data[0]['image'], '.') : '/img/placeholder.png';
 ?>
 
 <?php $__env->startSection('title', $str.' | Проспект Транс'); ?>
@@ -38,7 +31,6 @@
                             <a href="/dashboard/product/details/<?php echo e($id); ?>">ред.</a>
                         <?php endif; ?>
                     </div>
-
                 </div>
                 <div class="col-12 col-lg-6">
                     <div class="pe-0 pe-lg-5">
@@ -60,7 +52,8 @@
                         <?php if($product['quantity'] == 0 || $product['quantity'] < 0): ?>
                         <p class="label-danger">
                             Нет в наличии
-                        </p>
+                        </p>&#160;
+                        <span class="badge bg-secondary text">Деталь на заказ</span>
                         <?php else: ?>
                         <p itemprop="offers" itemscope="" itemtype="https://schema.org/Offer" class="label">
                             <link itemprop="availability" href="https://schema.org/InStock"> 
@@ -74,8 +67,8 @@
                     <div class="d-grid d-lg-flex align-items-center gap-4 w-100">
                         <?php if($product['quantity'] == 0 || $product['quantity'] < 0): ?>
                             <button onclick="isUserSubscribe()" class="btn btn-lg btn-primary px-5 py-3 d-flex justify-content-center align-items-center gap-2">
-                                <span class="material-symbols-outlined">drive_file_rename_outline</span>
-                                Подписаться на товар
+                                <span class="material-symbols-outlined">add_shopping_cart</span>
+                                В корзину
                             </button>   
                         <?php else: ?>
                             <div class="d-flex justify-content-center rounded p-3 bg-white">
@@ -83,10 +76,16 @@
                                 <span id="count" class="btn py-1">1</span>
                                 <button id="remove" onclick="changeTotal('remove');" class="material-symbols-outlined btn py-1 border-0" disabled>remove</button>
                             </div>
-                            <div onclick="addInCard()" class="btn btn-lg btn-primary px-5 py-3 d-flex justify-content-center align-items-center gap-2">
+                            
+                            <div 
+                                id="card<?php echo e($id); ?>" 
+                                data-card="<?php echo e($id); ?>,<?php echo e($product['article']); ?>,<?php echo e($str); ?>,1,<?php echo e($product['salePrices']); ?>,<?php echo e($product['salePrices']); ?>" 
+                                v-on:click="addToCard('<?php echo e($id); ?>')"
+                                class="btn btn-lg btn-primary px-5 py-3 d-flex justify-content-center align-items-center gap-2"
+                            >
                                 <span class="material-symbols-outlined">add_shopping_cart</span>
                                 В корзину
-                            </div>                        
+                            </div>                      
                         <?php endif; ?>
                     </div>
                 </div>
