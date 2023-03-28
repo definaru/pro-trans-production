@@ -6,6 +6,7 @@ use App\Http\Controllers\DachboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PDFController;
 use App\Http\Middleware\Authenticate;
 
@@ -91,6 +92,13 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'login')->name('login');
     Route::get('/signup', 'register')->name('signup');
 });
+
+// Оформление заказа для незарегистрированных пользователей
+Route::controller(OrderController::class)->group(function () {
+    Route::get('/order', 'Order')->name('userorder');
+    Route::post('/checkout', 'Checkout'); ///{order?}
+});
+
 
 Route::controller(MainController::class)->group(function () {
     Route::get('/card', 'Card');

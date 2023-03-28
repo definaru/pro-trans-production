@@ -131,8 +131,8 @@
                     <?php endif; ?>
 
                     <div class="d-grid d-lg-flex gap-2 pb-4 pb-lg-0" role="search">
-                        <button class="d-lg-flex align-items-center gap-2 btn d-none border ps-2" data-bs-toggle="modal" data-bs-target="#searchForm" style="cursor: text">
-                            <span class="material-symbols-outlined">search</span>
+                        <button class="d-lg-flex align-items-center gap-2 btn d-none border ps-2 searchForm" data-bs-toggle="modal" data-bs-target="#searchForm">
+                            <span class="material-symbols-outlined cp">search</span>
                             <span>Поиск...</span>
                         </button>
                         <?php if(auth()->guard()->guest()): ?>
@@ -356,13 +356,18 @@
             <div class="modal-content" style="background-color: transparent">
                 <div class="modal-header border-0">
                     <h1 class="modal-title fs-5" id="searchForm"></h1>
-                    <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="bg-transparent border-0 material-symbols-outlined text-white" data-bs-dismiss="modal">
+                        close
+                    </button>
                 </div>
                 <div class="modal-body">
                     <div class="container position-relative">
                         <div class="row d-flex align-items-center vh-100 pb-5">
                             <form id="sendForm" action="/product" method="POST" class="col-12 position-relative mb-5">
                                 <?php echo csrf_field(); ?>
+                                <label class="text-white mb-1" style="text-shadow: 1px 1px black">
+                                    Горячие клавиши (Ctrl+F) - открыть поиск, (Ctrl+X) - закрыть поиск. Работает в сочитании c клавишей "Shift"
+                                </label>
                                 <input 
                                     type="search" 
                                     list="searchlist"
@@ -372,7 +377,7 @@
                                     placeholder="Введите Артикул или Название запчасти..." 
                                     autofocus 
                                 />
-                                <span class="material-symbols-outlined position-absolute text-muted" onclick="getResult()" style="cursor: pointer;right: 28px;top: 11px">search</span>
+                                <span class="material-symbols-outlined position-absolute text-muted" onclick="getResult()" style="cursor: pointer;right: 28px;top: 40px">search</span>
                                 <?php echo $__env->make('layout.main.ui.selest.list', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                             </form>
                         </div>

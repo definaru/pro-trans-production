@@ -84,10 +84,10 @@ unset($__errorArgs, $__bag); ?>
                                             itemprop="offers" 
                                             itemscope
                                             itemtype="https://schema.org/Offer" 
-                                            class="<?php echo e($images::quantity($item['id'])['class']); ?>"
+                                            class="<?php echo e($images::quantity($item['quantity'])['class']); ?>"
                                         >
                                             <link itemprop="availability" href="https://schema.org/InStock">
-                                            <?php echo e($images::quantity($item['id'])['text']); ?>
+                                            <?php echo e($images::quantity($item['quantity'])['text']); ?>
 
                                         </p>                              
                                     </div>
@@ -110,7 +110,7 @@ unset($__errorArgs, $__bag); ?>
                                         </div>
                                     </div>
                                     <div>
-                                        <?php if($images::quantity($item['id'])['quantity'] == 0): ?>
+                                        <?php if($item['quantity'] == 0): ?>
                                         <div onclick="isNotSignUp()" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
                                             <span class="material-symbols-outlined">add_shopping_cart</span>
                                         </div>

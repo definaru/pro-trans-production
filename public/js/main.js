@@ -6,7 +6,11 @@ new Vue({
         loading: true,
         cookie: true,
         amount: 0,
-        totalsumma: 0
+        totalsumma: 0,
+        name: '',
+        phone: '',
+        email: '',
+        address: ''
     },
     computed: {
         totalSum: function () {
@@ -25,7 +29,7 @@ new Vue({
     mounted() {
         this.cookie = JSON.parse(localStorage.getItem("cookie")) || [];
         this.card = JSON.parse(localStorage.getItem('cart')) || [];
-        console.log('Card:', this.card.length)
+        this.сheckout = JSON.parse(localStorage.getItem('сheckout')) || [];
                
         if (localStorage.getItem('cart')) {
             try {
@@ -107,10 +111,66 @@ new Vue({
             this.card.push(add);
             this.saveCart();
         },
+        rootsObjectValues(goods) {
+            return Object.values(goods).map((value) => ({
+                quantity: Number(value.count),
+                price: Number(value.price),
+                discount: 0,
+                vat: 20,
+                assortment: {
+                    meta: {
+                        href: `https://online.moysklad.ru/api/remap/1.2/entity/product/${value.id}`,
+                        type: "product",
+                        mediaType: "application/json"
+                    }
+                },
+                reserve: 0
+            }));
+        },
+        async Checkout(x) {
+
+            const roots = this.rootsObjectValues(this.card);
+            
+            var cart = {
+                organization: {
+                    meta: {
+                        href: 'https://online.moysklad.ru/api/remap/1.2/entity/organization/218c26ab-33fe-11ed-0a80-0285001db7b3',
+                        type: 'organization',
+                        mediaType: 'application/json'
+                    }
+                },
+                agent: {
+                    meta: {
+                        href: `https://online.moysklad.ru/api/remap/1.2/entity/counterparty/${x}`,
+                        type: 'counterparty',
+                        mediaType: 'application/json'
+                    }
+                },
+            };
+            var positions = {
+                positions: roots
+            };
+            this.сheckout = positions
+            localStorage.setItem('сheckout', JSON.stringify(positions));
+            // btoa(encodeURIComponent(JSON.stringify(positions)))
+            
+            // 
+            // Object.assign({}, cart, positions);
+            // setTimeout(function () {
+
+            //     toastr.success('Ваш заказ получен.', 'Успешно', {
+            //         positionClass:"toast-bottom-left",
+            //         containerId:"toast-bottom-left"
+            //     });
+            //     window.location.assign(`/checkout/${this.сheckout}`);
+            //     //localStorage.removeItem('cart');
+            // }.bind(this), 1000);
+        },
         removeCart(x) {
             this.card.splice(x, 1);
             this.saveCart();
             if(this.card.length === 0) {
+                localStorage.removeItem('сheckout');
                 window.location.assign('/products/mersedes-benz');
             }
         },
@@ -244,34 +304,43 @@ function getResult()
 }
 
 
+//var clearmenu = document.querySelector('.nocontext');
+// var contextmenu = document.getElementById('contextmenu');
+// var menu = document.getElementById('shop');
 
-var contextmenu = document.getElementById('contextmenu');
-var menu = document.getElementById('shop');
-menu.oncontextmenu = function (e) { 
-    e.preventDefault();
-    const res = {
-        position: 'absolute',
-        display: 'block',
-        top: e.clientY+'px',
-        left: e.clientX+'px'
-    }
-    if(e.button === 2){
-        // console.log('res:', `
-        // Screen X/Y: ${e.screenX}, ${e.screenY}
-        // Client X/Y: ${e.clientX}, ${e.clientY}`)
-        contextmenu.style.cssText = Object.entries(res)
-            .map(([k, v]) => k + ':' + v)
-            .join(';');
-    }
-    return false;
-};
+// menu.oncontextmenu = function (e) { 
+//     e.preventDefault();
+//     const res = {
+//         position: 'absolute',
+//         display: 'block',
+//         top: e.clientY+'px',
+//         left: e.clientX+'px'
+//     }
+//     if(e.button === 2){
+//         // console.log('res:', `
+//         // Screen X/Y: ${e.screenX}, ${e.screenY}
+//         // Client X/Y: ${e.clientX}, ${e.clientY}`)
+//         contextmenu.style.cssText = Object.entries(res)
+//             .map(([k, v]) => k + ':' + v)
+//             .join(';');
+//     }
+//     return false;
+// };
 
-document.addEventListener('mouseup', function(e) {
-    contextmenu.style.display = '';
-    if (!menu.contains(e.target)) {
-        //console.log('target:', e.target)
-    }
-});
+// function noPrintMenu()
+// {
+//     menu.oncontextmenu = function (e) { 
+//         return false;
+//     }
+// }
+
+
+// document.addEventListener('mouseup', function(e) {
+//     contextmenu.style.display = '';
+//     if (!menu.contains(e.target)) {
+//         //console.log('target:', e.target)
+//     }
+// });
 
 window.addEventListener('keydown', (e) => {
     if (e.code == 'KeyX' && (e.ctrlKey || e.shiftKey || e.metaKey)) {
@@ -338,6 +407,8 @@ async function isUserSubscribe()
         Swal.fire(`Entered email: ${email}`)
     }
 }
+
+
 
 function isNotSignUp()
 {

@@ -22,10 +22,11 @@ class Steames
         // Steames::getListResult($fiter)
         $modal = MoySklad::searchByProduct('', $fiter);
         $array = [];
-            foreach($modal["rows"] as $item) {
-                $array[] = $item['id'];
-            }
-        return $array;
+        foreach($modal["rows"] as $item) {
+            $array[] = 'id='.$item['id'];
+        }
+        // id=3292240d-5e7f-11ed-0a80-0eca004678fc;id=426d5688-5064-11ed-0a80-05bf003d0d1a
+        return 'https://online.moysklad.ru/api/remap/1.2/entity/assortment?filter='.implode(";", $array);
     }
 
     public static function getResult($fiter)

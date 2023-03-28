@@ -11,10 +11,10 @@ class Image
         // $item[0]['image'] === '' ? '/img/placeholder.png' : trim($item[0]['image'], ".");
     }
 
-    public static function quantity($uuid)
+    public static function quantity($quantity)
     {
-        $item = Goods::where('link', $uuid)->get();
-        $quantity = $item[0]['quantity'];
+        // $item = Goods::where('link', $uuid)->get();
+        // $quantity = $item[0]['quantity'];
         $class = $quantity == 0 ? 'label-danger' : 'label';
         $text = $quantity == 0 ? 'Нет в наличии' : 'В наличии '.$quantity;
         return [

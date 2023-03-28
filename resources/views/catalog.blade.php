@@ -81,10 +81,10 @@
                                             itemprop="offers" 
                                             itemscope
                                             itemtype="https://schema.org/Offer" 
-                                            class="{{$images::quantity($item['id'])['class']}}"
+                                            class="{{$images::quantity($item['quantity'])['class']}}"
                                         >
                                             <link itemprop="availability" href="https://schema.org/InStock">
-                                            {{$images::quantity($item['id'])['text']}}
+                                            {{$images::quantity($item['quantity'])['text']}}
                                         </p>                              
                                     </div>
                                     <strong>
@@ -105,7 +105,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        @if($images::quantity($item['id'])['quantity'] == 0)
+                                        @if($item['quantity'] == 0)
                                         <div onclick="isNotSignUp()" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
                                             <span class="material-symbols-outlined">add_shopping_cart</span>
                                         </div>

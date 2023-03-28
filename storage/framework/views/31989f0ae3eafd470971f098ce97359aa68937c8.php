@@ -2,7 +2,8 @@
     $str = mb_convert_case($product['name'], MB_CASE_TITLE, "UTF-8");
     $result = array_merge($listorder, $bestsellers, $alllist);
     $url = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
-    $image = isset($data[0]['image']) && $data[0]['image'] !== ''  ? trim($data[0]['image'], '.') : '/img/placeholder.png';
+    $image = $images::src($id);
+    //isset($data[0]['image']) && $data[0]['image'] !== ''  ? trim($data[0]['image'], '.') : '/img/placeholder.png';
 ?>
 
 <?php $__env->startSection('title', $str.' | Проспект Транс'); ?>
@@ -87,6 +88,20 @@
                                 В корзину
                             </div>                      
                         <?php endif; ?>
+                    </div>
+                    <div class="d-flex justify-content-start mt-3">
+                        <div class="rating-area">
+                            <input type="radio" id="star-5" name="rating" value="5">
+                            <label for="star-5" title="Оценка «5»"></label>	
+                            <input type="radio" id="star-4" name="rating" value="4">
+                            <label for="star-4" title="Оценка «4»"></label>    
+                            <input type="radio" id="star-3" name="rating" value="3">
+                            <label for="star-3" title="Оценка «3»"></label>  
+                            <input type="radio" id="star-2" name="rating" value="2">
+                            <label for="star-2" title="Оценка «2»"></label>    
+                            <input type="radio" id="star-1" name="rating" value="1">
+                            <label for="star-1" title="Оценка «1»"></label>
+                        </div>
                     </div>
                 </div>
             </div>

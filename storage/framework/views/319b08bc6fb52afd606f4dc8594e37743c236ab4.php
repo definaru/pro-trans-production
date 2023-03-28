@@ -58,34 +58,7 @@
                                     <button @click="removeCart(id)" class="btn text-danger rounded material-symbols-outlined">delete</button>
                                 </div>
                             </li>
-                        </ul>
-                            
-                        <div class="d-flex justify-content-between mb-5 pb-5">
-                            <div class="col-md-6 mt-3">
-                                <p class="m-0 text-muted">
-                                    <small>
-                                        Нажимая кнопку "Оформить заказ" вы соглашаетесь с нашей 
-                                        <a href="/doc/privatepolice" target="_blank" class="text-muted">политикой конфиденциальности</a> и
-                                        <a href="/doc/license" target="_blank" class="text-muted">пользовательским соглашением</a>
-                                    </small>
-                                </p>
-                            </div> 
-                            <div class="d-flex justify-content-end gap-4 align-items-center mt-3 mb-5">
-                                <div class="py-2">Всего:</div> 
-                                <div class="py-2 fw-bold pe-4">
-                                    {{getTotalsumma(totalsumma)}}
-                                </div> 
-                                <div class="py-2">{{amount}} (шт.)</div>
-                                <form action="/checkout" method="post" class="py-2">
-                                    <input type="hidden" name="_token" value="<?=csrf_token();?>" />
-                                    <input type="hidden" name="name" :value="JSON.stringify(сheckout)" />
-                                    <div class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
-                                        <span class="material-symbols-outlined">check</span>
-                                        Оформить заказ
-                                    </div>
-                                </form>
-                            </div>
-                        </div>   
+                        </ul>  
                         {{totalSum}}
                         {{totalAmount}}                  
                     </template>
@@ -101,7 +74,133 @@
                         </div>
                     </template>
                 </template>
-
+                <template v-if="сheckout.length === 0">
+                    <div v-if="card.length !== 0" class="d-flex justify-content-between mb-5 pb-5">
+                        <div class="col-md-6 mt-3">
+                            <p class="m-0 text-muted">
+                                <small>
+                                    Нажимая кнопку "Оформить заказ" вы соглашаетесь с нашей 
+                                    <a href="/doc/privatepolice" target="_blank" class="text-muted">политикой конфиденциальности</a> и
+                                    <a href="/doc/license" target="_blank" class="text-muted">пользовательским соглашением</a>
+                                </small>
+                            </p>
+                        </div> 
+                        <div class="d-flex justify-content-end gap-4 align-items-center mt-3 mb-5">
+                            <div class="py-2">Всего:</div> 
+                            <div class="py-2 fw-bold pe-4">
+                                {{getTotalsumma(totalsumma)}}
+                            </div> 
+                            <div class="py-2">{{amount}} (шт.)</div>
+                            <div>
+                                <div v-on:click="Checkout()" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
+                                    <span class="material-symbols-outlined">check</span>
+                                    Оформить заказ
+                                </div>                                
+                            </div>
+                        </div>
+                    </div> 
+                </template>
+                
+                <template v-else>
+                    <form action="/checkout" method="post" enctype="multipart/form-data" class="py-2">
+                        <?php echo csrf_field(); ?>
+                        <div class="row gx-5 gy-3 mt-4">
+                            <div class="col-6">
+                                <label class="fw-bold">
+                                    Как вас зовут ? 
+                                    <sup class="text-muted text">(на кого оформить заказ)</sup>
+                                    <em class="text-danger text">*</em>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    class="form-control border-0 <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid border-bottom border-danger-subtle <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                                    name="name"
+                                    placeholder="Ваше имя" 
+                                />
+                                <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <small class="valid-feedback d-block text-danger"><?php echo e($message); ?></small>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                            </div>
+                            <div class="col-6">
+                                <label class="fw-bold">Как c вами связаться ?<em class="text-danger text">*</em></label>
+                                <input 
+                                    type="text" 
+                                    class="form-control border-0 <?php $__errorArgs = ['phone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid border-bottom border-danger-subtle <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                                    name="phone"
+                                    placeholder="Ваш телефон" 
+                                />
+                                <?php $__errorArgs = ['phone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <small class="valid-feedback d-block text-danger"><?php echo e($message); ?></small>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                            </div>
+                            <div class="col-6">
+                                <label class="fw-bold">Куда отправить счёт на оплату ?<em class="text-danger text">*</em></label>
+                                <input 
+                                    type="email" 
+                                    class="form-control border-0 <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid border-bottom border-danger-subtle <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                                    name="email" 
+                                    placeholder="Ваш E-mail..." 
+                                />
+                                <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <small class="valid-feedback d-block text-danger"><?php echo e($message); ?></small>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                            </div>
+                            <div class="col-6">
+                                <label class="fw-bold">Куда отправить заказ ? <sup class="text-muted text">(Опционально)</sup></label>
+                                <input type="text" class="form-control border-0" name="address" v-model="address" placeholder="Адрес доставки..." />
+                            </div>
+                        </div>
+                        <input type="hidden" class="form-control" name="сheckout" :value="JSON.stringify(сheckout)" />
+                        <div class="d-flex mt-4">
+                            <button type="submit" class="btn btn-dark fw-bold text px-4 d-flex align-items-center gap-2 justify-content-center">
+                                <span class="material-symbols-outlined">check</span>
+                                Подтвердить и Оформить
+                            </button>                  
+                        </div>                        
+                    </form>
+                </template>
                 
             </div>
         </div>

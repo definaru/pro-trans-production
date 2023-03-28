@@ -9,7 +9,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class UserLogin extends FormRequest
 {
 
-    protected $redirectTo = '/';
+    protected $redirectTo = '/signin';
 
     public function authorize()
     {

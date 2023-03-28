@@ -63,34 +63,7 @@
                                     <button @click="removeCart(id)" class="btn text-danger rounded material-symbols-outlined">delete</button>
                                 </div>
                             </li>
-                        </ul>
-                            
-                        <div class="d-flex justify-content-between mb-5 pb-5">
-                            <div class="col-md-6 mt-3">
-                                <p class="m-0 text-muted">
-                                    <small>
-                                        Нажимая кнопку "Оформить заказ" вы соглашаетесь с нашей 
-                                        <a href="/doc/privatepolice" target="_blank" class="text-muted">политикой конфиденциальности</a> и
-                                        <a href="/doc/license" target="_blank" class="text-muted">пользовательским соглашением</a>
-                                    </small>
-                                </p>
-                            </div> 
-                            <div class="d-flex justify-content-end gap-4 align-items-center mt-3 mb-5">
-                                <div class="py-2">Всего:</div> 
-                                <div class="py-2 fw-bold pe-4">
-                                    {{getTotalsumma(totalsumma)}}
-                                </div> 
-                                <div class="py-2">{{amount}} (шт.)</div>
-                                <form action="/checkout" method="post" class="py-2">
-                                    <input type="hidden" name="_token" value="<?=csrf_token();?>" />
-                                    <input type="hidden" name="name" :value="JSON.stringify(сheckout)" />
-                                    <div class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
-                                        <span class="material-symbols-outlined">check</span>
-                                        Оформить заказ
-                                    </div>
-                                </form>
-                            </div>
-                        </div>   
+                        </ul>  
                         {{totalSum}}
                         {{totalAmount}}                  
                     </template>
@@ -106,8 +79,92 @@
                         </div>
                     </template>
                 </template>
-
+                <template v-if="сheckout.length === 0">
+                    <div v-if="card.length !== 0" class="d-flex justify-content-between mb-5 pb-5">
+                        <div class="col-md-6 mt-3">
+                            <p class="m-0 text-muted">
+                                <small>
+                                    Нажимая кнопку "Оформить заказ" вы соглашаетесь с нашей 
+                                    <a href="/doc/privatepolice" target="_blank" class="text-muted">политикой конфиденциальности</a> и
+                                    <a href="/doc/license" target="_blank" class="text-muted">пользовательским соглашением</a>
+                                </small>
+                            </p>
+                        </div> 
+                        <div class="d-flex justify-content-end gap-4 align-items-center mt-3 mb-5">
+                            <div class="py-2">Всего:</div> 
+                            <div class="py-2 fw-bold pe-4">
+                                {{getTotalsumma(totalsumma)}}
+                            </div> 
+                            <div class="py-2">{{amount}} (шт.)</div>
+                            <div>
+                                <div v-on:click="Checkout()" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
+                                    <span class="material-symbols-outlined">check</span>
+                                    Оформить заказ
+                                </div>                                
+                            </div>
+                        </div>
+                    </div> 
+                </template>
                 @endverbatim
+                <template v-else>
+                    <form action="/checkout" method="post" enctype="multipart/form-data" class="py-2">
+                        @csrf
+                        <div class="row gx-5 gy-3 mt-4">
+                            <div class="col-6">
+                                <label class="fw-bold">
+                                    Как вас зовут ? 
+                                    <sup class="text-muted text">(на кого оформить заказ)</sup>
+                                    <em class="text-danger text">*</em>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    class="form-control border-0 @error('name') is-invalid border-bottom border-danger-subtle @enderror" 
+                                    name="name"
+                                    placeholder="Ваше имя" 
+                                />
+                                @error('name')
+                                    <small class="valid-feedback d-block text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="col-6">
+                                <label class="fw-bold">Как c вами связаться ?<em class="text-danger text">*</em></label>
+                                <input 
+                                    type="text" 
+                                    class="form-control border-0 @error('phone') is-invalid border-bottom border-danger-subtle @enderror" 
+                                    name="phone"
+                                    placeholder="Ваш телефон" 
+                                />
+                                @error('phone')
+                                    <small class="valid-feedback d-block text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="col-6">
+                                <label class="fw-bold">Куда отправить счёт на оплату ?<em class="text-danger text">*</em></label>
+                                <input 
+                                    type="email" 
+                                    class="form-control border-0 @error('email') is-invalid border-bottom border-danger-subtle @enderror" 
+                                    name="email" 
+                                    placeholder="Ваш E-mail..." 
+                                />
+                                @error('email')
+                                    <small class="valid-feedback d-block text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="col-6">
+                                <label class="fw-bold">Куда отправить заказ ? <sup class="text-muted text">(Опционально)</sup></label>
+                                <input type="text" class="form-control border-0" name="address" v-model="address" placeholder="Адрес доставки..." />
+                            </div>
+                        </div>
+                        <input type="hidden" class="form-control" name="сheckout" :value="JSON.stringify(сheckout)" />
+                        <div class="d-flex mt-4">
+                            <button type="submit" class="btn btn-dark fw-bold text px-4 d-flex align-items-center gap-2 justify-content-center">
+                                <span class="material-symbols-outlined">check</span>
+                                Подтвердить и Оформить
+                            </button>                  
+                        </div>                        
+                    </form>
+                </template>
+                
             </div>
         </div>
     </div>

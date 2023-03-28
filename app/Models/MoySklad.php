@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+
+use App\Models\Steames;
 use Illuminate\Support\Facades\Http;
 
 
@@ -86,7 +88,46 @@ class MoySklad
         return $response->json();
     }
     
+    public static function newUserAlien($req)
+    {
+        $url = self::msUrl().'counterparty';
+        $response = self::post($url, json_encode($req));
+        return $response->json();
+    }
 
+    public static function getNewOrderFromGuest($user, $сheckout)
+    {
+        $req = [
+            'organization' => [
+                'meta' => [
+                    'href' => 'https://online.moysklad.ru/api/remap/1.2/entity/organization/218c26ab-33fe-11ed-0a80-0285001db7b3',
+                    'type' => 'organization',
+                    'mediaType' => 'application/json'
+                ]
+            ],
+            'agent' => [
+                'meta' => [
+                    'href' => 'https://online.moysklad.ru/api/remap/1.2/entity/counterparty/'.$user,
+                    'type' => 'counterparty',
+                    'mediaType' => 'application/json'
+                ]
+            ],
+            'store' => [
+                'meta' => [
+                    'href' => 'https://online.moysklad.ru/api/remap/1.2/entity/store/218d258b-33fe-11ed-0a80-0285001db7b5',
+                    'metadataHref' => 'https://online.moysklad.ru/api/remap/1.2/entity/store/metadata',
+                    'type' => 'store',
+                    'mediaType' => 'application/json'                    
+                ]             
+            ],
+            'positions' => json_decode($сheckout, true)['positions']
+        ];
+        $url = self::msUrl().'customerorder';
+        $response = self::post($url, json_encode($req));
+        return $response->json();
+    }
+
+    
     public static function getCounterAgent($req)
     {
         $url = self::msUrl().'counterparty';
@@ -175,12 +216,20 @@ class MoySklad
     
     public static function searchByProduct($type, $text)
     {
-        $name = urlencode($text); // assortment
-        $url = self::msUrl().'product?expand=images,positions&search='.$name;
+        $params = is_numeric($text) ? '&filter=article~'.$text : '&search='.urlencode($text);
+        $url = self::msUrl().'product?expand=images,positions'.$params;
         $response = self::get($url);
         return $response->json();
     }
 
+
+    public static function searchOfResult($url)
+    {
+        $response = self::get($url);
+        return $response->json();
+    }
+
+    
     //getOrderCustomerOne
     public static function getInvoiceOne($id)
     {
@@ -331,7 +380,7 @@ class MoySklad
 
     public static function getAllProduct($limit = 10, $offset = 0)
     {
-        $url = self::msUrl().'assortment?expand=images,positions&limit='.$limit.'&offset='.$offset;
+        $url = self::msUrl().'assortment?expand=images,positions&limit='.$limit.'&offset='.$offset.'&filter=quantityMode=positiveOnly';
         $response = self::get($url);
         return $response->json();
     }
@@ -612,7 +661,7 @@ class MoySklad
         return $response->json();
     }
 
-    public static function createInvoiceout($id)
+    public static function createInvoiceout($id) // Создаёт заказ
     {
         $get = self::getPaymentReports($id);
         $items = response()->json($get);

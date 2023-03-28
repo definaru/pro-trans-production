@@ -22,8 +22,9 @@
                                 <span class="material-symbols-outlined">open_in_new</span>
                                 Зарегистрироваться
                             </a>
-                            <a href="#bestsellers" class="btn btn-lg btn-dark px-5 py-3">
-                                &#8618;&#160; Подробнее
+                            <a href="#bestsellers" class="btn btn-lg btn-dark px-5 py-3 d-flex justify-content-center align-items-center gap-2">
+                                <span class="material-symbols-outlined">subdirectory_arrow_right</span>
+                                Подробнее
                             </a>
                         </div>
                         <div class="d-flex align-items-center w-100 py-2">
@@ -223,11 +224,17 @@
                                     <meta itemprop="ratingValue" content="5" />
                                     <meta itemprop="bestRating" content="5" />
                                     
-                                    <span class="material-symbols-outlined text-warning fs-6">star_rate</span>
-                                    <span class="material-symbols-outlined text-warning fs-6">star_rate</span>
-                                    <span class="material-symbols-outlined text-warning fs-6">star_rate</span>
-                                    <span class="material-symbols-outlined text-warning fs-6">star_rate</span>
-                                    <span class="material-symbols-outlined text-warning fs-6">star_rate</span>
+                                    <div class="rating-result">
+                                        <?php $count = rand(4, 5); ?>
+                                        <?php for ($i = 1; $i <= floor($count); $i++) { ?>
+                                            <?php /*<i class="fa fa-star text-warning"></i>*/ ?>
+                                            <span class="active"></span>
+                                        <?php } ?>
+                                        <?php for ($i = 1; $i <= 5-floor($count); $i++) { ?>
+                                            <?php /*<i class="fa fa-star text-muted"></i>*/ ?>
+                                            <span></span>
+                                        <?php } ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>

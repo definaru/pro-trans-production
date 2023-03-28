@@ -179,6 +179,75 @@ a.nav-link.active {
     height: 100%;
     background-color: #ec0b29;
 }
+#searchForm .btn-close {
+    color: #d3f7d1 !important;
+}
+
+/* Stars Raiting */
+.rating-result {
+	position: relative;
+    bottom: -8px;
+}
+.rating-result span {
+	padding: 0;
+    font-size: 20px;
+    margin: 0;
+	line-height: 1;
+	color: lightgrey;
+}
+.rating-result > span:before {
+	content: '★';
+}
+.rating-result > span.active {
+	color: #f7d441;
+}
+.rating-area {
+	overflow: hidden;
+}
+.rating-area:not(:checked) > input {
+	display: none;
+}
+.rating-area:not(:checked) > label {
+	float: right;
+	width: 42px;
+	padding: 0;
+	cursor: pointer;
+	font-size: 32px;
+	line-height: 32px;
+	color: lightgrey;
+	text-shadow: 1px 1px #bbb;
+}
+.rating-area:not(:checked) > label:before {
+	content: '★';
+}
+.rating-area > input:checked ~ label {
+	color: gold;
+	text-shadow: 1px 1px #c60;
+}
+.rating-area:not(:checked) > label:hover,
+.rating-area:not(:checked) > label:hover ~ label {
+	color: gold;
+}
+.rating-area > input:checked + label:hover,
+.rating-area > input:checked + label:hover ~ label,
+.rating-area > input:checked ~ label:hover,
+.rating-area > input:checked ~ label:hover ~ label,
+.rating-area > label:hover ~ input:checked ~ label {
+	color: gold;
+	text-shadow: 1px 1px goldenrod;
+}
+.rate-area > label:active {
+	position: relative;
+}
+
+
+.searchForm {
+    background-color: rgb(249, 224, 134);
+    box-shadow: inset 0px -1px 5px #9191598c;
+    width: 110px;
+    cursor: text !important;
+}
+.cp {cursor: pointer;}
 
 .card-data.order {
     width: 100%;
