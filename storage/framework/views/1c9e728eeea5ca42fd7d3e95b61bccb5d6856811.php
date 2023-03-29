@@ -1,0 +1,1 @@
+<?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/test.blade.php ENDPATH**/ ?>

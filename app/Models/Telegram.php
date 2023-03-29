@@ -14,6 +14,9 @@ class Telegram
             case 'ticket':
                 return self::ticket($num, $product, $link);
                 break;
+            case 'neworder':
+                return self::neworder($num, $product, $link);
+                break;
             case 'spares':
                 return self::spares($num, $product, $link);
                 break;
@@ -34,9 +37,20 @@ class Telegram
         }
     }
 
+    public static function neworder($num, $product, $link)
+    {
+        $msd = '<b>Новый заказ №'.$product.'</b>'.PHP_EOL.
+        '------'.PHP_EOL.
+        'Покупатель: '.$link['name'].PHP_EOL.
+        'E-mail: '.$link['email'].PHP_EOL.
+        'Телефон: '.$link['phone'].PHP_EOL.
+        '------'.PHP_EOL.
+        '<a href="https://prospekt-parts.com/dashboard/payment/reports/'.$num.'">[Подробнее]</a>';
+        return $msd;
+    }
+
     public static function counterparty($num, $product, $link)
     {
-        // ($account['id'], $account['name'], $account['email'], 'counterparty')
         $msd = '<b>Зарегистрировалась новая компания</b>'.PHP_EOL.
         '<i>'.$product.'</i>'.PHP_EOL.
         'E-mail адрес: '.$link.PHP_EOL.

@@ -118,7 +118,7 @@
                                 </label>
                                 <input 
                                     type="text" 
-                                    class="form-control border-0 @error('name') is-invalid border-bottom border-danger-subtle @enderror" 
+                                    class="form-control select border-0 @error('name') is-invalid border-bottom border-danger-subtle @enderror" 
                                     name="name"
                                     placeholder="Ваше имя" 
                                 />
@@ -130,7 +130,7 @@
                                 <label class="fw-bold">Как c вами связаться ?<em class="text-danger text">*</em></label>
                                 <input 
                                     type="text" 
-                                    class="form-control border-0 @error('phone') is-invalid border-bottom border-danger-subtle @enderror" 
+                                    class="form-control select border-0 @error('phone') is-invalid border-bottom border-danger-subtle @enderror" 
                                     name="phone"
                                     placeholder="Ваш телефон" 
                                 />
@@ -142,7 +142,7 @@
                                 <label class="fw-bold">Куда отправить счёт на оплату ?<em class="text-danger text">*</em></label>
                                 <input 
                                     type="email" 
-                                    class="form-control border-0 @error('email') is-invalid border-bottom border-danger-subtle @enderror" 
+                                    class="form-control select border-0 @error('email') is-invalid border-bottom border-danger-subtle @enderror" 
                                     name="email" 
                                     placeholder="Ваш E-mail..." 
                                 />
@@ -152,15 +152,12 @@
                             </div>
                             <div class="col-6">
                                 <label class="fw-bold">Куда отправить заказ ? <sup class="text-muted text">(Опционально)</sup></label>
-                                <input type="text" class="form-control border-0" name="address" v-model="address" placeholder="Адрес доставки..." />
+                                <input type="text" class="form-control select border-0" name="address" placeholder="Адрес доставки..." />
                             </div>
                         </div>
                         <input type="hidden" class="form-control" name="сheckout" :value="JSON.stringify(сheckout)" />
                         <div class="d-flex mt-4">
-                            <button type="submit" class="btn btn-dark fw-bold text px-4 d-flex align-items-center gap-2 justify-content-center">
-                                <span class="material-symbols-outlined">check</span>
-                                Подтвердить и Оформить
-                            </button>                  
+                            <button type="submit" v-html="button" v-on:click="sendOrderButton()" class="btn btn-dark fw-bold text px-4 d-flex align-items-center gap-2 justify-content-center"></button>                  
                         </div>                        
                     </form>
                 </template>

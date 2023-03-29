@@ -46,6 +46,7 @@
                 <p>{{$decl::search($size)}} <span class="badge bg-danger text-white rounded-pill">{{$size}}</span></p>
                 <div class="row g-2">
                 @foreach(session('search')['rows'] as $item)
+                    @if(isset($item['article']))
                     <div class="col-lg-3 col-12">
                         <div class="card card-data border-0 shadow order">
                             <a href="/product/mersedes-benz/{{$item['id']}}" class="card-body pb-0 position-relative">
@@ -124,7 +125,9 @@
                             </div>
                         </div>
                     </div>
-                    {{-- @endif --}}
+                    
+                    @endif
+
                 @endforeach
                 </div>
             @endif
@@ -135,9 +138,6 @@
                     <p class="text text-muted">Всего {{$product['meta']['size']}} товаров</p>
                 </div>
                 @foreach ($product["rows"] as $item)
-                    {{-- @if($item['quantity'] == 0)
-                    @else
-                    @endif --}}
                     <div class="col-lg-3 col-12">
                         <div class="card card-data border-0 shadow-sm order">
                             <a href="/product/mersedes-benz/{{$item['id']}}" class="card-body pb-0 position-relative">

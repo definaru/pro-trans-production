@@ -431,6 +431,10 @@ footer a:hover {
     color: #fff;
     background-color: #8630a3;
 }
+.select::selection {
+    color: #f9e086;
+    background-color: #8630a3;
+}
 .active>.page-link, 
 .page-link.active {
     color: #fff !important;

@@ -48,6 +48,7 @@ unset($__errorArgs, $__bag); ?>
                 <p><?php echo e($decl::search($size)); ?> <span class="badge bg-danger text-white rounded-pill"><?php echo e($size); ?></span></p>
                 <div class="row g-2">
                 <?php $__currentLoopData = session('search')['rows']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php if(isset($item['article'])): ?>
                     <div class="col-lg-3 col-12">
                         <div class="card card-data border-0 shadow order">
                             <a href="/product/mersedes-benz/<?php echo e($item['id']); ?>" class="card-body pb-0 position-relative">
@@ -130,6 +131,8 @@ unset($__errorArgs, $__bag); ?>
                         </div>
                     </div>
                     
+                    <?php endif; ?>
+
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             <?php endif; ?>
@@ -140,7 +143,6 @@ unset($__errorArgs, $__bag); ?>
                     <p class="text text-muted">Всего <?php echo e($product['meta']['size']); ?> товаров</p>
                 </div>
                 <?php $__currentLoopData = $product["rows"]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    
                     <div class="col-lg-3 col-12">
                         <div class="card card-data border-0 shadow-sm order">
                             <a href="/product/mersedes-benz/<?php echo e($item['id']); ?>" class="card-body pb-0 position-relative">

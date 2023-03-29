@@ -7,23 +7,25 @@ new Vue({
         cookie: true,
         amount: 0,
         totalsumma: 0,
-        name: '',
-        phone: '',
-        email: '',
-        address: ''
+        button: '<span class="material-symbols-outlined">check</span> Подтвердить и Оформить'
     },
     computed: {
         totalSum: function () {
             var sum = this.card.reduce(
                 (acc, current) => acc + Number(current.summa), 0
             );
-            this.totalsumma = sum        
+            this.totalsumma = sum;      
         },
         totalAmount: function () {
             var value = this.card.reduce(
                 (acc, current) => acc + Number(current.count), 0
             );
             this.amount = value;
+        },
+        newOrder: function () {
+            localStorage.removeItem('cart');
+            localStorage.removeItem('сheckout');
+            this.card = [];
         }
     },
     mounted() {
@@ -54,6 +56,9 @@ new Vue({
             if(m>=2 && m<=4) {return s2;}
             return s1;
         },
+        sendOrderButton() {
+            this.button = '<span class="material-symbols-outlined spin">autorenew</span> Отправляем...'
+        },
         getTotalsumma(digital) {
             var rub = digital.toString().substr(0, String(digital).length-2).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
             var cent = digital.toString().slice(-2);
@@ -74,17 +79,17 @@ new Vue({
         inCrement(id) {
             var item = this.card.find(item => item.id === id);
             item.count++;
-            item.summa = parseFloat(item.summa)*Number(item.count);
+            item.summa = Number.parseInt((item.price * 100) / 100).toFixed(2)*Number(item.count);
             this.saveCart();
         },
         deCrement(id) {
             var item = this.card.find(item => item.id === id);
             if(item.count = 1) {
                 item.count = 1
-                item.summa = parseFloat(item.summa)/2;
+                item.summa = parseFloat(item.price)/2;
             } else {
                 item.count--;
-                item.summa = parseFloat(item.summa)/item.count;                
+                item.summa = parseFloat(item.price)/item.count;                
             }
             this.saveCart();
         },
@@ -127,26 +132,9 @@ new Vue({
                 reserve: 0
             }));
         },
-        async Checkout(x) {
+        async Checkout() {
 
             const roots = this.rootsObjectValues(this.card);
-            
-            var cart = {
-                organization: {
-                    meta: {
-                        href: 'https://online.moysklad.ru/api/remap/1.2/entity/organization/218c26ab-33fe-11ed-0a80-0285001db7b3',
-                        type: 'organization',
-                        mediaType: 'application/json'
-                    }
-                },
-                agent: {
-                    meta: {
-                        href: `https://online.moysklad.ru/api/remap/1.2/entity/counterparty/${x}`,
-                        type: 'counterparty',
-                        mediaType: 'application/json'
-                    }
-                },
-            };
             var positions = {
                 positions: roots
             };
@@ -252,7 +240,6 @@ function changeTotal(value) {
 
 let modal = new bootstrap.Modal(document.querySelector('#searchForm'));
 let input = document.querySelector('input[type="search"]');
-
 
 var loadingpage = document.getElementById('loadingpage');
 const loaderText = '<span class="material-symbols-outlined spin">autorenew</span> Ищем деталь...';

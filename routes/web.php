@@ -95,8 +95,8 @@ Route::controller(AuthController::class)->group(function () {
 
 // Оформление заказа для незарегистрированных пользователей
 Route::controller(OrderController::class)->group(function () {
-    Route::get('/order', 'Order')->name('userorder');
-    Route::post('/checkout', 'Checkout'); ///{order?}
+    Route::get('/order/{uuid?}', 'Order')->name('userorder');
+    Route::post('/checkout', 'Checkout');
 });
 
 

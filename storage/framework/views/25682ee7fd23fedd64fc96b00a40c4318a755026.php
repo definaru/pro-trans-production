@@ -16,8 +16,8 @@
         <hr/>
         <p>
             <small style="color: #999">
-                © {{ date('Y') }} - {{ config('app.name') }}. @lang('Все права защищены.')
+                © <?php echo e(date('Y')); ?> - <?php echo e(config('app.name')); ?>. <?php echo app('translator')->get('Все права защищены.'); ?>
             </small>
         </p>
     </div>
-</div>
+</div><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/mail/verify.blade.php ENDPATH**/ ?>

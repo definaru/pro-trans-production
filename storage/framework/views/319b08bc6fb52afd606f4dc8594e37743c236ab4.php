@@ -113,7 +113,7 @@
                                 </label>
                                 <input 
                                     type="text" 
-                                    class="form-control border-0 <?php $__errorArgs = ['name'];
+                                    class="form-control select border-0 <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -139,7 +139,7 @@ unset($__errorArgs, $__bag); ?>
                                 <label class="fw-bold">Как c вами связаться ?<em class="text-danger text">*</em></label>
                                 <input 
                                     type="text" 
-                                    class="form-control border-0 <?php $__errorArgs = ['phone'];
+                                    class="form-control select border-0 <?php $__errorArgs = ['phone'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -165,7 +165,7 @@ unset($__errorArgs, $__bag); ?>
                                 <label class="fw-bold">Куда отправить счёт на оплату ?<em class="text-danger text">*</em></label>
                                 <input 
                                     type="email" 
-                                    class="form-control border-0 <?php $__errorArgs = ['email'];
+                                    class="form-control select border-0 <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -189,15 +189,12 @@ unset($__errorArgs, $__bag); ?>
                             </div>
                             <div class="col-6">
                                 <label class="fw-bold">Куда отправить заказ ? <sup class="text-muted text">(Опционально)</sup></label>
-                                <input type="text" class="form-control border-0" name="address" v-model="address" placeholder="Адрес доставки..." />
+                                <input type="text" class="form-control select border-0" name="address" placeholder="Адрес доставки..." />
                             </div>
                         </div>
                         <input type="hidden" class="form-control" name="сheckout" :value="JSON.stringify(сheckout)" />
                         <div class="d-flex mt-4">
-                            <button type="submit" class="btn btn-dark fw-bold text px-4 d-flex align-items-center gap-2 justify-content-center">
-                                <span class="material-symbols-outlined">check</span>
-                                Подтвердить и Оформить
-                            </button>                  
+                            <button type="submit" v-html="button" v-on:click="sendOrderButton()" class="btn btn-dark fw-bold text px-4 d-flex align-items-center gap-2 justify-content-center"></button>                  
                         </div>                        
                     </form>
                 </template>

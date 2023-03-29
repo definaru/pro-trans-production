@@ -7,8 +7,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
+
 class VerifyEmail extends Mailable
 {
+    
     use Queueable, SerializesModels;
 
     public $pin;
@@ -30,8 +32,10 @@ class VerifyEmail extends Mailable
      */
     public function build()
     {
-        return $this
-            ->subject("Подтверждение по элетронной почте")
-            ->markdown('mail.verify');
+        return $this->subject('Подтверждение по элетронной почте')
+            ->view('mail.verify')
+            ->with([
+                'pin' => $this->pin
+            ]);
     }
 }
