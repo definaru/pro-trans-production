@@ -23,8 +23,8 @@
 
                 @if(isset($order['errors']))
                 @else
-                <h4>Ваш заказ №{{$order['name']}}</h4>
-                <p>Дата создания заказа: 
+                <h4 class="fw-bold text">Ваш заказ №{{$order['name']}}</h4>
+                <p class="d-flex align-items-center gap-1">Дата создания заказа: 
                     <i class="text-muted d-flex align-items-center gap-1">
                         <span class="material-symbols-outlined fs-5">calendar_month</span>
                         {{$timer::datatime($order['moment'])}}

@@ -18,8 +18,8 @@
 
                 <?php if(isset($order['errors'])): ?>
                 <?php else: ?>
-                <h4>Ваш заказ №<?php echo e($order['name']); ?></h4>
-                <p>Дата создания заказа: 
+                <h4 class="fw-bold text">Ваш заказ №<?php echo e($order['name']); ?></h4>
+                <p class="d-flex align-items-center gap-1">Дата создания заказа: 
                     <i class="text-muted d-flex align-items-center gap-1">
                         <span class="material-symbols-outlined fs-5">calendar_month</span>
                         <?php echo e($timer::datatime($order['moment'])); ?>

@@ -98,13 +98,15 @@ new Vue({
         },
         deCrement(id) {
             var item = this.card.find(item => item.id === id);
-            if(item.count = 1) {
-                item.count = 1
-                item.summa = parseFloat(item.price)/2;
-            } else {
-                item.count--;
-                item.summa = parseFloat(item.price)/item.count;                
-            }
+            item.count--;
+            item.summa = Number.parseInt((item.price * 100) / 100).toFixed(2)*Number(item.count);
+            // if(item.count = 1) {
+            //     item.count = 1
+            //     item.summa = parseFloat(item.price)/2;
+            // } else {
+            //     item.count--;
+            //     item.summa = parseFloat(item.price)/item.count;                
+            // }
             this.saveCart();
         },
         addToCard(e) {

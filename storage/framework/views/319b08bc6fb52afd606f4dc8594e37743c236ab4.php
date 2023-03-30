@@ -1,13 +1,8 @@
-@extends('layout/index', [
-    'title' => 'Корзина | Проспект Транс',
-    'keywords' => 'корзина, service, компания, автосервис, мерседес бенц, актрос',
-    'description' => 'Информация для покупателя.',
-    'image' => 'https://prospekt-parts.com/img/5464765787695.jpg'
-])
 
-@section('title', 'Корзина')
 
-@section('content')
+<?php $__env->startSection('title', 'Корзина'); ?>
+
+<?php $__env->startSection('content'); ?>
 <div class="w-100 bg-primary" style="height: 170px">
     <div class="d-flex align-items-center justify-content-center h-100" style="background-color: #00000059">
         <h2 class="text-white pt-5 mb-0 mt-1">Корзина &#128722;</h2>
@@ -28,7 +23,7 @@
                         </div>
                     </div>
                 </template>
-                @verbatim
+                
                 <template v-else>
                     <h6 class="text-muted">Всего {{card.length+' '+countGoods(card.length, 'товар', 'товара', 'товаров')}}</h6>
                     <template v-if="!loading">
@@ -103,10 +98,10 @@
                         </div>
                     </div> 
                 </template>
-                @endverbatim
+                
                 <template v-else>
                     <form action="/checkout" method="post" enctype="multipart/form-data" class="py-2">
-                        @csrf
+                        <?php echo csrf_field(); ?>
                         <div class="row gx-5 gy-3 mt-4">
                             <div class="col-6">
                                 <label class="fw-bold">
@@ -116,37 +111,79 @@
                                 </label>
                                 <input 
                                     type="text" 
-                                    class="form-control select border-0 @error('name') is-invalid border-bottom border-danger-subtle @enderror" 
+                                    class="form-control select border-0 <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid border-bottom border-danger-subtle <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
                                     name="name"
                                     placeholder="Ваше имя" 
                                 />
-                                @error('name')
-                                    <small class="valid-feedback d-block text-danger">{{ $message }}</small>
-                                @enderror
+                                <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <small class="valid-feedback d-block text-danger"><?php echo e($message); ?></small>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
                             <div class="col-6">
                                 <label class="fw-bold">Как c вами связаться ?<em class="text-danger text">*</em></label>
                                 <input 
                                     type="text" 
-                                    class="form-control select border-0 @error('phone') is-invalid border-bottom border-danger-subtle @enderror" 
+                                    class="form-control select border-0 <?php $__errorArgs = ['phone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid border-bottom border-danger-subtle <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
                                     name="phone"
                                     placeholder="Ваш телефон" 
                                 />
-                                @error('phone')
-                                    <small class="valid-feedback d-block text-danger">{{ $message }}</small>
-                                @enderror
+                                <?php $__errorArgs = ['phone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <small class="valid-feedback d-block text-danger"><?php echo e($message); ?></small>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
                             <div class="col-6">
                                 <label class="fw-bold">Куда отправить счёт на оплату ?<em class="text-danger text">*</em></label>
                                 <input 
                                     type="email" 
-                                    class="form-control select border-0 @error('email') is-invalid border-bottom border-danger-subtle @enderror" 
+                                    class="form-control select border-0 <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid border-bottom border-danger-subtle <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
                                     name="email" 
                                     placeholder="Ваш E-mail..." 
                                 />
-                                @error('email')
-                                    <small class="valid-feedback d-block text-danger">{{ $message }}</small>
-                                @enderror
+                                <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <small class="valid-feedback d-block text-danger"><?php echo e($message); ?></small>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
                             <div class="col-6">
                                 <label class="fw-bold">Куда отправить заказ ? <sup class="text-muted text">(Опционально)</sup></label>
@@ -164,4 +201,10 @@
         </div>
     </div>
 </section>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout/index', [
+    'title' => 'Корзина | Проспект Транс',
+    'keywords' => 'корзина, service, компания, автосервис, мерседес бенц, актрос',
+    'description' => 'Информация для покупателя.',
+    'image' => 'https://prospekt-parts.com/img/5464765787695.jpg'
+], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/card.blade.php ENDPATH**/ ?>
