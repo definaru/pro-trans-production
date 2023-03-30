@@ -35,7 +35,7 @@ class OrderController extends Controller
         $user = MoySklad::newUserAlien($res['counterparty']);
         if($user) {
             $result = MoySklad::getNewOrderFromGuest($user['id'], $request->сheckout);
-            Mail::to($request->email)->send(new VerifyEmail($code));
+            Mail::to($request->email)->send(new VerifyEmail($result));
             Telegram::getMessageTelegram($result['id'], $result['name'], $res['counterparty'], 'neworder');
             return redirect()->route('userorder')->with(
                 [

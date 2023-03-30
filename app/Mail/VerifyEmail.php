@@ -13,16 +13,16 @@ class VerifyEmail extends Mailable
     
     use Queueable, SerializesModels;
 
-    public $pin;
+    public $order;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($pin)
+    public function __construct($order)
     {
-        $this->pin = $pin;
+        $this->order = $order;
     }
 
     /**
@@ -32,10 +32,12 @@ class VerifyEmail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Подтверждение по элетронной почте')
+        return $this->from('noreply@prospekt-parts.com', 'Prospekt Parts')
+            ->subject('Вы оформили заказ')
             ->view('mail.verify')
             ->with([
-                'pin' => $this->pin
+                'id' => $this->order->id,
+                'name' => $this->order->name
             ]);
     }
 }

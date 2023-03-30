@@ -1,19 +1,14 @@
-@php
+<?php
     $str = mb_convert_case($product['name'], MB_CASE_TITLE, "UTF-8");
     $result = array_merge($listorder, $bestsellers, $alllist);
     $url = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
     $image = $images::src($id);
     $price = number_format(($product['salePrices']) / 100, 2, '.', ' ');
     //isset($data[0]['image']) && $data[0]['image'] !== ''  ? trim($data[0]['image'], '.') : '/img/placeholder.png';
-@endphp
-@extends('layout/index', [
-    'title' => $str.' | Проспект Транс',
-    'keywords' => 'ремонт, ремонт машин, ремонт в москве, ремонт в мытищи, ремонт двигателя, сервис, service, чинить, автосервис, мерседес бенц, актрос',
-    'description' => $product['article']. ', MERCEDES-BENZ \ '.number_format(($product['salePrices']) / 100, 2, '.', ' ').' ₽',
-    'image' => $url.$image
-])
-@section('title', $str.' | Проспект Транс')
-@section('content')
+?>
+
+<?php $__env->startSection('title', $str.' | Проспект Транс'); ?>
+<?php $__env->startSection('content'); ?>
     <section class="bg-secondary-subtle">
         <div class="container">
             <div class="row">
@@ -24,71 +19,73 @@
                                 <li class="breadcrumb-item"><a href="/">Главная</a></li>
                                 <li class="breadcrumb-item">
                                     <a href="/products/mersedes-benz">
-                                        {{$product['catalog']['name']}}
+                                        <?php echo e($product['catalog']['name']); ?>
+
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    {{$str}}
+                                    <?php echo e($str); ?>
+
                                 </li>
                             </ol>
                         </nav>                        
-                        @role('admin')
-                            <a href="/dashboard/product/details/{{$id}}">ред.</a>
-                        @endrole
+                        <?php if(auth()->check() && auth()->user()->hasRole('admin')): ?>
+                            <a href="/dashboard/product/details/<?php echo e($id); ?>">ред.</a>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="col-12 col-lg-6">
                     <div class="pe-0 pe-lg-5">
                         <img 
-                            src="{{$image}}" 
+                            src="<?php echo e($image); ?>" 
                             class="w-100 rounded " 
                             style="height: 450px;object-fit: cover"
-                            alt="{{$str}}" 
+                            alt="<?php echo e($str); ?>" 
                         />
                     </div>
                 </div>
                 <div class="col-12 col-lg-6">
-                    <h1 class="fw-bold lh-1 display-5 mt-5 mt-lg-0">{{$str}}</h1>
-                    <p class="fs-5 w-100 text text-secondary"><strong>Артикул:</strong> {{$product['article']}}</p>
-                    <span id="price" class="d-none">@php echo number_format(($product['salePrices']) / 100, 2, '.', '') @endphp</span>
+                    <h1 class="fw-bold lh-1 display-5 mt-5 mt-lg-0"><?php echo e($str); ?></h1>
+                    <p class="fs-5 w-100 text text-secondary"><strong>Артикул:</strong> <?php echo e($product['article']); ?></p>
+                    <span id="price" class="d-none"><?php echo number_format(($product['salePrices']) / 100, 2, '.', '') ?></span>
                     <div class="d-flex align-items-center justify-content-start gap-3">
-                        <p class="fs-4 text m-0">{!!$currency::summa($product['salePrices'])!!}</p>
+                        <p class="fs-4 text m-0"><?php echo $currency::summa($product['salePrices']); ?></p>
                         <div class="vr" v-if="count !== 1"></div>
-                        <div v-html="resultSumma('{{$product['salePrices']}}', count)" v-if="count !== 1" class="text text-success fw-bold"></div>                        
+                        <div v-html="resultSumma('<?php echo e($product['salePrices']); ?>', count)" v-if="count !== 1" class="text text-success fw-bold"></div>                        
                     </div>
 
                     
                     <p class="fs-6 w-100 text text-secondary">Описания нет</p>
                     <div class="w-100">
-                        @if($product['quantity'] == 0 || $product['quantity'] < 0)
+                        <?php if($product['quantity'] == 0 || $product['quantity'] < 0): ?>
                         <p class="label-danger">
                             Нет в наличии
                         </p>&#160;
                         <span class="badge bg-secondary text">Деталь на заказ</span>
-                        @else
+                        <?php else: ?>
                         <p 
                             itemprop="offers" 
                             itemscope 
                             itemtype="https://schema.org/Offer" 
-                            :class="[{{$product['quantity']}}-count >= 0 || {{$product['quantity']}}-count == 1 ? 'label' : 'label-danger']"
+                            :class="[<?php echo e($product['quantity']); ?>-count >= 0 || <?php echo e($product['quantity']); ?>-count == 1 ? 'label' : 'label-danger']"
                         >
                             <link itemprop="availability" href="https://schema.org/InStock"> 
                             <template>
                                 В наличии
-                                <span v-html="{{$product['quantity']}}" v-if="count == 1"></span>
-                                <span v-html="{{$product['quantity']}}-count" v-else></span>
+                                <span v-html="<?php echo e($product['quantity']); ?>" v-if="count == 1"></span>
+                                <span v-html="<?php echo e($product['quantity']); ?>-count" v-else></span>
                             </template>
                         </p>                        
-                        @endif
+                        <?php endif; ?>
                     </div>
                     <hr style="color: #ddd" />
                     <div class="d-grid d-lg-flex align-items-center gap-4 w-100">
-                        @if($product['quantity'] == 0 || $product['quantity'] < 0)
+                        <?php if($product['quantity'] == 0 || $product['quantity'] < 0): ?>
                             <button onclick="isUserSubscribe()" class="btn btn-lg btn-primary px-5 py-3 d-flex justify-content-center align-items-center gap-2">
                                 <span class="material-symbols-outlined">add_shopping_cart</span>
                                 В корзину
                             </button>   
-                        @else
+                        <?php else: ?>
                             <div class="d-flex justify-content-center rounded p-3 bg-white">
                                 <span v-on:click="inCrementOne()" class="material-symbols-outlined btn py-1">add</span>
                                 <span class="btn py-1" v-html="count"></span>
@@ -105,7 +102,7 @@
                                 В корзину
                             </div>    
                                              
-                        @endif
+                        <?php endif; ?>
                     </div>
                     <div class="d-flex justify-content-start mt-3">
                         <div class="rating-area">
@@ -125,4 +122,10 @@
             </div>
         </div>
     </section>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout/index', [
+    'title' => $str.' | Проспект Транс',
+    'keywords' => 'ремонт, ремонт машин, ремонт в москве, ремонт в мытищи, ремонт двигателя, сервис, service, чинить, автосервис, мерседес бенц, актрос',
+    'description' => $product['article']. ', MERCEDES-BENZ \ '.number_format(($product['salePrices']) / 100, 2, '.', ' ').' ₽',
+    'image' => $url.$image
+], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/product.blade.php ENDPATH**/ ?>
