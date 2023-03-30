@@ -9,7 +9,7 @@
             'value' => 'name'
         ]
     ];
-    $size = session('search') ? count(session('search')) : ''; // session('search')['meta']['size']
+    $size = session('search') ? session('search')['meta']['size'] : '';
 @endphp
 @extends('layout/main')
 
@@ -131,23 +131,23 @@
         </p>        
         @endif
         <div class="row">
-            @foreach(session('search') as $item)
+            @foreach(session('search')['rows'] as $item)
             <div class="col-12 mb-3" :class="[!isOpen ? 'col-lg-3' : 'col-lg-4']">
                 <div class="card card-data border-0 shadow">
-                    <a href="/dashboard/product/details/{{$item['link']}}" class="card-body pb-0 position-relative">
+                    <a href="/dashboard/product/details/{{$item['id']}}" class="card-body pb-0 position-relative">
                         <div class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2">
                             <span class="material-symbols-outlined fs-6 text-danger">favorite</span>
                             <small>{{rand(4, 5)}}.0 рейтинг</small>
                         </div>
                         <img 
-                            src="<?=$item['image'] !== '' ? '../../.'.$item['image'] : '/img/placeholder.png';?>" 
+                            src="{{$images::src($item['id'])}}" 
                             class="card-img-top rounded" 
                             alt="{{$item['name']}}" 
                         />
                     </a>
                     <div class="card-body">
                         <h5 class="card-title fs-5 mb-3" style="height: 48px">
-                            <a href="/dashboard/product/details/{{$item['link']}}" class="text-dark fw-bold text-decoration-none">
+                            <a href="/dashboard/product/details/{{$item['id']}}" class="text-dark fw-bold text-decoration-none">
                                 <?php
                                     $str = str_replace(
                                         mb_strtolower(session('text')), 
@@ -167,7 +167,7 @@
                                     <x-badge color="34617" text="В наличии {{$item['quantity']}}" />  
                                 @endif                                          
                             </div>
-                            <h5>{!! $currency::summa($item['price']) !!}</h5> 
+                            <h5>{!! $currency::summa($item['salePrices'][0]['value']) !!}</h5> 
                         </div>
                         <hr style="color: #ddd" />
                         <div class="d-flex align-items-center justify-content-between">
@@ -189,9 +189,9 @@
                             <div>
                                 @if ($item['quantity'] == 0)
                                 <div
-                                    id="preorder{{$item['link']}}"
-                                    data-order="{{$item['link']}},{{$item['article']}},{{$item['name']}},1,{{$item['price']}}"
-                                    v-on:click="addToOrder('{{$item['link']}}')"
+                                    id="preorder{{$item['id']}}"
+                                    data-order="{{$item['id']}},{{$item['article']}},{{$item['name']}},1,{{$item['salePrices'][0]['value']}}"
+                                    v-on:click="addToOrder('{{$item['id']}}')"
                                 >
                                     <x-button 
                                         type="button"
@@ -203,7 +203,7 @@
                                 @else
                                     <div 
                                         id="card{{$loop->iteration}}" 
-                                        data-card="{{$item['link']}},{{$item['article']}},{{$item['name']}},1,{{$item['price']}},{{$item['price']}}" 
+                                        data-card="{{$item['id']}},{{$item['article']}},{{$item['name']}},1,{{$item['salePrices'][0]['value']}},{{$item['salePrices'][0]['value']}}" 
                                         v-on:click="addToCard({{$loop->iteration}})"
                                     >
                                         <x-button 
@@ -221,7 +221,7 @@
             </div>
             @endforeach
         </div>
-        <pre><?php //var_dump(session('search'));?></pre>
+        {{-- <pre><?php //var_dump(session('search'));?></pre> --}}
     @endif
 
 

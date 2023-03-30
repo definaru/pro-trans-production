@@ -33,19 +33,43 @@
         </div>
         <div class="d-flex gap-2">
             <div class="btn">
-                @php echo number_format(($item['salePrices'][0]['value']) / 100, 2, '.', ' ') @endphp ₽
+                {!! $currency::summa($item['salePrices'][0]['value']) !!}
             </div> 
-            <div 
-                id="card{{$loop->iteration}}" 
-                data-card="{{$item['id']}},{{$item['code']}},{{$item['name']}},1,{{$item['salePrices'][0]['value']}},{{$item['salePrices'][0]['value']}}" 
-                v-on:click="addToCard({{$loop->iteration}})"
-            >
-                <x-button 
-                    type="submit" 
-                    icon="add_shopping_cart" 
-                    color="dark" 
-                    text="В корзину" 
-                />
+            <div class="btn">
+                @if ($item['quantity'] == 0)
+                    <x-badge color="danger" text="Нет в наличии" /> 
+                @else
+                    <x-badge color="34617" text="В наличии {{$item['quantity']}}" />  
+                @endif 
+            </div>
+            <div>
+                @if ($item['quantity'] == 0)
+                <div
+                    id="preorder{{$item['id']}}"
+                    data-order="{{$item['id']}},{{$item['article']}},{{$item['name']}},1,{{$item['salePrices'][0]['value']}}"
+                    v-on:click="addToOrder('{{$item['id']}}')"
+                >
+                    <x-button 
+                        type="button"
+                        icon="add_shopping_cart" 
+                        color="secondary" 
+                        text="В корзину" 
+                    />             
+                </div>
+                @else
+                    <div 
+                        id="card{{$loop->iteration}}" 
+                        data-card="{{$item['id']}},{{$item['article']}},{{$item['name']}},1,{{$item['salePrices'][0]['value']}},{{$item['salePrices'][0]['value']}}" 
+                        v-on:click="addToCard({{$loop->iteration}})"
+                    >
+                        <x-button 
+                            type="button" 
+                            icon="add_shopping_cart" 
+                            color="dark" 
+                            text="В корзину"
+                        />
+                    </div>
+                @endif 
             </div>
         </div>
     </div>

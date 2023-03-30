@@ -7,7 +7,8 @@ new Vue({
         cookie: true,
         amount: 0,
         totalsumma: 0,
-        button: '<span class="material-symbols-outlined">check</span> Подтвердить и Оформить'
+        button: '<span class="material-symbols-outlined">check</span> Подтвердить и Оформить',
+        count: 1
     },
     computed: {
         totalSum: function () {
@@ -75,6 +76,19 @@ new Vue({
                 currencyDisplay: "symbol",
             }).format(num);
             return result
+        },
+        inCrementOne()
+        {
+            this.count++
+        },
+        deCrementOne()
+        {
+            this.count--
+        },
+        resultSumma(sum, count)
+        {
+            var summa = Number.parseInt((sum * 100) / 100).toFixed(2)*Number(count)
+            return this.priceFormat(summa)
         },
         inCrement(id) {
             var item = this.card.find(item => item.id === id);

@@ -29,7 +29,6 @@
                             <p>Адрес доставки не указан.</p>
                         @else
                             <p><strong>Адрес доставки:</strong> {{session('data')['actualAddress']}}</p>
-                            <p>Вы можете связаться с нашим менеджером: +7 (901) 733-18-66</p>
                         @endif 
                         <?php /*
                         <p>На ваш e-mail: <u>{{session('data')['email']}}</u> пришёл 4-х значный код подтверждения.</p>
@@ -42,7 +41,14 @@
                         @endif                                           
                         */ ?>
                     @endif
+                @else
+                <p><span class="text badge text-bg-success">Ваш заказ принят.</span></p>
                 @endif
+                <p class="text">
+                    Вы можете связаться с нашим менеджером: 
+                    <br />
+                    <a href="tel:+79017331866" class="text-decoration-none fw-bold text text-dark">+7 (901) 733-18-66</a>
+                </p>
                 @{{newOrder}}
             </div>
         </div>

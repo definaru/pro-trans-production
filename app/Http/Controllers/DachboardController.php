@@ -71,7 +71,9 @@ class DachboardController extends Controller
         $request->validate([
             'text' => 'required'
         ]);
-        $search = MoySklad::searchByProduct('article', $request->text);
+        //$search = MoySklad::searchByProduct('article', $request->text);
+        $url = Steames::getListResult($request->text);
+        $search = MoySklad::searchOfResult($url);
         return view('dashboard.result.search', ['search' => $search, 'text' => $request->text]);
     }
 
@@ -81,11 +83,22 @@ class DachboardController extends Controller
             'type' => 'nullable',
             'text' => 'required',
         ]);
+        $url = Steames::getListResult($request->text);
+        $search = MoySklad::searchOfResult($url);
         $text = $request->input('text');
-        $res = Steames::getListResult($text);
-        //MoySklad::searchByProduct($request->type, $request->text);
-        $search = Goods::whereIn('link', $res)->get();
+        //return response()->json($search);
         return redirect()->route('dashboard')->with(['search' => $search, 'text' => $text]);
+
+
+        // $request->validate([
+        //     'type' => 'nullable',
+        //     'text' => 'required',
+        // ]);
+        // $text = $request->input('text');
+        // $res = Steames::getListResult($text);
+        // //MoySklad::searchByProduct($request->type, $request->text);
+        // $search = Goods::whereIn('link', $res)->get();
+        // return redirect()->route('dashboard')->with(['search' => $search, 'text' => $text]);
     }
 
     public function Settings()

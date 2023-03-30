@@ -9,7 +9,7 @@
             'value' => 'name'
         ]
     ];
-    $size = session('search') ? count(session('search')) : ''; // session('search')['meta']['size']
+    $size = session('search') ? session('search')['meta']['size'] : '';
 ?>
 
 
@@ -182,23 +182,23 @@ unset($__errorArgs, $__bag); ?>
         </p>        
         <?php endif; ?>
         <div class="row">
-            <?php $__currentLoopData = session('search'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php $__currentLoopData = session('search')['rows']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="col-12 mb-3" :class="[!isOpen ? 'col-lg-3' : 'col-lg-4']">
                 <div class="card card-data border-0 shadow">
-                    <a href="/dashboard/product/details/<?php echo e($item['link']); ?>" class="card-body pb-0 position-relative">
+                    <a href="/dashboard/product/details/<?php echo e($item['id']); ?>" class="card-body pb-0 position-relative">
                         <div class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2">
                             <span class="material-symbols-outlined fs-6 text-danger">favorite</span>
                             <small><?php echo e(rand(4, 5)); ?>.0 рейтинг</small>
                         </div>
                         <img 
-                            src="<?=$item['image'] !== '' ? '../../.'.$item['image'] : '/img/placeholder.png';?>" 
+                            src="<?php echo e($images::src($item['id'])); ?>" 
                             class="card-img-top rounded" 
                             alt="<?php echo e($item['name']); ?>" 
                         />
                     </a>
                     <div class="card-body">
                         <h5 class="card-title fs-5 mb-3" style="height: 48px">
-                            <a href="/dashboard/product/details/<?php echo e($item['link']); ?>" class="text-dark fw-bold text-decoration-none">
+                            <a href="/dashboard/product/details/<?php echo e($item['id']); ?>" class="text-dark fw-bold text-decoration-none">
                                 <?php
                                     $str = str_replace(
                                         mb_strtolower(session('text')), 
@@ -240,7 +240,7 @@ unset($__errorArgs, $__bag); ?>
 <?php endif; ?>  
                                 <?php endif; ?>                                          
                             </div>
-                            <h5><?php echo $currency::summa($item['price']); ?></h5> 
+                            <h5><?php echo $currency::summa($item['salePrices'][0]['value']); ?></h5> 
                         </div>
                         <hr style="color: #ddd" />
                         <div class="d-flex align-items-center justify-content-between">
@@ -262,9 +262,9 @@ unset($__errorArgs, $__bag); ?>
                             <div>
                                 <?php if($item['quantity'] == 0): ?>
                                 <div
-                                    id="preorder<?php echo e($item['link']); ?>"
-                                    data-order="<?php echo e($item['link']); ?>,<?php echo e($item['article']); ?>,<?php echo e($item['name']); ?>,1,<?php echo e($item['price']); ?>"
-                                    v-on:click="addToOrder('<?php echo e($item['link']); ?>')"
+                                    id="preorder<?php echo e($item['id']); ?>"
+                                    data-order="<?php echo e($item['id']); ?>,<?php echo e($item['article']); ?>,<?php echo e($item['name']); ?>,1,<?php echo e($item['salePrices'][0]['value']); ?>"
+                                    v-on:click="addToOrder('<?php echo e($item['id']); ?>')"
                                 >
                                     <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'button','icon' => 'add_shopping_cart','color' => 'secondary','text' => '']); ?>
@@ -282,7 +282,7 @@ unset($__errorArgs, $__bag); ?>
                                 <?php else: ?>
                                     <div 
                                         id="card<?php echo e($loop->iteration); ?>" 
-                                        data-card="<?php echo e($item['link']); ?>,<?php echo e($item['article']); ?>,<?php echo e($item['name']); ?>,1,<?php echo e($item['price']); ?>,<?php echo e($item['price']); ?>" 
+                                        data-card="<?php echo e($item['id']); ?>,<?php echo e($item['article']); ?>,<?php echo e($item['name']); ?>,1,<?php echo e($item['salePrices'][0]['value']); ?>,<?php echo e($item['salePrices'][0]['value']); ?>" 
                                         v-on:click="addToCard(<?php echo e($loop->iteration); ?>)"
                                     >
                                         <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
@@ -306,7 +306,7 @@ unset($__errorArgs, $__bag); ?>
             </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
-        <pre><?php //var_dump(session('search'));?></pre>
+        
     <?php endif; ?>
 
 
