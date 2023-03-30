@@ -96,8 +96,5 @@
     </form>    
 </div>
 
-
-
-
 <pre>@{{ moysklad.length ? JSON.stringify(moysklad, null, 4) : '' }}</pre>
 @endsection

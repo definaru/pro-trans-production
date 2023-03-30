@@ -36,8 +36,8 @@ class VerifyEmail extends Mailable
             ->subject('Вы оформили заказ')
             ->view('mail.verify')
             ->with([
-                'id' => $this->order->id,
-                'name' => $this->order->name
+                'id' => $this->order['id'],
+                'name' => $this->order['name']
             ]);
     }
 }

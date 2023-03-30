@@ -51,7 +51,11 @@ class OrderController extends Controller
 
     public function Order($uuid = '')
     {
-        return view('order', ['uuid' => $uuid]);
+        if($uuid) {
+            $order = MoySklad::newOrderView($uuid);
+            return view('order', compact('order'));            
+        }
+        return view('order');
     }
     
 }

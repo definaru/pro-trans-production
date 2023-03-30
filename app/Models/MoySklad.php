@@ -39,6 +39,14 @@ class MoySklad
     }
 
 
+    public static function newOrderView($id)
+    {
+        $url = self::msUrl().'customerorder/'.$id.'?expand=state,agent,positions,positions.assortment';
+        $response = self::get($url);
+        return $response->json();
+    }
+
+
     public static function viewOnePreOrder($id)
     {
         $url = self::msUrl().'internalorder/'.$id.'?expand=state,positions,positions.assortment';

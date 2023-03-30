@@ -1,13 +1,8 @@
-@extends('layout/index', [
-    'title' => 'Информация по заказу',
-    'keywords' => 'корзина, service, компания, автосервис, мерседес бенц, актрос',
-    'description' => 'Информация для покупателя.',
-    'image' => 'https://prospekt-parts.com/img/5464765787695.jpg'
-])
 
-@section('title', 'Информация по заказу')
 
-@section('content')
+<?php $__env->startSection('title', 'Информация по заказу'); ?>
+
+<?php $__env->startSection('content'); ?>
 <div class="w-100 bg-primary" style="height: 170px">
     <div class="d-flex align-items-center justify-content-center h-100" style="background-color: #00000059">
         <h2 class="text-white pt-5 mb-0 mt-1">Информация по заказу</h2>
@@ -17,17 +12,18 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                @if(session('error'))
-                    <strong class="text-danger">{{session('error')}}</strong>
-                @endif
+                <?php if(session('error')): ?>
+                    <strong class="text-danger"><?php echo e(session('error')); ?></strong>
+                <?php endif; ?>
 
-                @if(isset($order['errors']))
-                @else
-                <h4>Ваш заказ №{{$order['name']}}</h4>
+                <?php if(isset($order['errors'])): ?>
+                <?php else: ?>
+                <h4>Ваш заказ №<?php echo e($order['name']); ?></h4>
                 <p>Дата создания заказа: 
                     <i class="text-muted d-flex align-items-center gap-1">
                         <span class="material-symbols-outlined fs-5">calendar_month</span>
-                        {{$timer::datatime($order['moment'])}}
+                        <?php echo e($timer::datatime($order['moment'])); ?>
+
                     </i>                    
                 </p>
                 <div class="table-responsive">
@@ -41,41 +37,42 @@
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
-                            @foreach ($order['positions']['rows'] as $item)
+                            <?php $__currentLoopData = $order['positions']['rows']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr class="bg-white">
-                                    <th scope="row">{{$loop->iteration}}.</th>
+                                    <th scope="row"><?php echo e($loop->iteration); ?>.</th>
                                     <td>
-                                        <strong>{{$item['assortment']['article']}}</strong>&#160;
-                                        {{$item['assortment']['name']}}
+                                        <strong><?php echo e($item['assortment']['article']); ?></strong>&#160;
+                                        <?php echo e($item['assortment']['name']); ?>
+
                                     </td>
-                                    <td class="text-end"><span>{{$item['quantity']}} шт.</span></td>
-                                    <td class="text-end">{!!$currency::summa($item['price'])!!}</td>
+                                    <td class="text-end"><span><?php echo e($item['quantity']); ?> шт.</span></td>
+                                    <td class="text-end"><?php echo $currency::summa($item['price']); ?></td>
                                 </tr>
-                            @endforeach  
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>  
                             <tr class="border-0">
                                 <td class="border-0" colspan="2"></td>
                                 <td class="border-0 fw-bold text-end">НДС:</td>
-                                <td class="border-0 text-end">{!!$currency::summa($order['vatSum'])!!}</td>
+                                <td class="border-0 text-end"><?php echo $currency::summa($order['vatSum']); ?></td>
                             </tr>                          
                             <tr class="border-0">
                                 <td class="border-0" colspan="2"></td>
                                 <td class="border-0 fw-bold text-end">ИТОГО:</td>
-                                <td class="border-0 text-end">{!!$currency::summa($order['sum'])!!}</td>
+                                <td class="border-0 text-end"><?php echo $currency::summa($order['sum']); ?></td>
                             </tr>                          
                         </tbody>
                     </table>                    
                 </div>
-                @endif
+                <?php endif; ?>
 
-                @if(session('data'))
-                    <h2 class="text text-dark fw-bold">Здравствуйте, {{session('data')['name']}}</h2>
-                    @if(session('order'))
-                        <h4 id="neworder">Ваш заказ №{{session('order')}}</h4>
-                        @if (session('data')['actualAddress'] === '...')
+                <?php if(session('data')): ?>
+                    <h2 class="text text-dark fw-bold">Здравствуйте, <?php echo e(session('data')['name']); ?></h2>
+                    <?php if(session('order')): ?>
+                        <h4 id="neworder">Ваш заказ №<?php echo e(session('order')); ?></h4>
+                        <?php if(session('data')['actualAddress'] === '...'): ?>
                             <p>Адрес доставки не указан.</p>
-                        @else
-                            <p><strong>Адрес доставки:</strong> {{session('data')['actualAddress']}}</p>
-                        @endif 
+                        <?php else: ?>
+                            <p><strong>Адрес доставки:</strong> <?php echo e(session('data')['actualAddress']); ?></p>
+                        <?php endif; ?> 
                         <?php /*
                         <p>На ваш e-mail: <u>{{session('data')['email']}}</u> пришёл 4-х значный код подтверждения.</p>
                         <div>
@@ -86,14 +83,14 @@
                             <p><a href="/order/{{session('id')}}" target="_blank" rel="noopener noreferrer">Детали заказа</a></p>
                         @endif                                           
                         */ ?>
-                    @endif
-                @endif
+                    <?php endif; ?>
+                <?php endif; ?>
 
-                @if(isset($order['errors']))
+                <?php if(isset($order['errors'])): ?>
                     <p class="text badge text-bg-danger">Заказ удалён или не существует</p> 
-                @else
+                <?php else: ?>
                     <p><span class="text badge text-bg-success">Ваш заказ принят.</span></p>
-                @endif                
+                <?php endif; ?>                
                 <p class="text">
                     Вы можете связаться с нашим менеджером: 
                     <br />
@@ -103,4 +100,10 @@
         </div>
     </div>
 </section>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout/index', [
+    'title' => 'Информация по заказу',
+    'keywords' => 'корзина, service, компания, автосервис, мерседес бенц, актрос',
+    'description' => 'Информация для покупателя.',
+    'image' => 'https://prospekt-parts.com/img/5464765787695.jpg'
+], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/order.blade.php ENDPATH**/ ?>
