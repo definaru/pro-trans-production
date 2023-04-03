@@ -21,15 +21,19 @@
                     <strong class="text-danger">{{session('error')}}</strong>
                 @endif
 
-                @if(isset($order['errors']))
-                @else
+                @if(isset($order['name']))
                 <h4 class="fw-bold text">Ваш заказ №{{$order['name']}}</h4>
-                <p class="d-flex align-items-center gap-1">Дата создания заказа: 
-                    <i class="text-muted d-flex align-items-center gap-1">
-                        <span class="material-symbols-outlined fs-5">calendar_month</span>
-                        {{$timer::datatime($order['moment'])}}
-                    </i>                    
-                </p>
+                
+                <div class="d-flex align-items-center justify-content-between">
+                    <p class="d-flex align-items-center gap-1">Дата создания заказа: 
+                        <i class="text-muted d-flex align-items-center gap-1">
+                            <span class="material-symbols-outlined fs-5">calendar_month</span>
+                            {{$timer::datatime($order['moment'])}}
+                        </i>                    
+                    </p>
+                    <x-badge color="{{$order['state']['color']}}" text="{{$order['state']['name']}}" />                    
+                </div>
+
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered mt-4">
                         <thead>
@@ -99,6 +103,7 @@
                     <br />
                     <a href="tel:+79017331866" class="text-decoration-none fw-bold text text-dark">+7 (901) 733-18-66</a>
                 </p>
+                @{{newOrder}}
             </div>
         </div>
     </div>

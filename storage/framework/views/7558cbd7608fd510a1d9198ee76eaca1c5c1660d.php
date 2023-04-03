@@ -1,13 +1,8 @@
-@extends('layout/index', [
-    'title' => 'О Компании | Проспект Транс',
-    'keywords' => 'сервис, service, компания, автосервис, мерседес бенц, актрос',
-    'description' => 'Информация о компании.',
-    'image' => 'https://prospekt-parts.com/img/5464765787695.jpg'
-])
 
-@section('title', 'О Компании')
 
-@section('content')
+<?php $__env->startSection('title', 'О Компании'); ?>
+
+<?php $__env->startSection('content'); ?>
 <div class="w-100" style="background-image: url(/img/stacey-gabrielle-koenitz-rozells.jpg);background-position: 0px -1005px;background-attachment: fixed;background-size: cover;height: 250px;text-shadow: 1px 2px 3px #000">
     <div class="d-flex align-items-center justify-content-center h-100" style="background-color: rgb(0 0 0 / 62%)">
         <h2 class="text-white pt-5 mb-0">О Компании</h2>
@@ -169,4 +164,10 @@
     </div>
 </section>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout/index', [
+    'title' => 'О Компании | Проспект Транс',
+    'keywords' => 'сервис, service, компания, автосервис, мерседес бенц, актрос',
+    'description' => 'Информация о компании.',
+    'image' => 'https://prospekt-parts.com/img/5464765787695.jpg'
+], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/about.blade.php ENDPATH**/ ?>

@@ -119,6 +119,10 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-12 mt-4">
+                    <?php echo $images::text($id)['description']; ?>
+
+                </div>
             </div>
         </div>
     </section>

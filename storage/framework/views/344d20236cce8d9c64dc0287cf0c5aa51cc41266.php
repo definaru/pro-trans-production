@@ -16,16 +16,31 @@
                     <strong class="text-danger"><?php echo e(session('error')); ?></strong>
                 <?php endif; ?>
 
-                <?php if(isset($order['errors'])): ?>
-                <?php else: ?>
+                <?php if(isset($order['name'])): ?>
                 <h4 class="fw-bold text">Ваш заказ №<?php echo e($order['name']); ?></h4>
-                <p class="d-flex align-items-center gap-1">Дата создания заказа: 
-                    <i class="text-muted d-flex align-items-center gap-1">
-                        <span class="material-symbols-outlined fs-5">calendar_month</span>
-                        <?php echo e($timer::datatime($order['moment'])); ?>
+                
+                <div class="d-flex align-items-center justify-content-between">
+                    <p class="d-flex align-items-center gap-1">Дата создания заказа: 
+                        <i class="text-muted d-flex align-items-center gap-1">
+                            <span class="material-symbols-outlined fs-5">calendar_month</span>
+                            <?php echo e($timer::datatime($order['moment'])); ?>
 
-                    </i>                    
-                </p>
+                        </i>                    
+                    </p>
+                    <?php if (isset($component)) { $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\Badge::class, ['color' => ''.e($order['state']['color']).'','text' => ''.e($order['state']['name']).'']); ?>
+<?php $component->withName('badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94)): ?>
+<?php $component = $__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94; ?>
+<?php unset($__componentOriginalda0d8d2653810dacd9bb554e8a3387b55f861c94); ?>
+<?php endif; ?>                    
+                </div>
+
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered mt-4">
                         <thead>
@@ -96,6 +111,7 @@
                     <br />
                     <a href="tel:+79017331866" class="text-decoration-none fw-bold text text-dark">+7 (901) 733-18-66</a>
                 </p>
+                {{newOrder}}
             </div>
         </div>
     </div>

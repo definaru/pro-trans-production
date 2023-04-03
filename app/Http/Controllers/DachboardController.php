@@ -88,17 +88,6 @@ class DachboardController extends Controller
         $text = $request->input('text');
         //return response()->json($search);
         return redirect()->route('dashboard')->with(['search' => $search, 'text' => $text]);
-
-
-        // $request->validate([
-        //     'type' => 'nullable',
-        //     'text' => 'required',
-        // ]);
-        // $text = $request->input('text');
-        // $res = Steames::getListResult($text);
-        // //MoySklad::searchByProduct($request->type, $request->text);
-        // $search = Goods::whereIn('link', $res)->get();
-        // return redirect()->route('dashboard')->with(['search' => $search, 'text' => $text]);
     }
 
     public function Settings()
@@ -326,6 +315,17 @@ class DachboardController extends Controller
         $uuid = auth()->user()->verified;
         Telegram::getMessageTelegram($request->reports, $request->message, $uuid, 'manager');
         return redirect()->route('order')->with(['status' => $message]);
+    }
+
+    public function Description(Request $request)
+    {
+        $request->validate([
+            'uuid' => 'required',
+            'description' => 'required'
+        ]);
+        $uuid = $request->input('uuid');
+        Goods::updateOrCreate(['link' => $uuid], ['description' => $request->description]);
+        return redirect('/dashboard/product/details/'.$uuid)->with(['text' => 'Описание обновлено']);
     }
 
 

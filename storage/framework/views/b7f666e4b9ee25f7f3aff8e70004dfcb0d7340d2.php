@@ -54,12 +54,21 @@
     </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script>
     <script src="<?php echo e(asset('js/bootstrap.bundle.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/vue.js')); ?>"></script>
     <script src="<?php echo e(asset('js/toastr.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/jquery.slimscroll.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/defina.admin.min.js')); ?>"></script>
+
     <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                placeholder: 'Опишите товар здесь...'
+            })
+            .catch(error=>{
+                console.error(error);
+            });                                             
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
         const tooltipList = [...tooltipTriggerList].map(
             tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl)

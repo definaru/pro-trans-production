@@ -116,7 +116,8 @@ class MainController extends Controller
         $uploaddir = './img/goods/';
         $uploadfile = $uploaddir . basename($_FILES['file']['name']);
         if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
-            Goods::where('link', $uuid)->update(['image' => $uploadfile]);
+            //Goods::where('link', $uuid)->update(['image' => $uploadfile]);
+            Goods::updateOrCreate(['link' => $uuid], ['image' => $uploadfile]);
             return redirect('/dashboard/product/details/'.$uuid)->with(['text' => 'Фото товара загружено']);
         } else {
             print_r('Ошибка!');

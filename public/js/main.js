@@ -251,9 +251,6 @@ function changeTotal(value) {
 //summa.innerHTML = parseInt(summa.innerText).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 
 
-
-
-
 let modal = new bootstrap.Modal(document.querySelector('#searchForm'));
 let input = document.querySelector('input[type="search"]');
 

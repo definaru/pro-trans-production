@@ -62,7 +62,7 @@
                 <div class="col-md-3">
                     @role('customer')
                         <img 
-                            src="<?=isset($image[0]['image']) ? trim($image[0]['image'], '.') : '/img/placeholder.png';?>" 
+                            src="{{$images::text($id)['image']}}"
                             alt="{{$product['name']}}" 
                             class="w-100 rounded" 
                         /> 
@@ -88,15 +88,8 @@
                         </label>
                     </form>
                     @endrole
-                    <div class="text-center py-3">
-                        @if($product['barcodes'] === 'Нет данных')
-                        @else
-                        {!! DNS1D::getBarcodeSVG($product['barcodes'], 'EAN13', 1.7,60) !!}
-                        @endif
-                    </div>
                 </div>
-                <div class="col-md-9">
-
+                <div class="col-md-6">
                     <p class="mb-1">
                         <b>Артикул:</b>
                         {{$product['article']}}
@@ -147,28 +140,56 @@
                         </div>
                         @endif
                     </p>
-                    <div class="d-grid w-25">
-                    @if($product['quantity'] == 0 || $product['quantity'] < 0)
-                        <div  
-                            id="preorders1"
-                            data-order="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,{{$product['salePrices']}}"
-                            v-on:click="addToOrder('s1')"
-                        >
-                            <x-button type="button" color="secondary" text="Предзаказ" icon="shopping_cart" />
+                    <div class="d-flex">
+                        <div>
+                            @if($product['quantity'] == 0 || $product['quantity'] < 0)
+                                <div  
+                                    id="preorders1"
+                                    data-order="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,{{$product['salePrices']}}"
+                                    v-on:click="addToOrder('s1')"
+                                >
+                                    <x-button type="button" color="secondary" text="Предзаказ" icon="shopping_cart" />
+                                </div>
+                            @else
+                                <div 
+                                    id="cards1" 
+                                    class="d-flex flex-column"
+                                    data-card="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,{{$product['salePrices']}},{{$product['salePrices']}}" 
+                                    v-on:click="addToCard('s1')"
+                                >
+                                    <x-button type="button" color="dark" text="В корзину" icon="shopping_cart" />
+                                </div>
+                            @endif                             
                         </div>
-                    @else
-                        <div 
-                            id="cards1" 
-                            class="d-flex flex-column"
-                            data-card="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,{{$product['salePrices']}},{{$product['salePrices']}}" 
-                            v-on:click="addToCard('s1')"
-                        >
-                            <x-button type="button" color="dark" text="В корзину" icon="shopping_cart" />
-                        </div>
-                    @endif                        
                     </div>
                 </div>
-            </div>            
+                @role('admin')
+                <div class="col-md-3">
+                    <div class="text-center py-3">
+                        @if($product['barcodes'] === 'Нет данных')
+                        @else
+                        {!! DNS1D::getBarcodeSVG($product['barcodes'], 'EAN13', 1.7,60) !!}
+                        @endif
+                    </div>
+                </div>
+                @endrole
+            </div>  
+            @role('admin') 
+            <div class="row">
+                <div class="col-12 mt-4">
+                    <textarea id="editor" name="description" >
+                        {{$images::text($id)['description']}}
+                    </textarea>
+                    <button 
+                        type="submit" 
+                        v-on:click="editText('{{$id}}')" 
+                        class="btn px-4 mt-2"
+                        :class="[loading ? 'btn-secondary' : 'btn-dark']"
+                        v-html="loading ? 'Сохранить' : 'Подождите, грузится...'"
+                    ></button>
+                </div>
+            </div> 
+            @endrole        
         </div>
     </div>
     @endif

@@ -70,6 +70,7 @@ Route::prefix('api')->group(function () {
     Route::post('precheckout', [DachboardController::class, 'preCheckout']);
     Route::post('counterparty', [DachboardController::class, 'addedCounterAgent']);
     Route::post('manager', [DachboardController::class, 'Manager']);
+    Route::post('description', [DachboardController::class, 'Description']);
 });
 
 Route::controller(PasswordController::class)->group(function () {

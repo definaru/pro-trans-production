@@ -96,7 +96,7 @@
                 <div class="col-md-3">
                     <?php if(auth()->check() && auth()->user()->hasRole('customer')): ?>
                         <img 
-                            src="<?=isset($image[0]['image']) ? trim($image[0]['image'], '.') : '/img/placeholder.png';?>" 
+                            src="<?php echo e($images::text($id)['image']); ?>"
                             alt="<?php echo e($product['name']); ?>" 
                             class="w-100 rounded" 
                         /> 
@@ -122,16 +122,8 @@
                         </label>
                     </form>
                     <?php endif; ?>
-                    <div class="text-center py-3">
-                        <?php if($product['barcodes'] === 'Нет данных'): ?>
-                        <?php else: ?>
-                        <?php echo DNS1D::getBarcodeSVG($product['barcodes'], 'EAN13', 1.7,60); ?>
-
-                        <?php endif; ?>
-                    </div>
                 </div>
-                <div class="col-md-9">
-
+                <div class="col-md-6">
                     <p class="mb-1">
                         <b>Артикул:</b>
                         <?php echo e($product['article']); ?>
@@ -186,14 +178,15 @@
                         </div>
                         <?php endif; ?>
                     </p>
-                    <div class="d-grid w-25">
-                    <?php if($product['quantity'] == 0 || $product['quantity'] < 0): ?>
-                        <div  
-                            id="preorders1"
-                            data-order="<?php echo e($product['id']); ?>,<?php echo e($product['article']); ?>,<?php echo e($product['name']); ?>,1,<?php echo e($product['salePrices']); ?>"
-                            v-on:click="addToOrder('s1')"
-                        >
-                            <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+                    <div class="d-flex">
+                        <div>
+                            <?php if($product['quantity'] == 0 || $product['quantity'] < 0): ?>
+                                <div  
+                                    id="preorders1"
+                                    data-order="<?php echo e($product['id']); ?>,<?php echo e($product['article']); ?>,<?php echo e($product['name']); ?>,1,<?php echo e($product['salePrices']); ?>"
+                                    v-on:click="addToOrder('s1')"
+                                >
+                                    <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'button','color' => 'secondary','text' => 'Предзаказ','icon' => 'shopping_cart']); ?>
 <?php $component->withName('button'); ?>
 <?php if ($component->shouldRender()): ?>
@@ -205,15 +198,15 @@
 <?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
 <?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
 <?php endif; ?>
-                        </div>
-                    <?php else: ?>
-                        <div 
-                            id="cards1" 
-                            class="d-flex flex-column"
-                            data-card="<?php echo e($product['id']); ?>,<?php echo e($product['article']); ?>,<?php echo e($product['name']); ?>,1,<?php echo e($product['salePrices']); ?>,<?php echo e($product['salePrices']); ?>" 
-                            v-on:click="addToCard('s1')"
-                        >
-                            <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
+                                </div>
+                            <?php else: ?>
+                                <div 
+                                    id="cards1" 
+                                    class="d-flex flex-column"
+                                    data-card="<?php echo e($product['id']); ?>,<?php echo e($product['article']); ?>,<?php echo e($product['name']); ?>,1,<?php echo e($product['salePrices']); ?>,<?php echo e($product['salePrices']); ?>" 
+                                    v-on:click="addToCard('s1')"
+                                >
+                                    <?php if (isset($component)) { $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940 = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\Button::class, ['type' => 'button','color' => 'dark','text' => 'В корзину','icon' => 'shopping_cart']); ?>
 <?php $component->withName('button'); ?>
 <?php if ($component->shouldRender()): ?>
@@ -225,11 +218,40 @@
 <?php $component = $__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940; ?>
 <?php unset($__componentOriginal065ae5da12ba8e75c6b4e84d90798c2fb812b940); ?>
 <?php endif; ?>
+                                </div>
+                            <?php endif; ?>                             
                         </div>
-                    <?php endif; ?>                        
                     </div>
                 </div>
-            </div>            
+                <?php if(auth()->check() && auth()->user()->hasRole('admin')): ?>
+                <div class="col-md-3">
+                    <div class="text-center py-3">
+                        <?php if($product['barcodes'] === 'Нет данных'): ?>
+                        <?php else: ?>
+                        <?php echo DNS1D::getBarcodeSVG($product['barcodes'], 'EAN13', 1.7,60); ?>
+
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <?php endif; ?>
+            </div>  
+            <?php if(auth()->check() && auth()->user()->hasRole('admin')): ?> 
+            <div class="row">
+                <div class="col-12 mt-4">
+                    <textarea id="editor" name="description" >
+                        <?php echo e($images::text($id)['description']); ?>
+
+                    </textarea>
+                    <button 
+                        type="submit" 
+                        v-on:click="editText('<?php echo e($id); ?>')" 
+                        class="btn px-4 mt-2"
+                        :class="[loading ? 'btn-secondary' : 'btn-dark']"
+                        v-html="loading ? 'Сохранить' : 'Подождите, грузится...'"
+                    ></button>
+                </div>
+            </div> 
+            <?php endif; ?>        
         </div>
     </div>
     <?php endif; ?>
