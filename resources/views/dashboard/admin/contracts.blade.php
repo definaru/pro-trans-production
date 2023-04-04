@@ -17,9 +17,9 @@
                                     href="javascript: void(0);" 
                                     data-sort="name" 
                                     class="d-block text-muted text-decoration-none" 
-                                    style="width: 210px;"
+                                    style="width: 120px;"
                                 >
-                                    Ф.И.О. Контрагента &#160;<span class="list-sort"></span>
+                                    № Договора &#160;<span class="list-sort"></span>
                                 </a>
                             </th>
                             <th>
@@ -59,7 +59,7 @@
                                     class="d-block text-muted text-decoration-none" 
                                     style="width: 127px"
                                 >
-                                    Дата договора &#160;<span class="list-sort"></span>
+                                    Дата заключения договора &#160;<span class="list-sort"></span>
                                 </a>
                             </th>
                             <th>
@@ -75,36 +75,41 @@
                         </tr>
                     </thead>
                     <tbody class="list" style="font-size: 14px">
-                        @foreach ($model as $item)
+                        @foreach ($model['rows'] as $item)
                         <tr>
                             <td>
                                 <div class="ms-2">{{$loop->iteration}}</div>
                             </td>
                             <td>
-                                <a href="../admin/contract/{{$item['uuid']}}" class="text-dark">{{$item['name']}}</a>
+                                <a href="../admin/contract/{{$item['id']}}" class="text-dark">{{$item['name']}}</a>
                             </td>
                             <td>
-                                <div>{{$item['inn']}}</div>
+                                <div>{{$item['agent']['inn']}}</div>
                             </td>
                             <td>
-                                <strong>{{$item['company']}}</strong>
+                                <strong>{{$item['agent']['name']}}</strong>
                             </td>
                             <td>
-                                @if ($item['id_card'] === 'z' || $item['id_card'] === 0)
+                                <x-badge color="{{$item['state']['color']}}" text="{{$item['state']['name']}}" />
+                                {{-- if ($item['id_card'] === 'z' || $item['id_card'] === 0)
                                     <x-badge color="40931" text="На рассмотрении" />
-                                @elseif ($item['id_card'] === 2)
+                                elseif ($item['id_card'] === 2)
                                     <x-badge color="danger" text="Заблокирован" /> 
-                                @else
+                                else
                                     <x-badge color="34617" text="Активирован" />  
-                                @endif
+                                endif --}}
                             </td> 
                             <td>
                                 <small>
-                                    {{date('d/m/Y, H:i', strtotime($item['created_at']))}}
+                                    {{date('d/m/Y, H:i', strtotime($item['moment']))}}
                                 </small>
                             </td>
                             <td>
-                                {!! $contact::getPhone($item['phone'], ['text-dark', 'text-decoration-none']) !!}
+                                @if (isset($item['agent']['phone']))
+                                    {!! $contact::getPhone($item['agent']['phone'], ['text-dark', 'text-decoration-none']) !!}
+                                @else
+                                    <span class="badge bg-secondary">Не указан</span>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

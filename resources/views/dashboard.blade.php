@@ -122,7 +122,7 @@
     @enderror    
     @if(session('search'))
         @if($size === 0)
-        <p>По запросу <strong>"{{session('text')}}"</strong> ничего не найдено</p>
+            <p>По запросу <strong>"{{session('text')}}"</strong> ничего не найдено</p>
         @else
         <p>{{$decl::search($size)}} 
             @if ($size !== 1)
@@ -221,7 +221,6 @@
             </div>
             @endforeach
         </div>
-        {{-- <pre><?php //var_dump(session('search'));?></pre> --}}
     @endif
 
 
@@ -229,6 +228,7 @@
 
 
     @role('admin')
+        <hr />
         <strong>Admin-Панель</strong> 
         <div class="row">
             <div class="col-12 col-lg-4">

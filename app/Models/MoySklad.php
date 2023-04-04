@@ -230,6 +230,22 @@ class MoySklad
         return $response->json();
     }
 
+    
+    public static function searchByArticle($text)
+    {
+        $url = self::msUrl().'product?filter=article~'.$text;
+        $response = self::get($url);
+        return $response->json();
+    }
+
+
+    public static function getAllContract($limit = 100)
+    {
+        $url = self::msUrl().'contract?expand=state,agent&limit='.$limit;
+        $response = self::get($url);
+        return $response->json();
+    } 
+
 
     public static function searchOfResult($url)
     {
@@ -413,12 +429,36 @@ class MoySklad
         return $array;
     }
 
+
+    public static function getMenuCatalog()
+    {
+        $url = self::msUrl().'productfolder';
+        $response = self::get($url);
+        if(count($response->json()) === 0) {
+            return $array = [
+                'name' => 'Запасные части MERCEDES-BENZ',
+                'href' => 'catalog/category/8854033a-48ad-11ed-0a80-0c87007f4175/10/0',
+            ];
+        } else {
+            $array = [];
+            foreach($response->json()['rows'] as $menu) {
+                $array[] = [
+                    'name' => $menu['name'],
+                    'href' => 'catalog/category/'.$menu['id'].'/10/0',
+                ];
+            }
+            return $array;            
+        }
+    }
+
+
     public static function getCategory($id)
     {
         $url = self::msUrl().'productfolder/'.$id;
         $response = self::get($url);
         return $response->json();
     }
+
 
     public static function getCompany($id)
     {

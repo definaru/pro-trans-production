@@ -69,11 +69,11 @@ class DachboardController extends Controller
     public function resultSearch(Request $request)
     {
         $request->validate([
-            'text' => 'required'
+            'text' => 'required' // поиск по артиклу
         ]);
-        //$search = MoySklad::searchByProduct('article', $request->text);
-        $url = Steames::getListResult($request->text);
+        $url = Steames::getListArticle($request->text);
         $search = MoySklad::searchOfResult($url);
+        //return response()->json($search);
         return view('dashboard.result.search', ['search' => $search, 'text' => $request->text]);
     }
 

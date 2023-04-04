@@ -17,7 +17,7 @@
         {{$product['catalog']['name']}}
     </a>     
     <span class="text-secondary">/</span>
-    <span class="text-muted">Детали {{$product['paymentItemType']}}а</span>    
+    <span class="text-muted">Информация о {{$product['paymentItemType']}}е</span>    
     @endif
 </div>
 @endsection
@@ -184,8 +184,8 @@
                         type="submit" 
                         v-on:click="editText('{{$id}}')" 
                         class="btn px-4 mt-2"
-                        :class="[loading ? 'btn-secondary' : 'btn-dark']"
-                        v-html="loading ? 'Сохранить' : 'Подождите, грузится...'"
+                        :class="[loading === true ? 'btn-secondary' : 'btn-dark']"
+                        v-html="loading === true ? 'Сохранить' : 'Подождите, грузится...'"
                     ></button>
                 </div>
             </div> 

@@ -375,6 +375,38 @@ function isError()
     })
 }
 
+
+function getReviewYandex()
+{
+    Swal.fire({
+        title: 'Отзыв о товаре',
+        html: `Для того чтобы отзывы были достоверными, 
+        мы предлагаем отставлять их в "Яндекс.Картах", нам важно ваше мнение.`,
+        icon: false,
+        //iconHtml: '<span class="material-symbols-outlined">production_quantity_limits</span>',
+        showCancelButton: true,
+        confirmButtonText: '<span class="material-symbols-outlined">edit_note</span>Написать отзыв',
+        cancelButtonText: '<span class="material-symbols-outlined">close</span>Закрыть',
+        confirmButtonColor: '#8630a3',
+        cancelButtonColor: '#111',
+        allowOutsideClick: false,
+        customClass: {
+            //icon: ['text-danger', 'border-danger'],
+            title: 'text-dark',
+            cancelButton: ['d-flex', 'align-items-center', 'gap-2'],
+            confirmButton: ['d-flex', 'align-items-center', 'gap-2'],
+            htmlContainer: 'text'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.open(
+                'https://yandex.ru/profile/8347363005?intent=reviews&utm_source=badge&utm_medium=rating&utm_campaign=v1',
+                '_blank'
+            );
+        }
+    });
+}
+
 async function isUserSubscribe()
 {
     const { value: email } = await Swal.fire({

@@ -416,20 +416,6 @@ class GetMenu
     }
 
 
-    public static function getMenuCatalog()
-    {
-        $url = MoySklad::msUrl().'productfolder';
-        $response = MoySklad::get($url);
-        $array = [];
-        foreach($response->json()['rows'] as $menu) {
-            $array[] = [
-                'name' => $menu['name'],
-                'href' => 'catalog/category/'.$menu['id'].'/10/0',
-            ];
-        }
-        return $array;
-    }
-
     public static function dataMenuStop()
     {
         return [
@@ -528,7 +514,8 @@ class GetMenu
                         'name' => 'Каталоги',
                         'slug' => 'catalog',
                         'count' => '',
-                        'list' => self::getMenuCatalog()                 
+                        //'list' => []
+                        'list' => MoySklad::getMenuCatalog()                 
                     ],
                     [
                         'icon' => 'inventory',

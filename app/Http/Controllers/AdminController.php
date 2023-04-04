@@ -64,9 +64,10 @@ class AdminController extends Controller
 
     public function Contracts()
     {
-        $model = Customer::query()
-            ->join('card', 'customer.uuid', '=', 'card.user_id')
-            ->join('contract', 'customer.uuid', '=', 'contract.uuid')->get();
+        // $model = Customer::query()
+        //     ->join('card', 'customer.uuid', '=', 'card.user_id')
+        //     ->join('contract', 'customer.uuid', '=', 'contract.uuid')->get();
+        $model = MoySklad::getAllContract(100);
         //return response()->json($model);
         return view('dashboard.admin.contracts', ['model' => $model]);
     }

@@ -17,17 +17,34 @@ class Steames
         return $array;
     }
 
+
+    public static function nullOrResult($modal, $fiter)
+    {
+        if(count($modal["rows"]) === 0) {
+            return 'https://online.moysklad.ru/api/remap/1.2/entity/assortment?filter=article~'.$fiter;
+        } else {
+            $array = [];
+            foreach($modal["rows"] as $item) {
+                $array[] = 'id='.$item['id'];
+            }
+            return 'https://online.moysklad.ru/api/remap/1.2/entity/assortment?filter='.implode(";", $array);            
+        }
+    }
+
+    
     public static function getListResult($fiter)
     {
-        // Steames::getListResult($fiter)
         $modal = MoySklad::searchByProduct('', $fiter);
-        $array = [];
-        foreach($modal["rows"] as $item) {
-            $array[] = 'id='.$item['id'];
-        }
-        // id=3292240d-5e7f-11ed-0a80-0eca004678fc;id=426d5688-5064-11ed-0a80-05bf003d0d1a
-        return 'https://online.moysklad.ru/api/remap/1.2/entity/assortment?filter='.implode(";", $array);
+        return self::nullOrResult($modal, $fiter);
     }
+
+
+    public static function getListArticle($fiter)
+    {
+        $modal = MoySklad::searchByArticle($fiter);
+        return self::nullOrResult($modal, $fiter);
+    }
+
 
     public static function getResult($fiter)
     {

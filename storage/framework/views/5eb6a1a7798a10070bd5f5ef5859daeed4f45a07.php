@@ -18,7 +18,7 @@
 
     </a>     
     <span class="text-secondary">/</span>
-    <span class="text-muted">Детали <?php echo e($product['paymentItemType']); ?>а</span>    
+    <span class="text-muted">Информация о <?php echo e($product['paymentItemType']); ?>е</span>    
     <?php endif; ?>
 </div>
 <?php $__env->stopSection(); ?>
@@ -246,8 +246,8 @@
                         type="submit" 
                         v-on:click="editText('<?php echo e($id); ?>')" 
                         class="btn px-4 mt-2"
-                        :class="[loading ? 'btn-secondary' : 'btn-dark']"
-                        v-html="loading ? 'Сохранить' : 'Подождите, грузится...'"
+                        :class="[loading === true ? 'btn-secondary' : 'btn-dark']"
+                        v-html="loading === true ? 'Сохранить' : 'Подождите, грузится...'"
                     ></button>
                 </div>
             </div> 

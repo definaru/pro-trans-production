@@ -4,7 +4,6 @@
     $url = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
     $image = $images::src($id);
     $price = number_format(($product['salePrices']) / 100, 2, '.', ' ');
-    //isset($data[0]['image']) && $data[0]['image'] !== ''  ? trim($data[0]['image'], '.') : '/img/placeholder.png';
 @endphp
 @extends('layout/index', [
     'title' => $str.' | Проспект Транс',
@@ -57,8 +56,12 @@
                         <div v-html="resultSumma('{{$product['salePrices']}}', count)" v-if="count !== 1" class="text text-success fw-bold"></div>                        
                     </div>
 
-                    
-                    <p class="fs-6 w-100 text text-secondary">Описания нет</p>
+                    @if ($images::text($id)['description'])
+                        <a href="#more" class="fs-6 w-100 text text-secondary d-block mb-3">Описание</a>
+                    @else
+                        <p class="fs-6 w-100 text text-secondary">Описания нет</p>
+                    @endif
+
                     <div class="w-100">
                         @if($product['quantity'] == 0 || $product['quantity'] < 0)
                         <p class="label-danger">
@@ -107,7 +110,7 @@
                                              
                         @endif
                     </div>
-                    <div class="d-flex justify-content-start mt-3">
+                    <div class="d-flex justify-content-start mt-3" onclick="getReviewYandex()">
                         <div class="rating-area">
                             <input type="radio" id="star-5" name="rating" value="5">
                             <label for="star-5" title="Оценка «5»"></label>	
@@ -122,8 +125,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 mt-4">
-                    {!!$images::text($id)['description']!!}
+                <div id="more" class="col-12 mt-4">
+                    <div class="mt-5 pt-5 text">
+                        {!!$images::text($id)['description']!!}
+                    </div>
                 </div>
             </div>
         </div>
