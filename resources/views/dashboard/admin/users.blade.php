@@ -2,6 +2,7 @@
 @section('title', 'Пользователи')
 
 @section('content')
+<h6 class="text-muted">Всего {{$model['meta']['size']}}</h6>
 <div class="row">
     <div class="col">
         <div class="card border-0 shadow-sm">
@@ -17,13 +18,13 @@
                                     Название компании&#160;
                                     <span class="list-sort"></span>
                                 </a>
-                            </th>                            
-                            {{-- <th>
-                                <a href="javascript: void0;" class="text-muted text-decoration-none d-block" style="width: 210px">
-                                    Ген.директор&#160;
+                            </th>
+                            <th>
+                                <a href="javascript: void0;" class="text-muted text-decoration-none d-block" style="width: 88px">
+                                    ИНН&#160;
                                     <span class="list-sort"></span>
                                 </a>
-                            </th> --}}
+                            </th>
                             <th>
                                 <a href="javascript: void();" class="text-muted text-decoration-none d-block" style="width: 200px">
                                     E-mail&#160;
@@ -42,100 +43,62 @@
                                     <span class="list-sort"></span>
                                 </a>
                             </th>
-                            <th>
-                                <a href="javascript: void0;" class="text-muted text-decoration-none d-block" style="width: 80px">
-                                    ОКВЭД&#160;
-                                    <span class="list-sort"></span>
-                                </a>
-                            </th>
-                            <th>
-                                <a href="javascript: void0;" class="text-muted text-decoration-none d-block" style="width: 88px">
-                                    ИНН&#160;
-                                    <span class="list-sort"></span>
-                                </a>
-                            </th>
-                            <th>
-                                <a href="javascript: void0;" class="text-muted text-decoration-none d-block" style="width: 85px">
-                                    КПП&#160;
-                                    <span class="list-sort"></span>
-                                </a>
-                            </th>
-                            <th>
-                                <a href="javascript: void0;" class="text-muted text-decoration-none d-block" style="width: 111px">
-                                    ОГРН&#160;
-                                    <span class="list-sort"></span>
-                                </a>
-                            </th>                            
-                            {{-- <th>
-                                <a href="javascript: void0;" class="text-muted text-decoration-none d-block" style="width: 112px">
-                                    ОГРН дата&#160;
-                                    <span class="list-sort"></span>
-                                </a>
-                            </th> --}}
-                            <th class="d-flex align-items-center gap-2 text-center border-0" style="width: 165px; height: 40px">
+                            <th class="d-flex align-items-center gap-2 text-center border-0" style="height: 40px">
                                 Опции
                                 <span class="material-symbols-outlined fs-6 text-secondary">settings</span>
                             </th>
                         </tr>
                     </thead>
                     <tbody class="list" style="font-size: 14px">
-                        @foreach ($model as $item)
+                        @foreach ($model['rows'] as $item)
                         <tr>
                             <td>
                                 <div class="ms-2">{{$loop->iteration}}</div>
                             </td> 
                             <td>
-                                <a href="/dashboard/admin/user/{{$item['uuid']}}" class="text-danger text-decoration-none fw-bold">
-                                    {{$item['company']}}
-                                </a>
-                            </td>                             
-                            {{-- <td>
-                                <div>
+                                <a href="/dashboard/admin/user/{{$item['id']}}" class="text-dark text-decoration-none fw-bold">
                                     {{$item['name']}}
-                                </div>
-                            </td>  --}}
-
-                            <td onclick="alert('E-mail письма пока отправить нельзя')">
-                                {!!$contact::getEmail($item['email'], ['text-dark'])!!}
-                            </td> 
+                                </a>
+                            </td>
                             <td>
-                                <small>
-                                    {{date('d/m/Y, H:i', strtotime($item['created_at']))}}
+                                @if (isset($item['inn']))
+                                    {{$item['inn']}}
+                                @else
+                                    <span class="badge bg-light text-muted">Нет данных</span>
+                                @endif
+                            </td> 
+                            @if (isset($item['email']))
+                                <td onclick="alert('E-mail письма пока отправить нельзя')">
+                                    {!!$contact::getEmail($item['email'], ['text-dark'])!!}
+                                </td>                                 
+                            @else
+                                <td><span class="badge bg-light text-muted">Нет данных</span></td>
+                            @endif
+                            <td>
+                                <small class="text-muted d-flex gap-1">
+                                    <span class="material-symbols-outlined fs-6">calendar_month</span>
+                                    {{date('d/m/Y, H:i', strtotime($item['created']))}}
                                 </small>
                             </td>
                             <td>
-                                @if ($item['id_card'] === 'z' || $item['id_card'] === 0)
+                                {{-- if ($item['id_card'] === 'z' || $item['id_card'] === 0)
                                     <x-badge color="40931" text="На рассмотрении" />
-                                @elseif ($item['id_card'] === 2)
+                                elseif ($item['id_card'] === 2)
                                     <x-badge color="danger" text="Заблокирован" /> 
-                                @else
+                                else
                                     <x-badge color="34617" text="Активирован" />  
-                                @endif
-                            </td> 
+                                endif --}}
+                                <x-badge color="{{$item['state']['color']}}" text="{{$item['state']['name']}}" />
+                            </td>
                             <td>
-                                <a href="/dashboard/admin/users/okved/{{$item['okved']}}">{{$item['okved']}}</a> 
-                            </td> 
-                            <td>
-                                {{$item['inn']}}
-                            </td> 
-                            <td>
-                                {{$item['kpp']}}
-                            </td> 
-                            <td>
-                                {{$item['ogrn']}}
-                            </td>                             
-                            {{-- <td>
-                                {{date('d.m.Y', $item['ogrn_date'])}} г.
-                            </td>  --}}
-                            
-                            <td>
-                                <div id="card3292240d-5e7f-11ed-0a80-0eca004678fc" data-card="3292240d-5e7f-11ed-0a80-0eca004678fc,A9061800109,Фильтр масляный,1,133006,133006">
-                                    <a href="/dashboard/admin/user/{{$item['uuid']}}" type="button" class="btn btn-dark px-4 btn-sm">
-                                        Посмотреть
-                                    </a>
+                                <div class="d-flex justify-content-end gap-1">
+                                    <a href="/dashboard/admin/user/{{$item['id']}}" class="btn btn-sm material-symbols-outlined">visibility</a>
+                                    <form action="/dashboard/agent/delete/{{$item['id']}}" method="post">
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm material-symbols-outlined text-danger">delete</button>
+                                    </form>
                                 </div>
                             </td>
-                            
                         </tr>                            
                         @endforeach
 

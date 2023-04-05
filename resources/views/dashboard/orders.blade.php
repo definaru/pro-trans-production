@@ -2,7 +2,7 @@
 @section('title', 'Заказы')
 
 @section('content')
-<h6 class="text-muted">Всего {{$decl::custom($model['count'])}}</h6>
+<h6 class="text-muted">Всего {{$decl::custom($model['meta']['size'])}}</h6>
 <div class="row">
     <div class="col">
         <div class="card border-0 shadow-sm">
@@ -21,7 +21,9 @@
                 <table class="table table-hover m-0">
                     <thead class="bg-light">
                         <tr>
-                            <th class="ps-3 text-muted" style="width: 24px;"><label>#</label></th>
+                            <th class="ps-3 text-muted">
+                                <label style="width: 24px;">#</label>
+                            </th>
                             <th class="text-muted" style="width: 70px;">
                                 <small>Заказ</small>
                             </th>
@@ -30,8 +32,16 @@
                                     Контрагент
                                 </small>
                             </th>
-                            <th class="text-muted" style="width: 124px"><small>Статус заказа</small></th>
-                            <th class="text-muted" style="width: 124px;"><small>Сумма платежа</small></th>
+                            <th class="text-muted">
+                                <small style="width: 124px">
+                                    Статус заказа
+                                </small>
+                            </th>
+                            <th class="text-muted">
+                                <small style="width: 124px;">
+                                    Сумма платежа
+                                </small>
+                            </th>
                             <th class="text-muted">
                                 <small class="d-block" style="width: 140px">
                                     Дата заказа
@@ -41,7 +51,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($model['list'] as $item)
+                        @foreach($model['rows'] as $item)
                         <tr class="align-middle">
                             <td class="ps-3" style="vertical-align: middle">{{$loop->iteration}}.</td>
                             <td>
@@ -62,14 +72,17 @@
                             </td>
                             <td>
                                 <small class="text-secondary">
-                                {{$time::parse($item['created'])->locale('ru')->translatedFormat('d F Y, H:i')}}
+                                {{$time::parse($item['moment'])->locale('ru')->translatedFormat('d F Y, H:i')}}
                                 </small>
                             </td>                            
                             <td>
                                 <div class="d-flex justify-content-end gap-1">
                                     <a href="/dashboard/payment/reports/{{$item['id']}}" class="btn btn-sm material-symbols-outlined">visibility</a>
                                     <a href="#" class="btn btn-sm material-symbols-outlined">edit_note</a>
-                                    <a href="#" class="btn btn-sm material-symbols-outlined text-danger">delete</a>
+                                    <form action="/dashboard/orders/delete/{{$item['id']}}" method="post">
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm material-symbols-outlined text-danger">delete</button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>

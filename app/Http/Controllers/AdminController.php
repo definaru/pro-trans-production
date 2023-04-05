@@ -31,11 +31,12 @@ class AdminController extends Controller
 
     public function Users()
     {
-        $model = User::query()
-            ->join('card', 'users.verified', '=', 'card.user_id')
-            ->join('customer', 'users.verified', '=', 'customer.uuid')
-            ->get(['customer.uuid', 'users.name', 'customer.company', 'users.email', 'users.created_at', 'card.id_card', 'customer.okved', 'customer.inn', 'customer.ogrn', 'customer.kpp', 'customer.ogrn_date']);
-        //Customer::all();
+        $model = MoySklad::getAllAgent();
+        // User::query()
+        //     ->join('card', 'users.verified', '=', 'card.user_id')
+        //     ->join('customer', 'users.verified', '=', 'customer.uuid')
+        //     ->get(['customer.uuid', 'users.name', 'customer.company', 'users.email', 'users.created_at', 'card.id_card', 'customer.okved', 'customer.inn', 'customer.ogrn', 'customer.kpp', 'customer.ogrn_date']);
+        
         //User::all('id','name','email','verified','created_at','updated_at')->test;
         //::select('users.id','users.name','users.email','users.verified','users.created_at','users.updated_at')
    

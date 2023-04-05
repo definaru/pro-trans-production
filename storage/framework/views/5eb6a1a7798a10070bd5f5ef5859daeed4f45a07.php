@@ -109,6 +109,7 @@
                                 <div id="successphoto" class="d-none"><?php echo e(session('text')); ?></div>
                             <?php endif; ?>
                             <img 
+                                id="isEmptyImage"
                                 src="<?=isset($image[0]['image']) ? trim($image[0]['image'], '.') : '/img/placeholder.png';?>" 
                                 alt="<?php echo e($product['name']); ?>" 
                                 class="w-100 rounded" 
@@ -246,8 +247,8 @@
                         type="submit" 
                         v-on:click="editText('<?php echo e($id); ?>')" 
                         class="btn px-4 mt-2"
-                        :class="[loading === true ? 'btn-secondary' : 'btn-dark']"
-                        v-html="loading === true ? 'Сохранить' : 'Подождите, грузится...'"
+                        :class="[loading === false ? 'btn-secondary' : 'btn-dark']"
+                        v-html="loading === false ? 'Сохранить' : 'Подождите, грузится...'"
                     ></button>
                 </div>
             </div> 

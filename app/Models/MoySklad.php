@@ -345,28 +345,9 @@ class MoySklad
 
     public static function getAllReports()
     {
-        $url = self::msUrl().'customerorder';
+        $url = self::msUrl().'customerorder?expand=agent,state&order=name,desc;moment&limit=100';
         $response = self::get($url);
-        $items = $response->json();
-        $array = [];
-        foreach($items['rows'] as $item) {
-            $array[] = [
-                'id' => $item['id'],
-                'name' => $item['name'],
-                'sum' => $item['sum'],
-                'agent' => self::getCounterParty($item['agent']['meta']['href']),
-                'state' => self::getInvoiceoutMetadataStates(isset($item['state']['meta']['href']) ? $item['state']['meta']['href'] : ''),
-                'created' => $item['created'],
-                'payedSum' => $item['payedSum'],
-                'moment' => $item['moment'],
-                'paymentPlannedMoment' => isset($item['paymentPlannedMoment']) ? $item['paymentPlannedMoment'] : 'Нет данных',
-            ];
-        }
-        $return = [
-            'list' => $array,
-            'count' => $items['meta']['size']
-        ];
-        return $return;
+        return $response->json();
     }
 
 
@@ -833,4 +814,44 @@ class MoySklad
         $response = self::get($url);
         return $response->json();
     }
+
+
+    public static function getAllAgent()
+    {
+        $url = self::msUrl().'counterparty?expand=state&order=name,asc;created&limit=100';
+        $response = self::get($url);
+        return $response->json();
+    }
+
+
+    public static function deleteOrderPosition($uuid)
+    {
+        $req = [
+            'meta' => [
+                'href' => 'https://online.moysklad.ru/api/remap/1.2/entity/customerorder/'.$uuid,
+                'metadataHref' => 'https://online.moysklad.ru/api/remap/1.2/entity/customerorder/metadata',
+                'type' => 'customerorder',
+                'mediaType' => 'application/json'
+            ]
+        ];
+        $url = self::msUrl().'customerorder/delete';
+        $response = self::post($url, json_encode($req));
+        return $response->json();
+    }
+
+    public static function deleteAgent($uuid)
+    {
+        $req = [
+            'meta' => [
+                'href' => 'https://online.moysklad.ru/api/remap/1.2/entity/counterparty/'.$uuid,
+                'metadataHref' => 'https://online.moysklad.ru/api/remap/1.2/entity/counterparty/metadata',
+                'type' => 'counterparty',
+                'mediaType' => 'application/json'
+            ]
+        ];
+        $url = self::msUrl().'counterparty/delete';
+        $response = self::post($url, json_encode($req));
+        return $response->json();
+    }
+
 }

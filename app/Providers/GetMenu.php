@@ -471,13 +471,13 @@ class GetMenu
                         'count' => '',
                         'list' => ''
                     ],
-                    [
-                        'icon' => 'mail',
-                        'name' => 'E-почта',
-                        'slug' => 'mail/inbox',
-                        'count' => '1',
-                        'list' => ''
-                    ],
+                    // [
+                    //     'icon' => 'mail',
+                    //     'name' => 'E-почта',
+                    //     'slug' => 'mail/inbox',
+                    //     'count' => '1',
+                    //     'list' => ''
+                    // ],
                     [
                         'icon' => 'group',
                         'name' => 'Пользователи',
@@ -514,7 +514,6 @@ class GetMenu
                         'name' => 'Каталоги',
                         'slug' => 'catalog',
                         'count' => '',
-                        //'list' => []
                         'list' => MoySklad::getMenuCatalog()                 
                     ],
                     [

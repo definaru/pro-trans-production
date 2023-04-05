@@ -47,11 +47,13 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     // Admin-Панель
     Route::get('mail/inbox', [AdminController::class, 'Email']);
     Route::get('users', [DachboardController::class, 'Users']);
-    Route::get('orders', [DachboardController::class, 'OrdersList']);
+    Route::get('orders', [DachboardController::class, 'OrdersList'])->name('allorders');
+    Route::post('orders/delete/{uuid}', [DachboardController::class, 'OrdersListDelete']);
+    Route::post('agent/delete/{uuid}', [DachboardController::class, 'AgentDelete']);
     Route::get('accounts', [DachboardController::class, 'Accounts']);
     Route::get('admin/doc', [AdminController::class, 'adminDoc']);
     Route::get('admin/accounting', [AdminController::class, 'Accounting']);
-    Route::get('admin/users', [AdminController::class, 'Users']);
+    Route::get('admin/users', [AdminController::class, 'Users'])->name('adminusers');
     Route::get('admin/contracts', [AdminController::class, 'Contracts']);
     Route::get('admin/access', [AdminController::class, 'Access']);
     Route::get('admin/users/okved/{okved}', [AdminController::class, 'Okved']);

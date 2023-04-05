@@ -350,4 +350,18 @@ class DachboardController extends Controller
         return view('dashboard.orders', ['model' => $model]);
     }
 
+    public function OrdersListDelete($uuid)
+    {
+        $message = 'Заказ удалён';
+        MoySklad::deleteOrderPosition($uuid);
+        return redirect()->route('allorders')->with(['status' => $message]);
+    }
+
+    public function AgentDelete($uuid)#..........................................................................................
+    {
+        $message = 'Заказ удалён';
+        MoySklad::deleteAgent($uuid);
+        return redirect()->route('adminusers')->with(['status' => $message]); //
+    }
+
 }
