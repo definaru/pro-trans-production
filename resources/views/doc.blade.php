@@ -8,9 +8,9 @@
 @section('title', 'Юридическая информация')
 
 @section('content')
-<div class="w-100" style="background-image: url(/img/5464765787695.jpg);background-position: 0px -382px;background-attachment: fixed;background-size: cover;height: 250px;">
-    <div style="height: 100%;display: flex;justify-content: center;align-items: center;background-color: #00000059">
-        <h2 class="text-white pt-5 mb-0">Юридическая информация</h2>
+<div class="w-100 bg-primary" style="height: 170px">
+    <div class="d-flex justify-content-center align-items-center h-100" style="background-color: #00000059">
+        <h2 class="text-white pt-5 mb-0 mt-1">Юридическая информация</h2>
     </div>
 </div>
 <section class="bg-white">

@@ -67,6 +67,7 @@ Route::prefix('api')->group(function () {
     Route::post('signup', [AuthController::class, 'Sigature']);
     Route::post('customer', [AuthController::class, 'Customer']);
     Route::post('mail', [AuthController::class, 'SendMail']);
+    Route::get('image/{uuid}', [DachboardController::class, 'Image']);
     Route::post('spares', [DachboardController::class, 'SendSpares']);
     Route::post('checkout', [DachboardController::class, 'Checkout']);
     Route::post('precheckout', [DachboardController::class, 'preCheckout']);

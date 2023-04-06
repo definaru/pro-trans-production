@@ -100,13 +100,6 @@ new Vue({
             var item = this.card.find(item => item.id === id);
             item.count--;
             item.summa = Number.parseInt((item.price * 100) / 100).toFixed(2)*Number(item.count);
-            // if(item.count = 1) {
-            //     item.count = 1
-            //     item.summa = parseFloat(item.price)/2;
-            // } else {
-            //     item.count--;
-            //     item.summa = parseFloat(item.price)/item.count;                
-            // }
             this.saveCart();
         },
         addToCard(e) {
@@ -149,26 +142,12 @@ new Vue({
             }));
         },
         async Checkout() {
-
             const roots = this.rootsObjectValues(this.card);
             var positions = {
                 positions: roots
             };
             this.сheckout = positions
             localStorage.setItem('сheckout', JSON.stringify(positions));
-            // btoa(encodeURIComponent(JSON.stringify(positions)))
-            
-            // 
-            // Object.assign({}, cart, positions);
-            // setTimeout(function () {
-
-            //     toastr.success('Ваш заказ получен.', 'Успешно', {
-            //         positionClass:"toast-bottom-left",
-            //         containerId:"toast-bottom-left"
-            //     });
-            //     window.location.assign(`/checkout/${this.сheckout}`);
-            //     //localStorage.removeItem('cart');
-            // }.bind(this), 1000);
         },
         removeCart(x) {
             this.card.splice(x, 1);

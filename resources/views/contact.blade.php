@@ -17,55 +17,55 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="text">
-                    <h3 class="text-dark mb-4">ООО «Проспект Транс»</h3>
-                    <div class="row">
-                        <div class="col-12 col-md-4">
-                            <p><strong>ИНН:</strong> 9715366031</p>
-                            <p><strong>ОГРН:</strong> 1197746624107</p>
-                            <p><strong>КПП:</strong> 771501001</p>   
-                            
-                            <iframe src="https://yandex.ru/sprav/widget/rating-badge/8347363005?type=rating" width="150" height="50" frameborder="0"></iframe>         
-                            {{-- &theme=dark --}}
-                            <div class="d-flex align-items-center gap-3 mt-5">
-                                <div class="border p-2" style="width:100px">
-                                    <img src="/img/qr.png" class="w-100" alt="QR код" />
-                                </div>      
-                                <div>
-                                    <strong>QR-code Визитка</strong>  
-                                    <p class="m-0">для мобильного телефона.</p> 
-                                    <a href="https://yandex.ru/maps/-/CCUG7IeaKC" class="badge bg-dark text-decoration-none" target="_blank" rel="noopener noreferrer">
-                                        Оставить отзыв
-                                    </a>
-                                </div>                          
-                            </div>
-                            <div class="d-block mt-3">
-                                <a href="/doc" class="text-muted">Юридическая информация</a>
-                                
-                            </div>
+                <div class="row text">
+                    <div class="col-12 col-md-4">
+                        <h3 class="text-dark mb-4">ООО «Проспект Транс»</h3>
+                        <p><strong>ИНН:</strong> 9715366031</p>
+                        <p><strong>ОГРН:</strong> 1197746624107</p>
+                        <p><strong>КПП:</strong> 771501001</p>   
+                        
+                        <iframe src="https://yandex.ru/sprav/widget/rating-badge/8347363005?type=rating" width="150" height="50" frameborder="0"></iframe>         
+                        {{-- &theme=dark --}}
+                        <div class="d-flex align-items-center gap-3 mt-5">
+                            <div class="border p-2" style="width:100px">
+                                <img src="/img/qr.png" class="w-100" alt="QR код" />
+                            </div>      
+                            <div>
+                                <strong>QR-code Визитка</strong>  
+                                <p class="m-0">для мобильного телефона.</p> 
+                                <a href="https://yandex.ru/maps/-/CCUG7IeaKC" class="badge bg-dark text-decoration-none" target="_blank" rel="noopener noreferrer">
+                                    Оставить отзыв
+                                </a>
+                            </div>                          
                         </div>
-                        <div class="col-12 col-md-8">
-                            <p class="d-flex flex-column border rounded p-3">
-                                <strong>По вопросам сотрудничества: </strong> 
-                                {!! $contact::getEmail(config('app.email'), ['text-muted']) !!}
-                            </p>
-                            <p class="d-flex flex-column border rounded p-3">
-                                <strong>Связаться с менеджером:</strong> 
-                                {!! $contact::getPhone(config('app.phone'), ['text-muted']) !!}
-                            </p>
-                            <p class="d-flex flex-column border rounded p-3">
-                                <strong>Связаться с тех.поддержкой:</strong> 
-                                {!! $contact::getPhone('89151389077', ['text-muted']) !!}
-                            </p>
-                            <p class="d-flex flex-column border rounded p-3">
-                                <strong>Юридический адрес:</strong> 
-                                {{ config('app.address') }}
-                            </p>
+                        <div class="d-block mt-3">
+                            <a href="/doc" class="text-muted">Юридическая информация</a>
+                            
                         </div>
                     </div>
-
-                    
-                </div>
+                    <div class="col-12 col-md-8">
+                        <p class="d-flex flex-column border rounded p-3">
+                            <strong>По вопросам сотрудничества: </strong> 
+                            {!! $contact::getEmail(config('app.email'), ['text-muted']) !!}
+                        </p>
+                        <p class="d-flex flex-column border rounded p-3">
+                            <strong>Связаться с менеджером:</strong> 
+                            {!! $contact::getPhone(config('app.phone'), ['text-muted']) !!}
+                        </p>
+                        <p class="d-flex flex-column border rounded p-3">
+                            <strong>Связаться с тех.поддержкой:</strong> 
+                            {!! $contact::getPhone('89151389077', ['text-muted']) !!}
+                        </p>
+                        <p class="d-flex flex-column border rounded p-3">
+                            <strong>Юридический адрес:</strong> 
+                            {{ config('app.address') }}
+                        </p>
+                        <p class="d-flex flex-column border rounded p-3">
+                            <strong>Фактический адрес:</strong> 
+                            141006, г.Мытищи, Московская область, 4536-й проезд, стр. 10
+                        </p>
+                    </div>
+                </div>                
             </div>
         </div>
     </div>
