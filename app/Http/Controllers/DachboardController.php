@@ -336,11 +336,11 @@ class DachboardController extends Controller
     }
 
 
-    public function Accounts()
+    public function Accounts($limit = 15, $offset = 0)
     {
-        $model = MoySklad::getAllInvoices();
+        $model = MoySklad::getAllInvoices($limit, $offset);
         //return response()->json($model);
-        return view('dashboard.accounts', ['model' => $model]);
+        return view('dashboard.accounts', ['model' => $model, 'limit' => $limit, 'offset' => $offset]);
     }
 
     public function OrdersList()

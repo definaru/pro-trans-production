@@ -219,6 +219,10 @@ input:focus {
     border-radius: 50%;
     margin-right: 0.4375rem;
 }
+.form-check-input:checked {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
 
 .btn-primary {
     background-color: #3f51b5;

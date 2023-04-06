@@ -290,29 +290,11 @@ class MoySklad
     }
 
 
-    public static function getAllInvoices()
+    public static function getAllInvoices($limit = 15, $offset = 0)
     {
-        $url = self::msUrl().'invoiceout?order=created,desc;';
+        $url = self::msUrl().'invoiceout?expand=agent,state,customerOrder&order=name,desc;moment&limit='.$limit.'&offset='.$offset;
         $response = self::get($url);
-        $items = $response->json();
-        $array = [];
-        foreach($items['rows'] as $item) {
-            $array[] = [
-                'id' => $item['id'],
-                'name' => $item['name'],
-                'sum' => $item['sum'],
-                'agent' => self::getInvoiceOne($item['id'])['agent']['name'],
-                'state' => self::getInvoiceoutMetadataStates(isset($item['state']['meta']['href']) ? $item['state']['meta']['href'] : ''),
-                'created' => $item['created'],
-                'payedSum' => $item['payedSum'],
-                'moment' => $item['moment'],
-                'paymentPlannedMoment' => isset($item['paymentPlannedMoment']) ? $item['paymentPlannedMoment'] : 'Нет данных',
-            ];
-        }
-        return [
-            'list' => $array,
-            'count' => $items['meta']['size']
-        ];
+        return $response->json();
     }
 
 

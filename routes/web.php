@@ -50,7 +50,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('orders', [DachboardController::class, 'OrdersList'])->name('allorders');
     Route::post('orders/delete/{uuid}', [DachboardController::class, 'OrdersListDelete']);
     Route::post('agent/delete/{uuid}', [DachboardController::class, 'AgentDelete']);
-    Route::get('accounts', [DachboardController::class, 'Accounts']);
+    Route::get('accounts/{limit?}/{offset?}', [DachboardController::class, 'Accounts']);
     Route::get('admin/doc', [AdminController::class, 'adminDoc']);
     Route::get('admin/accounting', [AdminController::class, 'Accounting']);
     Route::get('admin/users', [AdminController::class, 'Users'])->name('adminusers');
