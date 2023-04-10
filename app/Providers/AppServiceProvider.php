@@ -7,6 +7,7 @@ use App\Models\DaData;
 use App\Models\MoySklad;
 use App\Models\Declension;
 use App\Models\FormatCurrency;
+use App\Models\Seo;
 use App\Models\Card;
 use App\Models\Names;
 use App\Models\Image;
@@ -62,7 +63,8 @@ class AppServiceProvider extends ServiceProvider
             'decl'          => new Declension(),
             'deal'          => new Card(),
             'dadata'        => new DaData(),
-            'images'        => new Image()
+            'images'        => new Image(),
+            'seo'           => new Seo(),
         ]);
     }
 }

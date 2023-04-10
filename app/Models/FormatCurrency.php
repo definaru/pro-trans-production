@@ -53,6 +53,12 @@ class FormatCurrency
         return $sum[0].'<small class="text-muted">.'.$sum[1].'</small>'.' ₽';
     }
 
+    public static function rubl($sum, $preffix = ' ₽')
+    {
+        $sum = number_format(($sum) / 100, 2, '.', ' '); 
+        return $sum.$preffix;
+    }
+
     public static function _rub($num)
     {
     	$null = 'ноль';

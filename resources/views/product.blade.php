@@ -3,17 +3,18 @@
     $result = array_merge($listorder, $bestsellers, $alllist);
     $url = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
     $image = $images::src($id);
-    $price = number_format(($product['salePrices']) / 100, 2, '.', ' ');
+    $price = $currency::rubl($product['salePrices']);
+    $keywords = $seo::keywords($images::text($id)['description']);
 @endphp
 @extends('layout/index', [
-    'title' => $str.' | Проспект Транс',
-    'keywords' => 'ремонт, ремонт машин, ремонт в москве, ремонт в мытищи, ремонт двигателя, сервис, service, чинить, автосервис, мерседес бенц, актрос',
-    'description' => $product['article']. ', MERCEDES-BENZ \ '.number_format(($product['salePrices']) / 100, 2, '.', ' ').' ₽',
+    'title' => $str,
+    'keywords' => $keywords.', ремонт, ремонт машин в мытищи, сервис, service, чинить, автосервис, мерседес бенц, актрос',
+    'description' => $product['article']. ', MERCEDES-BENZ \ '.$price,
     'image' => $url.$image
 ])
 @section('title', $str.' | Проспект Транс')
 @section('content')
-    <section class="bg-secondary-subtle">
+    <section class="bg-secondary-subtle" itemscope itemtype="http://schema.org/Product">
         <div class="container">
             <div class="row">
                 <div class="col-12 mb-4 mt-5 mt-lg-0">
@@ -40,28 +41,44 @@
                     <div class="pe-0 pe-lg-5">
                         <img 
                             src="{{$image}}" 
-                            class="w-100 rounded " 
+                            class="w-100 rounded" 
+                            itemprop="image"
                             style="height: 450px;object-fit: cover"
                             alt="{{$str}}" 
                         />
                     </div>
                 </div>
                 <div class="col-12 col-lg-6">
-                    <h1 class="fw-bold lh-1 display-5 mt-5 mt-lg-0">{{$str}}</h1>
-                    <p class="fs-5 w-100 text text-secondary"><strong>Артикул:</strong> {{$product['article']}}</p>
-                    <span id="price" class="d-none">@php echo number_format(($product['salePrices']) / 100, 2, '.', '') @endphp</span>
-                    <div class="d-flex align-items-center justify-content-start gap-3">
-                        <p class="fs-4 text m-0">{!!$currency::summa($product['salePrices'])!!}</p>
-                        <div class="vr" v-if="count !== 1"></div>
-                        <div v-html="resultSumma('{{$product['salePrices']}}', count)" v-if="count !== 1" class="text text-success fw-bold"></div>                        
+                    <h1 itemprop="name" class="fw-bold lh-1 display-5 mt-5 mt-lg-0">{{$str}}</h1>
+                    <meta itemprop="brand" content="MERCEDES-BENZ" />
+                    <p class="d-flex align-items-center gap-2 fs-5 w-100 text text-secondary">
+                        <strong itemprop="model">Артикул:</strong> {{$product['article']}}
+                        <span 
+                            data-bs-toggle="tooltip" 
+                            data-bs-title="Деталь на заказ"
+                            class="fs-6 material-symbols-outlined text-primary cp" 
+                        >
+                            help
+                        </span>
+                    </p>
+                    <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                        <meta itemprop="price" content="{{$currency::rubl($product['salePrices'], '')}}" /> 
+                        <meta itemprop="priceCurrency" content="RUB" /> 
+                        <div class="d-flex align-items-center justify-content-start gap-3">
+                            <p class="fs-4 text m-0">{!!$currency::summa($product['salePrices'])!!}</p>
+                            <div class="vr" v-if="count !== 1"></div>
+                            <div v-html="resultSumma('{{$product['salePrices']}}', count)" v-if="count !== 1" class="text text-success fw-bold"></div>                        
+                        </div>                        
                     </div>
 
-                    @if ($images::text($id)['description'])
-                        <a href="#more" class="fs-6 w-100 text text-secondary d-block mb-3">Описание</a>
-                    @else
-                        <p class="fs-6 w-100 text text-secondary">Описания нет</p>
-                    @endif
 
+                    <div class="w-25">
+                        @if ($images::text($id)['description'])
+                            <a href="#more" class="fs-6 text text-secondary d-block mb-3">Описание</a>
+                        @else
+                            <p class="fs-6 w-100 text text-secondary">Описания нет</p>
+                        @endif
+                    </div>
                     <div class="w-100">
                         @if($product['quantity'] == 0 || $product['quantity'] < 0)
                         <p class="label-danger">
@@ -69,12 +86,7 @@
                         </p>&#160;
                         <span class="badge bg-secondary text">Деталь на заказ</span>
                         @else
-                        <p 
-                            itemprop="offers" 
-                            itemscope 
-                            itemtype="https://schema.org/Offer" 
-                            :class="[{{$product['quantity']}}-count >= 0 || {{$product['quantity']}}-count == 1 ? 'label' : 'label-danger']"
-                        >
+                        <p :class="[{{$product['quantity']}}-count >= 0 || {{$product['quantity']}}-count == 1 ? 'label' : 'label-danger']">
                             <link itemprop="availability" href="https://schema.org/InStock"> 
                             <template>
                                 В наличии
@@ -113,20 +125,20 @@
                     <div class="d-flex justify-content-start mt-3" onclick="getReviewYandex()">
                         <div class="rating-area">
                             <input type="radio" id="star-5" name="rating" value="5">
-                            <label for="star-5" title="Оценка «5»"></label>	
+                            <label for="star-5" data-bs-toggle="tooltip" data-bs-title="Оценка «5»"></label>	
                             <input type="radio" id="star-4" name="rating" value="4">
-                            <label for="star-4" title="Оценка «4»"></label>    
+                            <label for="star-4" data-bs-toggle="tooltip" data-bs-title="Оценка «4»"></label>    
                             <input type="radio" id="star-3" name="rating" value="3">
-                            <label for="star-3" title="Оценка «3»"></label>  
+                            <label for="star-3" data-bs-toggle="tooltip" data-bs-title="Оценка «3»"></label>  
                             <input type="radio" id="star-2" name="rating" value="2">
-                            <label for="star-2" title="Оценка «2»"></label>    
+                            <label for="star-2" data-bs-toggle="tooltip" data-bs-title="Оценка «2»"></label>    
                             <input type="radio" id="star-1" name="rating" value="1">
-                            <label for="star-1" title="Оценка «1»"></label>
+                            <label for="star-1" data-bs-toggle="tooltip" data-bs-title="Оценка «1»"></label>
                         </div>
                     </div>
                 </div>
                 <div id="more" class="col-12 mt-4">
-                    <div class="mt-5 pt-5 text">
+                    <div class="mt-5 pt-5 text" itemprop="description">
                         {!!$images::text($id)['description']!!}
                     </div>
                 </div>
