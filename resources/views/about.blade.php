@@ -22,7 +22,7 @@
                     <img src="/public/img/mercedes-benz.png" alt="Проспект Транс, Mercedes-Benz" style="width: 40px" />
                     <img src="/img/guayaquillib/volvo.png" alt="Проспект Транс, Volvo" style="width: 40px" />
                 </div>
-                <h2 class="fw-bold text-center mb-4">ООО "Проспект Транс" &#128188;</h2>
+                <h2 class="fw-bold text-center mb-4">ООО «Проспект Партс» <img src="/img/about/offer.png" style="width: 80px" alt="offer" /></h2>
                 <hr class="bar" />
                 <p class="text-justify">
                     <strong>Prospekt Parts</strong> — крупнейший дистрибьютор автомобильных запасных частей, 

@@ -10,7 +10,7 @@
 @section('content')
 <div class="w-100 bg-primary" style="height: 170px">
     <div class="d-flex align-items-center justify-content-center h-100" style="background-color: #00000059">
-        <h2 class="text-white pt-5 mb-0 mt-1">Корзина &#128722;</h2>
+        <h2 class="text-white pt-5 mb-0 mt-1">Корзина <img src="/img/card/card.png" style="width: 40px" alt="Корзина" /></h2>
     </div>
 </div>
 <section class="bg-secondary-subtle pt-5">

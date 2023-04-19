@@ -1,7 +1,7 @@
 @extends('layout/index', [
-    'title' => 'Контакты | Проспект Транс',
+    'title' => 'Контакты | Проспект Партс',
     'keywords' => 'контакты, сервис, service, чинить, автосервис, мерседес бенц, актрос',
-    'description' => 'Контактная информация компании ООО "Проспект Транс"',
+    'description' => 'Контактная информация компании ООО "ПРОСПЕКТ ПАРТС"',
     'image' => 'https://prospekt-parts.com/img/5464765787695.jpg'
 ])
 
@@ -13,15 +13,15 @@
         <h2 class="text-white pt-5 mb-0 mt-1">Контакты</h2>
     </div>
 </div>
-<section class="bg-white">
+<section class="bg-light">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="row text">
                     <div class="col-12 col-md-4">
-                        <h3 class="text-dark mb-4">ООО «Проспект Транс»</h3>
-                        <p><strong>ИНН:</strong> 9715366031</p>
-                        <p><strong>ОГРН:</strong> 1197746624107</p>
+                        <h3 class="text-dark mb-4">ООО «Проспект Партс»</h3>
+                        <p><strong>ИНН:</strong> 9715447266</p>
+                        <p><strong>ОГРН:</strong> 1237700266726</p>
                         <p><strong>КПП:</strong> 771501001</p>   
                         
                         <iframe src="https://yandex.ru/sprav/widget/rating-badge/8347363005?type=rating" width="150" height="50" frameborder="0"></iframe>         
@@ -44,26 +44,57 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-8">
-                        <p class="d-flex flex-column border rounded p-3">
-                            <strong>По вопросам сотрудничества: </strong> 
-                            {!! $contact::getEmail(config('app.email'), ['text-muted']) !!}
-                        </p>
-                        <p class="d-flex flex-column border rounded p-3">
-                            <strong>Связаться с менеджером:</strong> 
-                            {!! $contact::getPhone(config('app.phone'), ['text-muted']) !!}
-                        </p>
-                        <p class="d-flex flex-column border rounded p-3">
-                            <strong>Связаться с тех.поддержкой:</strong> 
-                            {!! $contact::getPhone('89151389077', ['text-muted']) !!}
-                        </p>
-                        <p class="d-flex flex-column border rounded p-3">
+                        <div class="d-flex flex-column border rounded p-3 mb-2 bg-white">
+                            <div class="d-flex gap-3 align-items-center">
+                                <img src="/img/contact/newsletter.png" style="width: 40px" alt="E-mail" />
+                                <div class="d-grid">
+                                    <strong>По вопросам сотрудничества: </strong> 
+                                    {!! $contact::getEmail(config('app.email'), ['text-muted']) !!}                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row gx-2">
+                            <div class="col-12 col-lg-4">
+                                <div class="border rounded p-3 mb-2 bg-white">
+                                    <strong>Связаться с нашим менеджером:</strong> 
+                                    <div class="d-flex gap-2 mt-2">
+                                        <span class="material-symbols-outlined fs-5 text-primary">call</span>
+                                        {!! $contact::getPhone(config('app.phone'), ['text-muted']) !!}
+                                    </div>
+                                </div>                                
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <div class="border rounded p-3 mb-2 bg-white">
+                                    <strong>Связаться с тех.поддержкой:</strong> 
+                                    <div class="d-flex gap-2 mt-2">
+                                        <span class="material-symbols-outlined fs-5 text-primary">call</span>
+                                        {!! $contact::getPhone('89151389077', ['text-muted']) !!}
+                                    </div> 
+                                </div> 
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <div class="border rounded p-3 mb-2 bg-white">
+                                    <strong>По корпоративным вопросам:</strong> 
+                                    <div class="d-flex gap-2 mt-2">
+                                        <span class="material-symbols-outlined fs-5 text-primary">call</span>
+                                        {!! $contact::getPhone('84957682473', ['text-muted']) !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column border rounded p-3 mb-2 bg-white">
                             <strong>Юридический адрес:</strong> 
-                            {{ config('app.address') }}
-                        </p>
-                        <p class="d-flex flex-column border rounded p-3">
+                            <div class="d-flex gap-1 align-items-center">
+                                <span class="material-symbols-outlined fs-5 text-primary">location_on</span> {{ config('app.address') }}
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column border rounded p-3 bg-white">
                             <strong>Фактический адрес:</strong> 
-                            141006, г.Мытищи, Московская область, 4536-й проезд, стр. 10
-                        </p>
+                            <div class="d-flex gap-1 align-items-center">
+                                <span class="material-symbols-outlined fs-5 text-primary">location_on</span> 141006, г.Мытищи, Московская область, 4536-й проезд, стр. 10
+                            </div>
+                        </div>
                     </div>
                 </div>                
             </div>

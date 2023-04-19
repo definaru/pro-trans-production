@@ -109,7 +109,7 @@
         <div class="container" itemscope itemtype="https://schema.org/ItemList">
             <div class="row">
                 <div class="col-12 col-lg-8 offset-lg-2 text-center">
-                    <h2 class="fw-bold display-5">Хиты продаж 🔥</h2>
+                    <h2 class="fw-bold display-5">Хиты продаж <img src="/img/index/fire.png" style="width: 35px" alt="Хиты продаж" /></h2>
                     <p class="text-muted text">
                         Самые ходовые товары из Германии с проверенным ГТД. 
                         У нас только новые запчасти от производителя. 
@@ -333,7 +333,15 @@
                                             <link itemprop="availability" href="https://schema.org/InStock" />В наличии
                                         </p>                                           
                                     </div>
-                                    <small>&#11088;&#11088;&#11088;&#11088;&#11088;</small> 
+                                    <div class="rating-result" style="bottom: 0">
+                                        <?php $count = rand(4, 5); ?>
+                                        <?php for ($i = 1; $i <= floor($count); $i++) { ?>
+                                            <span class="active"></span>
+                                        <?php } ?>
+                                        <?php for ($i = 1; $i <= 5-floor($count); $i++) { ?>
+                                            <span></span>
+                                        <?php } ?>
+                                    </div>
                                 </div>
                                 
                                 <hr style="color: #ddd">
