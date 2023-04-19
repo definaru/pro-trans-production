@@ -61,13 +61,17 @@
     <script src="{{ asset('js/defina.admin.min.js') }}"></script>
 
     <script>
-        ClassicEditor
-            .create(document.querySelector('#editor'), {
-                placeholder: 'Опишите товар здесь...'
-            })
-            .catch(error=>{
-                console.error(error);
-            });                                             
+        const editor = document.querySelector('#editor');
+        if(editor) {
+            ClassicEditor
+                .create(editor, {
+                    placeholder: 'Опишите товар здесь...'
+                })
+                .catch(error=>{
+                    console.error(error);
+                });             
+        }
+
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
         const tooltipList = [...tooltipTriggerList].map(
             tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl)

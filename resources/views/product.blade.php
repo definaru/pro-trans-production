@@ -5,11 +5,14 @@
     $image = $images::src($id);
     $price = $currency::rubl($product['salePrices']);
     $keywords = $seo::keywords($images::text($id)['description']);
+    $description = isset($product['description']) ? 
+        $product['article'] . ' | ' . $product['description'] : 
+        $product['article']. ', MERCEDES-BENZ \ '.$price;
 @endphp
 @extends('layout/index', [
     'title' => $str,
     'keywords' => $keywords.', ремонт, ремонт машин в мытищи, сервис, service, чинить, автосервис, мерседес бенц, актрос',
-    'description' => $product['article']. ', MERCEDES-BENZ \ '.$price,
+    'description' => $description,
     'image' => $url.$image
 ])
 @section('title', $str.' | Проспект Транс')
@@ -112,7 +115,7 @@
                             </div>
                             <div 
                                 id="card<?=$id?>"
-                                :data-card="['<?=$id?>,<?=$product['article']?>,<?=$str?>,'+count+',<?=$product['salePrices']?>,'+<?=$product['salePrices']?>*count]"
+                                :data-card="['<?=$id?>,<?=$product['article']?>,<?=$str?>,'+count+',<?=$product['salePrices']?>,'+<?=$product['salePrices']?>*count+',<?=$image;?>']"
                                 v-on:click="addToCard('<?=$id?>')"
                                 class="btn btn-lg btn-primary px-5 py-3 d-flex justify-content-center align-items-center gap-2"
                             >

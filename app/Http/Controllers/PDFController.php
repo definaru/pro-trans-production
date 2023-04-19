@@ -21,4 +21,27 @@ class PDFController extends Controller
         //->stream(); 
         //return $pdf
     }
+
+    public function contractGenerate($type, $id)
+    {
+        $data = [
+            'id' => $id,
+            'type' => $type,
+            'contract' => MoySklad::getContractId($id)
+        ];
+        $pdf = PDF::loadView('document.contract', $data, [], 'UTF-8');
+        return $pdf->stream();
+    }
+
+    public function contractDownload($type, $id)
+    {
+        $data = [
+            'id' => $id,
+            'type' => $type,
+            'contract' => MoySklad::getContractId($id)
+        ];
+        $pdf = PDF::loadView('document.contract', $data, [], 'UTF-8');
+        return $pdf->download('Договор поставки запасных частей №'.$data['contract']['name'].'.pdf');
+    }
+
 }

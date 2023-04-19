@@ -36,6 +36,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('payment/reports', [DachboardController::class, 'Reports']);
     Route::get('payment/reports/{order}', [DachboardController::class, 'ReportsDetail'])->name('order');
     Route::get('doc/{id}/{name}{extension?}', [PDFController::class, 'generatePDF'])->where(['extension' => '^(.pdf)|(.csv)|(.json)$']);
+    Route::get('contract/{type}/{id}/{name}{extension?}', [PDFController::class, 'contractGenerate'])->where(['extension' => '^(.pdf)|(.csv)|(.json)$']);
+    Route::get('contract/download/{type}/{id}/{name}{extension?}', [PDFController::class, 'contractDownload'])->where(['extension' => '^(.pdf)|(.csv)|(.json)$']);
     Route::get('document/agreement', [DachboardController::class, 'Agreement'])->name('contract');
     Route::get('document/agreement/edit', [DachboardController::class, 'EditAgreement']);
     Route::post('/create/invoice', [DachboardController::class, 'createInvoice']);
@@ -67,7 +69,7 @@ Route::prefix('api')->group(function () {
     Route::post('signup', [AuthController::class, 'Sigature']);
     Route::post('customer', [AuthController::class, 'Customer']);
     Route::post('mail', [AuthController::class, 'SendMail']);
-    Route::get('image/{uuid}', [DachboardController::class, 'Image']);
+    //Route::get('image/{uuid}', [DachboardController::class, 'Image']);
     Route::post('spares', [DachboardController::class, 'SendSpares']);
     Route::post('checkout', [DachboardController::class, 'Checkout']);
     Route::post('precheckout', [DachboardController::class, 'preCheckout']);

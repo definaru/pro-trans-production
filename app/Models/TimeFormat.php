@@ -17,6 +17,16 @@ class TimeFormat
         return Carbon::parse($datatime)->locale('ru')->translatedFormat('d F Y, H:i');
     }
 
+    public static function app($datatime)
+    {
+        return Carbon::parse($datatime)->locale('ru')->translatedFormat('«d» F Yг.');
+    }
+
+    public static function data($datatime)
+    {
+        return Carbon::parse($datatime)->locale('ru')->translatedFormat('d.m.Y');
+    }
+
     public static function diff($datatime, $value)
     {
         return Carbon::parse($datatime)->diff(Carbon::now())->format('%'.$value);

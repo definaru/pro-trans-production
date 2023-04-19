@@ -114,7 +114,8 @@ new Vue({
                 name: card[2],
                 count: card[3],
                 price: card[4],
-                summa: card[5]
+                summa: card[5],
+                image: card[6]
             }
             var total = arr.filter(el => el != null).concat(add);
             toastr.success(`Добавлен в корзину`, `Товар "${card[2]}"`, {
@@ -354,7 +355,6 @@ function isError()
     })
 }
 
-
 function getReviewYandex()
 {
     Swal.fire({
@@ -419,8 +419,6 @@ async function isUserSubscribe()
     }
 }
 
-
-
 function isNotSignUp()
 {
     Swal.fire({
@@ -447,6 +445,11 @@ function isNotSignUp()
             window.location.assign('/signup');
         }
     });
+}
+
+function startGoods()
+{
+    window.location.assign('/products/mersedes-benz');
 }
 
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');

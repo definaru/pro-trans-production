@@ -1,52 +1,19 @@
 @extends('layout/main')
 
-@section('title', isset($catalog['name']) ? $catalog['name'] : array_column($catalogTrucks, 'name', 'href')[$name])
+@section('title', 'MERCEDES-BENZ')
+@section('breadcrumbs')
+<div class="d-flex gap-2 mb-2">
+    <a href="/dashboard" class="text-muted">Панель</a>
+    <span class="text-secondary">/</span>
+    <span class="text-muted">{{$product['rows'][0]['pathName']}}</span>    
+</div>
+@endsection
 
 @section('content')
+<h6 class="text-muted">Всего {{$product['meta']['size']}} {{$decl::cart($product['meta']['size'])}}</h6>
 <div class="row mt-4">
     <div class="col">
         <div class="card border-0 w-100 rounded shadow-sm">
-            <!-- <div class="card-header border-0 d-flex align-items-center py-3 px-4 justify-content-between bg-white">
-                <h2 class="m-0 h6 fw-bold">Выберите нужный вариант автомобиля:</h2>
-                <div class="dropdown ms-4">
-                    <a href="javascript: void(0);" role="button" data-bs-toggle="dropdown" class="text-secondary">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="14" width="14">
-                            <g>
-                                <circle cx="12" cy="3.25" r="3.25" style="fill: currentcolor;"></circle>
-                                <circle cx="12" cy="12" r="3.25" style="fill: currentcolor;"></circle>
-                                <circle cx="12" cy="20.75" r="3.25" style="fill: currentcolor;"></circle>
-                            </g>
-                        </svg>
-                    </a>
-                    <div class="dropdown-menu">
-                        <label class="dropdown-item d-flex align-items-center gap-2">
-                            <div class="form-check mb-0">
-                                <input type="checkbox" class="form-check-input" checked />
-                            </div>
-                            <small>Артикул</small> 
-                        </label>
-                        <label class="dropdown-item d-flex align-items-center gap-2">
-                            <div class="form-check mb-0">
-                                <input type="checkbox" class="form-check-input" checked />
-                            </div>
-                            <small>Цена</small> 
-                        </label>
-                        <label class="dropdown-item d-flex align-items-center gap-2">
-                            <div class="form-check mb-0">
-                                <input type="checkbox" class="form-check-input" checked />
-                            </div>
-                            <small>Наличие</small> 
-                        </label>
-                        <label class="dropdown-item d-flex align-items-center gap-2">
-                            <div class="form-check mb-0">
-                                <input type="checkbox" class="form-check-input" checked />
-                            </div>
-                            <small>Бренд</small> 
-                        </label>
-                    </div>
-                </div>
-            </div> -->
-            
             <div class="table-responsive rounded-top">
                 <table class="table align-middle table-edge table-hover table-nowrap mb-0">
                     <thead class="border-bottom border-light bg-white" style="font-size: 14px">
@@ -111,14 +78,22 @@
             </div>
             <div class="card-footer bg-white border-0">
                 <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <select id="selectOffset" class="form-select" onchange="selectOffset()">
+                            @foreach ([15, 25, 50, 100] as $key)
+                                <option value="/dashboard/catalog/category/8854033a-48ad-11ed-0a80-0c87007f4175/{{$key}}/0" @if($key == $limit) selected @endif >
+                                    {{$key}}
+                                </option>
+                            @endforeach
+                        </select>                        
+                    </div>
                     <div class="me-5 text-secondary small">
                         Показано: 
-                        <span>{{$offset == 0 ? 1 : $product['meta']['limit']}}</span> - 
                         <span>
                             @if($product['meta']['size']-$offset < $limit)
                                 {{$offset+$product['meta']['size']-$offset}}
                             @else
-                                {{$offset == 0 ? $limit : $offset}}
+                                {{$offset == 0 ? $limit : $limit+$offset}}
                             @endif
                         </span> из 
                         <span>{{$product['meta']['size']}}</span>

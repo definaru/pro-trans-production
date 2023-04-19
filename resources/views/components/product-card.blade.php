@@ -33,9 +33,9 @@
     </td>
     <td>
         <div class="d-flex gap-2">
-            @role('admin')
+            {{-- @role('admin')
                 ({{$availability}})
-            @endrole
+            @endrole --}}
             
             @if($availability === '0' || $availability < 0)
                 <x-badge color="danger" text="Нет в наличии" />
@@ -47,7 +47,7 @@
     <td>
         <div class="d-flex align-items-center gap-2">
             <img src="/img/guayaquillib/mercedes-benz.png" alt="MERCEDES-BENZ" style="width: 30px" />
-            <small>MERCEDES-BENZ</small>
+            <small style="font-size: 10px">MERCEDES-BENZ</small>
         </div>
     </td>
     <td>
@@ -68,7 +68,7 @@
         @else
         <div
             id="card{{$href}}" 
-            data-card="{{$href}},{{$code}},{{$name}},1,{{$price}},{{$price}}" 
+            data-card="{{$href}},{{$code}},{{$name}},1,{{$price}},{{$price}},{{$images::src($href)}}" 
             v-on:click="addToCard('{{$href}}')"    
         >
             <x-button 

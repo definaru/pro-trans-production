@@ -7,12 +7,14 @@ use Illuminate\View\Component;
 class Menu extends Component
 {
 
+    public $id;
     public $header;
     public $list;
 
 
-    public function __construct($header, $list = [])
+    public function __construct($id, $header, $list = [])
     {
+        $this->id = $id;
         $this->header = $header;
         $this->list = $list;
     }

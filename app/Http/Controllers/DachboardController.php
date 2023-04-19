@@ -208,23 +208,18 @@ class DachboardController extends Controller
         ]);
     }
 
-    public function Image($uuid)
-    {
-        $item = Goods::where('link', $uuid)->get();
-        $image = isset($item[0]['image']) && $item[0]['image'] !== ''  ? trim($item[0]['image'], '.') : '/img/placeholder.png';
-        return $image;
-    }
+    // public function Image($uuid)
+    // {
+    //     $item = Goods::where('link', $uuid)->get();
+    //     $image = isset($item[0]['image']) && $item[0]['image'] !== ''  ? trim($item[0]['image'], '.') : '/img/placeholder.png';
+    //     return $image;
+    // }
 
     public function CatalogDetail($name, $limit = 10, $offset = 0)
     {
-        MoySklad::getImage();
-        $catalog = MoySklad::getCategory($name);
         $product = MoySklad::getAllProduct($limit, $offset);
-        //$pagination = new Pagination();
         return view('dashboard.catalog-detail', [
             'name' => $name,
-            //'pagination' => $pagination,
-            'catalog' => $catalog,
             'product' => $product,
             'limit' => $limit, 
             'offset' => $offset

@@ -17,7 +17,6 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                
                 <template v-if="card.length === 0">
                     <div style="height: 600px">
                         <h6 class="text-muted">Ваша корзина пуста</h6>
@@ -35,8 +34,7 @@
                         <ul class="list-group list-group-flush mt-4 d-grid gap-2">
                             <li v-for="(item, id) in card" class="list-group-item d-flex justify-content-between align-items-center rounded shadow-sm border-0">
                                 <small class="d-flex align-items-center gap-3" style="width: 320px;">
-                                    <!-- /img/goods/A9061800109.png -->
-                                    <img src="/img/no_photo.jpg" :alt="item.name" class="rounded" style="width: 50px;" /> 
+                                    <img :src="item.image" :alt="item.name" class="rounded" style="width: 50px;height: 50px;object-fit: cover" /> 
                                     <a :href=`/product/mersedes-benz/${item.id}` class="d-flex align-items-center text-muted text-decoration-none">
                                         <div class="d-flex justify-content-start flex-column">
                                             <span class="text">{{item.article}}</span> 
@@ -118,6 +116,7 @@
                                     type="text" 
                                     class="form-control select border-0 @error('name') is-invalid border-bottom border-danger-subtle @enderror" 
                                     name="name"
+                                    value="{{$data[0]['name'] ?? ''}}"
                                     placeholder="Ваше имя" 
                                 />
                                 @error('name')
@@ -130,6 +129,7 @@
                                     type="text" 
                                     class="form-control select border-0 @error('phone') is-invalid border-bottom border-danger-subtle @enderror" 
                                     name="phone"
+                                    value="{{$data[0]['phone'] ?? ''}}"
                                     placeholder="Ваш телефон" 
                                 />
                                 @error('phone')
@@ -142,6 +142,7 @@
                                     type="email" 
                                     class="form-control select border-0 @error('email') is-invalid border-bottom border-danger-subtle @enderror" 
                                     name="email" 
+                                    value="{{$data[0]['email'] ?? ''}}"
                                     placeholder="Ваш E-mail..." 
                                 />
                                 @error('email')
@@ -150,7 +151,13 @@
                             </div>
                             <div class="col-6">
                                 <label class="fw-bold">Куда отправить заказ ? <sup class="text-muted text">(Опционально)</sup></label>
-                                <input type="text" class="form-control select border-0" name="address" placeholder="Адрес доставки..." />
+                                <input 
+                                    type="text" 
+                                    class="form-control select border-0" 
+                                    name="address" 
+                                    value="{{$data[0]['address'] ?? ''}}"
+                                    placeholder="Адрес доставки..." 
+                                />
                             </div>
                         </div>
                         <input type="hidden" class="form-control" name="сheckout" :value="JSON.stringify(сheckout)" />

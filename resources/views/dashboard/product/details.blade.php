@@ -155,7 +155,7 @@
                                 <div 
                                     id="cards1" 
                                     class="d-flex flex-column"
-                                    data-card="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,{{$product['salePrices']}},{{$product['salePrices']}}" 
+                                    data-card="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,{{$product['salePrices']}},{{$product['salePrices']}},{{$images::text($id)['image']}}" 
                                     v-on:click="addToCard('s1')"
                                 >
                                     <x-button type="button" color="dark" text="В корзину" icon="shopping_cart" />
@@ -178,16 +178,25 @@
             @role('admin') 
             <div class="row">
                 <div class="col-12 mt-4">
+                    <label class="fw-bold">Описание товара:</label>
                     <textarea id="editor" name="description" >
                         {{$images::text($id)['description']}}
                     </textarea>
-                    <button 
-                        type="submit" 
-                        v-on:click="editText('{{$id}}')" 
-                        class="btn px-4 mt-2"
-                        :class="[loading === false ? 'btn-secondary' : 'btn-dark']"
-                        v-html="loading === false ? 'Сохранить' : 'Подождите, грузится...'"
-                    ></button>
+                    <div class="d-flex gap-2 mt-2">
+                        <button 
+                            type="submit" 
+                            v-on:click="editText('{{$id}}')" 
+                            class="btn px-4"
+                            :class="[loading === false ? 'btn-secondary' : 'btn-dark']"
+                            v-html="loading === false ? 'Сохранить' : 'Подождите, грузится...'"
+                        ></button>
+                        <a href="/product/mersedes-benz/{{$id}}" target="_blank" class="btn btn-light px-4">
+                            Посмотреть
+                        </a>
+                        <a href="https://online.moysklad.ru/app/#good/edit?id={{$id}}" target="_blank" class="btn material-symbols-outlined">
+                            open_in_new
+                        </a>                        
+                    </div>
                 </div>
             </div> 
             @endrole        

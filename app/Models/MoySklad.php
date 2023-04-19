@@ -210,14 +210,23 @@ class MoySklad
         return $response->json();
     }
 
+    
     public static function getContract()
     {
         $id = self::getAgreementID();
-        $url = self::msUrl().'contract/'.$id.'?expand=agent,state,accounts,ownAgent,ownAgent.accounts';
+        $url = self::msUrl().'contract/'.$id.'?expand=agent,state,accounts,ownAgent,ownAgent.accounts,agentAccount';
         $response = self::get($url);
         if($id === null) {
             return null;
         }
+        return $response->json();
+    }
+
+
+    public static function getContractId($id)
+    {
+        $url = self::msUrl().'contract/'.$id.'?expand=agent,state,accounts,ownAgent,ownAgent.accounts,agentAccount';
+        $response = self::get($url);
         return $response->json();
     }
 
@@ -497,8 +506,8 @@ class MoySklad
     public static function getProductImages($url)
     {
         $response = self::get($url);
-        $item = $response->json();
-        $images = $item['rows'] ? $item['rows'][0]['miniature']['href'] : '/img/placeholder.png';
+        //$item = $response->json(); // $item['rows'] ? $item['rows'][0]['miniature']['href'] : 
+        $images = '/img/placeholder.png';
         return [
             'images' => $images
         ];
@@ -513,7 +522,7 @@ class MoySklad
 
     public static function getOneProduct($id)
     {
-        $url = self::msUrl().'assortment?filter=id='.$id;
+        $url = self::msUrl().'assortment?expand=productFolder&limit=100&filter=id='.$id;
         $response = self::get($url);
         $item = $response->json()['rows']; 
         if($item === []) {
@@ -527,14 +536,14 @@ class MoySklad
             'id' => $item['id'],
             'updated' => $item['updated'],
             'name' => $item['name'],
+            'description' => isset($item['description']) ? $item['description'] : '',
             'externalCode' => $item['externalCode'],
             'archived' => $item['archived'] === true ? 'да' : 'нет',
             'catalog' => [
-                'id' => self::getProductFolderID($item['productFolder']['meta']['uuidHref']),
-                'name' => $item['pathName']
+                'id' => $item['productFolder']['id'],
+                'name' => $item['productFolder']['name']
             ],
             'vat' => $item['vat'],
-            'src' => self::getProductImages($item['images']['meta']['href']),
             'minPrice' => $item['minPrice']['value'],
             'salePrices' => $item['salePrices'][0]['value'],
             'paymentItemType' => self::getPaymentItemType($item['paymentItemType']),

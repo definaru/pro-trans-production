@@ -19,14 +19,14 @@
     <?php $__currentLoopData = $list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <?php if($i['list']): ?>
         <div class="accordion-item border-0">
-            <h2 class="accordion-header border-top border-light" id="heading<?php echo e($loop->iteration); ?>" v-on:click="toggleSubMenu">
+            <h2 class="accordion-header border-top border-light" id="heading<?php echo e($loop->iteration); ?><?php echo e($id); ?>" v-on:click="toggleSubMenu">
                 <a 
                     href="/dashboard/<?php echo e($i['slug']); ?>"
                     class="d-flex gap-2 py-2 px-3 bg-white text-dark tooltips shadow-none rounded-0 text-decoration-none cp border-start border-4 
                     <?php if($currenturl === '/dashboard/'.$i['slug']): ?> border-danger <?php else: ?> border-white <?php endif; ?>" 
                     :class="[isOpen ? 'accordion-button' : 'justify-content-center']" 
                     data-bs-toggle="collapse" 
-                    data-bs-target="#collapse<?php echo e($loop->iteration); ?>"
+                    data-bs-target="#collapse<?php echo e($loop->iteration); ?><?php echo e($id); ?>"
                 >
                     <i class="material-symbols-outlined text-secondary"><?php echo e($i['icon']); ?></i>
                     <span v-if="isOpen"><?php echo e($i['name']); ?></span>
@@ -34,9 +34,9 @@
                 </a>
             </h2>
             <div 
-                id="collapse<?php echo e($loop->iteration); ?>" 
+                id="collapse<?php echo e($loop->iteration); ?><?php echo e($id); ?>" 
                 class="accordion-collapse collapse <?php if($currenturl === '/dashboard/'.$i['slug']): ?> show <?php endif; ?>" 
-                aria-labelledby="heading<?php echo e($loop->iteration); ?>" 
+                aria-labelledby="heading<?php echo e($loop->iteration); ?><?php echo e($id); ?>" 
                 data-bs-parent="#content"
             >
                 <div class="accordion-body bg-light pe-0 py-0 border-end border-white">

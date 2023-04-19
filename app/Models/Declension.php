@@ -96,4 +96,9 @@ class Declension
         return $nc->q($person, Voice::$RODITLN);
     }
 
+    public static function nc($name)
+    {
+        return preg_replace('~^(\S++)\s++(\S)\S++\s++(\S)\S++$~u', '$1 $2. $3.', $name);
+    }
+
 }

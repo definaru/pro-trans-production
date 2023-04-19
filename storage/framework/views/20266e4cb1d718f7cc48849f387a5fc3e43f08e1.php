@@ -160,7 +160,7 @@
                         <div class="card-footer border-top-0 bg-white d-grid">
                             <div 
                                 id="card<?php echo e($loop->iteration); ?>" 
-                                data-card="<?php echo e($best['href']); ?>,<?php echo e($best['article']); ?>,<?php echo e($best['name']); ?>,1,<?php echo e($best['price']); ?>,<?php echo e($best['price']); ?>" 
+                                data-card="<?php echo e($best['href']); ?>,<?php echo e($best['article']); ?>,<?php echo e($best['name']); ?>,1,<?php echo e($best['price']); ?>,<?php echo e($best['price']); ?>,<?php echo e($best['image']); ?>" 
                                 v-on:click="addToCard(<?php echo e($loop->iteration); ?>)"
                                 class="btn btn-primary mb-2 text d-flex align-items-center justify-content-center gap-2 py-2"
                             >
@@ -223,15 +223,12 @@
                                     <meta itemprop="worstRating" content="1">
                                     <meta itemprop="ratingValue" content="5" />
                                     <meta itemprop="bestRating" content="5" />
-                                    
                                     <div class="rating-result">
                                         <?php $count = rand(4, 5); ?>
                                         <?php for ($i = 1; $i <= floor($count); $i++) { ?>
-                                            <?php /*<i class="fa fa-star text-warning"></i>*/ ?>
                                             <span class="active"></span>
                                         <?php } ?>
                                         <?php for ($i = 1; $i <= 5-floor($count); $i++) { ?>
-                                            <?php /*<i class="fa fa-star text-muted"></i>*/ ?>
                                             <span></span>
                                         <?php } ?>
                                     </div>
@@ -357,7 +354,10 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <div onclick="addInCard()" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
+                                        <div 
+                                            onclick="startGoods()"
+                                            class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2"
+                                        >
                                             <span class="material-symbols-outlined">add_shopping_cart</span>
                                         </div>
                                     </div>

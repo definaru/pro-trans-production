@@ -8,8 +8,13 @@ html, body {
     height: 100%;
     font-family: 'PT Sans Narrow', sans-serif;
 }
-
-[v-cloak] { display:none; }
+blockquote {
+    background: #8630a33d;
+    border-left: 6px solid #8630a3;
+    padding: 15px;
+}
+blockquote p {margin: 0}
+[v-cloak] {display:none}
 
 ::selection {
     background: transparent;

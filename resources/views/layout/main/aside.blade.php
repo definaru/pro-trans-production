@@ -15,17 +15,17 @@
         <div id="inner-content">
             @role('admin')
                 @foreach($adminmenu as $item)
-                    <x-menu header="{{$item['header']}}" :list="$item['list']" />
+                    <x-menu id="1" header="{{$item['header']}}" :list="$item['list']" />
                 @endforeach  
             @endrole  
 
             @foreach($menu as $item)
-                <x-menu header="{{$item['header']}}" :list="$item['list']" />
+                <x-menu id="2" header="{{$item['header']}}" :list="$item['list']" />
             @endforeach
         </div>
         @else
             @foreach($stop as $item)
-                <x-menu header="{{$item['header']}}" :list="$item['list']" />
+                <x-menu id="3" header="{{$item['header']}}" :list="$item['list']" />
             @endforeach
         @endif
     </div>

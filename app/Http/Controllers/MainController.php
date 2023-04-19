@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Goods;
 use App\Models\Steames;
+use App\Models\Customer;
 use App\Models\MoySklad;
 use Illuminate\Http\Request;
 use App\Providers\ContactService;
-use App\Models\Goods;
 
 
 class MainController extends Controller
@@ -154,6 +155,14 @@ class MainController extends Controller
 
     public function Card()
     {
+        $uuid = auth()->user();
+        if($uuid) {
+            $data = Customer::where('customer.uuid', $uuid->verified)
+                ->join('contract', 'customer.uuid', '=', 'contract.uuid')
+                ->get();
+            //return response()->json($data);
+            return view('card', ['data' => $data]);
+        }
         return view('card');
     }
 

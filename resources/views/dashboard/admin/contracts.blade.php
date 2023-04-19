@@ -81,7 +81,9 @@
                                 <div class="ms-2">{{$loop->iteration}}</div>
                             </td>
                             <td>
-                                <a href="../admin/contract/{{$item['id']}}" class="text-dark">{{$item['name']}}</a>
+                                <a href="/dashboard/contract/pt/{{$item['id']}}/file.pdf" target="_blank" class="text-dark">
+                                    {{$item['name']}}
+                                </a>
                             </td>
                             <td>
                                 <div>{{$item['agent']['inn']}}</div>

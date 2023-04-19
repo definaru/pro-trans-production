@@ -113,7 +113,7 @@
                                         @else
                                         <div
                                             id="card{{$item['id']}}" 
-                                            data-card="{{$item['id']}},{{$item['article']}},{{$item['name']}},1,{{$item['salePrices'][0]['value']}},{{$item['salePrices'][0]['value']}}" 
+                                            data-card="{{$item['id']}},{{$item['article']}},{{$item['name']}},1,{{$item['salePrices'][0]['value']}},{{$item['salePrices'][0]['value']}},{{$images::src($item['id'])}}" 
                                             v-on:click="addToCard('{{$item['id']}}')"
                                             class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2"
                                         >
@@ -199,7 +199,7 @@
                                         @else
                                         <div 
                                             id="card{{$item['id']}}" 
-                                            data-card="{{$item['id']}},{{$item['article']}},{{$item['name']}},1,{{$item['salePrices'][0]['value']}},{{$item['salePrices'][0]['value']}}" 
+                                            data-card="{{$item['id']}},{{$item['article']}},{{$item['name']}},1,{{$item['salePrices'][0]['value']}},{{$item['salePrices'][0]['value']}},{{$images::src($item['id'])}}" 
                                             v-on:click="addToCard('{{$item['id']}}')"
                                             class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2"
                                         >

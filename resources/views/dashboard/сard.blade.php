@@ -41,7 +41,7 @@
         <ul class="list-group list-group-flush mt-4 d-grid gap-2">
             <li v-for="(item, id) in card" class="list-group-item d-flex justify-content-between align-items-center rounded shadow-sm border-0">
                 <small class="d-flex align-items-center gap-3" style="width: 320px">
-                    <img src="/img/placeholder.png" class="rounded tryimage" style="width: 50px" :alt="item.name" />
+                    <img :src="item.image" class="rounded tryimage" style="width: 50px" :alt="item.name" />
                     <a :href=`/dashboard/product/details/${item.id}` class="d-flex align-items-center text-muted text-decoration-none">
                         <div class="d-flex justify-content-start flex-column">
                             <span>{{item.article}}</span>
