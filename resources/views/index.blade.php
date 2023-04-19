@@ -1,10 +1,10 @@
 @extends('layout/index', [
-    'title' => 'Prospekt Parts',
+    'title' => config('app.name'),
     'keywords' => 'ремонт, ремонт машин, ремонт в москве, ремонт в мытищи, ремонт двигателя, сервис, service, чинить, автосервис, мерседес бенц, актрос',
     'description' => 'Интернет-магазин `Prospekt Parts` - уникальная торговая платформа, которая позволяет мгновенно, в режиме реального времени, получать информацию о реальных остатках и условиях поставки',
     'image' => 'https://prospekt-parts.com/img/5464765787695.jpg'
 ])
-@section('title', 'Prospekt Parts | Проспект Транс')
+@section('title', 'Prospekt Parts')
 @section('content')
     <section id="about" class="bg-hero coral position-relative overflow-hidden">
         <div class="container h-100">

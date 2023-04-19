@@ -1,5 +1,5 @@
 @extends('layout/index', [
-    'title' => 'О Компании | Проспект Транс',
+    'title' => 'О Компании | Проспект Партс',
     'keywords' => 'сервис, service, компания, автосервис, мерседес бенц, актрос',
     'description' => 'Информация о компании.',
     'image' => 'https://prospekt-parts.com/img/5464765787695.jpg'
@@ -18,11 +18,11 @@
         <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2 text">
                 <div class="d-flex align-items-center justify-content-center gap-4 mb-5">
-                    <img src="/img/guayaquillib/renault.png" alt="Проспект Транс, Renault" style="width: 40px" />
-                    <img src="/public/img/mercedes-benz.png" alt="Проспект Транс, Mercedes-Benz" style="width: 40px" />
-                    <img src="/img/guayaquillib/volvo.png" alt="Проспект Транс, Volvo" style="width: 40px" />
+                    <img src="/img/guayaquillib/renault.png" alt="Renault" style="width: 40px" />
+                    <img src="/public/img/mercedes-benz.png" alt="Mercedes-Benz" style="width: 40px" />
+                    <img src="/img/guayaquillib/volvo.png" alt="Volvo" style="width: 40px" />
                 </div>
-                <h2 class="fw-bold text-center mb-4">ООО «Проспект Партс» <img src="/img/about/offer.png" style="width: 80px" alt="offer" /></h2>
+                <h2 class="fw-bold text-center mb-4">ООО {{ config('app.name') }} <img src="/img/about/offer.png" style="width: 80px" alt="offer" /></h2>
                 <hr class="bar" />
                 <p class="text-justify">
                     <strong>Prospekt Parts</strong> — крупнейший дистрибьютор автомобильных запасных частей, 

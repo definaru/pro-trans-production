@@ -1,7 +1,7 @@
 @extends('layout/index', [
     'title' => 'Контакты | Проспект Партс',
     'keywords' => 'контакты, сервис, service, чинить, автосервис, мерседес бенц, актрос',
-    'description' => 'Контактная информация компании ООО "ПРОСПЕКТ ПАРТС"',
+    'description' => 'Контактная информация компании ООО '.config('app.name'),
     'image' => 'https://prospekt-parts.com/img/5464765787695.jpg'
 ])
 
@@ -19,7 +19,7 @@
             <div class="col-12">
                 <div class="row text">
                     <div class="col-12 col-md-4">
-                        <h3 class="text-dark mb-4">ООО «Проспект Партс»</h3>
+                        <h3 class="text-dark mb-4">ООО {{ config('app.name') }}</h3>
                         <p><strong>ИНН:</strong> 9715447266</p>
                         <p><strong>ОГРН:</strong> 1237700266726</p>
                         <p><strong>КПП:</strong> 771501001</p>   
@@ -56,7 +56,7 @@
                         <div class="row gx-2">
                             <div class="col-12 col-lg-4">
                                 <div class="border rounded p-3 mb-2 bg-white">
-                                    <strong>Связаться с нашим менеджером:</strong> 
+                                    <strong>Связаться с<br /> менеджером:</strong> 
                                     <div class="d-flex gap-2 mt-2">
                                         <span class="material-symbols-outlined fs-5 text-primary">call</span>
                                         {!! $contact::getPhone(config('app.phone'), ['text-muted']) !!}
@@ -65,7 +65,7 @@
                             </div>
                             <div class="col-12 col-lg-4">
                                 <div class="border rounded p-3 mb-2 bg-white">
-                                    <strong>Связаться с тех.поддержкой:</strong> 
+                                    <strong>Связаться с<br /> тех.поддержкой:</strong> 
                                     <div class="d-flex gap-2 mt-2">
                                         <span class="material-symbols-outlined fs-5 text-primary">call</span>
                                         {!! $contact::getPhone('89151389077', ['text-muted']) !!}
@@ -74,7 +74,7 @@
                             </div>
                             <div class="col-12 col-lg-4">
                                 <div class="border rounded p-3 mb-2 bg-white">
-                                    <strong>По корпоративным вопросам:</strong> 
+                                    <strong>По корпоративным<br /> вопросам:</strong> 
                                     <div class="d-flex gap-2 mt-2">
                                         <span class="material-symbols-outlined fs-5 text-primary">call</span>
                                         {!! $contact::getPhone('84957682473', ['text-muted']) !!}
