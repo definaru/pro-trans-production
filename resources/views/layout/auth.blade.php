@@ -6,14 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf_token" content="{{ csrf_token() }}" />
     <title>@yield('title') | {{ config('app.name') }}</title>
-    <link rel="shortcut icon" href='/img/prospectdesktopicon.png' type="image/x-icon" />
+    <link rel="shortcut icon" href='/img/favicon.png' type="image/x-icon" />
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+    @if ($_SERVER['REQUEST_URI'] !== '/forgot-password')
+    <link rel="stylesheet" href="https://glyphsearch.com/bower_components/ionicons/css/ionicons.css" />    
+    @endif
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" crossorigin />
+    
+    @if ($_SERVER['REQUEST_URI'] === '/signin' || $_SERVER['REQUEST_URI'] === '/forgot-password')
+    @else
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.29/dist/sweetalert2.min.css" />
-    <link rel="stylesheet" href="https://glyphsearch.com/bower_components/ionicons/css/ionicons.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" />
-    <link rel="stylesheet" href="{{ asset('css/toastr.css') }}" />
-    <link rel="canonical" href="{{ url()->current() }}"/>
+    <link rel="stylesheet" href="{{ asset('css/toastr.css') }}" />    
+    @endif
+
+    <link rel="canonical" href="{{ url()->current() }}" />
     
     <meta name="keywords" content="CRM, продажи, оптом">
     <meta name="description" content="Официальный сервис «Prospekt Parts» по оптовым продажам запчастей">
@@ -79,11 +86,14 @@
         </div>
     </section>
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('js/vue.js') }}"></script>
+    @if ($_SERVER['REQUEST_URI'] === '/signin' || $_SERVER['REQUEST_URI'] === '/forgot-password')
+    @else
+    <script async src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script async src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('js/toastr.min.js') }}"></script>
+    @endif
+    <script src="{{ asset('js/vue.js') }}"></script>
     <script src="{{ asset('js/defina.min.js') }}"></script>
 </body>
 </html>

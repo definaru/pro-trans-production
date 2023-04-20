@@ -81,7 +81,7 @@
             <div class="col-12">
                 <div class="d-flex align-items-center flex-wrap flex-lg-nowrap justify-lg-content-between">
                     <div class="text-center text-lg-start">
-                        © <?=date('Y');?> <b>"{{ config('app.name') }}"</b>. Все права защищены.<br />
+                        © <?=date('Y');?> <b>{{ config('app.name') }}</b>. Все права защищены.<br />
                         <small class="text-secondary">
                             Сайт не является публичной офертой
                             согласно положениям статьи 437 ГК РФ

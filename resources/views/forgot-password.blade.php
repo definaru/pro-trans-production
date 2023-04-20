@@ -31,7 +31,7 @@
             <x-button id="loading" type="submit" color="danger" text="Восстановить пароль" icon="outgoing_mail" />
         </div>
         <div class="text-center mt-2">
-            <a href="/" class="text-dark">Назад</a>
+            <a href="/signin" class="text-dark">Назад</a>
         </div>
     </form>
 @endif

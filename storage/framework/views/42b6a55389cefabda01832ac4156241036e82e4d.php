@@ -13,7 +13,7 @@
     <title itemprop="headline"><?php echo $__env->yieldContent('title'); ?></title>
 
     <?php echo $__env->make('layout.main.seo.data', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    <link rel="shortcut icon" href="/img/logotype.jpg" type='image/x-icon'/>
+    <link rel="shortcut icon" href="/img/favicon.png" type='image/x-icon'/>
     <link rel="apple-touch-icon" href="/img/logotype.jpg" />	
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.29/dist/sweetalert2.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
@@ -142,7 +142,7 @@
                             <form id="sendForm" action="/product" method="POST" class="col-12 position-relative mb-5">
                                 <?php echo csrf_field(); ?>
                                 <label class="text-white mb-1" style="text-shadow: 1px 1px black">
-                                    Горячие клавиши (Ctrl+F) - открыть поиск, (Ctrl+X) - закрыть поиск. Работает в сочитании c клавишей "Shift"
+                                    Горячие клавиши (Ctrl+F) - открыть поиск, (Ctrl+X) - закрыть поиск.
                                 </label>
                                 <input 
                                     type="search" 
@@ -166,9 +166,9 @@
     <?php echo $__env->make('layout.main.ui.modal.subscription', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script async src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="<?php echo e(asset('js/sweetalert2.all.min.js')); ?>"></script>
+    <script async src="<?php echo e(asset('js/sweetalert2.all.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/toastr.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/vue.js')); ?>"></script>
     <script src="<?php echo e(asset('js/main.js')); ?>"></script>

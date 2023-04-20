@@ -27,6 +27,7 @@
                     name="text" 
                     class="form-control form-control-lg ps-4 pe-5 text border-0 shadow" 
                     placeholder="Введите Артикул или Название запчасти..." 
+                    autofocus
                 />
                 <span class="material-symbols-outlined position-absolute text-muted" onclick="getResult()" style="cursor: pointer;right: 28px;top: 11px">search</span>
                 @include('layout.main.ui.selest.list')

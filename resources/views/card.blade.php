@@ -117,6 +117,10 @@
                                     class="form-control select border-0 @error('name') is-invalid border-bottom border-danger-subtle @enderror" 
                                     name="name"
                                     value="{{$data[0]['name'] ?? ''}}"
+                                    autocomplete="off" 
+                                    autocorrect="off" 
+                                    autocapitalize="words" 
+                                    spellcheck="false"
                                     placeholder="Ваше имя" 
                                 />
                                 @error('name')
@@ -130,6 +134,10 @@
                                     class="form-control select border-0 @error('phone') is-invalid border-bottom border-danger-subtle @enderror" 
                                     name="phone"
                                     value="{{$data[0]['phone'] ?? ''}}"
+                                    autocomplete="off" 
+                                    autocorrect="off" 
+                                    autocapitalize="words" 
+                                    spellcheck="false"
                                     placeholder="Ваш телефон" 
                                 />
                                 @error('phone')
@@ -143,6 +151,10 @@
                                     class="form-control select border-0 @error('email') is-invalid border-bottom border-danger-subtle @enderror" 
                                     name="email" 
                                     value="{{$data[0]['email'] ?? ''}}"
+                                    autocomplete="off" 
+                                    autocorrect="off" 
+                                    autocapitalize="words" 
+                                    spellcheck="false"
                                     placeholder="Ваш E-mail..." 
                                 />
                                 @error('email')
@@ -156,6 +168,10 @@
                                     class="form-control select border-0" 
                                     name="address" 
                                     value="{{$data[0]['address'] ?? ''}}"
+                                    autocomplete="off" 
+                                    autocorrect="off" 
+                                    autocapitalize="words" 
+                                    spellcheck="false"
                                     placeholder="Адрес доставки..." 
                                 />
                             </div>

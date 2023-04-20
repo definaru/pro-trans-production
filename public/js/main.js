@@ -323,14 +323,14 @@ function getResult()
 // });
 
 window.addEventListener('keydown', (e) => {
-    if (e.code == 'KeyX' && (e.ctrlKey || e.shiftKey || e.metaKey)) {
+    if (e.code == 'KeyX' && (e.ctrlKey || e.metaKey)) { //  || e.shiftKey
         modal.hide();
         e.preventDefault();
     }
 });
 
 document.addEventListener('keydown', (event) => {
-    if (event.code == 'KeyF' && (event.ctrlKey || event.shiftKey || event.metaKey)) {
+    if (event.code == 'KeyF' && (event.ctrlKey || event.metaKey)) { //  || event.shiftKey
         modal.show();
         event.preventDefault();
     }
@@ -451,6 +451,14 @@ function startGoods()
 {
     window.location.assign('/products/mersedes-benz');
 }
+
+var searchModal = document.getElementById('searchForm')
+var searchInput = document.getElementById('search')
+searchInput.focus()
+
+searchModal.addEventListener('shown.bs.modal', function () {
+    searchInput.focus()
+});
 
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
