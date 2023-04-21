@@ -19,11 +19,33 @@
                         </p>
                         <div class="d-grid d-lg-flex align-items-center gap-3 gap-lg-4 w-100">
                             <a href="/signup" class="btn btn-lg btn-primary px-5 py-3 d-flex justify-content-center align-items-center gap-2">
-                                <span class="material-symbols-outlined">open_in_new</span>
+                                <?php if (isset($component)) { $__componentOriginal5403088a3b621a00dd17eee36a9948a82af5908b = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconOpenInNew::class, ['size' => '25px','color' => '#fff']); ?>
+<?php $component->withName('icon-open-in-new'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal5403088a3b621a00dd17eee36a9948a82af5908b)): ?>
+<?php $component = $__componentOriginal5403088a3b621a00dd17eee36a9948a82af5908b; ?>
+<?php unset($__componentOriginal5403088a3b621a00dd17eee36a9948a82af5908b); ?>
+<?php endif; ?>
                                 Зарегистрироваться
                             </a>
                             <a href="#bestsellers" class="btn btn-lg btn-dark px-5 py-3 d-flex justify-content-center align-items-center gap-2">
-                                <span class="material-symbols-outlined">subdirectory_arrow_right</span>
+                                <?php if (isset($component)) { $__componentOriginal5b27657aad8a4141494e165719ea42a6aae2a0c3 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconSubdirectoryArrowRight::class, ['size' => '25px','color' => '#fff']); ?>
+<?php $component->withName('icon-subdirectory-arrow-right'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal5b27657aad8a4141494e165719ea42a6aae2a0c3)): ?>
+<?php $component = $__componentOriginal5b27657aad8a4141494e165719ea42a6aae2a0c3; ?>
+<?php unset($__componentOriginal5b27657aad8a4141494e165719ea42a6aae2a0c3); ?>
+<?php endif; ?>
                                 Подробнее
                             </a>
                         </div>
@@ -164,7 +186,18 @@
                                 v-on:click="addToCard(<?php echo e($loop->iteration); ?>)"
                                 class="btn btn-primary mb-2 text d-flex align-items-center justify-content-center gap-2 py-2"
                             >
-                                <span class="material-symbols-outlined">add_shopping_cart</span>
+                                <?php if (isset($component)) { $__componentOriginald3016bcaf72ba9ba5030dea4e846411634478ec3 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconAddCard::class, ['size' => '25px','color' => '#fff']); ?>
+<?php $component->withName('icon-add-card'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald3016bcaf72ba9ba5030dea4e846411634478ec3)): ?>
+<?php $component = $__componentOriginald3016bcaf72ba9ba5030dea4e846411634478ec3; ?>
+<?php unset($__componentOriginald3016bcaf72ba9ba5030dea4e846411634478ec3); ?>
+<?php endif; ?>
                                 <strong>В корзину</strong> 
                             </div>
                         </div>
@@ -366,7 +399,18 @@
                                             onclick="startGoods()"
                                             class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2"
                                         >
-                                            <span class="material-symbols-outlined">add_shopping_cart</span>
+                                            <?php if (isset($component)) { $__componentOriginald3016bcaf72ba9ba5030dea4e846411634478ec3 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconAddCard::class, ['size' => '25px','color' => '#fff']); ?>
+<?php $component->withName('icon-add-card'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald3016bcaf72ba9ba5030dea4e846411634478ec3)): ?>
+<?php $component = $__componentOriginald3016bcaf72ba9ba5030dea4e846411634478ec3; ?>
+<?php unset($__componentOriginald3016bcaf72ba9ba5030dea4e846411634478ec3); ?>
+<?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -389,7 +433,18 @@
                         <h2 class="display-3 mb-4 fw-bold">Присоединяйтейсь<br> к нашему сообществу</h2>
                         <div class="d-grid d-lg-flex gap-3">
                             <a href="/signup" class="btn btn-lg btn-primary px-5 d-flex justify-content-center align-items-center gap-2">
-                                <span class="material-symbols-outlined">add</span>
+                                <?php if (isset($component)) { $__componentOriginal8ebc2cfae60e7fda14142d5a384e1fb512120930 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconAdd::class, ['color' => '#fff']); ?>
+<?php $component->withName('icon-add'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal8ebc2cfae60e7fda14142d5a384e1fb512120930)): ?>
+<?php $component = $__componentOriginal8ebc2cfae60e7fda14142d5a384e1fb512120930; ?>
+<?php unset($__componentOriginal8ebc2cfae60e7fda14142d5a384e1fb512120930); ?>
+<?php endif; ?>
                                 Присоедиится
                             </a>
                             <button 
@@ -426,21 +481,60 @@
                         <h2 class="display-3 mb-4">Наши преимущества</h2>
                         <ul class="d-grid gap-4 list-unstyled">
                             <li class="d-flex feat">
-                                <span class="material-symbols-outlined text-primary fs-1 mt-2 me-4">switch_access_shortcut_add</span>
+                                <span class="mt-2 me-4">
+                                    <?php if (isset($component)) { $__componentOriginal45b6c5f5a7e53312d4610d833312739bb353079e = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconSwitchAccessShortcutAdd::class, ['size' => '40px','color' => '#8630a3']); ?>
+<?php $component->withName('icon-switch-access-shortcut-add'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal45b6c5f5a7e53312d4610d833312739bb353079e)): ?>
+<?php $component = $__componentOriginal45b6c5f5a7e53312d4610d833312739bb353079e; ?>
+<?php unset($__componentOriginal45b6c5f5a7e53312d4610d833312739bb353079e); ?>
+<?php endif; ?>
+                                </span>
                                 <div>
                                     <strong class="fs-2 text-secondary">Запасные части</strong>
                                     <p class="fs-5 text">1) Мы поставляем только оригинальные новые запчасти</p> 
                                 </div>
                             </li>
                             <li class="d-flex feat">
-                                <span class="material-symbols-outlined text-primary fs-1 mt-2 me-4">shield_with_heart</span>
+                                <span class="mt-2 me-4">
+                                    <?php if (isset($component)) { $__componentOriginal5a3b2f0ba51d914c32004455b209a4e05393ffe3 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconShieldWithHeart::class, ['size' => '40px','color' => '#8630a3']); ?>
+<?php $component->withName('icon-shield-with-heart'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal5a3b2f0ba51d914c32004455b209a4e05393ffe3)): ?>
+<?php $component = $__componentOriginal5a3b2f0ba51d914c32004455b209a4e05393ffe3; ?>
+<?php unset($__componentOriginal5a3b2f0ba51d914c32004455b209a4e05393ffe3); ?>
+<?php endif; ?>
+                                </span>
                                 <div>
                                     <strong class="fs-2 text-secondary">Репутация</strong>
                                     <p class="fs-5 text">2) У нас очень хорошая репутация, нам доверяют многие компании</p>
                                 </div>
                             </li>
                             <li class="d-flex feat">
-                                <span class="material-symbols-outlined text-primary fs-1 mt-2 me-4">currency_ruble</span>
+                                <span class="mt-2 me-4">
+                                    <?php if (isset($component)) { $__componentOriginal0c6d8cd6984192c9700836ca613d2ed2543e51b8 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconCurrencyRubler::class, ['size' => '40px','color' => '#8630a3']); ?>
+<?php $component->withName('icon-currency-rubler'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal0c6d8cd6984192c9700836ca613d2ed2543e51b8)): ?>
+<?php $component = $__componentOriginal0c6d8cd6984192c9700836ca613d2ed2543e51b8; ?>
+<?php unset($__componentOriginal0c6d8cd6984192c9700836ca613d2ed2543e51b8); ?>
+<?php endif; ?>
+                                </span>
                                 <div>
                                     <strong class="fs-2 text-secondary">Цены</strong>
                                     <p class="fs-5 text">3) Мы не занимаемся перепродажами, поэтому у нас приемлемые цены</p>
@@ -448,7 +542,20 @@
                                 
                             </li>
                             <li class="d-flex feat">
-                                <span class="material-symbols-outlined text-primary fs-1 mt-2 me-4">pallet</span>
+                                <span class="mt-2 me-4">
+                                    <?php if (isset($component)) { $__componentOriginal1163d854608a892fc692c7630accb694f88f7d31 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconPallet::class, ['size' => '40px','color' => '#8630a3']); ?>
+<?php $component->withName('icon-pallet'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal1163d854608a892fc692c7630accb694f88f7d31)): ?>
+<?php $component = $__componentOriginal1163d854608a892fc692c7630accb694f88f7d31; ?>
+<?php unset($__componentOriginal1163d854608a892fc692c7630accb694f88f7d31); ?>
+<?php endif; ?>
+                                </span>
                                 <div>
                                     <strong class="fs-2 text-secondary">Доставка</strong>
                                     <p class="fs-5 text">4) Качественная доставка в срок</p>
@@ -468,14 +575,37 @@
                         <p class="text">Наш сервис на следующих платформах:</p>
                         <div class="d-flex justify-content-center flex-column flex-lg-row gap-3 pt-3">
                             <button class="d-flex justify-content-center gap-2 btn btn-dark px-4 py-2" disabled>
-                                <img src="/img/google_play.svg" style="width: 40px" alt="Google Play">
+                                <?php if (isset($component)) { $__componentOriginal845d9790fd076d79052d38fce78fca6861e3beed = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconGooglePlay::class, ['size' => '40px','color' => '#fff']); ?>
+<?php $component->withName('icon-google-play'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal845d9790fd076d79052d38fce78fca6861e3beed)): ?>
+<?php $component = $__componentOriginal845d9790fd076d79052d38fce78fca6861e3beed; ?>
+<?php unset($__componentOriginal845d9790fd076d79052d38fce78fca6861e3beed); ?>
+<?php endif; ?>
                                 <div class="d-flex align-self-center flex-column lh-sm text-start">
                                     <small class="text">Скачать на</small>
                                     <strong class="fw-bold text">Google Play</strong> 
                                 </div>
                             </button>
                             <button class="d-flex justify-content-center gap-2 btn btn-dark px-4 py-2" disabled>
-                                <img src="/img/apple_store.svg" style="width: 40px" alt="App Store" />
+                                
+                                <?php if (isset($component)) { $__componentOriginalee10e7931afa5c6074f44a73527cc8fda8bf2a6f = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconAppleStore::class, ['size' => '40px','color' => '#fff']); ?>
+<?php $component->withName('icon-apple-store'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalee10e7931afa5c6074f44a73527cc8fda8bf2a6f)): ?>
+<?php $component = $__componentOriginalee10e7931afa5c6074f44a73527cc8fda8bf2a6f; ?>
+<?php unset($__componentOriginalee10e7931afa5c6074f44a73527cc8fda8bf2a6f); ?>
+<?php endif; ?>
                                 <div class="d-flex align-self-center flex-column lh-sm text-start">
                                     <small class="text">Скачать на</small>
                                     <strong class="fw-bold text">App Store</strong> 

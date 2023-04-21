@@ -46,7 +46,7 @@
                             @guest
                             <div class="d-flex mt-4">
                                 <a href="/signup" class="btn btn-primary px-5 py-3 d-flex justify-content-center align-items-center gap-2">
-                                    <span class="material-symbols-outlined">open_in_new</span>
+                                    <x-icon-open-in-new size="25px" color="#fff" />
                                     Зарегистрироваться
                                 </a>                                
                             </div>

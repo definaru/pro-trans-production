@@ -27,12 +27,15 @@
                         </div>
                     </div>
                 </template>
-                @verbatim
+                
                 <template v-else>
+                    @verbatim
                     <h6 class="text-muted">Всего {{card.length+' '+countGoods(card.length, 'товар', 'товара', 'товаров')}}</h6>
+                    @endverbatim
                     <template v-if="!loading">
                         <ul class="list-group list-group-flush mt-4 d-grid gap-2">
                             <li v-for="(item, id) in card" class="list-group-item d-flex justify-content-between align-items-center rounded shadow-sm border-0">
+                                @verbatim
                                 <small class="d-flex align-items-center gap-3" style="width: 320px;">
                                     <img :src="item.image" :alt="item.name" class="rounded" style="width: 50px;height: 50px;object-fit: cover" /> 
                                     <a :href=`/product/mersedes-benz/${item.id}` class="d-flex align-items-center text-muted text-decoration-none">
@@ -41,27 +44,34 @@
                                             <p class="fw-bold text-dark m-0">{{item.name}}</p>
                                         </div>
                                     </a>
-                                </small> 
+                                </small>
                                 <div class="position-relative" style="width: 180px;">
                                     {{ priceFormat(item.price) }}
                                     <span class="badge rounded-pill text-dark bg-light">за 1 шт.</span>
                                 </div> 
+                                @endverbatim
                                 <div>
                                     <span class="label" v-html="resultSumma(item.price, item.count)"></span>
                                 </div> 
                                 <div class="input-group" style="width: 140px;">
-                                    <button class="btn btn-sm material-symbols-outlined pe-0" v-on:click="inCrement(item.id)">add</button>
-                                    <div class="form-control form-control-sm fs-6 border-0 text-center">{{item.count}}</div>
-                                    <button class="btn btn-sm material-symbols-outlined ps-0" v-if="item.count == 1">remove</button>
-                                    <button class="btn btn-sm material-symbols-outlined ps-0" v-on:click="deCrement(item.id)" v-else>remove</button>
+                                    <button class="btn btn-sm pe-0" v-on:click="inCrement(item.id)">
+                                        <x-icon-add />
+                                    </button>
+                                    <div class="form-control form-control-sm fs-6 border-0 text-center">@{{item.count}}</div>
+                                    <button class="btn btn-sm ps-0" v-if="item.count == 1"><x-icon-remove /></button>
+                                    <button class="btn btn-sm ps-0" v-on:click="deCrement(item.id)" v-else><x-icon-remove /></button>
                                 </div> 
                                 <div class="btn-group">
-                                    <button v-on:click="removeCart(id)" class="btn text-danger rounded material-symbols-outlined">delete</button>
+                                    <button v-on:click="removeCart(id)" class="btn rounded">
+                                        <x-icon-delete size="25px" color="#b02a37" />
+                                    </button>
                                 </div>
                             </li>
-                        </ul>  
+                        </ul> 
+                        @verbatim 
                         {{totalSum}}
-                        {{totalAmount}}                  
+                        {{totalAmount}}     
+                        @endverbatim             
                     </template>
                     <template v-else>
                         <div>
@@ -75,6 +85,7 @@
                         </div>
                     </template>
                 </template>
+                
                 <template v-if="сheckout.length === 0">
                     <div v-if="card.length !== 0" class="d-flex justify-content-between mb-5 pb-5">
                         <div class="col-md-6 mt-3">
@@ -89,19 +100,19 @@
                         <div class="d-flex justify-content-end gap-4 align-items-center mt-3 mb-5">
                             <div class="py-2">Всего:</div> 
                             <div class="py-2 fw-bold pe-4">
-                                {{getTotalsumma(totalsumma)}}
+                                @{{getTotalsumma(totalsumma)}}
                             </div> 
-                            <div class="py-2">{{amount}} (шт.)</div>
+                            <div class="py-2">@{{amount}} (шт.)</div>
                             <div>
                                 <div v-on:click="Checkout()" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
-                                    <span class="material-symbols-outlined">check</span>
+                                    <x-icon-check color="#fff" />
                                     Оформить заказ
                                 </div>                                
                             </div>
                         </div>
                     </div> 
                 </template>
-                @endverbatim
+
                 <template v-else>
                     <form action="/checkout" method="post" enctype="multipart/form-data" class="py-2">
                         @csrf
@@ -178,7 +189,20 @@
                         </div>
                         <input type="hidden" class="form-control" name="сheckout" :value="JSON.stringify(сheckout)" />
                         <div class="d-flex mt-4">
-                            <button type="submit" v-html="button" v-on:click="sendOrderButton()" class="btn btn-dark fw-bold text px-4 d-flex align-items-center gap-2 justify-content-center"></button>                  
+                            <button 
+                                type="submit"
+                                v-on:click="sendOrderButton()" 
+                                class="btn btn-dark fw-bold text px-4 d-flex align-items-center gap-2 justify-content-center"
+                            >
+                                <template v-if="button === 0">
+                                    <x-icon-check color="#fff" /> Подтвердить и Оформить
+                                </template>
+                                <template v-else>
+                                    <span class="spin">
+                                        <x-icon-autorenew color="#fff" />
+                                    </span> Отправляем...
+                                </template>
+                            </button>                  
                         </div>                        
                     </form>
                 </template>

@@ -15,7 +15,7 @@
     'description' => $description,
     'image' => $url.$image
 ])
-@section('title', $str.' | Проспект Транс')
+@section('title', $str.' | Проспект Партс')
 @section('content')
     <section class="bg-secondary-subtle" itemscope itemtype="http://schema.org/Product">
         <div class="container">
@@ -59,9 +59,9 @@
                         <span 
                             data-bs-toggle="tooltip" 
                             data-bs-title="Деталь на заказ"
-                            class="fs-6 material-symbols-outlined text-primary cp" 
+                            class="text-primary cp mb-1" 
                         >
-                            help
+                            <x-icon-help color="#8630a3" />
                         </span>
                     </p>
                     <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
@@ -103,15 +103,21 @@
                     <div class="d-grid d-lg-flex align-items-center gap-4 w-100">
                         @if($product['quantity'] == 0 || $product['quantity'] < 0)
                             <button onclick="isUserSubscribe()" class="btn btn-lg btn-primary px-5 py-3 d-flex justify-content-center align-items-center gap-2">
-                                <span class="material-symbols-outlined">add_shopping_cart</span>
+                                <x-icon-add-card size="25px" color="#fff" />
                                 В корзину
                             </button>   
                         @else
                             <div class="d-flex justify-content-center rounded p-3 bg-white">
-                                <span v-on:click="inCrementOne()" class="material-symbols-outlined btn py-1">add</span>
+                                <span v-on:click="inCrementOne()" class="btn py-1">
+                                    <x-icon-add color="#000" />
+                                </span>
                                 <span class="btn py-1" v-html="count"></span>
-                                <button class="btn btn-sm material-symbols-outlined py-1" v-if="count == 1">remove</button>
-                                <button class="btn btn-sm material-symbols-outlined py-1" v-on:click="deCrementOne()" v-else>remove</button>
+                                <button class="btn py-1" v-if="count == 1">
+                                    <x-icon-remove color="#000" />
+                                </button>
+                                <button class="btn py-1" v-on:click="deCrementOne()" v-else>
+                                    <x-icon-remove color="#000" />
+                                </button>
                             </div>
                             <div 
                                 id="card<?=$id?>"
@@ -119,7 +125,7 @@
                                 v-on:click="addToCard('<?=$id?>')"
                                 class="btn btn-lg btn-primary px-5 py-3 d-flex justify-content-center align-items-center gap-2"
                             >
-                                <span class="material-symbols-outlined">add_shopping_cart</span>
+                                <x-icon-add-card size="25px" color="#fff" />
                                 В корзину
                             </div>    
                                              

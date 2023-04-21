@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $__env->yieldContent('title'); ?> / <?php echo e(config('app.name')); ?> </title>
-    <link rel="shortcut icon" href='/img/prospectdesktopicon.png' type="image/x-icon" />
+    <link rel="shortcut icon" href='/img/favicon.png' type="image/x-icon" />
     <link rel="stylesheet" href="<?php echo e(asset('css/bootstrap.min.css')); ?>" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />

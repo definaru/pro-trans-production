@@ -27,7 +27,7 @@
                     <div class="card-body">
                         <a href="#api" onclick="isError()" class="d-flex align-items-center text-decoration-none">
                             <div class="p-2">
-                                <span class="material-symbols-outlined text-secondary fs-1">frame_source</span>
+                                <x-icon-frame-source color="#777" size="30px" />
                             </div> 
                             <div class="p-2 flex-grow-1">
                                 <h5 class="fw-bold text-dark m-0">REST API v1</h5> 
@@ -42,7 +42,7 @@
                     <div class="card-body">
                         <a href="#faq" onclick="isError()" class="d-flex align-items-center text-decoration-none">
                             <div class="p-2">
-                                <span class="material-symbols-outlined text-secondary fs-1">terminal</span>
+                                <x-icon-terminal color="#777" size="30px" />
                             </div> 
                             <div class="p-2 flex-grow-1">
                                 <h5 class="fw-bold text-dark m-0">F.A.Q.</h5> 
@@ -57,7 +57,7 @@
                     <div class="card-body">
                         <a href="#help" onclick="isError()" class="d-flex align-items-center text-decoration-none">
                             <div class="p-2">
-                                <span class="material-symbols-outlined text-secondary fs-1">help</span>
+                                <x-icon-help color="#777" size="30px" />
                             </div> 
                             <div class="p-2 flex-grow-1">
                                 <h5 class="fw-bold text-dark m-0">Помощь</h5> 

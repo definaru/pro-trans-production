@@ -7,7 +7,7 @@ new Vue({
         cookie: true,
         amount: 0,
         totalsumma: 0,
-        button: '<span class="material-symbols-outlined">check</span> Подтвердить и Оформить',
+        button: 0,
         count: 1
     },
     computed: {
@@ -58,7 +58,7 @@ new Vue({
             return s1;
         },
         sendOrderButton() {
-            this.button = '<span class="material-symbols-outlined spin">autorenew</span> Отправляем...'
+            this.button = 1
         },
         getTotalsumma(digital) {
             var rub = digital.toString().substr(0, String(digital).length-2).replace(/\B(?=(\d{3})+(?!\d))/g, " ");

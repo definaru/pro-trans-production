@@ -8,7 +8,7 @@
         Пользователи
     </a>     
     <span class="text-secondary">/</span>
-    <span class="text-muted">{{$model[0]['company']}}</span>    
+    <span class="text-muted">{{count($model) === 0 ? 'Договор не подписан' : $model[0]['company']}}</span>    
 </div>
 @endsection
 @section('content')  
@@ -17,6 +17,9 @@
     <div class="col">
         <div class="card border-0 shadow-sm">
             <div class="card-body">
+                @if(count($model) === 0)
+                    Договор не подписан <a href="https://online.moysklad.ru/app/#Company/edit?id={{$uuid}}" target="_blank">Подробнее</a>
+                @else
                 <table class="table mb-0">
                     <tbody>
                         <tr>
@@ -109,6 +112,7 @@
                         </tr>
                     </tbody>
                 </table>
+                @endif
             </div>
         </div>
     </div>

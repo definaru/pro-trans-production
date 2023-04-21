@@ -29,7 +29,9 @@
                     placeholder="Введите Артикул или Название запчасти..." 
                     autofocus
                 />
-                <span class="material-symbols-outlined position-absolute text-muted" onclick="getResult()" style="cursor: pointer;right: 28px;top: 11px">search</span>
+                <span class="position-absolute" onclick="getResult()" style="cursor: pointer;right: 28px;top: 11px">
+                    <x-icon-search color="#333" />
+                </span>
                 @include('layout.main.ui.selest.list')
             </form>
         </div>
@@ -57,7 +59,7 @@
                                     itemtype="https://schema.org/AggregateRating" 
                                     class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2"
                                 >
-                                    <span class="material-symbols-outlined fs-6 text-danger">favorite</span>
+                                    <x-icon-favorite color="#b02a37" />
                                     <small>{{rand(4, 5)}}.{{rand(0, 9)}} рейтинг</small> 
                                     <meta itemprop="worstRating" content="1">
                                     <meta itemprop="ratingValue" content="4.9">
@@ -109,7 +111,7 @@
                                     <div>
                                         @if($item['quantity'] == 0)
                                         <div onclick="isNotSignUp()" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
-                                            <span class="material-symbols-outlined">add_shopping_cart</span>
+                                            <x-icon-add-card size="25px" color="#fff" />
                                         </div>
                                         @else
                                         <div
@@ -118,7 +120,7 @@
                                             v-on:click="addToCard('{{$item['id']}}')"
                                             class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2"
                                         >
-                                            <span class="material-symbols-outlined">add_shopping_cart</span>
+                                            <x-icon-add-card size="25px" color="#fff" />
                                         </div>
                                         @endif
                                     </div>
@@ -126,9 +128,7 @@
                             </div>
                         </div>
                     </div>
-                    
                     @endif
-
                 @endforeach
                 </div>
             @endif
@@ -143,7 +143,7 @@
                         <div class="card card-data border-0 shadow-sm order">
                             <a href="/product/mersedes-benz/{{$item['id']}}" class="card-body pb-0 position-relative">
                                 <div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating" class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2">
-                                    <span class="material-symbols-outlined fs-6 text-danger">favorite</span>
+                                    <x-icon-favorite color="#b02a37" />
                                     <small>{{rand(4, 5)}}.{{rand(0, 9)}} рейтинг</small> 
                                     <meta itemprop="worstRating" content="1">
                                     <meta itemprop="ratingValue" content="4.9">
@@ -195,7 +195,7 @@
                                     <div>
                                         @if($item['quantity'] == 0)
                                         <div onclick="isNotSignUp()" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
-                                            <span class="material-symbols-outlined">add_shopping_cart</span>
+                                            <x-icon-add-card size="25px" color="#fff" />
                                         </div>
                                         @else
                                         <div 
@@ -204,7 +204,7 @@
                                             v-on:click="addToCard('{{$item['id']}}')"
                                             class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2"
                                         >
-                                            <span class="material-symbols-outlined">add_shopping_cart</span>
+                                            <x-icon-add-card size="25px" color="#fff" />
                                         </div>
                                         @endif
                                     </div>

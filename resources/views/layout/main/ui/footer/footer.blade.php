@@ -47,7 +47,7 @@
                     <h4 class="mb-4">Контакты</h4> 
                     <ul class="d-grid gap-3 list-unstyled" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
                         <li class="d-flex align-items-center gap-2">
-                            <span class="material-symbols-outlined fs-5 text-primary">location_on</span>
+                            <x-icon-location size="30px" color="#8630a3"/>
                             <a href="https://yandex.ru/maps/-/CCUCFDAwwA" target="_blank">
                                 <span itemprop="postalCode">141006</span>, 
                                 <span itemprop="addressRegion">Московская обл</span>,
@@ -56,15 +56,15 @@
                             </a>
                         </li>
                         <li class="d-flex align-items-center gap-2">
-                            <span class="material-symbols-outlined fs-5 text-primary">call</span>
+                            <x-icon-call size="22px" color="#8630a3"/>
                             {!! $contact::getPhone(config('app.phone'), [], true) !!}
                         </li>
                         <li class="d-flex align-items-center gap-2">
-                            <span class="material-symbols-outlined fs-5 text-primary">mark_as_unread</span>
+                            <x-icon-mark-as-unread size="22px" color="#8630a3"/>
                             {!! $contact::getEmail(config('app.email'), [], true) !!}
                         </li>
                         <li class="d-flex align-items-center gap-2">
-                            <span class="material-symbols-outlined fs-5 text-primary">alarm</span>
+                            <x-icon-alarm size="22px" color="#8630a3"/>
                             Время работы:
                         </li>
                         <li itemscope itemtype="http://schema.org/LocalBusiness">

@@ -59,7 +59,7 @@
 
                     </span> 
                     <span class="d-none" itemprop="name">
-                        Проспект Транс
+                        Проспект Партс
                     </span>
                 </a>
                 <button class="material-symbols-outlined btn d-lg-none d-block ms-4 ms-sm-4" data-bs-toggle="modal" data-bs-target="#searchForm">search</button>
@@ -72,17 +72,50 @@
 
                     <div class="d-grid d-lg-flex gap-2 pb-4 pb-lg-0" role="search">
                         <button class="d-lg-flex align-items-center gap-2 btn d-none border ps-2 searchForm" data-bs-toggle="modal" data-bs-target="#searchForm">
-                            <span class="material-symbols-outlined cp">search</span>
+                            <?php if (isset($component)) { $__componentOriginald2cbd53f813b0d659f2269c5137bda62cd4d8ce9 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconSearch::class, []); ?>
+<?php $component->withName('icon-search'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald2cbd53f813b0d659f2269c5137bda62cd4d8ce9)): ?>
+<?php $component = $__componentOriginald2cbd53f813b0d659f2269c5137bda62cd4d8ce9; ?>
+<?php unset($__componentOriginald2cbd53f813b0d659f2269c5137bda62cd4d8ce9); ?>
+<?php endif; ?>
                             <span>Поиск...</span>
                         </button>
                         <?php if(auth()->guard()->guest()): ?>
                         <a href="/signin" class="btn btn-primary px-3 shadow-sm fw-bold d-flex justify-content-center align-items-center gap-2">
-                            <span class="material-symbols-outlined fs-6">login</span>
+                            <?php if (isset($component)) { $__componentOriginal58218aae8b811c2a73d264cf2ce5b36767113726 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconLogin::class, ['color' => '#fff']); ?>
+<?php $component->withName('icon-login'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal58218aae8b811c2a73d264cf2ce5b36767113726)): ?>
+<?php $component = $__componentOriginal58218aae8b811c2a73d264cf2ce5b36767113726; ?>
+<?php unset($__componentOriginal58218aae8b811c2a73d264cf2ce5b36767113726); ?>
+<?php endif; ?>
                             Войти
                         </a>   
                         <template v-if="card.length">
-                            <a href="/card" class="material-symbols-outlined btn position-relative">
-                                shopping_cart
+                            <a href="/card" class="btn position-relative">
+                                <?php if (isset($component)) { $__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconShoppingCart::class, ['size' => '24px']); ?>
+<?php $component->withName('icon-shopping-cart'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67)): ?>
+<?php $component = $__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67; ?>
+<?php unset($__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67); ?>
+<?php endif; ?>
                                 <small 
                                     class="position-absolute translate-middle badge rounded-pill bg-danger text" 
                                     style="font-size: 10px;top: 8px;left: 35px;"
@@ -94,12 +127,34 @@
                         
                         <?php endif; ?>
                         <?php if(auth()->guard()->check()): ?>
-                        <a href="/dashboard" class="material-symbols-outlined btn">
-                            person
+                        <a href="/dashboard" class="btn pe-0">
+                            <?php if (isset($component)) { $__componentOriginal0d94697088dc22c93949a4cc30ab7d385eb397e5 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconPerson::class, ['size' => '27px']); ?>
+<?php $component->withName('icon-person'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal0d94697088dc22c93949a4cc30ab7d385eb397e5)): ?>
+<?php $component = $__componentOriginal0d94697088dc22c93949a4cc30ab7d385eb397e5; ?>
+<?php unset($__componentOriginal0d94697088dc22c93949a4cc30ab7d385eb397e5); ?>
+<?php endif; ?>
                         </a>
                         <template v-if="card.length">
-                            <a href="/dashboard/card" class="material-symbols-outlined btn position-relative">
-                                shopping_cart
+                            <a href="/dashboard/card" class="btn position-relative">
+                                <?php if (isset($component)) { $__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconShoppingCart::class, ['size' => '25px']); ?>
+<?php $component->withName('icon-shopping-cart'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67)): ?>
+<?php $component = $__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67; ?>
+<?php unset($__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67); ?>
+<?php endif; ?>
                                 <small 
                                     class="position-absolute translate-middle badge rounded-pill bg-danger text" 
                                     style="font-size: 10px;top: 8px;left: 35px;"
@@ -153,7 +208,20 @@
                                     placeholder="Введите Артикул или Название запчасти..." 
                                     autofocus 
                                 />
-                                <span class="material-symbols-outlined position-absolute text-muted" onclick="getResult()" style="cursor: pointer;right: 28px;top: 40px">search</span>
+                                <span class="position-absolute text-muted" onclick="getResult()" style="cursor: pointer;right: 30px;top: 38px;">
+                                    <?php if (isset($component)) { $__componentOriginald2cbd53f813b0d659f2269c5137bda62cd4d8ce9 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconSearch::class, ['color' => '#333']); ?>
+<?php $component->withName('icon-search'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald2cbd53f813b0d659f2269c5137bda62cd4d8ce9)): ?>
+<?php $component = $__componentOriginald2cbd53f813b0d659f2269c5137bda62cd4d8ce9; ?>
+<?php unset($__componentOriginald2cbd53f813b0d659f2269c5137bda62cd4d8ce9); ?>
+<?php endif; ?>
+                                </span>
                                 <?php echo $__env->make('layout.main.ui.selest.list', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                             </form>
                         </div>
@@ -166,9 +234,9 @@
     <?php echo $__env->make('layout.main.ui.modal.subscription', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     
-    <script async src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script async src="<?php echo e(asset('js/sweetalert2.all.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/sweetalert2.all.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/toastr.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/vue.js')); ?>"></script>
     <script src="<?php echo e(asset('js/main.js')); ?>"></script>

@@ -58,7 +58,7 @@
                         {!!$names::company('Prospekt Parts')!!}
                     </span> 
                     <span class="d-none" itemprop="name">
-                        Проспект Транс
+                        Проспект Партс
                     </span>
                 </a>
                 <button class="material-symbols-outlined btn d-lg-none d-block ms-4 ms-sm-4" data-bs-toggle="modal" data-bs-target="#searchForm">search</button>
@@ -71,17 +71,17 @@
 
                     <div class="d-grid d-lg-flex gap-2 pb-4 pb-lg-0" role="search">
                         <button class="d-lg-flex align-items-center gap-2 btn d-none border ps-2 searchForm" data-bs-toggle="modal" data-bs-target="#searchForm">
-                            <span class="material-symbols-outlined cp">search</span>
+                            <x-icon-search />
                             <span>Поиск...</span>
                         </button>
                         @guest
                         <a href="/signin" class="btn btn-primary px-3 shadow-sm fw-bold d-flex justify-content-center align-items-center gap-2">
-                            <span class="material-symbols-outlined fs-6">login</span>
+                            <x-icon-login color="#fff" />
                             Войти
                         </a>   
                         <template v-if="card.length">
-                            <a href="/card" class="material-symbols-outlined btn position-relative">
-                                shopping_cart
+                            <a href="/card" class="btn position-relative">
+                                <x-icon-shopping-cart size="24px" />
                                 <small 
                                     class="position-absolute translate-middle badge rounded-pill bg-danger text" 
                                     style="font-size: 10px;top: 8px;left: 35px;"
@@ -93,12 +93,12 @@
                         
                         @endguest
                         @auth
-                        <a href="/dashboard" class="material-symbols-outlined btn">
-                            person
+                        <a href="/dashboard" class="btn pe-0">
+                            <x-icon-person size="27px" />
                         </a>
                         <template v-if="card.length">
-                            <a href="/dashboard/card" class="material-symbols-outlined btn position-relative">
-                                shopping_cart
+                            <a href="/dashboard/card" class="btn position-relative">
+                                <x-icon-shopping-cart size="25px" />
                                 <small 
                                     class="position-absolute translate-middle badge rounded-pill bg-danger text" 
                                     style="font-size: 10px;top: 8px;left: 35px;"
@@ -152,7 +152,9 @@
                                     placeholder="Введите Артикул или Название запчасти..." 
                                     autofocus 
                                 />
-                                <span class="material-symbols-outlined position-absolute text-muted" onclick="getResult()" style="cursor: pointer;right: 28px;top: 40px">search</span>
+                                <span class="position-absolute text-muted" onclick="getResult()" style="cursor: pointer;right: 30px;top: 38px;">
+                                    <x-icon-search color="#333" />
+                                </span>
                                 @include('layout.main.ui.selest.list')
                             </form>
                         </div>
@@ -165,9 +167,9 @@
     @include('layout.main.ui.modal.subscription')
 
     
-    <script async src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script async src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
+    <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('js/toastr.min.js') }}"></script>
     <script src="{{ asset('js/vue.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>

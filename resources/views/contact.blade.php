@@ -58,7 +58,7 @@
                                 <div class="border rounded p-3 mb-2 bg-white">
                                     <strong>Связаться с<br /> менеджером:</strong> 
                                     <div class="d-flex gap-2 mt-2">
-                                        <span class="material-symbols-outlined fs-5 text-primary">call</span>
+                                        <x-icon-call size="22px" color="#8630a3"/>
                                         {!! $contact::getPhone(config('app.phone'), ['text-muted']) !!}
                                     </div>
                                 </div>                                
@@ -67,7 +67,7 @@
                                 <div class="border rounded p-3 mb-2 bg-white">
                                     <strong>Связаться с<br /> тех.поддержкой:</strong> 
                                     <div class="d-flex gap-2 mt-2">
-                                        <span class="material-symbols-outlined fs-5 text-primary">call</span>
+                                        <x-icon-call size="22px" color="#8630a3"/>
                                         {!! $contact::getPhone('89151389077', ['text-muted']) !!}
                                     </div> 
                                 </div> 
@@ -76,7 +76,7 @@
                                 <div class="border rounded p-3 mb-2 bg-white">
                                     <strong>По корпоративным<br /> вопросам:</strong> 
                                     <div class="d-flex gap-2 mt-2">
-                                        <span class="material-symbols-outlined fs-5 text-primary">call</span>
+                                        <x-icon-call size="22px" color="#8630a3"/>
                                         {!! $contact::getPhone('84957682473', ['text-muted']) !!}
                                     </div>
                                 </div>
@@ -86,13 +86,13 @@
                         <div class="d-flex flex-column border rounded p-3 mb-2 bg-white">
                             <strong>Юридический адрес:</strong> 
                             <div class="d-flex gap-1 align-items-center">
-                                <span class="material-symbols-outlined fs-5 text-primary">location_on</span> {{ config('app.address') }}
+                                <x-icon-location size="25px" color="#8630a3"/> {{ config('app.address') }}
                             </div>
                         </div>
                         <div class="d-flex flex-column border rounded p-3 bg-white">
                             <strong>Фактический адрес:</strong> 
                             <div class="d-flex gap-1 align-items-center">
-                                <span class="material-symbols-outlined fs-5 text-primary">location_on</span> 141006, г.Мытищи, Московская область, 4536-й проезд, стр. 10
+                                <x-icon-location size="25px" color="#8630a3"/> 141006, г.Мытищи, Московская область, 4536-й проезд, стр. 10
                             </div>
                         </div>
                     </div>
