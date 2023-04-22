@@ -28,7 +28,7 @@
             @enderror        
         </div>
         <div class="d-grid mt-2">
-            <x-button id="loading" type="submit" color="danger" text="Восстановить пароль" icon="outgoing_mail" />
+            <x-button id="loading" type="submit" color="danger" text="Восстановить пароль" icon="" />
         </div>
         <div class="text-center mt-2">
             <a href="/signin" class="text-dark">Назад</a>
