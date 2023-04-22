@@ -3,13 +3,13 @@
     $size = session('search') ? session('search')['meta']['size'] : '';
 @endphp
 @extends('layout/index', [
-    'title' => 'Каталог запчастей Mercedes-Benz | Проспект Транс',
+    'title' => 'Каталог запчастей Mercedes-Benz | Проспект Партс',
     'keywords' => 'ремонт, ремонт машин, ремонт в москве, ремонт в мытищи, ремонт двигателя, сервис, service, чинить, автосервис, мерседес бенц, актрос',
     'description' => 'Каталог запчастей Mercedes-Benz, широкий ассортимент комплектующих и расходных материалов для грузовых автомобилей',
     'image' => 'https://prospekt-parts.com/img/5464765787695.jpg'
 ])
 
-@section('title', 'Каталог запчастей Mercedes-Benz | Проспект Транс')
+@section('title', 'Каталог запчастей Mercedes-Benz | Проспект Партс')
 
 @section('content')
 <section class="bg-secondary-subtle catalog">

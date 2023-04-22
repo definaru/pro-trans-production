@@ -13,10 +13,13 @@
     <title itemprop="headline">@yield('title')</title>
 
     @include('layout.main.seo.data')
-    <link rel="shortcut icon" href="/img/favicon.png" type='image/x-icon'/>
-    <link rel="apple-touch-icon" href="/img/logotype.jpg" />	
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.29/dist/sweetalert2.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
+
+    <link rel="shortcut icon" href="/img/favicon.png" type='image/x-icon' />
+    <link rel="apple-touch-icon" href="/img/logotype.jpg" />
+    <link rel="stylesheet" href="{{ asset('css/jost.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/pt.sans.narrow.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/toastr.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" /> 
     
@@ -54,7 +57,7 @@
                         alt="Prospekt Parts" 
                         style="width: 54px" 
                     />
-                    <span class="text-dark">
+                    <span class="text-dark logo">
                         {!!$names::company('Prospekt Parts')!!}
                     </span> 
                     <span class="d-none" itemprop="name">
@@ -131,8 +134,8 @@
             <div class="modal-content" style="background-color: transparent">
                 <div class="modal-header border-0">
                     <h1 class="modal-title fs-5" id="searchForm"></h1>
-                    <button type="button" class="bg-transparent border-0 material-symbols-outlined text-white" data-bs-dismiss="modal">
-                        close
+                    <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal">
+                        <x-icon-close color="#fff" />
                     </button>
                 </div>
                 <div class="modal-body">
@@ -167,8 +170,8 @@
     @include('layout.main.ui.modal.subscription')
 
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('js/toastr.min.js') }}"></script>
     <script src="{{ asset('js/vue.js') }}"></script>

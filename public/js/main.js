@@ -201,11 +201,6 @@ for (let link of links) {
 }
 
 
-var price = document.getElementById("price");
-var summa = document.getElementById("summa");
-//console.log('price', price.innerText );
-
-
 function changeTotal(value) {
     var count = document.getElementById('count');
     var quantity = document.getElementById('quantity');
@@ -235,7 +230,7 @@ let modal = new bootstrap.Modal(document.querySelector('#searchForm'));
 let input = document.querySelector('input[type="search"]');
 
 var loadingpage = document.getElementById('loadingpage');
-const loaderText = '<span class="material-symbols-outlined spin">autorenew</span> Ищем деталь...';
+const loaderText = `<span class="spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 96 960 960" width="20" height="20"><path d="M196 725q-20-36-28-72.5t-8-74.5q0-131 94.5-225.5T480 258h43l-80-80 39-39 149 149-149 149-40-40 79-79h-41q-107 0-183.5 76.5T220 578q0 29 5.5 55t13.5 49l-43 43Zm280 291L327 867l149-149 39 39-80 80h45q107 0 183.5-76.5T740 577q0-29-5-55t-15-49l43-43q20 36 28.5 72.5T800 577q0 131-94.5 225.5T480 897h-45l80 80-39 39Z"/></svg></span> Ищем деталь...`;
 function move() {
     var elem = document.getElementById("progressbar");
     document.querySelector('.progress').style.display = 'block';
@@ -362,15 +357,13 @@ function getReviewYandex()
         html: `Для того чтобы отзывы были достоверными, 
         мы предлагаем отставлять их в "Яндекс.Картах", нам важно ваше мнение.`,
         icon: false,
-        //iconHtml: '<span class="material-symbols-outlined">production_quantity_limits</span>',
         showCancelButton: true,
-        confirmButtonText: '<span class="material-symbols-outlined">edit_note</span>Написать отзыв',
-        cancelButtonText: '<span class="material-symbols-outlined">close</span>Закрыть',
+        confirmButtonText: '✎ Написать отзыв',
+        cancelButtonText: '✖ Закрыть',
         confirmButtonColor: '#8630a3',
         cancelButtonColor: '#111',
         allowOutsideClick: false,
         customClass: {
-            //icon: ['text-danger', 'border-danger'],
             title: 'text-dark',
             cancelButton: ['d-flex', 'align-items-center', 'gap-2'],
             confirmButton: ['d-flex', 'align-items-center', 'gap-2'],
@@ -396,8 +389,8 @@ async function isUserSubscribe()
         input: 'email',
         inputPlaceholder: 'Укажите ваш e-mail...',
         showCancelButton: true,
-        confirmButtonText: '<span class="material-symbols-outlined">edit_note</span>Подписаться',
-        cancelButtonText: '<span class="material-symbols-outlined">close</span>Отмена',
+        confirmButtonText: '✎ Подписаться',
+        cancelButtonText: '✖ Отмена',
         confirmButtonColor: '#8630a3',
         cancelButtonColor: '#111',
         allowOutsideClick: false,
@@ -426,10 +419,14 @@ function isNotSignUp()
         html: `Вы можете связаться с нашим менеджером чтобы оформить предзаказ, или зарегистрироваться.
         <br /><a href="tel:89017331866" class="text-decoration-none fw-bold">+7 (901) 733-18-66</a>`,
         icon: false,
-        iconHtml: '<span class="material-symbols-outlined">production_quantity_limits</span>',
+        iconHtml: `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 96 960 960" width="48" height="48">
+            <path fill="#dc3545" d="M289.788 976Q260 976 239 954.788q-21-21.213-21-51Q218 874 239.212 853q21.213-21 51-21Q320 832 341 853.212q21 21.213 21 51Q362 934 340.788 955q-21.213 21-51 21Zm404 0Q664 976 643 954.788q-21-21.213-21-51Q622 874 643.212 853q21.213-21 51-21Q724 832 745 853.212q21 21.213 21 51Q766 934 744.788 955q-21.213 21-51 21ZM480 472q-14.45 0-24.225-9.775Q446 452.45 446 438q0-14.45 9.775-24.225Q465.55 404 480 404q14.45 0 24.225 9.775Q514 423.55 514 438q0 14.45-9.775 24.225Q494.45 472 480 472Zm-30-136V136h60v200h-60ZM290 769q-42 0-61.5-34t.5-69l61-111-150-319H62v-60h116l170 364h292l156-280 52 28-153 277q-9.362 16.667-24.681 25.833Q655 600 634 600H334l-62 109h494v60H290Z"/>
+        </svg>
+        `,
         showCancelButton: true,
-        confirmButtonText: '<span class="material-symbols-outlined">edit_note</span>Регистрация',
-        cancelButtonText: '<span class="material-symbols-outlined">close</span>Закрыть',
+        confirmButtonText: '✎ Регистрация',
+        cancelButtonText: '✖ Закрыть',
         confirmButtonColor: '#8630a3',
         cancelButtonColor: '#111',
         allowOutsideClick: false,

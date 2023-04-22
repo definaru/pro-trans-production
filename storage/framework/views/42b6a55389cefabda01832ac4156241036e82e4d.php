@@ -13,10 +13,13 @@
     <title itemprop="headline"><?php echo $__env->yieldContent('title'); ?></title>
 
     <?php echo $__env->make('layout.main.seo.data', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    <link rel="shortcut icon" href="/img/favicon.png" type='image/x-icon'/>
-    <link rel="apple-touch-icon" href="/img/logotype.jpg" />	
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.29/dist/sweetalert2.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
+
+    <link rel="shortcut icon" href="/img/favicon.png" type='image/x-icon' />
+    <link rel="apple-touch-icon" href="/img/logotype.jpg" />
+    <link rel="stylesheet" href="<?php echo e(asset('css/jost.css')); ?>" />
+    <link rel="stylesheet" href="<?php echo e(asset('css/pt.sans.narrow.css')); ?>" />
+    <link rel="stylesheet" href="<?php echo e(asset('css/bootstrap.min.css')); ?>" />
+    <link rel="stylesheet" href="<?php echo e(asset('css/sweetalert2.min.css')); ?>" />
     <link rel="stylesheet" href="<?php echo e(asset('css/toastr.css')); ?>" />
     <link rel="stylesheet" href="<?php echo e(asset('css/main.css')); ?>" /> 
     
@@ -54,7 +57,7 @@
                         alt="Prospekt Parts" 
                         style="width: 54px" 
                     />
-                    <span class="text-dark">
+                    <span class="text-dark logo">
                         <?php echo $names::company('Prospekt Parts'); ?>
 
                     </span> 
@@ -187,8 +190,19 @@
             <div class="modal-content" style="background-color: transparent">
                 <div class="modal-header border-0">
                     <h1 class="modal-title fs-5" id="searchForm"></h1>
-                    <button type="button" class="bg-transparent border-0 material-symbols-outlined text-white" data-bs-dismiss="modal">
-                        close
+                    <button type="button" class="bg-transparent border-0" data-bs-dismiss="modal">
+                        <?php if (isset($component)) { $__componentOriginal19becf661720b20de410318f207b824463553d4b = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconClose::class, ['color' => '#fff']); ?>
+<?php $component->withName('icon-close'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal19becf661720b20de410318f207b824463553d4b)): ?>
+<?php $component = $__componentOriginal19becf661720b20de410318f207b824463553d4b; ?>
+<?php unset($__componentOriginal19becf661720b20de410318f207b824463553d4b); ?>
+<?php endif; ?>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -234,8 +248,8 @@
     <?php echo $__env->make('layout.main.ui.modal.subscription', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/bootstrap.bundle.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/sweetalert2.all.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/toastr.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/vue.js')); ?>"></script>
