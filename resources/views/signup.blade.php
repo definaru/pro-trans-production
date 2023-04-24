@@ -64,7 +64,9 @@
                     class="form-control ps-5 @error('email') is-invalid @enderror" 
                     placeholder="Укажите ваш рабочий e-mail" 
                 />
-                <i class="material-symbols-outlined fs-5" style="position: absolute;top: 8px;left: 11px;color: #999">mark_as_unread</i>
+                <span style="position: absolute;top: 8px;left: 11px">
+                    <x-icon-mark-as-unread color="#999" />
+                </span>
             </div>
             @error('email')
                 <small class="valid-feedback d-block text-danger m-0">{{ $message }}</small>
@@ -83,7 +85,9 @@
                     class="form-control ps-5 @error('phone') is-invalid @enderror" 
                     placeholder="Укажите ваш рабочий телефон" 
                 />
-                <i class="material-symbols-outlined fs-5" style="position: absolute;top: 8px;left: 11px;color: #999">call</i>
+                <span style="position: absolute;top: 8px;left: 11px">
+                    <x-icon-call color="#999" />
+                </span>
             </div>
             @error('phone')
                 <small class="valid-feedback d-block text-danger m-0">{{ $message }}</small>

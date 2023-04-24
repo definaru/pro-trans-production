@@ -21,8 +21,8 @@
                     <div style="height: 600px">
                         <h6 class="text-muted">Ваша корзина пуста</h6>
                         <div class="d-flex justify-content-center">
-                            <div class="material-symbols-outlined" style="color: #efefef;margin-top: 50px;font-size: 250px">
-                                shopping_cart
+                            <div style="margin-top: 50px">
+                                <x-icon-shopping_cart size="250px" color="#efefef" />
                             </div>                              
                         </div>
                     </div>

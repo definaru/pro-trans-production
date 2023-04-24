@@ -49,14 +49,14 @@
     </div>
     <div id="shop" class="parent" v-cloak>
         <nav class="d-print-none navbar fixed-top navbar-expand-lg bg-white shadow">
-            <div class="container">
-                <a class="d-flex align-items-center gap-2 navbar-brand ps-2 ps-lg-0" href="/">
-                    <img 
+            <div class="container py-1">
+                <a class="d-flex align-items-center gap-2 navbar-brand ps-2 ps-lg-0 me-lg-4 me-0" href="/">
+                    {{-- <img 
                         src="/img/logotype/dark-logo.png" 
                         class="rounded" 
                         alt="Prospekt Parts" 
                         style="width: 54px" 
-                    />
+                    /> --}}
                     <span class="text-dark logo">
                         {!!$names::company('Prospekt Parts')!!}
                     </span> 
@@ -64,7 +64,10 @@
                         Проспект Партс
                     </span>
                 </a>
-                <button class="material-symbols-outlined btn d-lg-none d-block ms-4 ms-sm-4" data-bs-toggle="modal" data-bs-target="#searchForm">search</button>
+                <button class="d-lg-flex align-items-center gap-2 btn d-none border ps-2 searchForm" data-bs-toggle="modal" data-bs-target="#searchForm">
+                    <x-icon-search />
+                    <span>Поиск...</span>
+                </button>
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -73,10 +76,6 @@
                     @include('layout.main.ui.menu.menu')
 
                     <div class="d-grid d-lg-flex gap-2 pb-4 pb-lg-0" role="search">
-                        <button class="d-lg-flex align-items-center gap-2 btn d-none border ps-2 searchForm" data-bs-toggle="modal" data-bs-target="#searchForm">
-                            <x-icon-search />
-                            <span>Поиск...</span>
-                        </button>
                         @guest
                         <a href="/signin" class="btn btn-primary px-3 shadow-sm fw-bold d-flex justify-content-center align-items-center gap-2">
                             <x-icon-login color="#fff" />
@@ -93,6 +92,11 @@
                                 </small>
                             </a>                             
                         </template>
+                        <template v-else>
+                            <a class="btn position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ваша корзина пуста">
+                                <x-icon-shopping-cart size="24px" />
+                            </a>
+                        </template>
                         
                         @endguest
                         @auth
@@ -108,6 +112,11 @@
                                 >
                                     @{{card.length}}
                                 </small>
+                            </a>
+                        </template>
+                        <template v-else>
+                            <a class="btn position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ваша корзина пуста">
+                                <x-icon-shopping-cart size="24px" />
                             </a>
                         </template>
                         @endauth

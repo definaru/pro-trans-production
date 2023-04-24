@@ -20,7 +20,7 @@
     <div class="mt-2">
         <div class="input-group">
             <span class="input-group-text border-end-0 bg-white @error('email') border-danger @enderror">
-                <i class="ionicons ion-android-person text-muted"></i>
+                <x-icon-person color="#777" />
             </span>
             <input 
                 type="text" 
@@ -39,7 +39,7 @@
     <div class="mt-2">
         <div class="input-group">
             <span class="input-group-text border-end-0 bg-white @error('password') border-danger @enderror">
-                <i class="ionicons ion-locked text-muted"></i>
+                <x-icon-lock color="#777" />
             </span>
             <input 
                 type="password" 

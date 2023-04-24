@@ -247,7 +247,7 @@ a.nav-link.active {
 .searchForm {
     background-color: rgb(249, 224, 134);
     box-shadow: inset 0px -1px 5px #9191598c;
-    width: 110px;
+    width: 300px;
     cursor: text !important;
 }
 .cp {cursor: pointer;}

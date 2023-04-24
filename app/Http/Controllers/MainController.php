@@ -100,7 +100,7 @@ class MainController extends Controller
         ]);
     }
 
-    public function Catalog($limit = 200, $offset = 0)
+    public function Catalog($limit = 64, $offset = 0)
     {
         $product = MoySklad::getAllProduct($limit, $offset);
         //return response()->json($product);

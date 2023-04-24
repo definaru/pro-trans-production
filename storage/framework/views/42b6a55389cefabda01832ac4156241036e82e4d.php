@@ -49,14 +49,9 @@
     </div>
     <div id="shop" class="parent" v-cloak>
         <nav class="d-print-none navbar fixed-top navbar-expand-lg bg-white shadow">
-            <div class="container">
-                <a class="d-flex align-items-center gap-2 navbar-brand ps-2 ps-lg-0" href="/">
-                    <img 
-                        src="/img/logotype/dark-logo.png" 
-                        class="rounded" 
-                        alt="Prospekt Parts" 
-                        style="width: 54px" 
-                    />
+            <div class="container py-1">
+                <a class="d-flex align-items-center gap-2 navbar-brand ps-2 ps-lg-0 me-lg-4 me-0" href="/">
+                    
                     <span class="text-dark logo">
                         <?php echo $names::company('Prospekt Parts'); ?>
 
@@ -65,17 +60,8 @@
                         Проспект Партс
                     </span>
                 </a>
-                <button class="material-symbols-outlined btn d-lg-none d-block ms-4 ms-sm-4" data-bs-toggle="modal" data-bs-target="#searchForm">search</button>
-                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    
-                    <?php echo $__env->make('layout.main.ui.menu.menu', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
-                    <div class="d-grid d-lg-flex gap-2 pb-4 pb-lg-0" role="search">
-                        <button class="d-lg-flex align-items-center gap-2 btn d-none border ps-2 searchForm" data-bs-toggle="modal" data-bs-target="#searchForm">
-                            <?php if (isset($component)) { $__componentOriginald2cbd53f813b0d659f2269c5137bda62cd4d8ce9 = $component; } ?>
+                <button class="d-lg-flex align-items-center gap-2 btn d-none border ps-2 searchForm" data-bs-toggle="modal" data-bs-target="#searchForm">
+                    <?php if (isset($component)) { $__componentOriginald2cbd53f813b0d659f2269c5137bda62cd4d8ce9 = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\IconSearch::class, []); ?>
 <?php $component->withName('icon-search'); ?>
 <?php if ($component->shouldRender()): ?>
@@ -87,8 +73,16 @@
 <?php $component = $__componentOriginald2cbd53f813b0d659f2269c5137bda62cd4d8ce9; ?>
 <?php unset($__componentOriginald2cbd53f813b0d659f2269c5137bda62cd4d8ce9); ?>
 <?php endif; ?>
-                            <span>Поиск...</span>
-                        </button>
+                    <span>Поиск...</span>
+                </button>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    
+                    <?php echo $__env->make('layout.main.ui.menu.menu', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+                    <div class="d-grid d-lg-flex gap-2 pb-4 pb-lg-0" role="search">
                         <?php if(auth()->guard()->guest()): ?>
                         <a href="/signin" class="btn btn-primary px-3 shadow-sm fw-bold d-flex justify-content-center align-items-center gap-2">
                             <?php if (isset($component)) { $__componentOriginal58218aae8b811c2a73d264cf2ce5b36767113726 = $component; } ?>
@@ -127,6 +121,22 @@
                                 </small>
                             </a>                             
                         </template>
+                        <template v-else>
+                            <a class="btn position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ваша корзина пуста">
+                                <?php if (isset($component)) { $__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconShoppingCart::class, ['size' => '24px']); ?>
+<?php $component->withName('icon-shopping-cart'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67)): ?>
+<?php $component = $__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67; ?>
+<?php unset($__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67); ?>
+<?php endif; ?>
+                            </a>
+                        </template>
                         
                         <?php endif; ?>
                         <?php if(auth()->guard()->check()): ?>
@@ -164,6 +174,22 @@
                                 >
                                     {{card.length}}
                                 </small>
+                            </a>
+                        </template>
+                        <template v-else>
+                            <a class="btn position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ваша корзина пуста">
+                                <?php if (isset($component)) { $__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconShoppingCart::class, ['size' => '24px']); ?>
+<?php $component->withName('icon-shopping-cart'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67)): ?>
+<?php $component = $__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67; ?>
+<?php unset($__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67); ?>
+<?php endif; ?>
                             </a>
                         </template>
                         <?php endif; ?>

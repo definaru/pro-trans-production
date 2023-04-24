@@ -8,11 +8,6 @@
     <title>@yield('title') | {{ config('app.name') }}</title>
     <link rel="shortcut icon" href='/img/favicon.png' type="image/x-icon" />
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
-
-    @if ($_SERVER['REQUEST_URI'] !== '/forgot-password')
-    <link rel="stylesheet" href="https://glyphsearch.com/bower_components/ionicons/css/ionicons.css" />    
-    @endif
-
     <link rel="stylesheet" href="{{ asset('css/jost.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/pt.sans.narrow.css') }}" />
 

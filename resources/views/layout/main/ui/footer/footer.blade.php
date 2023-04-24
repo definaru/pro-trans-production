@@ -6,7 +6,7 @@
             <div class="col-12 col-md-3 text-center text-lg-start">
                 <a href="/" class="d-flex justify-content-lg-start justify-content-center align-items-center gap-3 logo-footer" style="text-decoration: none">
                     <img src="/img/logotype/light-logo.png" class="rounded" alt="Prospekt Parts" style="width: 60px" />
-                    <span class="text-white fs-2">
+                    <span class="text-white fs-4 logo">
                         {!!$names::company('Prospekt Parts')!!}
                     </span> 
                 </a>
