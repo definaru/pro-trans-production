@@ -16,24 +16,6 @@
     <div class="container position-relative">
         <div class="d-print-none row">
             <div id="loadingpage" class="d-flex gap-2 text"></div>
-            {{-- <form onsubmit="loadingPage()" id="sendForm" action="/product" method="POST" class="col-12 my-4 position-relative">
-                @csrf
-                <input 
-                    type="search" 
-                    list="searchlist" 
-                    min="5"
-                    max="5"
-                    id="search" 
-                    name="text" 
-                    class="form-control form-control-lg ps-4 pe-5 text border-0 shadow" 
-                    placeholder="Введите Артикул или Название запчасти..." 
-                    autofocus
-                />
-                <span class="position-absolute" onclick="getResult()" style="cursor: pointer;right: 28px;top: 11px">
-                    <x-icon-search color="#333" />
-                </span>
-                @include('layout.main.ui.selest.list')
-            </form> --}}
         </div>
         <div class="row">
             <div class="col-12">

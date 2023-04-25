@@ -43,6 +43,8 @@ a.nav-link.active {
     text-decoration: 5px underline #8630a3;
     text-underline-offset: 22px;
 }
+
+.nav-link {color: #000}
 .text {
     font-family: 'Jost', sans-serif; 
     font-weight: 400;
@@ -311,14 +313,16 @@ a.nav-link.active {
     position: absolute;
     content: '';
     background-color: #6495ed69;
-    background-image: url(/img/abstract-polygonal.jpg);
+    background-image: url(/img/46354756.png);
+    background-position: -1px 0;
+    background-repeat: no-repeat;
     background-size: cover;
-    width: 460px;
+    width: 100%;
     height: 750px;
     top: 0;
-    right: 0px;
+    right: -1px;
     z-index: 2;
-    opacity: 0.4;
+    opacity: 0.3;
 }
 .copyright {
     position: absolute;

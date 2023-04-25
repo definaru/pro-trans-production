@@ -21,7 +21,8 @@ class CounterAgent extends FormRequest
         return [
             'company' => 'required',
             'email' => 'required|email|min:4|max:50',
-            'phone' => 'required|numeric|min:11',
+            'phone' => 'required',
+            //'phone' => 'required|numeric|min:11',
         ];
     }
 
@@ -36,8 +37,8 @@ class CounterAgent extends FormRequest
             'email.required' => 'Укажите актуальный рабочий e-mail',
             'email.email' => 'E-mail должен быть действительным адресом электронной почты',
             'phone.required' => 'Укажите актуальный рабочий номер телефона',
-            'phone.min' => 'Номер телефона не может быть меньше 11 цифр',
-            'phone.numeric' => 'В номере телефона должны быть только цифры'
+            //'phone.min' => 'Номер телефона не может быть меньше 11 цифр',
+            //'phone.numeric' => 'В номере телефона должны быть только цифры'
         ];
     }
 

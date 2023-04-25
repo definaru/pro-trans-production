@@ -52,10 +52,11 @@
             outline: none !important;
             box-shadow: none !important;
         }
+        [v-cloak] { display:none; }
     </style>
 </head>
 <body>
-    <section id="auth" class="bg-light vh-100">
+    <section id="auth" class="bg-light vh-100" v-cloak>
         <div class="container h-100">
             <div class="d-flex align-items-center row h-100">
                 <div class="col-md-4 offset-md-4 py-5">
@@ -89,6 +90,10 @@
     <script async src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('js/toastr.min.js') }}"></script>
+    @endif
+    @if ($_SERVER['REQUEST_URI'] === '/signup')
+    <script src="{{ asset('js/cleave.js') }}"></script>
+    <script src="{{ asset('js/cleave-phone.ru.js') }}"></script>
     @endif
     <script src="{{ asset('js/vue.js') }}"></script>
     <script src="{{ asset('js/defina.min.js') }}"></script>

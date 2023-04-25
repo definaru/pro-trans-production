@@ -13,10 +13,12 @@
                 <div class="col-12 col-lg-7 d-block d-lg-flex justify-content-start align-items-center align-self-center">
                     <div class="d-flex flex-column gap-3 position-relative z-3 p-3 p-lg-0">
                         <h1 class="fw-bold lh-1 display-4">
-                            <span class="text-primary shock-wive">Поставляем запчасти</span>, комплектующие 
+                             {{-- shock-wive --}}
+                            <span class="text-primary">Поставляем запчасти</span>, комплектующие 
                             и расходные материалы 
                             <br />
-                            <span class="fw-light display-5 shock-wive-inline">для грузовых автомобилей.</span> 
+                            <span class="fw-light display-5">для грузовых автомобилей.</span> 
+                             {{-- shock-wive-inline --}}
                         </h1>
                         <p class="fs-6 w-100 text">
                             Широкий ассортимент инструментов и оборудования 
