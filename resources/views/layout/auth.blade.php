@@ -68,7 +68,7 @@
                     <div class="text-center text-muted mt-2">
                         <small>
                             Если у вас есть вопросы, мы всегда рады помочь. <br />
-                            Свяжитесь с нами {{ $contact::format_phone('89151389077') }} <br />
+                            Свяжитесь с нами {{ $contact::format_phone('89261009684') }} <br />
                             <a 
                                 href="/contact" 
                                 class="text-muted text-decoration-none" 

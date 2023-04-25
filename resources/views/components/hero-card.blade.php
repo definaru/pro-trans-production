@@ -6,13 +6,15 @@
                 <small>5.0 рейтинг</small> 
             </div>
             <img 
-                src="https://15.img.avito.st/image/1/1.png0qra5CpECA8iUdPTdRf8JDJuAiQJThQkIlYgDAJM.-ajyZ9476x-K-rxK332HIzGJmGK_7N6YPnidgcpnPu0" 
+                src="/img/A0280745902.jpg" 
                 class="card-img-top rounded" 
-                alt="Цилиндр переключения КПП (AMT), Проспект Транс" 
+                alt="Топливный насос, Проспект Партс" 
+                style="height: 19em;opacity: 1;filter: saturate(150%)"
             />
         </div>
         <div class="card-body">
-            <h5 class="card-title fw-bold fs-6">Цилиндр переключения КПП (AMT)</h5>
+            <h5 class="card-title fw-bold fs-6" style="text-decoration: 3px underline #8630a3">Топливный насос для Mercedes-Benz</h5>
+            <p class="text-end m-0">29 000 ₽</p>
             <hr style="color: #ddd" />
             <div class="d-flex justify-content-between">
                 <div class="lh-sm">
@@ -21,7 +23,7 @@
                 </div>
                 <div class="lh-sm">
                     <small class="text-muted d-block w-100">Артикул</small>
-                    <strong class="text-secondary">A9302600263</strong>
+                    <strong class="text-secondary">A0280745902</strong>
                 </div>
             </div>
         </div>
@@ -33,13 +35,15 @@
                 <small>5.0 рейтинг</small> 
             </div>
             <img 
-                src="https://12.img.avito.st/image/1/1.ZS3G7raBycSwSzvCgINEEg1NzcJkS8nCAy7NwrBLO8JwScXAcE_JgA.YWu7zfyXYrHK9QPbDAZC7OHgPT8gmE-GGuGqVK5ALKg" 
+                src="/img/A0002540447.jpg" 
                 class="card-img-top rounded" 
-                alt="Выжимной подшипник сцепления Actros MP4, Проспект Транс" 
+                alt="Пневмогидроусилитель сцепления Actros, Проспект Партс" 
+                style="height: 19em;opacity: 1;filter: saturate(150%)"
             />
         </div>
         <div class="card-body">
-            <h5 class="card-title fw-bold fs-6">Выжимной подшипник сцепления Actros MP4</h5>
+            <h5 class="card-title fw-bold fs-6" style="text-decoration: 3px underline #8630a3">Пневмогидроусилитель сцепления</h5>
+            <p class="text-end m-0">35 000 ₽</p>
             <hr style="color: #ddd">
             <div class="d-flex justify-content-between">
                 <div class="lh-sm">
@@ -48,7 +52,7 @@
                 </div>
                 <div class="lh-sm">
                     <small class="text-muted d-block w-100">Артикул</small>
-                    <strong class="text-secondary">A0032502115</strong>
+                    <strong class="text-secondary">A0002540447</strong>
                 </div>
             </div>
         </div>

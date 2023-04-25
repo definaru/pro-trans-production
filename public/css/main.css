@@ -132,11 +132,8 @@ a.nav-link.active {
 }
 
 .bg-hero {
-    background: linear-gradient(
-        196deg, 
-        rgb(235 179 119) 0%, 
-        rgb(255 255 255) 35%, 
-        rgb(95 75 134 / 31%) 127%
+        background: linear-gradient( 196deg, rgb(235 179 119) 0%, 
+        rgb(255 255 255) 35%, rgb(255 255 255 / 31%) 127% 
     );
 }
 .text-primary {color: #8630a3 !important}
@@ -312,7 +309,7 @@ a.nav-link.active {
 .coral::after {
     position: absolute;
     content: '';
-    background-color: #6495ed69;
+    /* background-color: #6495ed69; */
     background-image: url(/img/46354756.png);
     background-position: -1px 0;
     background-repeat: no-repeat;
