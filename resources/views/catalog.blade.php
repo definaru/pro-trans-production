@@ -4,7 +4,7 @@
 @endphp
 @extends('layout/index', [
     'title' => 'Каталог запчастей Mercedes-Benz | Проспект Партс',
-    'keywords' => 'ремонт, ремонт машин, ремонт в москве, ремонт в мытищи, ремонт двигателя, сервис, service, чинить, автосервис, мерседес бенц, актрос',
+    'keywords' => 'ремонт в москве, ремонт машин в мытищи, ремонт двигателя, сервис, service, чинить, автосервис, мерседес бенц, актрос',
     'description' => 'Каталог запчастей Mercedes-Benz, широкий ассортимент комплектующих и расходных материалов для грузовых автомобилей',
     'image' => 'https://prospekt-parts.com/img/5464765787695.jpg'
 ])
@@ -16,7 +16,7 @@
     <div class="container position-relative">
         <div class="d-print-none row">
             <div id="loadingpage" class="d-flex gap-2 text"></div>
-            <form onsubmit="loadingPage()" id="sendForm" action="/product" method="POST" class="col-12 my-4 position-relative">
+            {{-- <form onsubmit="loadingPage()" id="sendForm" action="/product" method="POST" class="col-12 my-4 position-relative">
                 @csrf
                 <input 
                     type="search" 
@@ -33,7 +33,7 @@
                     <x-icon-search color="#333" />
                 </span>
                 @include('layout.main.ui.selest.list')
-            </form>
+            </form> --}}
         </div>
         <div class="row">
             <div class="col-12">
@@ -59,8 +59,8 @@
                                     itemtype="https://schema.org/AggregateRating" 
                                     class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2"
                                 >
-                                    <x-icon-favorite color="#b02a37" />
-                                    <small>{{rand(4, 5)}}.{{rand(0, 9)}} рейтинг</small> 
+                                    {{-- <x-icon-favorite color="#b02a37" />
+                                    <small>{{rand(4, 5)}}.{{rand(0, 9)}} рейтинг</small>  --}}
                                     <meta itemprop="worstRating" content="1">
                                     <meta itemprop="ratingValue" content="4.9">
                                     <meta itemprop="bestRating" content="5">
@@ -143,8 +143,8 @@
                         <div class="card card-data border-0 shadow-sm order">
                             <a href="/product/mersedes-benz/{{$item['id']}}" class="card-body pb-0 position-relative">
                                 <div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating" class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2">
-                                    <x-icon-favorite color="#b02a37" />
-                                    <small>{{rand(4, 5)}}.{{rand(0, 9)}} рейтинг</small> 
+                                    {{-- <x-icon-favorite color="#b02a37" />
+                                    <small>{{rand(4, 5)}}.{{rand(0, 9)}} рейтинг</small>  --}}
                                     <meta itemprop="worstRating" content="1">
                                     <meta itemprop="ratingValue" content="4.9">
                                     <meta itemprop="bestRating" content="5">
@@ -211,52 +211,68 @@
                                 </div>
                             </div>
                         </div>
-                    </div>  
-                                 
+                    </div>
                 @endforeach
 
-                {{-- <div class="col-12 mt-3">
-                    <hr />
-                    <div class="d-flex justify-content-center pt-4">
-                        <ul class="d-flex pagination pagination-lg gap-3">
-                            <li class="page-item">
-                                <a class="material-symbols-outlined shadow border-0 page-link text-dark d-flex align-items-center rounded px-3" href="#" style="height: 54px" disabled>
-                                    line_start_arrow_notch
-                                </a>
-                            </li>
-                            <li class="page-item active">
-                                <a class="page-link text-dark rounded shadow border-0" href="../products/mersedes-benz/32/32">1</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link text-dark rounded shadow border-0" href="../products/mersedes-benz/32/{{32+$limit}}">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link text-dark rounded shadow border-0" href="../products/mersedes-benz/32/32+{{$limit}}">3</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="material-symbols-outlined shadow border-0 page-link text-dark d-flex align-items-center rounded px-3" href="#" style="height: 54px">
-                                    line_end_arrow_notch
-                                </a>
-                            </li>
-                        </ul>
+                @if (isset($product['meta']['nextHref']) || $offset > 0)
+                    <div class="mt-5 d-flex align-items-center justify-content-between">
+                        <div>
+                            <select id="selectOffset" class="form-select" onchange="selectOffset()">
+                                @foreach ([12, 24, 48, 64, 100] as $key)
+                                    <option value="/products/mersedes-benz/{{$key}}/0" @if($key == $limit) selected @endif >
+                                        {{$key}}
+                                    </option>
+                                @endforeach
+                            </select>                        
+                        </div>
+                        <nav>
+                            <ul class="pagination m-0">
+                                @if (isset($product['meta']['previousHref']))
+                                    <?php 
+                                        $url_previous = parse_url($product['meta']['previousHref'], PHP_URL_QUERY);
+                                        parse_str($url_previous, $previous);
+                                    ?>
+                                    <li class="page-item">
+                                        <a class="page-link text-primary" href="/products/mersedes-benz/{{$previous['limit']}}/{{$previous['offset']}}">
+                                            <span>&laquo;</span> Назад
+                                        </a>
+                                    </li>  
+                                @else
+                                    <li class="page-item disabled">
+                                        <a class="page-link">
+                                            <span>&laquo;</span> Назад
+                                        </a>
+                                    </li>                                
+                                @endif
+
+                                @if (isset($product['meta']['nextHref']))
+                                    <?php 
+                                        $url_next = parse_url($product['meta']['nextHref'], PHP_URL_QUERY);
+                                        parse_str($url_next, $next);
+                                    ?>
+                                    <li class="page-item">
+                                        <a class="page-link text-primary" href="/products/mersedes-benz/{{$next['limit']}}/{{$next['offset']}}">
+                                            Далее <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>                                
+                                @else
+                                @endif
+
+                            </ul>
+                        </nav>
+                        <div>
+                            Показано: 
+                            <span>
+                                @if($product['meta']['size']-$offset < $limit)
+                                    {{$offset+$product['meta']['size']-$offset}}
+                                @else
+                                    {{$offset == 0 ? $limit : $limit+$offset}}
+                                @endif
+                            </span> из 
+                            <span>{{$product['meta']['size']}}</span>
+                        </div>
                     </div>
-                </div> --}}
-                    {{-- <p>{{$limit}}, {{$offset}}</p> --}}
-                    
-                    {{-- @for ($i = 1; $i <= $product['meta']['size']/$limit; $i++)
-                        <pre><?php //var_dump(explode(" ", array_slice($limit*$i, 0, 3)));?></pre> --}}
-                        <?php
-                            //$arr = $limit*$i.',';
-                            //$str = substr($arr, 0, -1);
-                            //echo $str;
-
-
-                            //$arr = explode('', $str);
-                            //echo '<pre>'.var_dump($arr).'</pre>';
-                            //$arr = array_slice($arr, 0, 3);
-                        ?>
-                    {{-- @endfor --}}
-                    <?php //var_dump(array_slice((array)$limit*$i, 0, 3));?>
+                @endif
             </div>        
         @endif
     </div>

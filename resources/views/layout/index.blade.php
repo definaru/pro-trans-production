@@ -64,10 +64,27 @@
                         Проспект Партс
                     </span>
                 </a>
-                <button class="d-lg-flex align-items-center gap-2 btn d-none border ps-2 searchForm" data-bs-toggle="modal" data-bs-target="#searchForm">
+                {{-- <button class="d-lg-flex align-items-center gap-2 btn d-none border ps-2 searchForm" data-bs-toggle="modal" data-bs-target="#searchForm">
                     <x-icon-search />
                     <span>Поиск...</span>
-                </button>
+                </button> --}}
+                <form onsubmit="loadingPage()" id="sendForm" action="/product" method="POST" class="position-relative" style="width: 310px">
+                    @csrf
+                    <input 
+                        type="search" 
+                        list="searchlist" 
+                        min="5"
+                        max="5"
+                        id="search" 
+                        name="text" 
+                        class="form-control searchForm ps-3 pe-5 text border-0" 
+                        placeholder="Артикул или Название запчасти..." 
+                        autofocus
+                    />
+                    <span class="position-absolute" onclick="getResult()" style="cursor: pointer;right: 9px;top: 5px">
+                        <x-icon-search color="#333" />
+                    </span>
+                </form>
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
                     <span class="navbar-toggler-icon"></span>
                 </button>

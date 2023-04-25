@@ -457,5 +457,10 @@ searchModal.addEventListener('shown.bs.modal', function () {
     searchInput.focus()
 });
 
+function selectOffset() {
+    var url = document.getElementById("selectOffset").value;
+    window.location.assign(url);
+}
+
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));

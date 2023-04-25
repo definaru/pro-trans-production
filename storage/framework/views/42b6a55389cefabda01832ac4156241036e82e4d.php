@@ -60,9 +60,23 @@
                         Проспект Партс
                     </span>
                 </a>
-                <button class="d-lg-flex align-items-center gap-2 btn d-none border ps-2 searchForm" data-bs-toggle="modal" data-bs-target="#searchForm">
-                    <?php if (isset($component)) { $__componentOriginald2cbd53f813b0d659f2269c5137bda62cd4d8ce9 = $component; } ?>
-<?php $component = $__env->getContainer()->make(App\View\Components\IconSearch::class, []); ?>
+                
+                <form onsubmit="loadingPage()" id="sendForm" action="/product" method="POST" class="position-relative" style="width: 310px">
+                    <?php echo csrf_field(); ?>
+                    <input 
+                        type="search" 
+                        list="searchlist" 
+                        min="5"
+                        max="5"
+                        id="search" 
+                        name="text" 
+                        class="form-control searchForm ps-3 pe-5 text border-0" 
+                        placeholder="Артикул или Название запчасти..." 
+                        autofocus
+                    />
+                    <span class="position-absolute" onclick="getResult()" style="cursor: pointer;right: 9px;top: 5px">
+                        <?php if (isset($component)) { $__componentOriginald2cbd53f813b0d659f2269c5137bda62cd4d8ce9 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconSearch::class, ['color' => '#333']); ?>
 <?php $component->withName('icon-search'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
@@ -73,8 +87,8 @@
 <?php $component = $__componentOriginald2cbd53f813b0d659f2269c5137bda62cd4d8ce9; ?>
 <?php unset($__componentOriginald2cbd53f813b0d659f2269c5137bda62cd4d8ce9); ?>
 <?php endif; ?>
-                    <span>Поиск...</span>
-                </button>
+                    </span>
+                </form>
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
                     <span class="navbar-toggler-icon"></span>
                 </button>
