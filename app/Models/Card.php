@@ -14,7 +14,7 @@ class Card extends Model
     //protected $user_id;
     protected $table = 'card';
     //protected $primaryKey = 'user_id';	
-
+    protected $guarded = [];
     protected $attributes = [
         'id_card' => 0,
     ];
@@ -43,17 +43,28 @@ class Card extends Model
     {
         $uuid = auth()->user()->verified;
         $status = self::where('user_id', $uuid)->first();
-        // $status = self::find($uuid);
         return $status === null ? 'z' : $status->id_card;
     }
 
-    public static function image($result, $id)
+    public static function firstOrCreater($uuid)
     {
-        try {
-            return array_column($result, 'image', 'href')[$id];
-        } catch (Exception $e) {
-            return '/img/placeholder.png';
+        $status = self::where('user_id', $uuid)->first();
+        
+        if ($status === null) {
+            $status = new Card();
+            $status->user_id = $uuid;
+            $status->save();
         }
+        return $status;
     }
+
+    // public static function image($result, $id)
+    // {
+    //     try {
+    //         return array_column($result, 'image', 'href')[$id];
+    //     } catch (Exception $e) {
+    //         return '/img/placeholder.png';
+    //     }
+    // }
 
 }

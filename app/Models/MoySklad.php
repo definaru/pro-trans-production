@@ -225,7 +225,7 @@ class MoySklad
 
     public static function getContractId($id)
     {
-        $url = self::msUrl().'contract/'.$id.'?expand=agent,state,accounts,ownAgent,ownAgent.accounts,agentAccount';
+        $url = self::msUrl().'contract/'.$id.'?expand=agent,state,agent.accounts,ownAgent,ownAgent.accounts,agentAccount';
         $response = self::get($url);
         return $response->json();
     }

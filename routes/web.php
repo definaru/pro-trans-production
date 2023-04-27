@@ -57,6 +57,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('admin/accounting', [AdminController::class, 'Accounting']);
     Route::get('admin/users', [AdminController::class, 'Users'])->name('adminusers');
     Route::get('admin/contracts', [AdminController::class, 'Contracts']);
+    Route::get('admin/contract/{id}', [AdminController::class, 'oneContract']);
     Route::get('admin/access', [AdminController::class, 'Access']);
     Route::get('admin/users/okved/{okved}', [AdminController::class, 'Okved']);
     Route::get('admin/user/{uuid}', [AdminController::class, 'User']);
@@ -69,13 +70,13 @@ Route::prefix('api')->group(function () {
     Route::post('signup', [AuthController::class, 'Sigature']);
     Route::post('customer', [AuthController::class, 'Customer']);
     Route::post('mail', [AuthController::class, 'SendMail']);
-    //Route::get('image/{uuid}', [DachboardController::class, 'Image']);
     Route::post('spares', [DachboardController::class, 'SendSpares']);
     Route::post('checkout', [DachboardController::class, 'Checkout']);
     Route::post('precheckout', [DachboardController::class, 'preCheckout']);
     Route::post('counterparty', [DachboardController::class, 'addedCounterAgent']);
     Route::post('manager', [DachboardController::class, 'Manager']);
     Route::post('description', [DachboardController::class, 'Description']);
+    Route::post('active/{id}', [AdminController::class, 'activeContract']);
 });
 
 Route::controller(PasswordController::class)->group(function () {

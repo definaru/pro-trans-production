@@ -86,7 +86,7 @@
                                 @if(empty($item['state']))
                                 <span class="d-flex align-items-center" style="cursor: not-allowed">
                                     <x-icon-emergency-home size="15px" color="#f00" />
-                                    <a href="/dashboard/contract/pt/{{$item['id']}}/file.pdf" class="text-danger" style="cursor: not-allowed">
+                                    <a href="/dashboard/contract/pt/{{$item['id']}}/file.pdf" target="_blank" class="text-danger" style="cursor: not-allowed">
                                         {{$item['name']}}
                                     <a>                                    
                                 </span>
@@ -100,7 +100,7 @@
                                 <div>{{$item['agent']['inn']}}</div>
                             </td>
                             <td>
-                                <a href="#" class="text-dark text-decoration-none">
+                                <a href="/dashboard/admin/contract/{{$item['id']}}" class="text-dark text-decoration-none">
                                     <strong>{{$item['agent']['name']}}</strong>
                                 </a>
                             </td>

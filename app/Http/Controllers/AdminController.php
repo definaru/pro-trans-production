@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Card;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Customer;
@@ -71,6 +72,26 @@ class AdminController extends Controller
         $model = MoySklad::getAllContract(100);
         //return response()->json($model);
         return view('dashboard.admin.contracts', ['model' => $model]);
+    }
+
+
+    public function activeContract($id)
+    {
+        $model = Card::where('user_id', $id)->update(['id_card' => 1]);
+        dd($model);
+        return response()->json($model); 
+    }
+
+
+    public function oneContract($id)
+    {
+        $model = MoySklad::getContractId($id);
+        //$status = Card::where('user_id', $model['agent']['id'])->first();
+        $status = [];
+        if(isset($model['agent']['id'])) {
+            $status = Card::firstOrCreater($model['agent']['id']);
+        }
+        return view('dashboard.admin.contract', compact('id', 'model', 'status'));
     }
 
 

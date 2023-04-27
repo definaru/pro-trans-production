@@ -13,7 +13,7 @@
             />
         </div>
         <div class="card-body">
-            <h5 class="card-title fw-bold fs-6" style="text-decoration: 3px underline #8630a3">Топливный насос для Mercedes-Benz</h5>
+            <h5 class="card-title fw-bold fs-6">Топливный насос для Mercedes-Benz</h5>
             <p class="text-end m-0">29 000 ₽</p>
             <hr style="color: #ddd" />
             <div class="d-flex justify-content-between">
@@ -42,7 +42,7 @@
             />
         </div>
         <div class="card-body">
-            <h5 class="card-title fw-bold fs-6" style="text-decoration: 3px underline #8630a3">Пневмогидроусилитель сцепления</h5>
+            <h5 class="card-title fw-bold fs-6">Пневмогидроусилитель сцепления</h5>
             <p class="text-end m-0">35 000 ₽</p>
             <hr style="color: #ddd">
             <div class="d-flex justify-content-between">
