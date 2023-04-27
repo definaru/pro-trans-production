@@ -77,6 +77,7 @@ Route::prefix('api')->group(function () {
     Route::post('manager', [DachboardController::class, 'Manager']);
     Route::post('description', [DachboardController::class, 'Description']);
     Route::post('active/{id}', [AdminController::class, 'activeContract']);
+    Route::post('block/{id}', [AdminController::class, 'blockContract']);
 });
 
 Route::controller(PasswordController::class)->group(function () {

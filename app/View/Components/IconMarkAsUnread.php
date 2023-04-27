@@ -2,21 +2,10 @@
 
 namespace App\View\Components;
 
-use Illuminate\View\Component;
+use App\View\Components\Icon;
 
-class IconMarkAsUnread extends Component
+class IconMarkAsUnread extends Icon
 {
-
-    public $size;
-    public $color;
-
-    public function __construct($color = '#000', $size = '20px')
-    {
-        $this->size = $size;
-        $this->color = $color;
-    }
-
-    
     public function render()
     {
         return view('components.icon-mark-as-unread');

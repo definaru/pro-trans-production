@@ -199,7 +199,13 @@
                     </div>
                 </div>
             </div> 
-            @endrole        
+            @endrole  
+            @role('customer')
+                <hr />
+                <div class="w-100 mt-4">
+                    {!! $images::text($id)['description'] !!} 
+                </div>
+            @endrole      
         </div>
     </div>
     @endif

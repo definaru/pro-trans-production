@@ -78,7 +78,13 @@ class AdminController extends Controller
     public function activeContract($id)
     {
         $model = Card::where('user_id', $id)->update(['id_card' => 1]);
-        dd($model);
+        return response()->json($model); 
+    }
+
+
+    public function blockContract($id) 
+    {
+        $model = Card::where('user_id', $id)->update(['id_card' => 2]);
         return response()->json($model); 
     }
 

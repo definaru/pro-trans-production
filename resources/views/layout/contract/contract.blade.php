@@ -356,7 +356,7 @@
     </tr>
     <tr>
         <td class="py-0"><b>Тел.:</b> {{ $contact::format_phone(config('app.phone')) }}</td>
-        <td class="py-0"><b>Тел.:</b> {{ $contact::format_phone($contract['agent']['phone']) }}</td>
+        <td class="py-0"><b>Тел.:</b> {{ isset($contract['agent']['phone']) ? $contact::format_phone($contract['agent']['phone']) : '' }}</td>
     </tr>
     <tr>
         <td class="py-0"><b>E-mail:</b> {{$contract['ownAgent']['email']}}</td>
@@ -531,7 +531,7 @@
                     <b>Тел.:</b> {{ $contact::format_phone(config('app.phone')) }}
                 </td>
                 <td class="py-1" style="border-left: 1px solid #222">
-                    <b>Тел.:</b> {{ $contact::format_phone($contract['agent']['phone']) }}
+                    <b>Тел.:</b> {{ isset($contract['agent']['phone']) ? $contact::format_phone($contract['agent']['phone']) : '' }}
                 </td>
             </tr>
             <tr>

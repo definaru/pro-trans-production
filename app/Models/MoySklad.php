@@ -225,7 +225,7 @@ class MoySklad
 
     public static function getContractId($id)
     {
-        $url = self::msUrl().'contract/'.$id.'?expand=agent,state,agent.accounts,ownAgent,ownAgent.accounts,agentAccount';
+        $url = self::msUrl().'contract/'.$id.'?expand=agent,agent.state,agent.accounts,ownAgent,ownAgent.accounts,agentAccount';
         $response = self::get($url);
         return $response->json();
     }
@@ -658,7 +658,7 @@ class MoySklad
         return $response->json();
     }
 
-    public static function changeStatusCustomerorder($id)
+    public static function changeStatusCustomerorder($id)#статус
     {
         $req = [
             'state' => [

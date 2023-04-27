@@ -243,7 +243,7 @@
             </div>
             <div class="modal-footer border-0">
                 <div class="btn btn-outline-light text-dark px-3" data-bs-dismiss="modal">Отмена</div>
-                <button type="submit" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center" v-if="loading">
+                <button type="submit" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center" v-if="!loading">
                     <span class="material-symbols-outlined spin">autorenew</span>
                     Отправляю...
                 </button>

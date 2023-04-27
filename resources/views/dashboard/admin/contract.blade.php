@@ -24,7 +24,12 @@
 @section('content')
 <div class="row">
     <div class="col">
-        <template v-if="loading"><p>Загрузка...</p></template>
+        <p>
+            <x-badge 
+                color="{{$model['agent']['state']['color']}}" 
+                text="{{$model['agent']['state']['name']}}" 
+            />
+        </p>
         <div class="card border-0 shadow-sm">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
@@ -32,26 +37,35 @@
                     @if ($status === null)
                         <p>нет данных</p> 
                     @else
+                        <template v-if="loading"><p>Загрузка...</p></template>
                         <template v-if="active === 0">
-                            @if ($status->id_card == 0)
-                                <button class="btn btn-dark" v-on:click="activeContract('{{$model['agent']['id']}}')">
+                            @if ($status->id_card == '0')
+                                <button class="btn btn-sm btn-dark" v-on:click="activeContract('{{$model['agent']['id']}}')">
                                     Активировать
                                 </button>                                
-                            @elseif ($status->id_card == 1)
+                            @elseif ($status->id_card == '1')
                                 <div>
                                     <x-badge color="34617" text="Активирован" />
-                                    <button class="btn btn-sm btn-danger">
+                                    <button class="btn btn-sm btn-danger" v-on:click="blockContract('{{$model['agent']['id']}}')">
                                         Заблокировать
                                     </button>                                 
                                 </div>
-                            @elseif ($status->id_card == 2)
+                            @elseif ($status->id_card == '2')
                                 <div>
                                     <x-badge color="danger" text="Заблокирован" />
+                                    <button class="btn btn-sm btn-dark" v-on:click="activeContract('{{$model['agent']['id']}}')">
+                                        Активировать
+                                    </button> 
                                 </div>
                             @else
                             ---
                             @endif
 
+                        </template>
+                        <template v-else-if="active === 2">
+                            <div>
+                                <x-badge color="danger" text="Заблокирован" />
+                            </div>
                         </template>
                         <template v-else>
                             <div>

@@ -2,10 +2,10 @@
 $classes = ($close === 'true') ? 'alert-dismissible' : '';
 @endphp
 <div class="alert alert-{{ $type }} d-flex gap-2 align-items-center {{ $classes }} fade show border-0">
-    <span class="material-symbols-outlined text-{{ $type }}">
+    <span>
         @switch($type)
             @case('info')
-                info
+                <x-icon-info color="#087990" />
                 @break
 
             @case('success')
@@ -13,15 +13,15 @@ $classes = ($close === 'true') ? 'alert-dismissible' : '';
                 @break
 
             @case('danger')
-                gpp_maybe
+                <x-icon-gpp-maybe color="#b02a37" />
                 @break
 
             @case('warning')
-                warning
+                <x-icon-warning color="#997404" />
                 @break
 
             @default
-                sms_failed
+                <x-icon-sms-failed />
         @endswitch
     </span>
     <div>

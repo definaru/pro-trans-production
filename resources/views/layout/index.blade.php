@@ -51,13 +51,13 @@
         <nav class="d-print-none navbar fixed-top navbar-expand-lg bg-white shadow">
             <div class="container py-1">
                 <a class="d-flex align-items-center gap-2 navbar-brand ps-2 ps-lg-0 me-lg-4 me-0" href="/">
-                    {{-- <img 
+                    <img 
                         src="/img/logotype/dark-logo.png" 
                         class="rounded" 
                         alt="Prospekt Parts" 
-                        style="width: 54px" 
-                    /> --}}
-                    <span class="text-dark logo">
+                        style="width: 45px" 
+                    />
+                    <span class="text-dark logo" style="font-size: 16px">
                         {!!$names::company('Prospekt Parts')!!}
                     </span> 
                     <span class="d-none" itemprop="name">
