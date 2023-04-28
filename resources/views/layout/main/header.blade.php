@@ -20,7 +20,7 @@
         </a>
     </div>
     <div class="d-flex align-items-center gap-3">
-        <div class="dropdown" style="width: 239px">
+        <div class="dropdown" style="width: 240px">
             <div class="d-flex align-items-center gap-2 cp py-0" data-bs-toggle="dropdown">
                 <span class="material-symbols-outlined fs-2 text-white bg-soft-danger rounded-circle">account_circle</span>
                 @include('layout.main.company.name')

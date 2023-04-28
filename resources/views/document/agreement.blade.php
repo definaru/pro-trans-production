@@ -184,11 +184,12 @@
             <div class="row">
                 <div class="col-12 col-lg-6">
                     <div class="mt-2">
-                        <label class="fw-bold">Телефон: ( без пробелов и скобок )</label>
+                        <label class="fw-bold">Телефон:</label>
                         <input 
                             type="text" 
                             name="phone" 
-                            class="form-control @error('phone') is-invalid @enderror" 
+                            v-on:click="addMaskPhone()"
+                            class="form-control input-phone @error('phone') is-invalid @enderror" 
                             value="{{ old('phone') }}"
                             placeholder="Контактный номер телефона" 
                         />

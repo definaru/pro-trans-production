@@ -336,7 +336,7 @@
             </div>
             <div class="row">
                 <div class="col-12 pt-5">
-                    <div class="p-5 bg-dark text-white rounded" 
+                    {{-- <div class="p-5 bg-dark text-white rounded" 
                     style="background-image: url(/img/banner.png);background-size: cover;background-position: top right;box-shadow: inset 0px -48px 254px 86px #000000bf">
                         <h2 class="display-3 mb-4 fw-bold">Присоединяйтейсь<br> к нашему сообществу</h2>
                         <div class="d-grid d-lg-flex gap-3">
@@ -356,7 +356,7 @@
                             <b class="text-danger">*</b> Не нашли нужной детали? Подпишитесь, 
                             и мы сообщим вам о её поступлении!
                         </p>
-                    </div>
+                    </div> --}}
                 </div>
             </div>                        
         </div>

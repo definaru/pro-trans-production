@@ -52,11 +52,12 @@
             outline: none !important;
             box-shadow: none !important;
         }
+        #auth .alert div {font-size: 11px;}
         [v-cloak] { display:none; }
     </style>
 </head>
-<body>
-    <section id="auth" class="bg-light vh-100" v-cloak>
+<body class="bg-light">
+    <section id="auth" class="vh-100" v-cloak>
         <div class="container h-100">
             <div class="d-flex align-items-center row h-100">
                 <div class="col-md-4 offset-md-4 py-5">

@@ -27,7 +27,7 @@ class MakeContract extends FormRequest
             'bik' => 'required|numeric|min:9',
             'ks' => 'required|numeric|min:20',
             'email' => 'required|email|min:4|max:50',
-            'phone' => 'required|numeric|min:11'
+            'phone' => 'required' //|numeric|min:11
         ];
     }
 
@@ -51,8 +51,8 @@ class MakeContract extends FormRequest
             'bik.numeric' => 'В БИК должны быть только цифры',
             'ks.numeric' => 'В номере корр.счёта должны быть только цифры',
             'phone.required' => 'Укажите актуальный рабочий номер телефона',
-            'phone.min' => 'Номер телефона не может быть меньше 11 цифр',
-            'phone.numeric' => 'В номере телефона должны быть только цифры'
+            //'phone.min' => 'Номер телефона не может быть меньше 11 цифр',
+            //'phone.numeric' => 'В номере телефона должны быть только цифры'
         ];
     }
 

@@ -317,13 +317,24 @@ class DachboardController extends Controller
     {
         $request->validate(CounterAgent::rules());
         $account = MoySklad::getCounterAgent($request->company);
-        $message = 'На ваш email: '.$request->email.' была отправлена важная информация. Пожалуйста, ознакомьтесь.';
+        $message = 'На ваш email: <u>'.$request->email.'</u> была отправлена важная информация. Пожалуйста, ознакомьтесь.';
         $error = 'Не удалось зарегистрировать.';
-        if(isset($account['id'])) {
-            Telegram::getMessageTelegram($account['id'], $account['name'], $request->email, 'counterparty');
-            return redirect()->route('signin')->with(['signup' => $message, 'id' => $account['id']]);
-        }
-        return redirect()->route('signin')->with(['error' => $error]);
+        //try {} catch (Exception $e) {}
+            sleep(2);
+            if(isset($account['id'])) {
+                Telegram::getMessageTelegram($account['id'], $account['name'], $request->email, 'counterparty');
+                return redirect()->route('signin')->with(['signup' => $message, 'id' => $account['id']]);
+            }
+        
+            return redirect()->route('signin')->with(['error' => $error]);
+            //dd($e->getMessage());
+            // echo 'Caught exception: ',  $e->getMessage(), "\n";
+        
+        // if(isset($account['id'])) {
+        //     Telegram::getMessageTelegram($account['id'], $account['name'], $request->email, 'counterparty');
+        //     return redirect()->route('signin')->with(['signup' => $message, 'id' => $account['id']]);
+        // }
+        // 
     }
     
 

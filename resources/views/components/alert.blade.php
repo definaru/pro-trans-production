@@ -5,23 +5,23 @@ $classes = ($close === 'true') ? 'alert-dismissible' : '';
     <span>
         @switch($type)
             @case('info')
-                <x-icon-info color="#087990" />
+                <x-icon-info size="30px" color="#087990" />
                 @break
 
             @case('success')
-                <x-icon-check-circle color="#146c43" />
+                <x-icon-check-circle size="30px" color="#146c43" />
                 @break
 
             @case('danger')
-                <x-icon-gpp-maybe color="#b02a37" />
+                <x-icon-gpp-maybe size="30px" color="#b02a37" />
                 @break
 
             @case('warning')
-                <x-icon-warning color="#997404" />
+                <x-icon-warning size="30px" color="#997404" />
                 @break
 
             @default
-                <x-icon-sms-failed />
+                <x-icon-sms-failed size="30px" />
         @endswitch
     </span>
     <div>
@@ -49,7 +49,7 @@ $classes = ($close === 'true') ? 'alert-dismissible' : '';
                     <strong>{{ $header }}</strong>
             @endswitch
         @endif
-        {{ $message }}
+        {!! $message !!}
     </div>
     @if($close === 'true')
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>

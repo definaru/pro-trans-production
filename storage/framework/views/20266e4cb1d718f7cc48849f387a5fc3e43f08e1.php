@@ -408,38 +408,7 @@
             </div>
             <div class="row">
                 <div class="col-12 pt-5">
-                    <div class="p-5 bg-dark text-white rounded" 
-                    style="background-image: url(/img/banner.png);background-size: cover;background-position: top right;box-shadow: inset 0px -48px 254px 86px #000000bf">
-                        <h2 class="display-3 mb-4 fw-bold">Присоединяйтейсь<br> к нашему сообществу</h2>
-                        <div class="d-grid d-lg-flex gap-3">
-                            <a href="/signup" class="btn btn-lg btn-primary px-5 d-flex justify-content-center align-items-center gap-2">
-                                <?php if (isset($component)) { $__componentOriginal8ebc2cfae60e7fda14142d5a384e1fb512120930 = $component; } ?>
-<?php $component = $__env->getContainer()->make(App\View\Components\IconAdd::class, ['color' => '#fff']); ?>
-<?php $component->withName('icon-add'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php $component->withAttributes([]); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal8ebc2cfae60e7fda14142d5a384e1fb512120930)): ?>
-<?php $component = $__componentOriginal8ebc2cfae60e7fda14142d5a384e1fb512120930; ?>
-<?php unset($__componentOriginal8ebc2cfae60e7fda14142d5a384e1fb512120930); ?>
-<?php endif; ?>
-                                Присоедиится
-                            </a>
-                            <button 
-                                data-bs-toggle="modal" 
-                                data-bs-target="#subscription"
-                                class="btn btn-lg btn-outline-light px-5" 
-                            >
-                                Подписаться
-                            </button>
-                        </div>
-                        <p class="text text-light mb-0 mt-3">
-                            <b class="text-danger">*</b> Не нашли нужной детали? Подпишитесь, 
-                            и мы сообщим вам о её поступлении!
-                        </p>
-                    </div>
+                    
                 </div>
             </div>                        
         </div>

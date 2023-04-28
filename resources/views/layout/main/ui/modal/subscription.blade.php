@@ -20,9 +20,9 @@
             </div>
             <div class="modal-footer border-0 pt-0">
                 <button type="button" class="btn btn-light text px-4" data-bs-dismiss="modal">Закрыть</button>
-                <button type="button" class="btn btn-primary text px-4 d-flex gap-1">
-                    <span class="material-symbols-outlined">mark_email_read</span> 
-                    Подписаться
+                <button type="button" class="btn btn-primary text px-4 d-flex gap-2">
+                    <x-icon-mark-email-read color="#fff" />
+                    <span>Подписаться</span> 
                 </button>
             </div>
         </div>
