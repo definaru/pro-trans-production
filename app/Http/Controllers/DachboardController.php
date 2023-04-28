@@ -27,11 +27,13 @@ class DachboardController extends Controller
         return view('dashboard');
     }
 
+    
     public function preOrderViewOne($id)
     {
         $pre = MoySklad::viewOnePreOrder($id);
         return view('dashboard.payment.preorder-detail', ['id' => $id, 'pre' => $pre]);
     }
+
 
     public function preOrders()
     {
@@ -40,6 +42,7 @@ class DachboardController extends Controller
         return view('dashboard.payment.preorders', ['order' => $order]);
     }
 
+
     public function createInvoice(Request $request)
     {
         MoySklad::createInvoiceout($request->id);
@@ -47,16 +50,19 @@ class DachboardController extends Controller
         return redirect()->route('orders')->with(['message' => $message]);
     }
 
+
     public function noSearch()
     {
         return redirect()->route('dashboard');
     }
+
 
     public function RecordDetail($id)
     {
         $demand = MoySklad::getOneDemand($id);
         return view('dashboard.payment.demand', ['id' => $id, 'demand' => $demand]);
     }
+
 
     public function EditSettings(SettingEdit $request)
     {
@@ -65,6 +71,7 @@ class DachboardController extends Controller
         MoySklad::editSetting($request);
         return redirect()->route('settings')->with(['message' => $message]);
     }
+
 
     public function resultSearch(Request $request)
     {
@@ -76,6 +83,7 @@ class DachboardController extends Controller
         //return response()->json($search);
         return view('dashboard.result.search', ['search' => $search, 'text' => $request->text]);
     }
+
 
     public function searchDashboard(Request $request)
     {
@@ -90,6 +98,7 @@ class DachboardController extends Controller
         return redirect()->route('dashboard')->with(['search' => $search, 'text' => $text]);
     }
 
+
     public function Settings()
     {
         $uuid = auth()->user()->verified;
@@ -98,25 +107,30 @@ class DachboardController extends Controller
         return view('dashboard.profile.settings', ['profile' => $profile]);
     }
 
+
     public function Events() 
     {
         return view('dashboard.events');
     }
+
 
     public function Schedule() 
     {
         return view('dashboard.work.schedule');
     }
 
+
     public function Help() 
     {
         return view('dashboard.help');
     }
 
+
     public function Notifications() 
     {
         return view('dashboard.notifications');
     }
+
 
     public function Invoice($invoice) 
     {
@@ -128,10 +142,12 @@ class DachboardController extends Controller
         ]);
     }
 
+
     public function Account() 
     {
         return view('dashboard.account');
     }
+
 
     public function updateAgreement(MakeContract $request)
     {
@@ -141,21 +157,36 @@ class DachboardController extends Controller
         return redirect()->route('contract')->with(['status' => $message]);
     }
 
+
     public function sendAgreement(MakeContract $request)
     {
-        $contract = MoySklad::getContract();
-        
         $message = 'Ваш запрос на заключение договора получен. Пожалуйста, сверьте данные и подтвердите.';
         $request->validate(MakeContract::rules());
-        if($contract === null) {
-            MoySklad::createContract();
+        $contract = MoySklad::getContract();
+        if(isset($contract['id'])) {
+            Telegram::getMessageTelegram(time(), 'Запрос на заключение договора.', $contract['id']);
+            Contract::create($request->all()); 
+            return back()->with(['status' => $message]);            
             //$message = 'Не удалось создать договор. Свяжитесь с менеджером.';
             //return back()->with(['error' => $message]);
         }
-        Telegram::getMessageTelegram(time(), 'Запрос на заключение договора.', $contract['id']);
-        Contract::create($request->all());        
-        return back()->with(['status' => $message]);
+        MoySklad::createContract();
+        return back();
     }
+    
+    
+    public function Checkout(Request $request)
+    {
+        $message = 'Ваш заказ получен.';
+        $account = MoySklad::getCheckout($request->name);
+        if(isset($account['id'])) {
+            Telegram::getMessageTelegram($account['id'], $account['name'], '', 'сheckout');
+            return redirect()->route('card')->with(['status' => $message, 'id' => $account['id']]);
+        } else {
+            return redirect()->back()->withErrors(['error' => 'Не удалось создать заказ.']);
+        }
+    }
+
 
     public function sendDeal(Request $request)
     {
@@ -168,12 +199,14 @@ class DachboardController extends Controller
         return redirect()->route('contract')->with(['status' => $message]);
     }
 
+
     public function EditAgreement()
     {
         $uuid = auth()->user()->verified;
         $contract = Contract::find($uuid);
         return view('document.edit-agreement', ['contract' => $contract]);
     }
+
 
     public function Agreement() 
     {
@@ -182,16 +215,19 @@ class DachboardController extends Controller
         return view('document.agreement', ['contract' => $contract]);
     }
 
+
     public function Record() 
     {
         $demand = MoySklad::getDemand();
         return view('dashboard.payment.record', ['demand' => $demand]);
     }
 
+
     public function Catalog()
     {
         return view('dashboard.catalog');
     }
+
 
     public function DetailProduct($id, Request $request)
     {
@@ -208,12 +244,6 @@ class DachboardController extends Controller
         ]);
     }
 
-    // public function Image($uuid)
-    // {
-    //     $item = Goods::where('link', $uuid)->get();
-    //     $image = isset($item[0]['image']) && $item[0]['image'] !== ''  ? trim($item[0]['image'], '.') : '/img/placeholder.png';
-    //     return $image;
-    // }
 
     public function CatalogDetail($name, $limit = 10, $offset = 0)
     {
@@ -225,6 +255,7 @@ class DachboardController extends Controller
             'offset' => $offset
         ]);
     }
+
 
     public function ReportsDetail($order)
     {
@@ -242,6 +273,7 @@ class DachboardController extends Controller
         return view('dashboard.сard');
     }
 
+
     public function Reports()
     {
         $reports = MoySklad::getReports();
@@ -249,23 +281,13 @@ class DachboardController extends Controller
         return view('dashboard.payment.reports', ['reports' => $reports]);
     }
     
+
     public function SendSpares(Request $request)
     {
         $uuid = auth()->user()->verified;
         Telegram::getMessageTelegram($uuid, $request->spares, $request->vin, 'spares');
     }
 
-    public function Checkout(Request $request)
-    {
-        $message = 'Ваш заказ получен.';
-        $account = MoySklad::getCheckout($request->name);
-        if(isset($account['id'])) {
-            Telegram::getMessageTelegram($account['id'], $account['name'], '', 'сheckout');
-            return redirect()->route('card')->with(['status' => $message, 'id' => $account['id']]);
-        } else {
-            return redirect()->back()->withErrors(['error' => 'Не удалось создать заказ.']);
-        }
-    }
 
     public function preCheckout(Request $request)
     {
@@ -289,6 +311,7 @@ class DachboardController extends Controller
             return redirect()->back()->withErrors(['error' => 'Не удалось получить УПД']);
         }
     }
+
 
     public function addedCounterAgent(CounterAgent $request)
     {
@@ -319,6 +342,7 @@ class DachboardController extends Controller
         return redirect()->route('order')->with(['status' => $message]);
     }
 
+
     public function Description(Request $request)
     {
         $request->validate([
@@ -345,6 +369,7 @@ class DachboardController extends Controller
         return view('dashboard.accounts', ['model' => $model, 'limit' => $limit, 'offset' => $offset]);
     }
 
+
     public function OrdersList()
     {
         $model = MoySklad::getAllReports();
@@ -352,6 +377,7 @@ class DachboardController extends Controller
         return view('dashboard.orders', ['model' => $model]);
     }
 
+    
     public function OrdersListDelete($uuid)
     {
         $message = 'Заказ удалён';
@@ -359,7 +385,8 @@ class DachboardController extends Controller
         return redirect()->route('allorders')->with(['status' => $message]);
     }
 
-    public function AgentDelete($uuid)#..........................................................................................
+
+    public function AgentDelete($uuid)
     {
         $message = 'Заказ удалён';
         MoySklad::deleteAgent($uuid);

@@ -9,7 +9,7 @@ $classes = ($close === 'true') ? 'alert-dismissible' : '';
                 @break
 
             @case('success')
-                check_circle
+                <x-icon-check-circle color="#146c43" />
                 @break
 
             @case('danger')
