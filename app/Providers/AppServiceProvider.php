@@ -11,6 +11,7 @@ use App\Models\Seo;
 use App\Models\Card;
 use App\Models\Names;
 use App\Models\Image;
+use App\Models\Email;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
@@ -64,6 +65,7 @@ class AppServiceProvider extends ServiceProvider
             'deal'          => new Card(),
             'dadata'        => new DaData(),
             'images'        => new Image(),
+            'email'         => new Email(),
             'seo'           => new Seo(),
         ]);
     }

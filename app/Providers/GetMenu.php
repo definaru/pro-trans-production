@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-use App\Models\MoySklad;
 use App\Models\Card;
+use App\Models\Email;
+use App\Models\MoySklad;
 
 
 class GetMenu 
@@ -471,13 +472,13 @@ class GetMenu
                         'count' => '',
                         'list' => ''
                     ],
-                    // [
-                    //     'icon' => 'mail',
-                    //     'name' => 'E-почта',
-                    //     'slug' => 'mail/inbox',
-                    //     'count' => '1',
-                    //     'list' => ''
-                    // ],
+                    [
+                        'icon' => 'mail',
+                        'name' => 'E-почта',
+                        'slug' => 'mail/inbox',
+                        'count' => Email::getCount(),
+                        'list' => ''
+                    ],
                     [
                         'icon' => 'group',
                         'name' => 'Пользователи',

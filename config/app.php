@@ -134,6 +134,8 @@ return [
     'dadata_token' => env('DADATA_TOKEN'),
     'dadata_secret' => env('DADATA_SECRET'),
 
+    'e_pass' => env('E_PASSWORD'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

@@ -104,7 +104,8 @@
                     <input 
                         type="text" 
                         name="phone" 
-                        class="form-control @error('phone') is-invalid @enderror" 
+                        class="form-control input-phone @error('phone') is-invalid @enderror" 
+                        v-on:click="addMaskPhone()"
                         value="{{ $contract->phone }}"
                         placeholder="Контактный номер телефона" 
                     />

@@ -1,5 +1,6 @@
 @php
-    $imap = imap_open("{imap.beget.com:993/imap/ssl}INBOX", "info@prospekt-parts.com", "aH{~K#s4%ti|RyKwB~Bm");
+    $imap = $email::imapOpen(config('app.e_pass'));
+    //$unseen = imap_num_msg($imap); 
     $mails_id = imap_search($imap, 'ALL');    
 @endphp
 
@@ -7,48 +8,69 @@
 @section('title', 'Электронная почта')
 
 @section('content')
-<ol class="list-group list-group-numbered shadow-sm mt-4">
-    <?php
-        foreach ($mails_id as $num) {
-            $header = imap_header($imap, $num); //
-            $header = json_decode(json_encode($header), true);
-            $subject = mb_decode_mimeheader($header['subject']); 
-            //$body = imap_body($imap, $num);
-            //$body = quoted_printable_decode($body);
-            $body = imap_fetchstructure($imap, $num);
-            $body = json_decode(json_encode($body), true);
-    ?>
-            
-            
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                    <div class="<?=($header['Unseen'] == "U") ? 'fw-bold' : '';?>"><?=mb_decode_mimeheader($header['subject'])?></div>
-                    От: <a href="mailto:{{$header['from'][0]['mailbox']}}&#64;{{$header['from'][0]['host']}}">{{mb_decode_mimeheader($header['fromaddress'])}}</a> 
-                    &#160;/&#160;
-                    <small class="text-muted">{{$timer::datatime($header['date'])}}</small> 
-                    <?php print_r($num);?>
-                    <?php //print_r($body);?>
-                </div>
-                <?php if (mb_strpos($subject, 'заявка') !== false) { ?>
-                <?php imap_setflag_full($imap, $num, '\\flagged'); ?>
-                <span class="material-symbols-outlined text-danger">bookmarks</span>
-                <?php } ?>
-                @if (isset($body['parts'][0]))
-                    <span class="material-symbols-outlined">attach_file</span>
-                @endif
-            </li>
-    <?php } imap_close($imap); ?>
-</ol>
-<div>
-    <?php
-    $imap = imap_open("{imap.beget.com:993/imap/ssl}INBOX", "info@prospekt-parts.com", "aH{~K#s4%ti|RyKwB~Bm");
-        $bodyhtml = imap_body($imap, 3);
-        $bodyhtml = quoted_printable_decode($bodyhtml);  
-        //$bodys = imap_fetchstructure($imap, 3, FT_UID);
-        //$bodys = json_decode(json_encode($bodys), true);
-        echo $bodyhtml;
-        //print_r($bodys['subtype']);
-        imap_close($imap); 
-    ?>
+
+
+<div class="row g-0 shadow-sm">
+    <div class="overflow-auto col-lg-<?=isset($_GET['open']) ? '4' : '12'; ?>" style="height:61vh">
+        <ul class="list-group shadow-sm">
+        <?php
+            foreach ($mails_id as $num) {
+                $header = imap_headerinfo($imap, $num); //
+                $header = json_decode(json_encode($header), true);
+                $subject = mb_decode_mimeheader($header['subject']); 
+                //$body = imap_body($imap, $num);
+                //$body = quoted_printable_decode($body);
+                $body = imap_fetchstructure($imap, $num);
+                $body = json_decode(json_encode($body), true);
+        ?>
+            <li class="list-group-item d-flex justify-content-between align-items-start overflow-hidden <?=isset($_GET['open']) && $_GET['open'] == $num ? 'bg-danger-subtle' : '' ?>">
+                    <div class="me-auto">
+                        <div 
+                            class="<?=isset($_GET['open']) ? 'w-75 d-block text-truncate' : ''; ?> <?=($header['Unseen'] == "U") ? 'fw-bold' : '';?>"
+                        >
+                            <input type="checkbox" name="check" class="form-check-input" />
+                            <a 
+                                href="?open=<?=$num;?>" 
+                                class="text-dark text-decoration-none" 
+                                title="<?=mb_decode_mimeheader($header['subject'])?>"
+                            >
+                                <?=mb_decode_mimeheader($header['subject'])?>
+                            </a>
+                        </div>
+                        <span style="font-size: 12px">
+                            От: 
+                            <a href="mailto:{{$header['from'][0]['mailbox']}}&#64;{{$header['from'][0]['host']}}" target="_blank">
+                                {{mb_decode_mimeheader($header['fromaddress'])}}
+                            </a> 
+                        <span>
+                        <?=isset($_GET['open']) ? '<br />' : '&#160;/&#160;';?>
+                        <small class="text-muted">{{$timer::datatime($header['date'])}}</small>
+                        <?php //print_r($body);?>
+                    </div>
+                    <?php if (mb_strpos($subject, 'заявка') !== false) { ?>
+                    <?php imap_setflag_full($imap, $num, '\\flagged'); ?>
+                    <span class="material-symbols-outlined text-danger">bookmarks</span>
+                    <?php } ?>
+                    @if (isset($body['parts'][0]))
+                        <span class="material-symbols-outlined">attach_file</span>
+                    @endif
+                </li>
+        <?php } imap_close($imap); ?>
+        </ul>
+    </div>
+    <div class="border rounded-end overflow-auto <?=isset($_GET['open']) ? 'col-lg-8' : 'd-none'; ?>" style="height:61vh">
+        <?php
+            $imap = $email::imapOpen(config('app.e_pass'));
+            $mail = isset($_GET['open']) ? $_GET['open'] : 1;
+            $bodyhtml = imap_body($imap, $mail); // 
+            $bodyhtml = quoted_printable_decode($bodyhtml);
+            //$bodyhtml = imap_fetchstructure($imap, $mail, FT_UID);
+            //$bodyhtml = json_decode(json_encode($bodyhtml), true);
+            echo '<pre class="p-3 bg-white">'.$bodyhtml.'</pre>';
+            //print_r($bodyhtml);
+            imap_close($imap); 
+        ?>
+    </div>    
 </div>
+<pre><?php //var_dump($bodyhtml);?></pre>
 @endsection

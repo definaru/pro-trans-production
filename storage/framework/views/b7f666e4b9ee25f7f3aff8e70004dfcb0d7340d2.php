@@ -60,7 +60,7 @@
     <script src="<?php echo e(asset('js/toastr.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/jquery.slimscroll.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/defina.admin.min.js')); ?>"></script>
-    <?php if($_SERVER['REQUEST_URI'] === '/dashboard/document/agreement'): ?>
+    <?php if($_SERVER['REQUEST_URI'] === '/dashboard/document/agreement/edit'): ?>
     <script src="<?php echo e(asset('js/cleave.js')); ?>"></script>
     <script src="<?php echo e(asset('js/cleave-phone.ru.js')); ?>"></script>
     <?php endif; ?>
