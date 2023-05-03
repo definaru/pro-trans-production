@@ -27,7 +27,8 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <p class="d-flex align-items-center gap-1">Дата создания заказа: 
                         <i class="text-muted d-flex align-items-center gap-1">
-                            <span class="material-symbols-outlined fs-5">calendar_month</span>
+                            <x-icon-calendar-month color="#999" />
+                            {{-- <span class="material-symbols-outlined fs-5">calendar_month</span> --}}
                             {{$timer::datatime($order['moment'])}}
                         </i>                    
                     </p>

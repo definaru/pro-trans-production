@@ -155,7 +155,6 @@
         <p class="font-weight-normal m-0" style="font-size:12px;">
             Оплатить не позднее&#160;
             {{$timer::addDays($order['moment'], 3)}}
-            {{-- {{date_format(date_create($order['moment']), 'd.m.Y')}} --}}
         </p>
         <p class="font-weight-normal" style="font-size:12px;">
             Оплата данного счёта означает согласие с условиями поставки товара. 
@@ -171,17 +170,14 @@
                         Руководитель
                     </td>
                     <td  style="font-size:11px" class="px-1 py-0 text-right border-top-0 border-left-0 border-right-0 border-dark font-weight-normal">
-                        <?php
-                            $m = explode(' ', $order['organization']['director']);
-                            echo $m[0] . ' ' . substr($m[1],0,2) . '.' . substr($m[2],0,2) . '.' ;
-                        ?>
+                        {{$decl::nc($order['organization']['director'])}}
                     </td>
                     <td class="border-0" style="width: 2%"></td>
                     <td class="px-1 py-0 border-0 font-weight-bold" style="font-size:12px;width: 15%">
                         Бухгалтер
                     </td>
                     <td  style="font-size:11px" class="px-1 py-0 text-right border-top-0 border-left-0 border-right-0 border-dark font-weight-normal">
-                        Дущенко А.О.
+                        {{$decl::nc($order['organization']['director'])}}
                     </td>
                 </tr>
             </tbody>

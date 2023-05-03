@@ -136,7 +136,7 @@ class MoySklad
     }
 
     
-    public static function getCounterAgent($req)
+    public static function getContrAgent($req)
     {
         $url = self::msUrl().'counterparty';
         $response = self::post($url, $req);

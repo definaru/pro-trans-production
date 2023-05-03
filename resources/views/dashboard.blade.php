@@ -142,12 +142,10 @@
                                     data-order="{{$item['id']}},{{$item['article']}},{{$item['name']}},1,{{$item['salePrices'][0]['value']}},{{$images::src($item['id'])}}"
                                     v-on:click="addToOrder('{{$item['id']}}')"
                                 >
-                                    <x-button 
-                                        type="button"
-                                        icon="add_shopping_cart" 
-                                        color="secondary" 
-                                        text="" 
-                                    />             
+    
+                                    <button class="btn btn-secondary">
+                                        <x-icon-add-card color="#fff" />
+                                    </button>
                                 </div>
                                 @else
                                     <div 
@@ -155,12 +153,9 @@
                                         data-card="{{$item['id']}},{{$item['article']}},{{$item['name']}},1,{{$item['salePrices'][0]['value']}},{{$item['salePrices'][0]['value']}},{{$images::src($item['id'])}}" 
                                         v-on:click="addToCard({{$loop->iteration}})"
                                     >
-                                        <x-button 
-                                            type="button" 
-                                            icon="add_shopping_cart" 
-                                            color="dark" 
-                                            text=""
-                                        />
+                                        <button class="btn btn-dark">
+                                            <x-icon-add-card color="#fff" />
+                                        </button>
                                     </div>
                                 @endif 
                             </div>

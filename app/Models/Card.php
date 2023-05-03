@@ -58,13 +58,17 @@ class Card extends Model
         return $status;
     }
 
-    // public static function image($result, $id)
-    // {
-    //     try {
-    //         return array_column($result, 'image', 'href')[$id];
-    //     } catch (Exception $e) {
-    //         return '/img/placeholder.png';
-    //     }
-    // }
+    public static function giveAccess($uuid)
+    {
+        $status = self::where('user_id', $uuid)->first();
+        
+        if ($status === null) {
+            $status = new Card();
+            $status->user_id = $uuid;
+            $status->id_card = 1;
+            $status->save();
+        }
+        return $status;
+    }
 
 }

@@ -366,11 +366,13 @@
 <table class="w-100 mb-3" style="font-size: 12px">
     <tr>
         <td class="w-50">
-            <p>_____________________ Генеральный директор</p>
+            <p>{{$decl::nc($contract['ownAgent']['director'])}} Генеральный директор</p>
             <p>&#160;&#160;М.П.</p>
         </td>
         <td class="w-50">
-            <p>_____________________ Генеральный директор</p>
+            <p>{{isset($contract['agent']['description']) ? $decl::nc($contract['agent']['description']) : ''}} 
+                Генеральный директор
+            </p>
             <p>&#160;&#160;М.П.</p>
         </td>
     </tr>
@@ -535,7 +537,11 @@
                 </td>
             </tr>
             <tr>
-                <td class="py-1"><br /><hr />Дущенко А. О.</td>
+                <td class="py-1">
+                    <br />
+                    <hr />
+                    {{$decl::nc($contract['ownAgent']['director'])}}
+                </td>
                 <td class="py-1" style="border-left: 1px solid #222">
                     <br />
                     <hr />

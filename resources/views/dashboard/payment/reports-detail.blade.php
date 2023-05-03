@@ -213,10 +213,12 @@
                                     {{$data['agent']['email']}}
                                 </li>                                    
                                 @endif
+                                @if (isset($data['agent']['phone']))
                                 <li class="d-flex gap-2 align-items-center">
                                     <span class="material-symbols-outlined fs-6 text-secondary">phone_iphone</span>
                                     {{$data['agent']['phone']}}
                                 </li>
+                                @endif
                             </ul>
                         </li>
                         <li class="list-group-item">

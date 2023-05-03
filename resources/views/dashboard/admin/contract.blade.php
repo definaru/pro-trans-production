@@ -37,7 +37,7 @@
                     @if ($status === null)
                         <p>нет данных</p> 
                     @else
-                        <template v-if="loading"><p>Загрузка...</p></template>
+                        <template v-if="!loading"><p>Загрузка...</p></template>
                         <template v-if="active === 0">
                             @if ($status->id_card == '0')
                                 <button class="btn btn-sm btn-dark" v-on:click="activeContract('{{$model['agent']['id']}}')">
