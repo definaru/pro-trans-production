@@ -379,7 +379,7 @@
                         <ul class="d-grid gap-4 list-unstyled">
                             <li class="d-flex feat">
                                 <span class="mt-2 me-4">
-                                    <x-icon-switch-access-shortcut-add size="40px" color="#8630a3" />
+                                    <x-icon-switch-access-shortcut-add size="40px" color="#310062" />
                                 </span>
                                 <div>
                                     <strong class="fs-2 text-secondary">Запасные части</strong>
@@ -388,7 +388,7 @@
                             </li>
                             <li class="d-flex feat">
                                 <span class="mt-2 me-4">
-                                    <x-icon-shield-with-heart size="40px" color="#8630a3" />
+                                    <x-icon-shield-with-heart size="40px" color="#310062" />
                                 </span>
                                 <div>
                                     <strong class="fs-2 text-secondary">Репутация</strong>
@@ -397,7 +397,7 @@
                             </li>
                             <li class="d-flex feat">
                                 <span class="mt-2 me-4">
-                                    <x-icon-currency-rubler size="40px" color="#8630a3" />
+                                    <x-icon-currency-rubler size="40px" color="#310062" />
                                 </span>
                                 <div>
                                     <strong class="fs-2 text-secondary">Цены</strong>
@@ -407,7 +407,7 @@
                             </li>
                             <li class="d-flex feat">
                                 <span class="mt-2 me-4">
-                                    <x-icon-pallet size="40px" color="#8630a3" />
+                                    <x-icon-pallet size="40px" color="#310062" />
                                 </span>
                                 <div>
                                     <strong class="fs-2 text-secondary">Доставка</strong>

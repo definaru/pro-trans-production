@@ -432,7 +432,7 @@
                             <li class="d-flex feat">
                                 <span class="mt-2 me-4">
                                     <?php if (isset($component)) { $__componentOriginal45b6c5f5a7e53312d4610d833312739bb353079e = $component; } ?>
-<?php $component = $__env->getContainer()->make(App\View\Components\IconSwitchAccessShortcutAdd::class, ['size' => '40px','color' => '#8630a3']); ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconSwitchAccessShortcutAdd::class, ['size' => '40px','color' => '#310062']); ?>
 <?php $component->withName('icon-switch-access-shortcut-add'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
@@ -452,7 +452,7 @@
                             <li class="d-flex feat">
                                 <span class="mt-2 me-4">
                                     <?php if (isset($component)) { $__componentOriginal5a3b2f0ba51d914c32004455b209a4e05393ffe3 = $component; } ?>
-<?php $component = $__env->getContainer()->make(App\View\Components\IconShieldWithHeart::class, ['size' => '40px','color' => '#8630a3']); ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconShieldWithHeart::class, ['size' => '40px','color' => '#310062']); ?>
 <?php $component->withName('icon-shield-with-heart'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
@@ -472,7 +472,7 @@
                             <li class="d-flex feat">
                                 <span class="mt-2 me-4">
                                     <?php if (isset($component)) { $__componentOriginal0c6d8cd6984192c9700836ca613d2ed2543e51b8 = $component; } ?>
-<?php $component = $__env->getContainer()->make(App\View\Components\IconCurrencyRubler::class, ['size' => '40px','color' => '#8630a3']); ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconCurrencyRubler::class, ['size' => '40px','color' => '#310062']); ?>
 <?php $component->withName('icon-currency-rubler'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
@@ -493,7 +493,7 @@
                             <li class="d-flex feat">
                                 <span class="mt-2 me-4">
                                     <?php if (isset($component)) { $__componentOriginal1163d854608a892fc692c7630accb694f88f7d31 = $component; } ?>
-<?php $component = $__env->getContainer()->make(App\View\Components\IconPallet::class, ['size' => '40px','color' => '#8630a3']); ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconPallet::class, ['size' => '40px','color' => '#310062']); ?>
 <?php $component->withName('icon-pallet'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>

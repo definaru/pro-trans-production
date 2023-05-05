@@ -64,11 +64,7 @@
                         Проспект Партс
                     </span>
                 </a>
-                {{-- <button class="d-lg-flex align-items-center gap-2 btn d-none border ps-2 searchForm" data-bs-toggle="modal" data-bs-target="#searchForm">
-                    <x-icon-search />
-                    <span>Поиск...</span>
-                </button> --}}
-                <form onsubmit="loadingPage()" id="sendForm" action="/product" method="POST" class="position-relative" style="width: 310px">
+                <form onsubmit="loadingPage()" id="sendForm" action="/product" method="POST" class="d-lg-flex d-none position-relative" style="width: 310px">
                     @csrf
                     <input 
                         type="search" 
@@ -94,48 +90,50 @@
 
                     <div class="d-grid d-lg-flex gap-2 pb-4 pb-lg-0" role="search">
                         @guest
-                        <a href="/signin" class="btn btn-primary px-3 shadow-sm fw-bold d-flex justify-content-center align-items-center gap-2">
-                            <x-icon-login color="#fff" />
-                            Войти
-                        </a>   
-                        <template v-if="card.length">
-                            <a href="/card" class="btn position-relative">
-                                <x-icon-shopping-cart size="24px" />
-                                <small 
-                                    class="position-absolute translate-middle badge rounded-pill bg-danger text" 
-                                    style="font-size: 10px;top: 8px;left: 35px;"
-                                >
-                                    @{{card.length}}
-                                </small>
-                            </a>                             
-                        </template>
-                        <template v-else>
-                            <a class="btn position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ваша корзина пуста">
-                                <x-icon-shopping-cart size="24px" />
-                            </a>
-                        </template>
-                        
-                        @endguest
+                            <a href="/signin" class="btn btn-primary px-3 shadow-sm fw-bold d-flex justify-content-center align-items-center gap-2">
+                                <x-icon-login size="24px" color="#fff" />
+                                Войти
+                            </a>   
+                            <template v-if="card.length > 0">
+                                <a href="/card" class="btn bg-body-tertiary position-relative">
+                                    <x-icon-shopping-cart size="24px" />
+                                    <span class="d-inline-table d-lg-none">Корзина</span>
+                                    <small 
+                                        class="position-absolute translate-middle badge rounded-pill bg-danger text indicator"
+                                    >
+                                        @{{card.length}}
+                                    </small>
+                                </a>                             
+                            </template>
+                            <template v-else>
+                                <div class="btn bg-body-tertiary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ваша корзина пуста">
+                                    <x-icon-shopping-cart size="24px" />
+                                    <span class="d-inline-table d-lg-none">Корзина</span>
+                                </div>
+                            </template>
+                            
+                            @endguest
                         @auth
-                        <a href="/dashboard" class="btn pe-0">
-                            <x-icon-person size="27px" />
-                        </a>
-                        <template v-if="card.length">
-                            <a href="/dashboard/card" class="btn position-relative">
-                                <x-icon-shopping-cart size="25px" />
-                                <small 
-                                    class="position-absolute translate-middle badge rounded-pill bg-danger text" 
-                                    style="font-size: 10px;top: 8px;left: 35px;"
-                                >
-                                    @{{card.length}}
-                                </small>
+                            <a href="/dashboard" class="btn pe-0">
+                                <x-icon-person size="27px" />
                             </a>
-                        </template>
-                        <template v-else>
-                            <a class="btn position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ваша корзина пуста">
-                                <x-icon-shopping-cart size="24px" />
-                            </a>
-                        </template>
+                            <template v-if="card.length > 0">
+                                <a href="/dashboard/card" class="btn bg-body-tertiary position-relative">
+                                    <x-icon-shopping-cart size="25px" />
+                                    <span class="d-inline-table d-lg-none">Корзина</span>
+                                    <small 
+                                        class="position-absolute translate-middle badge rounded-pill bg-danger text indicator"
+                                    >
+                                        @{{card.length}}
+                                    </small>
+                                </a>
+                            </template>
+                            <template v-else>
+                                <div class="btn bg-body-tertiary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ваша корзина пуста">
+                                    <x-icon-shopping-cart size="24px" />
+                                    <span class="d-inline-table d-lg-none">Корзина</span>
+                                </div>
+                            </template>
                         @endauth
                     </div>
                 </div>

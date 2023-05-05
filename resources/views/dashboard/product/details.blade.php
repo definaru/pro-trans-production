@@ -187,8 +187,8 @@
                             type="submit" 
                             v-on:click="editText('{{$id}}')" 
                             class="btn px-4"
-                            :class="[loading === false ? 'btn-secondary' : 'btn-dark']"
-                            v-html="loading === false ? 'Сохранить' : 'Подождите, грузится...'"
+                            :class="[loading === false ? 'btn-dark' : 'btn-secondary']"
+                            v-html="loading === false ? 'Подождите, грузится...' : 'Сохранить'"
                         ></button>
                         <a href="/product/mersedes-benz/{{$id}}" target="_blank" class="btn btn-light px-4">
                             Посмотреть

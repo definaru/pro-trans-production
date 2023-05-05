@@ -10,7 +10,7 @@
                         {!!$names::company('Prospekt Parts')!!}
                     </span> 
                 </a>
-                <p class="mt-4 text">
+                <p class="mt-lg-4 mt-5 text text-justify text-lg-left px-4 px-lg-0">
                     <small>
                         <b>Интернет-магазин "Prospekt Parts"</b> - уникальная торговая платформа, 
                         которая позволяет мгновенно, в режиме реального 
@@ -47,7 +47,7 @@
                     <h4 class="mb-4">Контакты</h4> 
                     <ul class="d-grid gap-3 list-unstyled" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
                         <li class="d-flex align-items-center gap-2">
-                            <x-icon-location size="30px" color="#8630a3"/>
+                            <x-icon-location size="30px" color="#999"/>
                             <a href="https://yandex.ru/maps/-/CCUCFDAwwA" target="_blank">
                                 <span itemprop="postalCode">141006</span>, 
                                 <span itemprop="addressRegion">Московская обл</span>,
@@ -56,15 +56,15 @@
                             </a>
                         </li>
                         <li class="d-flex align-items-center gap-2">
-                            <x-icon-call size="22px" color="#8630a3"/>
+                            <x-icon-call size="22px" color="#999"/>
                             {!! $contact::getPhone(config('app.phone'), [], true) !!}
                         </li>
                         <li class="d-flex align-items-center gap-2">
-                            <x-icon-mark-as-unread size="22px" color="#8630a3"/>
+                            <x-icon-mark-as-unread size="22px" color="#999"/>
                             {!! $contact::getEmail(config('app.email'), [], true) !!}
                         </li>
                         <li class="d-flex align-items-center gap-2">
-                            <x-icon-alarm size="22px" color="#8630a3"/>
+                            <x-icon-alarm size="22px" color="#999"/>
                             Время работы:
                         </li>
                         <li itemscope itemtype="http://schema.org/LocalBusiness">

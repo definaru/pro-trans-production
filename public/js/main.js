@@ -345,7 +345,7 @@ function isError()
         title: 'Материал временно не доступен',
         text: 'Ведутся технические работы.',
         icon: 'warning',
-        confirmButtonColor: '#8630a3',
+        confirmButtonColor: '#310062',
         confirmButtonText: 'Закрыть'
     })
 }
@@ -360,7 +360,7 @@ function getReviewYandex()
         showCancelButton: true,
         confirmButtonText: '✎ Написать отзыв',
         cancelButtonText: '✖ Закрыть',
-        confirmButtonColor: '#8630a3',
+        confirmButtonColor: '#310062',
         cancelButtonColor: '#111',
         allowOutsideClick: false,
         customClass: {
@@ -391,7 +391,7 @@ async function isUserSubscribe()
         showCancelButton: true,
         confirmButtonText: '✎ Подписаться',
         cancelButtonText: '✖ Отмена',
-        confirmButtonColor: '#8630a3',
+        confirmButtonColor: '#310062',
         cancelButtonColor: '#111',
         allowOutsideClick: false,
         customClass: {
@@ -417,7 +417,7 @@ function isNotSignUp()
     Swal.fire({
         title: 'Товара нет в наличии',
         html: `Вы можете связаться с нашим менеджером чтобы оформить предзаказ, или зарегистрироваться.
-        <br /><a href="tel:89017331866" class="text-decoration-none fw-bold">+7 (901) 733-18-66</a>`,
+        <br /><a href="tel:89017331866" class="text-decoration-none fw-bold text-primary">+7 (901) 733-18-66</a>`,
         icon: false,
         iconHtml: `
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 96 960 960" width="48" height="48">
@@ -427,7 +427,7 @@ function isNotSignUp()
         showCancelButton: true,
         confirmButtonText: '✎ Регистрация',
         cancelButtonText: '✖ Закрыть',
-        confirmButtonColor: '#8630a3',
+        confirmButtonColor: '#310062',
         cancelButtonColor: '#111',
         allowOutsideClick: false,
         customClass: {

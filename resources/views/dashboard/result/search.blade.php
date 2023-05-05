@@ -49,12 +49,10 @@
                     data-order="{{$item['id']}},{{$item['article']}},{{$item['name']}},1,{{$item['salePrices'][0]['value']}}"
                     v-on:click="addToOrder('{{$item['id']}}')"
                 >
-                    <x-button 
-                        type="button"
-                        icon="add_shopping_cart" 
-                        color="secondary" 
-                        text="В корзину" 
-                    />             
+                    <button type="button" class="btn btn-secondary px-4 d-flex align-items-center gap-2 justify-content-center">
+                        <x-icon-add-card color="#fff" />
+                        В корзину
+                    </button>
                 </div>
                 @else
                     <div 
@@ -62,12 +60,10 @@
                         data-card="{{$item['id']}},{{$item['article']}},{{$item['name']}},1,{{$item['salePrices'][0]['value']}},{{$item['salePrices'][0]['value']}},{{$images::src($item['id'])}}" 
                         v-on:click="addToCard({{$loop->iteration}})"
                     >
-                        <x-button 
-                            type="button" 
-                            icon="add_shopping_cart" 
-                            color="dark" 
-                            text="В корзину"
-                        />
+                        <button type="button" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
+                            <x-icon-add-card color="#fff" />
+                            В корзину
+                        </button>
                     </div>
                 @endif 
             </div>

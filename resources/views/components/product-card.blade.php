@@ -56,28 +56,22 @@
             id="preorder{{$href}}"
             data-order="{{$href}},{{$code}},{{$name}},1,{{$price}}"
             v-on:click="addToOrder('{{$href}}')"
-        >
-            <x-button 
-                type="button" 
-                size="sm"
-                icon="add_shopping_cart" 
-                color="secondary" 
-                text="Предзаказ" 
-            />             
+        >  
+            <button type="button" class="btn btn-sm btn-secondary px-4 d-flex align-items-center gap-2 justify-content-center">
+                <x-icon-add-card color="#fff" />
+                В корзину
+            </button>         
         </div>
         @else
         <div
             id="card{{$href}}" 
             data-card="{{$href}},{{$code}},{{$name}},1,{{$price}},{{$price}},{{$images::src($href)}}" 
             v-on:click="addToCard('{{$href}}')"    
-        >
-            <x-button 
-                type="button" 
-                size="sm"
-                icon="add_shopping_cart" 
-                color="dark" 
-                text="В корзину" 
-            />            
+        >     
+            <button type="button" class="btn btn-sm btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
+                <x-icon-add-card color="#fff" />
+                В корзину
+            </button>     
         </div>        
         @endif
     </td>

@@ -40,7 +40,7 @@ blockquote p {margin: 0}
 }
 .logo {font-family: 'Jost', sans-serif}
 a.nav-link.active {
-    text-decoration: 5px underline #8630a3;
+    text-decoration: 5px underline #310062;
     text-underline-offset: 22px;
 }
 
@@ -126,7 +126,7 @@ a.nav-link.active {
     filter: blur(4px);
 }
 .form-control:focus {
-    border-color: #8630a3;
+    border-color: #310062;
     outline: none;
     box-shadow: none;
 }
@@ -136,14 +136,14 @@ a.nav-link.active {
         rgb(255 255 255) 35%, rgb(255 255 255 / 31%) 127% 
     );
 }
-.text-primary {color: #8630a3 !important}
+.text-primary {color: #310062 !important}
 .btn-primary:hover {
     background-color: #000 !important;
     border-color: #000 !important
 }
 .btn-primary {
-    border: 1px solid #8630a3;
-    background-color: #8630a3;
+    border: 1px solid #310062;
+    background-color: #310062;
 }
 
 .spin {
@@ -243,14 +243,14 @@ a.nav-link.active {
 }
 
 
-.searchForm {
-    background-color: rgb(249, 224, 134);
-    box-shadow: inset 0px -1px 5px #9191598c;
+.searchForm:focus {
+    background-color: #dbd2e3;
+    box-shadow: inset 0px -1px 5px #b19dc5;
     width: 100%;
     cursor: text !important;
 }
-.searchForm:focus {
-    background-color: rgb(255 244 207);
+.searchForm {
+    background-color: #fff;
     box-shadow: inset 0px -1px 5px #9191598c;
     width: 100%;
     cursor: text !important;
@@ -268,7 +268,6 @@ a.nav-link.active {
     cursor: pointer;
 }
 .card-data img {
-    opacity: 0.6;
     height: 15em;
     width: 15rem;
     object-fit: cover;
@@ -276,7 +275,6 @@ a.nav-link.active {
 }
 
 .card img {
-    opacity: 0.6;
     height: 15em;
     width: 100%;
     object-fit: cover;
@@ -288,7 +286,6 @@ a.nav-link.active {
     filter: saturate(200%);
 }
 .catalog .card img {
-    opacity: 0.6;
     height: 15em;
     width: 100%;
     object-fit: cover;
@@ -353,7 +350,7 @@ a.nav-link.active {
     content: '';
     width: 150px;
     height: 150px;
-    background-color: #8630a3;
+    background-color: #310062;
     filter: blur(5.5rem);
     border-radius: 50em;
     right: -30px;
@@ -380,11 +377,11 @@ a.nav-link.active {
     opacity: .75;
 } */
 .consumables strong a:hover{
-    text-decoration: 3px underline #8630a3 !important;
+    text-decoration: 3px underline #310062 !important;
     cursor: pointer;
 }
 .card-title a:hover{
-    text-decoration: 3px underline #8630a3 !important;
+    text-decoration: 3px underline #310062 !important;
     cursor: pointer;
 }
 .card-title a,
@@ -393,11 +390,11 @@ a.nav-link.active {
     text-decoration: none !important;
 }
 .breadcrumb a:hover{
-    text-decoration: 3px underline #8630a3 !important;
+    text-decoration: 3px underline #310062 !important;
     cursor: pointer;
 }
 .bg-primary {
-    background-color: #8630a3 !important;
+    background-color: #310062 !important;
 }
 .feat::before {
     position: absolute;
@@ -466,11 +463,11 @@ footer a:hover {
 }
 #search::selection {
     color: #fff;
-    background-color: #8630a3;
+    background-color: #310062;
 }
 .select::selection {
     color: #f9e086;
-    background-color: #8630a3;
+    background-color: #310062;
 }
 .active>.page-link, 
 .page-link.active {
@@ -478,7 +475,7 @@ footer a:hover {
     background-color: #1b1b27;
 }
 .dropdown-item:active {
-    background-color: #8630a3;
+    background-color: #310062;
 }
 .dropdown-item:active span{
     color: #f9e293 !important;
@@ -491,12 +488,21 @@ footer a:hover {
     padding-bottom: 4px;
     margin: 0 auto 25px;
     height: 2px;
-    background: #8630a3;
+    background: #310062;
     border: 0;
     opacity: 1;
 }
 
 @media screen and (max-width:767px) {
+    .indicator {
+        font-size: 13px;
+        top: 18px !important;
+        left: auto;
+        right: 0;
+    }
+    .nav-link {
+        font-size: 25px;
+    }
     h1 {
         font-size: 40px !important;
     }
@@ -536,11 +542,23 @@ footer a:hover {
     }
 }
 @media screen and (min-width:768px) and (max-width:991px) {
-
+    .indicator {
+        font-size: 11px;
+        top: 8px;
+        left: 35px;
+    }
 }
 @media screen and (min-width:992px) and (max-width:1199px) {
-
+    .indicator {
+        font-size: 12px;
+        top: 8px;
+        left: 35px;
+    }
 }
 @media screen and (min-width: 1200px) {
-
+    .indicator {
+        font-size: 10px;
+        top: 8px !important;
+        left: 35px;
+    }
 }

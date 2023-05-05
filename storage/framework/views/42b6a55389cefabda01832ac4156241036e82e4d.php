@@ -65,8 +65,7 @@
                         Проспект Партс
                     </span>
                 </a>
-                
-                <form onsubmit="loadingPage()" id="sendForm" action="/product" method="POST" class="position-relative" style="width: 310px">
+                <form onsubmit="loadingPage()" id="sendForm" action="/product" method="POST" class="d-lg-flex d-none position-relative" style="width: 310px">
                     <?php echo csrf_field(); ?>
                     <input 
                         type="search" 
@@ -103,9 +102,9 @@
 
                     <div class="d-grid d-lg-flex gap-2 pb-4 pb-lg-0" role="search">
                         <?php if(auth()->guard()->guest()): ?>
-                        <a href="/signin" class="btn btn-primary px-3 shadow-sm fw-bold d-flex justify-content-center align-items-center gap-2">
-                            <?php if (isset($component)) { $__componentOriginal58218aae8b811c2a73d264cf2ce5b36767113726 = $component; } ?>
-<?php $component = $__env->getContainer()->make(App\View\Components\IconLogin::class, ['color' => '#fff']); ?>
+                            <a href="/signin" class="btn btn-primary px-3 shadow-sm fw-bold d-flex justify-content-center align-items-center gap-2">
+                                <?php if (isset($component)) { $__componentOriginal58218aae8b811c2a73d264cf2ce5b36767113726 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconLogin::class, ['size' => '24px','color' => '#fff']); ?>
 <?php $component->withName('icon-login'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
@@ -116,11 +115,11 @@
 <?php $component = $__componentOriginal58218aae8b811c2a73d264cf2ce5b36767113726; ?>
 <?php unset($__componentOriginal58218aae8b811c2a73d264cf2ce5b36767113726); ?>
 <?php endif; ?>
-                            Войти
-                        </a>   
-                        <template v-if="card.length">
-                            <a href="/card" class="btn position-relative">
-                                <?php if (isset($component)) { $__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67 = $component; } ?>
+                                Войти
+                            </a>   
+                            <template v-if="card.length > 0">
+                                <a href="/card" class="btn bg-body-tertiary position-relative">
+                                    <?php if (isset($component)) { $__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67 = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\IconShoppingCart::class, ['size' => '24px']); ?>
 <?php $component->withName('icon-shopping-cart'); ?>
 <?php if ($component->shouldRender()): ?>
@@ -132,17 +131,17 @@
 <?php $component = $__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67; ?>
 <?php unset($__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67); ?>
 <?php endif; ?>
-                                <small 
-                                    class="position-absolute translate-middle badge rounded-pill bg-danger text" 
-                                    style="font-size: 10px;top: 8px;left: 35px;"
-                                >
-                                    {{card.length}}
-                                </small>
-                            </a>                             
-                        </template>
-                        <template v-else>
-                            <a class="btn position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ваша корзина пуста">
-                                <?php if (isset($component)) { $__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67 = $component; } ?>
+                                    <span class="d-inline-table d-lg-none">Корзина</span>
+                                    <small 
+                                        class="position-absolute translate-middle badge rounded-pill bg-danger text indicator"
+                                    >
+                                        {{card.length}}
+                                    </small>
+                                </a>                             
+                            </template>
+                            <template v-else>
+                                <div class="btn bg-body-tertiary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ваша корзина пуста">
+                                    <?php if (isset($component)) { $__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67 = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\IconShoppingCart::class, ['size' => '24px']); ?>
 <?php $component->withName('icon-shopping-cart'); ?>
 <?php if ($component->shouldRender()): ?>
@@ -154,13 +153,14 @@
 <?php $component = $__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67; ?>
 <?php unset($__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67); ?>
 <?php endif; ?>
-                            </a>
-                        </template>
-                        
-                        <?php endif; ?>
+                                    <span class="d-inline-table d-lg-none">Корзина</span>
+                                </div>
+                            </template>
+                            
+                            <?php endif; ?>
                         <?php if(auth()->guard()->check()): ?>
-                        <a href="/dashboard" class="btn pe-0">
-                            <?php if (isset($component)) { $__componentOriginal0d94697088dc22c93949a4cc30ab7d385eb397e5 = $component; } ?>
+                            <a href="/dashboard" class="btn pe-0">
+                                <?php if (isset($component)) { $__componentOriginal0d94697088dc22c93949a4cc30ab7d385eb397e5 = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\IconPerson::class, ['size' => '27px']); ?>
 <?php $component->withName('icon-person'); ?>
 <?php if ($component->shouldRender()): ?>
@@ -172,10 +172,10 @@
 <?php $component = $__componentOriginal0d94697088dc22c93949a4cc30ab7d385eb397e5; ?>
 <?php unset($__componentOriginal0d94697088dc22c93949a4cc30ab7d385eb397e5); ?>
 <?php endif; ?>
-                        </a>
-                        <template v-if="card.length">
-                            <a href="/dashboard/card" class="btn position-relative">
-                                <?php if (isset($component)) { $__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67 = $component; } ?>
+                            </a>
+                            <template v-if="card.length > 0">
+                                <a href="/dashboard/card" class="btn bg-body-tertiary position-relative">
+                                    <?php if (isset($component)) { $__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67 = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\IconShoppingCart::class, ['size' => '25px']); ?>
 <?php $component->withName('icon-shopping-cart'); ?>
 <?php if ($component->shouldRender()): ?>
@@ -187,17 +187,17 @@
 <?php $component = $__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67; ?>
 <?php unset($__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67); ?>
 <?php endif; ?>
-                                <small 
-                                    class="position-absolute translate-middle badge rounded-pill bg-danger text" 
-                                    style="font-size: 10px;top: 8px;left: 35px;"
-                                >
-                                    {{card.length}}
-                                </small>
-                            </a>
-                        </template>
-                        <template v-else>
-                            <a class="btn position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ваша корзина пуста">
-                                <?php if (isset($component)) { $__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67 = $component; } ?>
+                                    <span class="d-inline-table d-lg-none">Корзина</span>
+                                    <small 
+                                        class="position-absolute translate-middle badge rounded-pill bg-danger text indicator"
+                                    >
+                                        {{card.length}}
+                                    </small>
+                                </a>
+                            </template>
+                            <template v-else>
+                                <div class="btn bg-body-tertiary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ваша корзина пуста">
+                                    <?php if (isset($component)) { $__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67 = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\IconShoppingCart::class, ['size' => '24px']); ?>
 <?php $component->withName('icon-shopping-cart'); ?>
 <?php if ($component->shouldRender()): ?>
@@ -209,8 +209,9 @@
 <?php $component = $__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67; ?>
 <?php unset($__componentOriginal693b9c5dcadc2a646147e1d83b237516159d6a67); ?>
 <?php endif; ?>
-                            </a>
-                        </template>
+                                    <span class="d-inline-table d-lg-none">Корзина</span>
+                                </div>
+                            </template>
                         <?php endif; ?>
                     </div>
                 </div>
