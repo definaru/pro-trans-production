@@ -14,7 +14,7 @@
         <div class="text-center text-black align-self-center">
             <span class="text-danger material-symbols-outlined fs-1">warning</span>
             <h1 class="text-danger">{{ $title }} {{ $errorCode }}</h1>
-            <p class="text-xl text-muted">               
+            <p class="text-xl text-white">               
                 {!! $text !!}
                 <div>
                     <a href="{{ url('/dashboard') }}" class="btn btn-primary px-5">Назад</a>

@@ -34,7 +34,7 @@
                     @endverbatim
                     <template v-if="!loading">
                         <ul class="list-group list-group-flush mt-4 d-grid gap-2">
-                            <li v-for="(item, id) in card" class="list-group-item d-flex justify-content-between align-items-center rounded shadow-sm border-0">
+                            <li v-for="(item, id) in card" class="d-flex flex-lg-row flex-column gap-3 gap-lg-0 justify-content-between align-items-center rounded shadow-sm list-group-item border-0">
                                 @verbatim
                                 <small class="d-flex align-items-center gap-3" style="width: 320px;">
                                     <img :src="item.image" :alt="item.name" class="rounded" style="width: 50px;height: 50px;object-fit: cover" /> 
@@ -45,15 +45,18 @@
                                         </div>
                                     </a>
                                 </small>
-                                <div class="position-relative" style="width: 180px;">
-                                    {{ priceFormat(item.price) }}
-                                    <span class="badge rounded-pill text-dark bg-light">за 1 шт.</span>
-                                </div> 
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="position-relative" style="width: 180px;">
+                                        {{ priceFormat(item.price) }}
+                                        <span class="badge rounded-pill text-dark bg-light">за 1 шт.</span>
+                                    </div>
+                                    <div>
+                                        <span class="label" v-html="resultSumma(item.price, item.count)"></span>
+                                    </div>                                     
+                                </div>
                                 @endverbatim
-                                <div>
-                                    <span class="label" v-html="resultSumma(item.price, item.count)"></span>
-                                </div> 
-                                <div class="input-group" style="width: 140px;">
+
+                                <div class="input-group py-3 py-lg-0" style="width: 140px;">
                                     <button class="btn btn-sm pe-0" v-on:click="inCrement(item.id)">
                                         <x-icon-add />
                                     </button>
@@ -61,9 +64,10 @@
                                     <button class="btn btn-sm ps-0" v-if="item.count == 1"><x-icon-remove /></button>
                                     <button class="btn btn-sm ps-0" v-on:click="deCrement(item.id)" v-else><x-icon-remove /></button>
                                 </div> 
-                                <div class="btn-group">
-                                    <button v-on:click="removeCart(id)" class="btn rounded">
-                                        <x-icon-delete size="25px" color="#b02a37" />
+                                <div class="btn-group col-lg-auto col-12">
+                                    <button v-on:click="removeCart(id)" class="btn rounded delete">
+                                        <x-icon-delete size="25px" />
+                                        <span class="d-inline-table d-lg-none">Удалить</span>
                                     </button>
                                 </div>
                             </li>
@@ -87,8 +91,8 @@
                 </template>
                 
                 <template v-if="сheckout.length === 0">
-                    <div v-if="card.length !== 0" class="d-flex justify-content-between mb-5 pb-5">
-                        <div class="col-md-6 mt-3">
+                    <div v-if="card.length !== 0" class="d-flex flex-lg-row flex-column align-items-center justify-content-between mb-5 pb-5 mt-3 gap-3 gap-lg-0">
+                        <div class="col-12 col-md-6">
                             <p class="m-0 text-muted">
                                 <small>
                                     Нажимая кнопку "Оформить заказ" вы соглашаетесь с нашей 
@@ -97,18 +101,18 @@
                                 </small>
                             </p>
                         </div> 
-                        <div class="d-flex justify-content-end gap-4 align-items-center mt-3 mb-5">
+                        <div class="d-flex justify-content-end gap-4 align-items-center">
                             <div class="py-2">Всего:</div> 
                             <div class="py-2 fw-bold pe-4">
                                 @{{getTotalsumma(totalsumma)}}
                             </div> 
                             <div class="py-2">@{{amount}} (шт.)</div>
-                            <div>
-                                <div v-on:click="Checkout()" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
-                                    <x-icon-check color="#fff" />
-                                    Оформить заказ
-                                </div>                                
-                            </div>
+                        </div>
+                        <div class="d-grid col-lg-auto col-12">
+                            <div v-on:click="Checkout()" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
+                                <x-icon-check color="#fff" />
+                                Оформить заказ
+                            </div>                                
                         </div>
                     </div> 
                 </template>

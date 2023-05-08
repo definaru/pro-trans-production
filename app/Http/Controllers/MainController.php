@@ -93,11 +93,11 @@ class MainController extends Controller
     {
         $product = MoySklad::getOneProduct($id);
         $data = Goods::where('link', $id)->get();
-        return view('product', [
-            'id' => $id,
-            'product' => $product,
-            'data' => $data
-        ]);
+        //return response()->json($product);
+        if($product['name'] === 'Товар не найден') {
+            return view('errors.404');
+        }
+        return view('product', compact('id', 'product', 'data'));
     }
 
     public function Catalog($limit = 64, $offset = 0)

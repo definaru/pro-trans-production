@@ -405,7 +405,7 @@ class DachboardController extends Controller
     {
         $message = 'Заказ удалён';
         MoySklad::deleteAgent($uuid);
-        return redirect()->route('adminusers')->with(['status' => $message]); //
+        return redirect()->route('adminusers')->with(['status' => $message]);
     }
 
 }

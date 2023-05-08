@@ -10,7 +10,7 @@
                         {!!$names::company('Prospekt Parts')!!}
                     </span> 
                 </a>
-                <p class="mt-lg-4 mt-5 text text-justify text-lg-left px-4 px-lg-0">
+                <p class="mt-lg-4 mt-5 text text-justify text-lg-start px-4 px-lg-0">
                     <small>
                         <b>Интернет-магазин "Prospekt Parts"</b> - уникальная торговая платформа, 
                         которая позволяет мгновенно, в режиме реального 

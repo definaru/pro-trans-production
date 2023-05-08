@@ -138,7 +138,7 @@
                 <div class="d-flex flex-column flex-lg-row justify-content-between align-items-center col-12 mt-5">
                     <h2 class="fw-bold display-6">
                         Расходные материалы
-                        <span class="d-block w-100 fw-light fs-5 text-secondary text">Mercedes-Benz</span>
+                        <span class="d-block w-100 fw-light fs-6 text-secondary text">Mercedes-Benz</span>
                     </h2>
                     <a href="/products/mersedes-benz" class="btn btn-sm btn-outline-dark px-4">
                         Смотреть все&#160; &rarr;
@@ -368,7 +368,7 @@
                 <div class="col-12 col-lg-5">
                     <img 
                         src="/img/stacey-gabrielle-koenitz-rozells.jpg" 
-                        style="filter: saturate(250%);opacity: 0.7" 
+                        style="filter: saturate(250%);opacity: 0.5" 
                         alt="Наши преимущества" 
                         class="w-100 rounded mb-5 mb-lg-0" 
                     />

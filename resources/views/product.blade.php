@@ -61,7 +61,7 @@
                             data-bs-title="Деталь на заказ"
                             class="text-primary cp mb-1" 
                         >
-                            <x-icon-help color="#8630a3" />
+                            <x-icon-help color="#310062" />
                         </span>
                     </p>
                     <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
@@ -73,8 +73,6 @@
                             <div v-html="resultSumma('{{$product['salePrices']}}', count)" v-if="count !== 1" class="text text-success fw-bold"></div>                        
                         </div>                        
                     </div>
-
-
                     <div class="w-25">
                         @if ($images::text($id)['description'])
                             <a href="#more" class="fs-6 text text-secondary d-block mb-3">Описание</a>

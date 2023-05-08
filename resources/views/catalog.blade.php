@@ -215,13 +215,13 @@
                                         parse_str($url_previous, $previous);
                                     ?>
                                     <li class="page-item">
-                                        <a class="page-link text-primary" href="/products/mersedes-benz/{{$previous['limit']}}/{{$previous['offset']}}">
+                                        <a class="page-link text-primary border-0" href="/products/mersedes-benz/{{$previous['limit']}}/{{$previous['offset']}}">
                                             <span>&laquo;</span> Назад
                                         </a>
                                     </li>  
                                 @else
                                     <li class="page-item disabled">
-                                        <a class="page-link">
+                                        <a class="page-link border-0">
                                             <span>&laquo;</span> Назад
                                         </a>
                                     </li>                                
@@ -233,7 +233,7 @@
                                         parse_str($url_next, $next);
                                     ?>
                                     <li class="page-item">
-                                        <a class="page-link text-primary" href="/products/mersedes-benz/{{$next['limit']}}/{{$next['offset']}}">
+                                        <a class="page-link text-primary border-0" href="/products/mersedes-benz/{{$next['limit']}}/{{$next['offset']}}">
                                             Далее <span aria-hidden="true">&raquo;</span>
                                         </a>
                                     </li>                                

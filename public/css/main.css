@@ -271,7 +271,7 @@ a.nav-link.active {
     height: 15em;
     width: 15rem;
     object-fit: cover;
-    filter: saturate(300%);
+    filter: saturate(200%);
 }
 
 .card img {
@@ -494,6 +494,13 @@ footer a:hover {
 }
 
 @media screen and (max-width:767px) {
+    .delete {
+        color: #fff;
+        background-color: #dc3545;
+    }
+    .delete svg path {
+        fill: #fff !important;
+    }
     .indicator {
         font-size: 13px;
         top: 18px !important;
@@ -560,5 +567,9 @@ footer a:hover {
         font-size: 10px;
         top: 8px !important;
         left: 35px;
+    }
+    .delete {background-color: transparent;}
+    .delete svg path {
+        fill: #b02a37;
     }
 }
