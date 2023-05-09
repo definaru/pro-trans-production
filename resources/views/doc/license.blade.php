@@ -11,7 +11,7 @@
 <section class="bg-white">
     <div class="container">
         <div class="row">
-            <div class="col-md-8 offset-md-2 text">
+            <div class="col-md-8 offset-md-2 my-5 text">
                 <h2 class="fw-bold">Пользовательское соглашение</h2>
                 <hr />
                 <p><strong>1. УСЛОВИЯ ИСПОЛЬЗОВАНИЯ САЙТА PROSPEKT-PARTS.COM</strong></p>
