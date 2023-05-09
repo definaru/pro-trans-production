@@ -69,7 +69,7 @@
                         </li>
                         <li itemscope itemtype="http://schema.org/LocalBusiness">
                             <time itemprop="openingHours" datetime="Mo-Fr, 09:00-19:00">
-                                <b>Пн-Пт, 09:00 - 19:00</b>
+                                <b>Понедельник-Пятница, 09:00 - 19:00</b>
                             </time>
                         </li>
                     </ul>

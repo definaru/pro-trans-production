@@ -16,7 +16,9 @@
 <section class="bg-white">
     <div class="container">
         <div class="row">
-            ...
+            <h4 class="text fw-bold">По вопросам сотрудничества</h4>
+            <p>Пишите на почту - <a href="mailto:prospekt-trans@ro.ru">prospekt-trans@ro.ru</a></p> 
+            <p>⚙ напишите это на странице</p>
         </div>
     </div>
 </section>
