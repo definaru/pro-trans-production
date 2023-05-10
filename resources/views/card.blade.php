@@ -121,7 +121,7 @@
                     <form action="/checkout" method="post" enctype="multipart/form-data" class="py-2">
                         @csrf
                         <div class="row gx-5 gy-3 mt-4">
-                            <div class="col-6">
+                            <div class="col-12 col-lg-6">
                                 <label class="fw-bold">
                                     Как вас зовут ? 
                                     <sup class="text-muted text">(на кого оформить заказ)</sup>
@@ -142,7 +142,7 @@
                                     <small class="valid-feedback d-block text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
-                            <div class="col-6">
+                            <div class="col-12 col-lg-6">
                                 <label class="fw-bold">Как c вами связаться ?<em class="text-danger text">*</em></label>
                                 <input 
                                     type="text" 
@@ -159,7 +159,7 @@
                                     <small class="valid-feedback d-block text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
-                            <div class="col-6">
+                            <div class="col-12 col-lg-6">
                                 <label class="fw-bold">Куда отправить счёт на оплату ?<em class="text-danger text">*</em></label>
                                 <input 
                                     type="email" 
@@ -176,7 +176,7 @@
                                     <small class="valid-feedback d-block text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
-                            <div class="col-6">
+                            <div class="col-12 col-lg-6">
                                 <label class="fw-bold">Куда отправить заказ ? <sup class="text-muted text">(Опционально)</sup></label>
                                 <input 
                                     type="text" 
@@ -192,7 +192,7 @@
                             </div>
                         </div>
                         <input type="hidden" class="form-control" name="сheckout" :value="JSON.stringify(сheckout)" />
-                        <div class="d-flex mt-4">
+                        <div class="d-flex justify-content-lg-start justify-content-center mt-4">
                             <button 
                                 type="submit"
                                 v-on:click="sendOrderButton()" 

@@ -34,7 +34,7 @@
 else
 endif --}}
 
-<ul class="navbar-nav mx-auto mb-2 mb-lg-0 mt-5 mt-lg-0 text-center">
+<ul class="navbar-nav mx-auto mb-2 mb-lg-0 mt-4 mt-lg-0 text-center">
     <li class="nav-item">
         <a class="nav-link<?=($_SERVER['REQUEST_URI'] === '/about') ? ' active' : '';?>" href="/about">
             О компании

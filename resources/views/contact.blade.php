@@ -38,7 +38,7 @@
                                 </a>
                             </div>                          
                         </div>
-                        <div class="d-block mt-3 mb-4 mb-lg-0">
+                        <div class="d-block mt-3 mb-5 mb-lg-0">
                             <a href="/doc" class="text-muted">Юридическая информация</a>
                         </div>
                     </div>
