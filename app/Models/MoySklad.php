@@ -681,6 +681,35 @@ class MoySklad
         return $response->json();
     }
 
+
+    public static function createAccoutFromAgent($id, $data = [])
+    {
+        $req = [
+            'meta' => [
+                'href' => 'https://online.moysklad.ru/api/remap/1.2/entity/counterparty/'.$id,
+                'metadataHref' => 'https://online.moysklad.ru/api/remap/1.2/entity/counterparty/metadata',
+                'type' => 'counterparty',
+                'mediaType' => 'application/json'
+            ],
+            'description' => $data['name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'accounts' => [
+                [
+                    'isDefault' => true,
+                    'accountNumber' => '12512568161257981',
+                    'bankName' => $data['bank'],
+                    'correspondentAccount' => $data['ks'],
+                    'bic' => $data['bik']
+                ]
+            ]            
+        ];
+        $url = self::msUrl().'counterparty/'.$id;
+        $response = self::put($url, json_encode($req));
+        return $response->json();
+    }
+
+
     public static function createInvoiceout($id) // Создаёт заказ
     {
         $get = self::getPaymentReports($id);

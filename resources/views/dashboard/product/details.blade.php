@@ -149,7 +149,10 @@
                                     data-order="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,{{$product['salePrices']}}"
                                     v-on:click="addToOrder('s1')"
                                 >
-                                    <x-button type="button" color="secondary" text="Предзаказ" icon="shopping_cart" />
+                                    <button class="btn btn-secondary px-4 d-flex align-items-center gap-2 justify-content-center">
+                                        <x-icon-add-card color="#fff" />
+                                        Предзаказ
+                                    </button>
                                 </div>
                             @else
                                 <div 
@@ -158,7 +161,10 @@
                                     data-card="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,{{$product['salePrices']}},{{$product['salePrices']}},{{$images::text($id)['image']}}" 
                                     v-on:click="addToCard('s1')"
                                 >
-                                    <x-button type="button" color="dark" text="В корзину" icon="shopping_cart" />
+                                    <button class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
+                                        <x-icon-add-card color="#fff" />
+                                        В корзину
+                                    </button>
                                 </div>
                             @endif                             
                         </div>
@@ -187,8 +193,8 @@
                             type="submit" 
                             v-on:click="editText('{{$id}}')" 
                             class="btn px-4"
-                            :class="[loading === false ? 'btn-dark' : 'btn-secondary']"
-                            v-html="loading === false ? 'Подождите, грузится...' : 'Сохранить'"
+                            :class="[loading === true ? 'btn-dark' : 'btn-secondary']"
+                            v-html="loading === true ? 'Подождите, грузится...' : 'Сохранить'"
                         ></button>
                         <a href="/product/mersedes-benz/{{$id}}" target="_blank" class="btn btn-light px-4">
                             Посмотреть

@@ -59,7 +59,7 @@
     <script src="{{ asset('js/toastr.min.js') }}"></script>
     <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
     <script src="{{ asset('js/defina.admin.min.js') }}"></script>
-    @if ($_SERVER['REQUEST_URI'] === '/dashboard/document/agreement/edit')
+    @if ($_SERVER['REQUEST_URI'] === '/dashboard/document/agreement/edit' || $_SERVER['REQUEST_URI'] === '/dashboard/document/agreement')
     <script src="{{ asset('js/cleave.js') }}"></script>
     <script src="{{ asset('js/cleave-phone.ru.js') }}"></script>
     @endif

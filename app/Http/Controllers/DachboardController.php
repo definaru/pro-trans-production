@@ -157,7 +157,13 @@ class DachboardController extends Controller
     {
         $uuid = auth()->user()->verified;
         $message = 'Данные договора обновлены. Пожалуйста, сверьте данные и подтвердите.';
-        $doc = Contract::find($uuid)->update($request->all());
+        $doc = Contract::updateOrCreate(
+            ['uuid' => $uuid],
+            $request->all()
+        );
+        //Contract::find($uuid)->update($request->all());
+        $contract = MoySklad::createAccoutFromAgent($uuid, $request->all());
+        //dd($contract);
         return redirect()->route('contract')->with(['status' => $message]);
     }
 
