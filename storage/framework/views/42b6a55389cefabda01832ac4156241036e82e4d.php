@@ -156,8 +156,7 @@
                                     <span class="d-inline-table d-lg-none">Корзина</span>
                                 </div>
                             </template>
-                            
-                            <?php endif; ?>
+                        <?php endif; ?>
                         <?php if(auth()->guard()->check()): ?>
                             <a href="/dashboard" class="btn pe-0">
                                 <?php if (isset($component)) { $__componentOriginal0d94697088dc22c93949a4cc30ab7d385eb397e5 = $component; } ?>
@@ -226,12 +225,14 @@
         <?php echo $__env->make('layout.main.ui.footer.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         <?php echo $__env->make('layout.main.ui.menu.contextmenu', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         <?php echo $__env->make('layout.main.ui.cookie.cookie', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <?php echo $__env->make('layout.main.ui.menu.mobile-menu', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </div>
 
     <?php echo $__env->make('layout.main.ui.hotkey', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    
 
 
-    <div class="modal fade d-print-none" id="searchForm" aria-hidden="true" aria-labelledby="searchForm" tabindex="-1">
+    <div class="modal fade d-print-none" id="searchForm" aria-hidden="true" aria-labelledby="searchForm">
         <div class="modal-dialog modal-dialog-centered modal-fullscreen">
             <div class="modal-content" style="background-color: transparent">
                 <div class="modal-header border-0">
@@ -256,19 +257,17 @@
                         <div class="row d-flex align-items-center vh-100 pb-5">
                             <form id="sendForm" action="/product" method="POST" class="col-12 position-relative mb-5">
                                 <?php echo csrf_field(); ?>
-                                <label class="text-white mb-1" style="text-shadow: 1px 1px black">
-                                    Горячие клавиши (Ctrl+F) - открыть поиск, (Ctrl+X) - закрыть поиск.
-                                </label>
+                                
                                 <input 
                                     type="search" 
                                     list="searchlist"
                                     id="search" 
                                     name="text" 
                                     class="form-control form-control-lg ps-4 pe-5 text border-0 shadow" 
-                                    placeholder="Введите Артикул или Название запчасти..." 
+                                    placeholder="Артикул или Название запчасти..." 
                                     autofocus 
                                 />
-                                <span class="position-absolute text-muted" onclick="getResult()" style="cursor: pointer;right: 30px;top: 38px;">
+                                <span class="position-absolute text-muted" onclick="getResult()" style="cursor: pointer;right: 27px;top: 11px">
                                     <?php if (isset($component)) { $__componentOriginald2cbd53f813b0d659f2269c5137bda62cd4d8ce9 = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\IconSearch::class, ['color' => '#333']); ?>
 <?php $component->withName('icon-search'); ?>

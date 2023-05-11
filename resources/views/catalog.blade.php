@@ -13,7 +13,7 @@
 
 @section('content')
 <section class="bg-secondary-subtle catalog">
-    <div class="container position-relative">
+    <div class="container position-relative py-4 py-lg-2">
         <div class="d-print-none row">
             <div id="loadingpage" class="d-flex gap-2 text"></div>
         </div>

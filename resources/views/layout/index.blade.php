@@ -111,8 +111,7 @@
                                     <span class="d-inline-table d-lg-none">Корзина</span>
                                 </div>
                             </template>
-                            
-                            @endguest
+                        @endguest
                         @auth
                             <a href="/dashboard" class="btn pe-0">
                                 <x-icon-person size="27px" />
@@ -148,12 +147,14 @@
         @include('layout.main.ui.footer.footer')
         @include('layout.main.ui.menu.contextmenu')
         @include('layout.main.ui.cookie.cookie')
+        @include('layout.main.ui.menu.mobile-menu')
     </div>
 
     @include('layout.main.ui.hotkey')
+    
 
 
-    <div class="modal fade d-print-none" id="searchForm" aria-hidden="true" aria-labelledby="searchForm" tabindex="-1">
+    <div class="modal fade d-print-none" id="searchForm" aria-hidden="true" aria-labelledby="searchForm">
         <div class="modal-dialog modal-dialog-centered modal-fullscreen">
             <div class="modal-content" style="background-color: transparent">
                 <div class="modal-header border-0">
@@ -167,19 +168,19 @@
                         <div class="row d-flex align-items-center vh-100 pb-5">
                             <form id="sendForm" action="/product" method="POST" class="col-12 position-relative mb-5">
                                 @csrf
-                                <label class="text-white mb-1" style="text-shadow: 1px 1px black">
+                                {{-- <label class="text-white mb-1" style="text-shadow: 1px 1px black">
                                     Горячие клавиши (Ctrl+F) - открыть поиск, (Ctrl+X) - закрыть поиск.
-                                </label>
+                                </label> --}}
                                 <input 
                                     type="search" 
                                     list="searchlist"
                                     id="search" 
                                     name="text" 
                                     class="form-control form-control-lg ps-4 pe-5 text border-0 shadow" 
-                                    placeholder="Введите Артикул или Название запчасти..." 
+                                    placeholder="Артикул или Название запчасти..." 
                                     autofocus 
                                 />
-                                <span class="position-absolute text-muted" onclick="getResult()" style="cursor: pointer;right: 30px;top: 38px;">
+                                <span class="position-absolute text-muted" onclick="getResult()" style="cursor: pointer;right: 27px;top: 11px">
                                     <x-icon-search color="#333" />
                                 </span>
                                 @include('layout.main.ui.selest.list')
