@@ -1,4 +1,4 @@
-<div class="fixed-bottom z-1">
+<div class="fixed-bottom">
     <div class="d-flex d-lg-none align-items-center justify-content-center bg-white shadow p-3 gap-5">
         <div>
             <a href="#" class="d-flex flex-column align-items-center text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#searchForm">

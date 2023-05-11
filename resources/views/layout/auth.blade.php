@@ -21,9 +21,9 @@
     
     <meta name="keywords" content="CRM, продажи, оптом">
     <meta name="description" content="Официальный сервис «Prospekt Parts» по оптовым продажам запчастей">
-    <meta name="theme-color" content="#3f51b5">
-    <meta name="msapplication-navbutton-color" content="#3f51b5">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#3f51b5">
+    <meta name="theme-color" content="#310062">
+    <meta name="msapplication-navbutton-color" content="#310062">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#310062">
 
     <meta name="robots" content="index, follow">
     <meta property="og:type" content="website">

@@ -89,7 +89,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12 col-lg-4"></div>
-                        <div class="col-12 col-lg-8 text-center text-lg-end mt-lg-0 mt-4">
+                        <div class="col-12 col-lg-8 text-center text-lg-end mt-lg-0 mt-4 mb-5 mb-lg-0">
                             <small>
                                 Мы используем cookies для сбора обезличенных персональных данных. 
                                 Они помогают настраивать рекламу и анализировать трафик. Оставаясь 
