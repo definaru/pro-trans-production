@@ -35,7 +35,7 @@
         @csrf
         <div id="type" class="card-body d-flex align-items-center gap-2">
             @foreach($options as $item)
-            <label class="border rounded">
+            <label class="border rounded d-lg-block d-none">
                 <input type="radio" name="type" class="d-none" value="{{$item['value']}}" @if ($item['value'] === old('type')) checked @endif />
                 <span>{{$item['name']}}</span>
             </label>
@@ -172,7 +172,7 @@
         <strong>Admin-Панель</strong> 
         <div class="row">
             <div class="col-12 col-lg-4">
-                <div class="card shadow-sm border-0 mb-5 mt-3">
+                <div class="card shadow-sm border-0 mb-lg-5 mb-0 mt-3">
                     <div class="card-body">
                         <a href="/dashboard/accounts" class="d-flex align-items-center text-decoration-none">
                             <div class="p-2">
@@ -187,7 +187,7 @@
                 </div>
             </div>
             <div class="col-12 col-lg-4">
-                <div class="card shadow-sm border-0 mb-5 mt-3">
+                <div class="card shadow-sm border-0 mb-lg-5 mb-0 mt-3">
                     <div class="card-body">
                         <a href="/dashboard/orders" class="d-flex align-items-center text-decoration-none">
                             <div class="p-2">
@@ -202,7 +202,7 @@
                 </div>
             </div>            
             <div class="col-12 col-lg-4">
-                <div class="card shadow-sm border-0 mb-5 mt-3">
+                <div class="card shadow-sm border-0 mb-lg-5 mb-0 mt-3">
                     <div class="card-body">
                         <a href="/dashboard/users" class="d-flex align-items-center text-decoration-none">
                             <div class="p-2">

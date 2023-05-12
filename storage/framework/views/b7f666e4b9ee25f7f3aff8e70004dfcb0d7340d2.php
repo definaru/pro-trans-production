@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="<?php echo e(asset('css/defina.min.css')); ?>" />
     <link rel="stylesheet" href="<?php echo e(asset('css/toastr.css')); ?>" />
-    <link rel="canonical" href="<?php echo e(url()->current()); ?>" />
 </head>
 <body>
     <div id="admin" :class="[isOpen ? 'panel' : 'panel-close']" class="d-print-block" v-cloak>
@@ -79,6 +78,10 @@
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
         const tooltipList = [...tooltipTriggerList].map(
             tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl)
+        );
+        const offcanvasElementList = document.querySelectorAll('.offcanvas')
+        const offcanvasList = [...offcanvasElementList].map(
+            offcanvasEl => new bootstrap.Offcanvas(offcanvasEl)
         );
     </script>
 </body>

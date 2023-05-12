@@ -10,6 +10,13 @@
                 <h5 class="text-dark m-0"><span class="fw-bold">Prospekt</span> Parts</h5>
             </template>
         </a>
+        <span 
+            class="material-symbols-outlined d-block d-lg-none" 
+            style="position: absolute;right: 24px;top: 24px" 
+            v-on:click="toggleMenuMobile"
+        >
+            menu
+        </span>
         
         <?php if($deal::status() === '1'): ?>
         <div id="inner-content">

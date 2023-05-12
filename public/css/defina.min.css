@@ -234,20 +234,10 @@ input:focus {
     display: flex;
     align-items: center;
 }
-.panel {
-    display: grid;
-    height: 100%;
-    grid-template-columns: minmax(150px, 18%) 1fr;
-    transition: all 1s ease 0s;
-}
+
 .panel-close .slimScrollDiv {overflow: visible !important;}
 .panel-close #inner-content {overflow: visible !important;}
-.panel-close {
-    display: grid;
-    height: 100%;
-    grid-template-columns: minmax(80px, 6%) 1fr;
-    transition: all 1s ease 0s;
-}
+
 
 .active>.page-link, .page-link.active {
     background-color: #3f51b5 !important;
@@ -357,16 +347,7 @@ textarea {
     color: #212529;
     font-weight: bold;
 }
-.search+span:after {
-    position: absolute;
-    content: 'Нажмите "Enter"';
-    color: #999;
-    right: 6px;
-    top: 6px;
-    font-size: 11px;
-    background: #f8f9fa;
-    padding: 5px;
-}
+
 form.signup i {
     position: absolute;
     content: '';
@@ -397,7 +378,60 @@ form.signup i {
     }
 }
 
-
+/* Responsive layout */
+@media screen and (max-width:767px) {
+    .panel {
+        display: grid;
+        height: 100%;
+        grid-template-columns: 0px 100%;
+        transition: all 1s ease 0s;
+    }
+    .panel-open {
+        display: grid;
+        height: 100%;
+        grid-template-columns: 100% 0px;
+        transition: all 1s ease 0s;  
+    }
+    .panel #header a {
+        visibility: hidden;
+    }
+    .panel-close {
+        display: grid;
+        height: 100%;
+        grid-template-columns: minmax(100%, 0) 1fr;
+        transition: all 1s ease 0s;
+    }
+    .search+span:after {display: none;}
+    .company-name {width: 100%}
+    .mobile-search {width: 100% !important}
+}
+@media screen and (min-width:768px) and (max-width:991px) {}
+@media screen and (min-width:992px) and (max-width:1199px) {}
+@media screen and (min-width: 1200px) {
+    .panel {
+        display: grid;
+        height: 100%;
+        grid-template-columns: minmax(150px, 18%) 1fr;
+        transition: all 1s ease 0s;
+    }
+    .panel-close {
+        display: grid;
+        height: 100%;
+        grid-template-columns: minmax(80px, 6%) 1fr;
+        transition: all 1s ease 0s;
+    }
+    .search+span:after {
+        position: absolute;
+        content: 'Нажмите "Enter"';
+        color: #999;
+        right: 6px;
+        top: 6px;
+        font-size: 11px;
+        background: #f8f9fa;
+        padding: 5px;
+    }
+    .company-name {width: 220px}
+}
 
 @media print {
     /* @page { size: landscape; } */

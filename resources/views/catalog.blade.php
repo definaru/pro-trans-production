@@ -214,13 +214,13 @@
                                         $url_previous = parse_url($product['meta']['previousHref'], PHP_URL_QUERY);
                                         parse_str($url_previous, $previous);
                                     ?>
-                                    <li class="page-item">
+                                    <li class="page-item p-0">
                                         <a class="page-link text-primary border-0" href="/products/mersedes-benz/{{$previous['limit']}}/{{$previous['offset']}}">
                                             <span>&laquo;</span> Назад
                                         </a>
                                     </li>  
                                 @else
-                                    <li class="page-item disabled">
+                                    <li class="page-item p-0 disabled">
                                         <a class="page-link border-0">
                                             <span>&laquo;</span> Назад
                                         </a>
@@ -232,7 +232,7 @@
                                         $url_next = parse_url($product['meta']['nextHref'], PHP_URL_QUERY);
                                         parse_str($url_next, $next);
                                     ?>
-                                    <li class="page-item">
+                                    <li class="page-item p-0">
                                         <a class="page-link text-primary border-0" href="/products/mersedes-benz/{{$next['limit']}}/{{$next['offset']}}">
                                             Далее <span aria-hidden="true">&raquo;</span>
                                         </a>

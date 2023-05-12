@@ -1,5 +1,5 @@
 <template v-if="cookie !== 'false'">
-    <div v-if="cookie" class="w-100 p-3 text-white fixed-bottom z-3" style="z-index: 100;background: #000000db">
+    <div v-if="cookie" class="w-100 p-3 text-white fixed-bottom" style="z-index: 100;background: #000000db">
         <div class="container">
             <div class="d-flex flex-lg-row flex-column gap-3 gap-lg-0 align-items-center justify-content-between">
                 <p class="m-0 text">

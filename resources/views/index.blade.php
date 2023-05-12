@@ -12,7 +12,7 @@
             <div class="row pt-4 h-100">
                 <div class="col-12 col-lg-7 d-block d-lg-flex justify-content-start align-items-center align-self-center">
                     <div class="d-flex flex-column gap-3 position-relative z-3 p-3 p-lg-0">
-                        <h1 class="fw-bold lh-1 display-4">
+                        <h1 class="fw-bold lh-1 display-4" style="text-shadow: 1px 1px 0px #fff">
                              {{-- shock-wive --}}
                             <span class="text-primary">Поставляем запчасти</span>, комплектующие 
                             и расходные материалы 
@@ -20,7 +20,7 @@
                             <span class="fw-light display-5">для грузовых автомобилей.</span> 
                              {{-- shock-wive-inline --}}
                         </h1>
-                        <p class="fs-6 w-100 text">
+                        <p class="fs-6 w-100 text" style="text-shadow: 1px 1px 0px #fff">
                             Широкий ассортимент инструментов и оборудования 
                             <br />для станций технического обслуживания.
                         </p>

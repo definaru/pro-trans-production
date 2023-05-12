@@ -4,7 +4,8 @@
 @if($company)
     @if(iconv_strlen($company) > 20)
     <div 
-        style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 220px" 
+        class="company-name"
+        style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis" 
         title="{{$company}}" data-bs-toggle="tooltip"
     >
         {{$company}}

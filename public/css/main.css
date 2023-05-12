@@ -285,12 +285,6 @@ a.nav-link.active {
     cursor: pointer;
     filter: saturate(200%);
 }
-.catalog .card img {
-    height: 15em;
-    width: 100%;
-    object-fit: cover;
-    filter: saturate(100%);
-}
 .catalog .card-data:hover img {
     opacity: 0.9;
     cursor: pointer;
@@ -493,6 +487,8 @@ footer a:hover {
     opacity: 1;
 }
 
+
+
 @media screen and (max-width:767px) {
     .delete {
         color: #fff;
@@ -547,6 +543,12 @@ footer a:hover {
     .brand img {
         width: 40% !important;
     }
+    .catalog .card img {
+        height: 22em;
+        width: 100%;
+        object-fit: cover;
+        filter: saturate(100%);
+    }
 }
 @media screen and (min-width:768px) and (max-width:991px) {
     .indicator {
@@ -563,6 +565,12 @@ footer a:hover {
     }
 }
 @media screen and (min-width: 1200px) {
+    .catalog .card img {
+        height: 15em;
+        width: 100%;
+        object-fit: cover;
+        filter: saturate(100%);
+    }
     .indicator {
         font-size: 10px;
         top: 8px !important;

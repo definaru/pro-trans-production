@@ -100,7 +100,7 @@
                     
                     <?php echo $__env->make('layout.main.ui.menu.menu', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-                    <div class="d-grid d-lg-flex gap-2 pb-4 pb-lg-0" role="search">
+                    <div class="d-grid d-lg-flex gap-3 gap-lg-2 pb-4 pb-lg-0 px-4 px-lg-0" role="search">
                         <?php if(auth()->guard()->guest()): ?>
                             <a href="/signin" class="btn btn-primary px-3 shadow-sm fw-bold d-flex justify-content-center align-items-center gap-2">
                                 <?php if (isset($component)) { $__componentOriginal58218aae8b811c2a73d264cf2ce5b36767113726 = $component; } ?>

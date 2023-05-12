@@ -88,7 +88,7 @@
                     
                     @include('layout.main.ui.menu.menu')
 
-                    <div class="d-grid d-lg-flex gap-2 pb-4 pb-lg-0" role="search">
+                    <div class="d-grid d-lg-flex gap-3 gap-lg-2 pb-4 pb-lg-0 px-4 px-lg-0" role="search">
                         @guest
                             <a href="/signin" class="btn btn-primary px-3 shadow-sm fw-bold d-flex justify-content-center align-items-center gap-2">
                                 <x-icon-login size="24px" color="#fff" />
