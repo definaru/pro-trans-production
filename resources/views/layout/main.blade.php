@@ -25,7 +25,10 @@
                                 <div class="d-print-none">
                                     @yield('breadcrumbs')
                                 </div>
-                                @include('layout.main.company')
+                                <div class="d-print-none">
+                                    <h2>@yield('title')</h2>
+                                </div>
+                                {{-- @include('layout.main.company') --}}
                                 @yield('content')
                             </main>
                         </div>

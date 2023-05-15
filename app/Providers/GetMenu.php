@@ -510,37 +510,44 @@ class GetMenu
             [
                 'header' => 'Меню',
                 'list' => [
+                    // [
+                    //     'icon' => 'topic',
+                    //     'name' => 'Каталоги',
+                    //     'slug' => 'catalog',
+                    //     'count' => '',
+                    //     'list' => MoySklad::getMenuCatalog()                 
+                    // ],
                     [
                         'icon' => 'topic',
                         'name' => 'Каталоги',
-                        'slug' => 'catalog',
+                        'slug' => 'catalog/category/8854033a-48ad-11ed-0a80-0c87007f4175/10/0',
                         'count' => '',
-                        'list' => MoySklad::getMenuCatalog()                 
+                        'list' => ''
                     ],
-                    [
-                        'icon' => 'inventory',
-                        'name' => 'Платежи',
-                        'slug' => 'payment',
-                        'count' => '',
-                        'list' => [
-                            [
-                                'name' => 'Счета',
-                                'href' => 'payment/orders'
-                            ],
-                            [
-                                'name' => 'Заказы',
-                                'href' => 'payment/reports'
-                            ],
-                            [
-                                'name' => 'Отчёты',
-                                'href' => 'payment/record'
-                            ],
-                            [
-                                'name' => 'Мои предзаказы',
-                                'href' => 'payment/preorders'
-                            ]
-                        ]
-                    ],
+                    // [
+                    //     'icon' => 'inventory',
+                    //     'name' => 'Платежи',
+                    //     'slug' => 'payment',
+                    //     'count' => '',
+                    //     'list' => [
+                    //         [
+                    //             'name' => 'Счета',
+                    //             'href' => 'payment/orders'
+                    //         ],
+                    //         [
+                    //             'name' => 'Заказы',
+                    //             'href' => 'payment/reports'
+                    //         ],
+                    //         [
+                    //             'name' => 'Отчёты',
+                    //             'href' => 'payment/record'
+                    //         ],
+                    //         [
+                    //             'name' => 'Мои предзаказы',
+                    //             'href' => 'payment/preorders'
+                    //         ]
+                    //     ]
+                    // ],
                     [
                         'icon' => 'shopping_cart',
                         'name' => 'Корзина',
@@ -554,14 +561,14 @@ class GetMenu
                         'slug' => 'account',
                         'count' => '3',
                         'list' => ''
-                    ],                    
-                    [
-                        'icon' => 'assignment',
-                        'name' => 'Договор',
-                        'slug' => 'document/agreement',
-                        'count' => '',
-                        'list' => ''
-                    ]                  
+                    ]                   
+                    // [
+                    //     'icon' => 'assignment',
+                    //     'name' => 'Договор',
+                    //     'slug' => 'document/agreement',
+                    //     'count' => '',
+                    //     'list' => ''
+                    // ]                  
                     // [
                     //     'icon' => 'monitoring',
                     //     'name' => 'Акции',
@@ -581,13 +588,13 @@ class GetMenu
             [
                 'header' => 'Аккаунт',
                 'list' => [
-                    [
-                        'icon' => 'notifications',
-                        'name' => 'Сообщения',
-                        'slug' => 'notifications',
-                        'count' => '',
-                        'list' => ''
-                    ],
+                    // [
+                    //     'icon' => 'notifications',
+                    //     'name' => 'Сообщения',
+                    //     'slug' => 'notifications',
+                    //     'count' => '',
+                    //     'list' => ''
+                    // ],
                     [
                         'icon' => 'tune',
                         'name' => 'Настройки',

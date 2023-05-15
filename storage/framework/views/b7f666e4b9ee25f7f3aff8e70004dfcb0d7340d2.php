@@ -25,7 +25,10 @@
                                 <div class="d-print-none">
                                     <?php echo $__env->yieldContent('breadcrumbs'); ?>
                                 </div>
-                                <?php echo $__env->make('layout.main.company', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                                <div class="d-print-none">
+                                    <h2><?php echo $__env->yieldContent('title'); ?></h2>
+                                </div>
+                                
                                 <?php echo $__env->yieldContent('content'); ?>
                             </main>
                         </div>
