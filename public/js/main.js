@@ -2,6 +2,7 @@ new Vue({
     el: '#shop', 
     data: {
         card: [],
+        design: 'grid',
         сheckout: [],
         loading: true,
         cookie: true,
@@ -33,7 +34,14 @@ new Vue({
         this.cookie = JSON.parse(localStorage.getItem("cookie")) || [];
         this.card = JSON.parse(localStorage.getItem('cart')) || [];
         this.сheckout = JSON.parse(localStorage.getItem('сheckout')) || [];
-               
+        this.design = localStorage.getItem("design") || '';
+
+        if (localStorage.getItem('design')) {
+            setTimeout(function () {
+                this.loading = false;
+            }.bind(this), 500);
+        }
+
         if (localStorage.getItem('cart')) {
             try {
                 setTimeout(function () {
@@ -50,6 +58,14 @@ new Vue({
         }
     },
     methods: {
+        isGrid() {
+            this.design = 'grid'
+            localStorage.setItem('design', 'grid');
+        },
+        isLine() {
+            this.design = 'line'
+            localStorage.setItem('design', 'line');
+        },
         countGoods(n,s1,s2,s3, b = false) {
             let m = n % 10; j = n % 100;
             if(b) {n = n;}
@@ -461,6 +477,22 @@ function selectOffset() {
     var url = document.getElementById("selectOffset").value;
     window.location.assign(url);
 }
+
+
+[].slice.apply(document.querySelectorAll('img[loading]')).forEach(function(img) {
+	img.onerror = function() {
+        img.setAttribute('src', '/img/placeholder.png');
+	};
+});
+
+const log = document.querySelector(".grid-design");
+
+document.addEventListener("readystatechange", () => {
+    if (document.readyState === "complete") {
+        log.remove();
+    }
+});
+
 
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));

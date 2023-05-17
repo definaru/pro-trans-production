@@ -163,86 +163,72 @@
                 </div>
             @endif
         @else
-            <div class="row g-2" itemscope itemtype="https://schema.org/Product">
-                <div class="col-12">
+            <div class="row" itemscope itemtype="https://schema.org/Product">
+                <div class="col-12 d-flex align-items-center justify-content-between py-3">
                     <p class="text text-muted">Всего {{$product['meta']['size']}} товаров</p>
+                    <div class="btn-group d-lg-flex bg-white" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="sort" id="grid" autocomplete="off" :checked="[design == 'grid' ? true : false]" />
+                        <label class="btn btn-outline-secondary border-0" for="grid" v-on:click="isGrid()">
+                            <x-icon-grid size="27px" />
+                        </label>
+                        <input type="radio" class="btn-check" name="sort" id="line" autocomplete="off" :checked="[design == 'line' ? true : false]" />
+                        <label class="btn btn-outline-secondary border-0" for="line" v-on:click="isLine()">
+                            <x-icon-line size="27px" />
+                        </label>
+                    </div>
                 </div>
-                @foreach ($product["rows"] as $item)
-                    <div class="col-lg-3 col-12">
-                        <div class="card card-data border-0 shadow-sm order">
-                            <a href="/product/mersedes-benz/{{$item['id']}}" class="card-body pb-0 position-relative">
-                                <div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating" class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2">
-                                    {{-- <x-icon-favorite color="#b02a37" />
-                                    <small>{{rand(4, 5)}}.{{rand(0, 9)}} рейтинг</small>  --}}
-                                    <meta itemprop="worstRating" content="1">
-                                    <meta itemprop="ratingValue" content="4.9">
-                                    <meta itemprop="bestRating" content="5">
-                                </div>
-                                <img 
-                                    itemprop="image"
-                                    loading="lazy"
-                                    src="{{$images::src($item['id'])}}" 
-                                    class="card-img-top rounded" 
-                                    alt="{{$item['name']}}, Проспект Транс, {{$item['pathName']}}"
-                                />
-                            </a>
-                            <div class="card-body">
-                                <h5 class="card-title fw-bold fs-6" style="height: 39px">
-                                    <a itemprop="name" href="/product/mersedes-benz/{{$item['id']}}">
-                                        {{mb_convert_case($item['name'], MB_CASE_TITLE, "UTF-8")}}
-                                    </a>
-                                </h5>
-                                <hr style="color: #ddd">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div>
-                                        @if($item['quantity'] == 0)
-                                        <p itemprop="offers" itemscope="" itemtype="https://schema.org/Offer" class="label-danger">
-                                            Нет наличии
-                                        </p>
-                                        @else
-                                        <p itemprop="offers" itemscope="" itemtype="https://schema.org/Offer" class="label">
-                                            <link itemprop="availability" href="https://schema.org/InStock">В наличии {{$item['quantity']}}
-                                        </p>  
-                                        @endif
+            </div>
+            <div class="row g-2 grid-design"> 
+                @include('layout.main.ui.card.card-empty')
+            </div>
+            <div class="row g-2" itemscope itemtype="https://schema.org/Product">
+                    @foreach ($product["rows"] as $item)
+                        <template v-if="design === 'line'">
+                            <div class="col-12">
+                                <div class="d-flex align-items-center justify-content-between bg-white py-2 px-3 shadow-sm mb-1 rounded">
+                                    <div class="d-flex gap-3 w-50 align-items-center">
+                                        <div style="width: 50px;height: 50px;overflow: hidden;background: #ddd;border-radius: 5px">
+                                            @include('layout.main.ui.card.card-image')
+                                        </div>
+                                        <div class="text-start">
+                                            @include('layout.main.ui.card.card-title') 
+                                        </div>                                    
                                     </div>
-                                    <strong>
-                                        {!!$currency::summa($item['salePrices'][0]['value'])!!}
-                                    </strong>                            
-                                </div>
-                                <hr style="color: #ddd">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-center gap-2">
-                                        <div>
-                                            <img src="/img/mercedes-benz.png" alt="Mercedes-Benz" style="width: 37px;height: 37px">
-                                        </div>
-                                        <div class="lh-sm">
-                                            <small class="text-muted d-block w-100">
-                                                {{$item['article']}}                                            
-                                            </small>
-                                            <strong class="text-secondary">Mercedes-Benz</strong>
-                                        </div>
+                                    <div class="w-25">
+                                        @include('layout.main.ui.quantity.quantity')
+                                    </div>
+                                    <div class="px-4">
+                                        @include('layout.main.ui.logo.car-logo')
                                     </div>
                                     <div>
-                                        @if($item['quantity'] == 0)
-                                        <div onclick="isNotSignUp()" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
-                                            <x-icon-add-card size="25px" color="#fff" />
+                                        @include('layout.main.ui.button.card-button')
+                                    </div>
+                                </div>
+                            </div>                        
+                        </template>
+                        <template v-else>
+                            <div class="col-lg-3 col-12">
+                                <div class="card card-data border-0 shadow-sm order">
+                                    @include('layout.main.ui.card.card-image')
+                                    <div class="card-body">
+                                        <div style="height: 39px">
+                                            @include('layout.main.ui.card.card-title')                                    
                                         </div>
-                                        @else
-                                        <div 
-                                            id="card{{$item['id']}}" 
-                                            data-card="{{$item['id']}},{{$item['article']}},{{$item['name']}},1,{{$item['salePrices'][0]['value']}},{{$item['salePrices'][0]['value']}},{{$images::src($item['id'])}}" 
-                                            v-on:click="addToCard('{{$item['id']}}')"
-                                            class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2"
-                                        >
-                                            <x-icon-add-card size="25px" color="#fff" />
+                                        <hr style="color: #ddd">
+                                        @include('layout.main.ui.quantity.quantity')
+                                        <hr style="color: #ddd">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            @include('layout.main.ui.logo.car-logo')
+                                            <div>
+                                                @include('layout.main.ui.button.card-button')
+                                            </div>
                                         </div>
-                                        @endif
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                @endforeach
+                        </template>
+                    @endforeach                    
+
 
                 @if (isset($product['meta']['nextHref']) || $offset > 0)
                     <div class="mt-5 d-flex align-items-center justify-content-between">
