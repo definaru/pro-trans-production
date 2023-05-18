@@ -79,21 +79,11 @@
             @endif
         </p>        
         @endif
-        <div class="row">
+        <div class="row g-2">
             @foreach(session('search')['rows'] as $item)
-            <div class="col-12 mb-3" :class="[!isOpen ? 'col-lg-3' : 'col-lg-4']">
+            <div class="col-12" :class="[!isOpen ? 'col-lg-3' : 'col-lg-4']">
                 <div class="card card-data border-0 shadow">
-                    <a href="/dashboard/product/details/{{$item['id']}}" class="card-body pb-0 position-relative">
-                        <div class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2">
-                            <span class="material-symbols-outlined fs-6 text-danger">favorite</span>
-                            <small>{{rand(4, 5)}}.0 рейтинг</small>
-                        </div>
-                        <img 
-                            src="{{$images::src($item['id'])}}" 
-                            class="card-img-top rounded" 
-                            alt="{{$item['name']}}" 
-                        />
-                    </a>
+                    @include('layout.main.ui.card.card-admin-image')
                     <div class="card-body">
                         <h5 class="card-title fs-5 mb-3" style="height: 48px">
                             <a href="/dashboard/product/details/{{$item['id']}}" class="text-dark fw-bold text-decoration-none">
@@ -108,57 +98,10 @@
                                 ?>
                             </a>
                         </h5>
+                        @include('layout.main.ui.quantity.quantity-admin')
                         <div class="d-flex align-items-center justify-content-between">
-                            <div>
-                                @if ($item['quantity'] == 0)
-                                    <x-badge color="danger" text="Нет в наличии" /> 
-                                @else
-                                    <x-badge color="34617" text="В наличии {{$item['quantity']}}" />  
-                                @endif                                          
-                            </div>
-                            <h5>{!! $currency::summa($item['salePrices'][0]['value']) !!}</h5> 
-                        </div>
-                        <hr style="color: #ddd" />
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div class="d-flex align-items-center gap-2">
-                                <div>
-                                    <img 
-                                        src="/img/mercedes-benz.png" 
-                                        alt="Mercedes-Benz" 
-                                        style="width: 37px;height: 37px"
-                                    />
-                                </div>
-                                <div class="lh-sm">
-                                    <small class="text-dark fw-bold d-block w-100">
-                                        {{$item['article']}}                                            
-                                    </small>
-                                    <strong class="text-secondary">Mercedes-Benz</strong>
-                                </div>
-                            </div>
-                            <div>
-                                @if ($item['quantity'] == 0)
-                                <div
-                                    id="preorder{{$item['id']}}"
-                                    data-order="{{$item['id']}},{{$item['article']}},{{$item['name']}},1,{{$item['salePrices'][0]['value']}},{{$images::src($item['id'])}}"
-                                    v-on:click="addToOrder('{{$item['id']}}')"
-                                >
-    
-                                    <button class="btn btn-secondary">
-                                        <x-icon-add-card color="#fff" />
-                                    </button>
-                                </div>
-                                @else
-                                    <div 
-                                        id="card{{$loop->iteration}}" 
-                                        data-card="{{$item['id']}},{{$item['article']}},{{$item['name']}},1,{{$item['salePrices'][0]['value']}},{{$item['salePrices'][0]['value']}},{{$images::src($item['id'])}}" 
-                                        v-on:click="addToCard({{$loop->iteration}})"
-                                    >
-                                        <button class="btn btn-dark">
-                                            <x-icon-add-card color="#fff" />
-                                        </button>
-                                    </div>
-                                @endif 
-                            </div>
+                            @include('layout.main.ui.card.card-admin-article')
+                            @include('layout.main.ui.button.card-admin-button')
                         </div>
                     </div>
                 </div>

@@ -129,7 +129,8 @@
                                              
                         @endif
                     </div>
-                    <div class="d-flex justify-content-start mt-3" onclick="getReviewYandex()">
+                    {{-- onclick="getReviewYandex()" --}}
+                    <div class="d-flex justify-content-start mt-3">
                         <div class="rating-area">
                             <input type="radio" id="star-5" name="rating" value="5">
                             <label for="star-5" data-bs-toggle="tooltip" data-bs-title="Оценка «5»"></label>	

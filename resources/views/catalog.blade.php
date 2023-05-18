@@ -165,16 +165,23 @@
         @else
             <div class="row" itemscope itemtype="https://schema.org/Product">
                 <div class="col-12 d-flex align-items-center justify-content-between py-3">
-                    <p class="text text-muted">Всего {{$product['meta']['size']}} товаров</p>
-                    <div class="btn-group d-lg-flex bg-white" role="group" aria-label="Basic radio toggle button group">
-                        <input type="radio" class="btn-check" name="sort" id="grid" autocomplete="off" :checked="[design == 'grid' ? true : false]" />
-                        <label class="btn btn-outline-secondary border-0" for="grid" v-on:click="isGrid()">
+                    <p class="text text-muted m-0">Всего {{$product['meta']['size']}} товаров</p>
+                    <div>
+                        <select id="selectOffset" class="form-select" onchange="selectOffset()">
+                            @foreach ([12, 24, 48, 64, 100] as $key)
+                                <option value="/products/mersedes-benz/{{$key}}/0" @if($key == $limit) selected @endif >
+                                    {{$key}}
+                                </option>
+                            @endforeach
+                        </select>                        
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn border-0" :class="[design === 'grid' ? 'bg-dark-subtle' : 'bg-white']" v-on:click="isGrid()">
                             <x-icon-grid size="27px" />
-                        </label>
-                        <input type="radio" class="btn-check" name="sort" id="line" autocomplete="off" :checked="[design == 'line' ? true : false]" />
-                        <label class="btn btn-outline-secondary border-0" for="line" v-on:click="isLine()">
+                        </button>
+                        <button class="btn border-0" :class="[design === 'line' ? 'bg-dark-subtle' : 'bg-white']" v-on:click="isLine()">
                             <x-icon-line size="27px" />
-                        </label>
+                        </button>
                     </div>
                 </div>
             </div>
