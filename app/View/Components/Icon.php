@@ -9,7 +9,7 @@ abstract class Icon extends Component
     public $size;
     public $color;
 
-    public function __construct($color = '#000', $size = '20px')
+    public function __construct($color = 'currentColor', $size = '20px')
     {
         $this->size = $size;
         $this->color = $color;

@@ -35,6 +35,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('account', [DachboardController::class, 'Account'])->name('account');;
     Route::get('payment/reports', [DachboardController::class, 'Reports']);
     Route::get('payment/reports/{order}', [DachboardController::class, 'ReportsDetail'])->name('order');
+    Route::get('organization/{id}/file{extension?}', [PDFController::class, 'getOrganizationCard'])->where(['extension' => '^(.pdf)|(.csv)|(.json)$']);
+    Route::get('organization/{id}/download{extension?}', [PDFController::class, 'getOrganizationCardDownload'])->where(['extension' => '^(.pdf)|(.csv)|(.json)$']);
     Route::get('doc/{id}/{name}{extension?}', [PDFController::class, 'generatePDF'])->where(['extension' => '^(.pdf)|(.csv)|(.json)$']);
     Route::get('contract/{type}/{id}/{name}{extension?}', [PDFController::class, 'contractGenerate'])->where(['extension' => '^(.pdf)|(.csv)|(.json)$']);
     Route::get('contract/download/{type}/{id}/{name}{extension?}', [PDFController::class, 'contractDownload'])->where(['extension' => '^(.pdf)|(.csv)|(.json)$']);

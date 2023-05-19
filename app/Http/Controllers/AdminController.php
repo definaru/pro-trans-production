@@ -59,8 +59,9 @@ class AdminController extends Controller
             ->join('card', 'users.verified', '=', 'card.user_id')
             ->join('customer', 'users.verified', '=', 'customer.uuid')
             ->get();
+        $agent = MoySklad::getOneCounterparty($uuid);
         //return response()->json($model);
-        return view('dashboard.admin.user', ['uuid' => $uuid, 'model' => $model]);
+        return view('dashboard.admin.user', compact('uuid', 'model', 'agent'));
     }
 
 

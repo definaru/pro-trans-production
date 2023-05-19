@@ -31,12 +31,12 @@
             <tbody>
                 <tr>
                     <td class="px-1 py-0 border-bottom-0 border-dark" colspan="2" style="width:55%">
-                        {{$order['organization']['accounts']['rows'][0]['bankName']}}&#160;
-                        {{$order['organization']['accounts']['rows'][0]['bankLocation']}}
+                        {{$order['organization']['accounts']['rows'][1]['bankName']}}&#160;
+                        {{$order['organization']['accounts']['rows'][1]['bankLocation']}}
                     </td>
                     <td class="px-1 py-0 border-dark" style="width:70px">БИК</td>
                     <td class="px-1 py-0 border-bottom-0 border-dark">
-                        {{$order['organization']['accounts']['rows'][0]['bic']}}
+                        {{$order['organization']['accounts']['rows'][1]['bic']}}
                     </td>
                 </tr>
                 <tr>
@@ -45,7 +45,7 @@
                     </td>
                     <td class="px-1 py-0 border-dark">Сч. №</td>
                     <td class="px-1 py-0 border-top-0 border-dark">
-                        {{$order['organization']['accounts']['rows'][0]['correspondentAccount']}}
+                        {{$order['organization']['accounts']['rows'][1]['correspondentAccount']}}
                     </td>
                 </tr>
                 <tr>
@@ -55,7 +55,7 @@
                     <td class="px-1 py-0 border-dark">КПП &nbsp; {{$order['organization']['kpp']}}</td>
                     <td class="px-1 py-0 border-dark" rowspan="2">Сч. №</td>
                     <td class="px-1 py-0 border-dark" rowspan="2">
-                        {{$order['organization']['accounts']['rows'][0]['accountNumber']}}
+                        {{$order['organization']['accounts']['rows'][1]['accountNumber']}}
                     </td>
                 </tr>
                 <tr>

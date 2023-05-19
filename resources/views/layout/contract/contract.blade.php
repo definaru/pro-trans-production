@@ -338,20 +338,20 @@
     </tr>
     <tr>
         <td class="py-0">
-            <b>Банк:</b> {{$contract['ownAgent']['accounts']['rows'][0]['bankName']}}
+            <b>Банк:</b> {{$contract['ownAgent']['accounts']['rows'][1]['bankName']}}
         </td class="py-0">
         <td class="py-0"><b>Банк:</b> {{$contract['agentAccount']['bankName'] ?? ''}}</td>
     </tr>
     <tr>
-        <td class="py-0"><b>р/с:</b> {{$contract['ownAgent']['accounts']['rows'][0]['accountNumber']}}</td>
+        <td class="py-0"><b>р/с:</b> {{$contract['ownAgent']['accounts']['rows'][1]['accountNumber']}}</td>
         <td class="py-0"><b>р/с:</b> {{$contract['agentAccount']['accountNumber'] ?? ''}}</td>
     </tr>
     <tr>
-        <td class="py-0"><b>БИК:</b> {{$contract['ownAgent']['accounts']['rows'][0]['bic']}}</td>
+        <td class="py-0"><b>БИК:</b> {{$contract['ownAgent']['accounts']['rows'][1]['bic']}}</td>
         <td class="py-0"><b>БИК:</b> {{$contract['agentAccount']['bic'] ?? ''}}</td>
     </tr>
     <tr>
-        <td class="py-0"><b>к/с:</b> {{$contract['ownAgent']['accounts']['rows'][0]['correspondentAccount']}}</td>
+        <td class="py-0"><b>к/с:</b> {{$contract['ownAgent']['accounts']['rows'][1]['correspondentAccount']}}</td>
         <td class="py-0"><b>к/с:</b> {{$contract['agentAccount']['correspondentAccount'] ?? ''}}</td>
     </tr>
     <tr>
@@ -500,7 +500,7 @@
             </tr>
             <tr>
                 <td class="py-1">
-                    <b>Банк:</b> {{$contract['ownAgent']['accounts']['rows'][0]['bankName']}}
+                    <b>Банк:</b> {{$contract['ownAgent']['accounts']['rows'][1]['bankName']}}
                 </td>
                 <td class="py-1" style="border-left: 1px solid #222">
                     <b>Банк:</b> {{$contract['agentAccount']['bankName'] ?? ''}}
@@ -508,21 +508,21 @@
             </tr>
             <tr>
                 <td class="py-1">
-                    <b>р/с:</b> {{$contract['ownAgent']['accounts']['rows'][0]['accountNumber']}}
+                    <b>р/с:</b> {{$contract['ownAgent']['accounts']['rows'][1]['accountNumber']}}
                 </td>
                 <td class="py-1" style="border-left: 1px solid #222">
                     <b>р/с:</b> {{$contract['agentAccount']['accountNumber'] ?? ''}}
                 </td>
             </tr>
             <tr>
-                <td class="py-1"><b>БИК:</b> {{$contract['ownAgent']['accounts']['rows'][0]['bic']}}</td>
+                <td class="py-1"><b>БИК:</b> {{$contract['ownAgent']['accounts']['rows'][1]['bic']}}</td>
                 <td class="py-1" style="border-left: 1px solid #222">
                     <b>БИК:</b> {{$contract['agentAccount']['bic'] ?? ''}}
                 </td>
             </tr>
             <tr>
                 <td class="py-1">
-                    <b>к/с:</b> {{$contract['ownAgent']['accounts']['rows'][0]['correspondentAccount']}}
+                    <b>к/с:</b> {{$contract['ownAgent']['accounts']['rows'][1]['correspondentAccount']}}
                 </td>
                 <td class="py-1" style="border-left: 1px solid #222">
                     <b>к/с:</b> {{$contract['agentAccount']['correspondentAccount'] ?? ''}}

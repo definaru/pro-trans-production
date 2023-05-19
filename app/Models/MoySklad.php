@@ -262,7 +262,15 @@ class MoySklad
         return $response->json();
     }
 
-    
+
+    public static function getOneCounterparty($id)
+    {
+        $url = self::msUrl().'counterparty/'.$id.'?expand=accounts';
+        $response = self::get($url);
+        return $response->json();
+    }
+
+
     //getOrderCustomerOne
     public static function getInvoiceOne($id)
     {

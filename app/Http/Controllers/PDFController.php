@@ -44,4 +44,24 @@ class PDFController extends Controller
         return $pdf->download('Договор поставки запасных частей №'.$data['contract']['name'].'.pdf');
     }
 
+
+    public function getOrganizationCard($id)
+    {
+        $data = [
+            'card' => MoySklad::getOneCounterparty($id)
+        ];
+        $pdf = PDF::loadView('document.card', $data, [], 'UTF-8');
+        return $pdf->stream();
+    }
+
+
+    public function getOrganizationCardDownload($id)
+    {
+        $data = [
+            'card' => MoySklad::getOneCounterparty($id)
+        ];
+        $pdf = PDF::loadView('document.card', $data, [], 'UTF-8');
+        return $pdf->download('Карточка организации '.$data['card']['name'].'.pdf');
+    }
+
 }
