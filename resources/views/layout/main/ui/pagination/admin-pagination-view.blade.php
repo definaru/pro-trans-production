@@ -1,4 +1,4 @@
-<div class="me-5 text-secondary small">
+<div class="me-lg-5 me-0 text-secondary small">
     Показано: 
     <span>
         @if($product['meta']['size']-$offset < $limit)

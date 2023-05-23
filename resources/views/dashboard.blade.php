@@ -44,12 +44,6 @@
                 <input type="radio" name="type" class="d-none" value="vin" />
                 <span>Запрос по VIN</span>
             </label>
-            <!-- error('type')
-                <label class="d-flex align-items-center gap-2 text-danger font-monospace">
-                    <span class="fs-3">←</span> 
-                    укажите, по какому параметру искать
-                </label>
-            enderror -->
         </div>
         <div id="filter" class="card-body pt-0 d-flex gap-2">
             <input 
@@ -169,19 +163,6 @@
     @role('admin')
         <strong>Admin Panel</strong> 
     @endrole -->
-
-    <?php /*
-    <div class="row">
-        <div class="col-md-12">
-            Список категорий
-        </div>
-    </div>    
-    <div class="row">
-        <div class="col-md-4">
-            <x-category-card icon="oil_barrel" header="Масла" category="smtp" />
-        </div>
-    </div>    
-    */ ?>
 
 
     <div class="modal fade" id="vinModal" data-bs-backdrop="static" data-bs-keyboard="false">
