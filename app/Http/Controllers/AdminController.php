@@ -102,7 +102,7 @@ class AdminController extends Controller
     }
 
 
-    public function Access()
+    public function Access($id)
     {
         $model = Role::query()
             ->join('users_roles', 'roles.id', '=', 'users_roles.role_id')
@@ -111,7 +111,10 @@ class AdminController extends Controller
             //->join('permissions', 'users_permissions.permission_id', '=', 'permissions.id')
             ->get();
         //return response()->json($model);
-        return view('dashboard.admin.access', ['model' => $model]);
+        if($id) {
+            return view('dashboard.admin.access.details', compact('id'));
+        }
+        return view('dashboard.admin.access', compact('id', 'model'));
     }
 
     public function Nomenclature()

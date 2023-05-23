@@ -30,6 +30,7 @@
         <p class="font-weight-bold text-center" style="font-size:18px">Карточка организации</p>
         <table class="table table-bordered border border-dark" style="font-size:13px">
             <tbody>
+                @if (isset($card['legalTitle']))
                 <tr class="font-weight-normal">
                     <td class="py-1 border-dark font-weight-bold" style="width:40%">
                         Полное наименование юридического лица
@@ -38,6 +39,7 @@
                         {{$card['legalTitle']}}
                     </td>
                 </tr>
+                @endif
                 <tr class="font-weight-normal">
                     <td class="py-1 border-dark font-weight-bold" style="width:40%">
                         Сокращённое наименование организации
@@ -62,6 +64,7 @@
                         {{$card['actualAddress']}}
                     </td>
                 </tr>
+                @if (isset($card['inn']))
                 <tr class="font-weight-normal">
                     <td class="py-1 border-dark font-weight-bold" style="width:40%">
                         ИНН
@@ -70,6 +73,8 @@
                         {{$card['inn']}}
                     </td>
                 </tr>
+                @endif
+                @if (isset($card['ogrn']))
                 <tr class="font-weight-normal">
                     <td class="py-1 border-dark font-weight-bold" style="width:40%">
                         ОГРН
@@ -78,6 +83,8 @@
                         {{$card['ogrn']}}
                     </td>
                 </tr>  
+                @endif
+                @if (isset($card['kpp']))
                 <tr class="font-weight-normal">
                     <td class="py-1 border-dark font-weight-bold" style="width:40%">
                         КПП
@@ -86,6 +93,8 @@
                         {{$card['kpp']}}
                     </td>
                 </tr>
+                @endif
+                @if (isset($card['okpo']))
                 <tr class="font-weight-normal">
                     <td class="py-1 border-dark font-weight-bold" style="width:40%">
                         ОКПО
@@ -94,6 +103,7 @@
                         {{$card['okpo']}}
                     </td>
                 </tr>
+                @endif
                 @if (isset($card['accounts']['rows']))
                     @foreach ($card['accounts']['rows'] as $item)
                         <tr class="font-weight-normal">

@@ -8,16 +8,16 @@
         <div class="card border-0 shadow-sm">
             <div class="table-responsive rounded-top">
                 <table class="table align-middle table-edge table-hover table-nowrap mb-0">
-                    <thead class="border-bottom border-light bg-light" style="font-size: 14px">
+                    <thead class="border-bottom border-light bg-light-subtle" style="font-size: 14px">
                         <tr>
                             <th class="w-60px ps-3">
                                 <div class="text-muted mb-0">#</div>
                             </th>
                             <th>
-                                ИНН&#160;<span class="list-sort"></span>
-                            </th>
-                            <th>
                                 Компания&#160;<span class="list-sort"></span>
+                            </th>                            
+                            <th>
+                                ИНН&#160;<span class="list-sort"></span>
                             </th>
                             <th>
                                 Роль&#160;<span class="list-sort"></span>
@@ -37,13 +37,14 @@
                                 <div class="ms-2">{{$loop->iteration}}</div>
                             </td>
                             <td>
+                                <strong>{{$role['company']}}</strong> 
+                            </td>                            
+                            <td>
                                 <a href="../admin/access/{{$role['uuid']}}" class="text-dark text-decoration-none">
                                     {{$role['inn']}}
                                 </a>
                             </td>
-                            <td>
-                                <strong>{{$role['company']}}</strong> 
-                            </td>
+
                             <td>
                                 @if ($role['slug'] === 'admin')
                                     <x-badge color="34617" text="Администратор" />
@@ -56,7 +57,8 @@
                             </td> 
                             <td>
                                 <small>
-                                    {{date('d F Y, H:i', strtotime($role['created_at']))}}
+                                    {{$timer::datatime($role['created_at'])}}
+                                    {{-- {{date('d F Y, H:i', strtotime($role['created_at']))}} --}}
                                 </small>
                             </td>                            
                         </tr>

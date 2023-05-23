@@ -8,7 +8,7 @@
         <div class="card border-0 shadow-sm">
             <div class="table-responsive rounded-top">
                 <table class="table align-middle table-edge table-hover table-nowrap mb-0">
-                    <thead class="border-bottom border-light bg-light" style="font-size: 14px">
+                    <thead class="border-bottom border-light bg-light-subtle" style="font-size: 14px">
                         <tr>
                             <th class="w-60px ps-3">
                                 <div class="text-muted mb-0">#</div>
@@ -56,7 +56,12 @@
                                 <div class="ms-2">{{$loop->iteration}}</div>
                             </td> 
                             <td>
-                                <a href="/dashboard/admin/user/{{$item['id']}}" class="text-dark text-decoration-none fw-bold">
+                                <a 
+                                    href="/dashboard/admin/user/{{$item['id']}}" 
+                                    class="text-dark text-decoration-none fw-bold text-truncate d-block" 
+                                    style="width:200px"
+                                    title="{{$item['name']}}"
+                                >
                                     {{$item['name']}}
                                 </a>
                             </td>

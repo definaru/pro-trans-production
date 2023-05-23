@@ -61,14 +61,15 @@
     <div class="border rounded-end overflow-auto <?=isset($_GET['open']) ? 'col-lg-8' : 'd-none'; ?>" style="height:61vh">
         <?php
             $imap = $email::imapOpen(config('app.e_pass'));
-            $mail = isset($_GET['open']) ? $_GET['open'] : 1;
-            $bodyhtml = imap_body($imap, $mail); // 
-            $bodyhtml = quoted_printable_decode($bodyhtml);
+            $id = isset($_GET['open']) ? $_GET['open'] : 1;
+            $body = $email::getBody($id);
+            //$bodyhtml = imap_body($imap, $mail); // 
+            //$bodyhtml = quoted_printable_decode($bodyhtml);
             //$bodyhtml = imap_fetchstructure($imap, $mail, FT_UID);
             //$bodyhtml = json_decode(json_encode($bodyhtml), true);
-            echo '<pre class="p-3 bg-white">'.$bodyhtml.'</pre>';
+            echo '<pre class="p-3 bg-white">'.$body.'</pre>';
             //print_r($bodyhtml);
-            imap_close($imap); 
+            //imap_close($imap); 
         ?>
     </div>    
 </div>

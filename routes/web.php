@@ -60,7 +60,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('admin/users', [AdminController::class, 'Users'])->name('adminusers');
     Route::get('admin/contracts', [AdminController::class, 'Contracts']);
     Route::get('admin/contract/{id}', [AdminController::class, 'oneContract']);
-    Route::get('admin/access', [AdminController::class, 'Access']);
+    Route::get('admin/access/{id?}', [AdminController::class, 'Access']);
     Route::get('admin/users/okved/{okved}', [AdminController::class, 'Okved']);
     Route::get('admin/user/{uuid}', [AdminController::class, 'User']);
     Route::get('admin/nomenclature', [AdminController::class, 'Nomenclature']);

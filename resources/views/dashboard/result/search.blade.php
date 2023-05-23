@@ -7,7 +7,10 @@
 @section('content')
     <hr />
     @if($size === 0)
-        <p class="text-muted">По запросу <strong>"{{$text}}"</strong> ничего не найдено</p>
+        @include('layout.main.ui.empty.no-result', [
+            'text' => $text, 
+            'link' => '/dashboard/catalog/category/8854033a-48ad-11ed-0a80-0c87007f4175/10/0'
+        ])
     @else
         <p class="text-muted">{{$decl::search($size)}} <span class="badge bg-soft-danger text-danger rounded-pill">{{$size}}</span> </p>        
     @endif

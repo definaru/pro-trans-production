@@ -8,7 +8,7 @@
 @section('content')
     <section id="about" class="bg-hero coral position-relative overflow-hidden">
         <div class="container h-100">
-            <p class="d-none d-lg-inline copyright">© 2022 &middot; Все права защищены</p>
+            <p class="d-none d-lg-inline copyright">© 2023 &middot; Все права защищены</p>
             <div class="row pt-4 h-100">
                 <div class="col-12 col-lg-7 d-block d-lg-flex justify-content-start align-items-center align-self-center">
                     <div class="d-flex flex-column gap-3 position-relative z-3 p-3 p-lg-0">
@@ -57,7 +57,7 @@
         </div>
     </section>
 
-    <section id="bestsellers" class="bg-secondary-subtle">
+    <section id="bestsellers" class="bg-secondary-subtle d-lg-block d-none">
         <div class="container" itemscope itemtype="https://schema.org/ItemList">
             <div class="row">
                 <div class="col-12 col-lg-8 offset-lg-2 text-center">
@@ -194,7 +194,7 @@
         </div>
     </section>
 
-    <section id="spareparts" class="bg-white">
+    <section id="spareparts" class="bg-white d-lg-block d-none">
         <div class="container position-relative">
             <div class="row">
                 <div class="col-12 col-lg-6 offset-lg-3 text-center">
@@ -243,7 +243,7 @@
                 <div class="d-flex flex-column flex-lg-row justify-content-between align-items-center col-12">
                     <h2 class="fw-bold display-6">Товары в наличии</h2>
                     <div>
-                        <select class="form-control px-5" name="brand">
+                        <select class="form-control px-5 d-lg-block d-none" name="brand">
                             <option value="Mercedes-Benz">Mercedes-Benz</option>
                             <option value="Volvo">Volvo</option>
                             <option value="Renault Trucks">Renault Trucks</option>
