@@ -52,12 +52,18 @@
                 list="searchlist"
                 class="form-control" 
                 value="{{session('text') ? session('text') : old('text') }}" 
+                v-on:change="onChange(search)"
+                v-model="search"
                 placeholder="Поиск..." 
             />
-            @include('layout.main.ui.selest.list')
+            {{-- @include('layout.main.ui.selest.list') --}}
             <x-button color="danger" icon="search" type="submit" text="Найти" />
         </div>
     </form>
+
+    @include('layout.main.ui.card.card-call-to-action')
+
+    {{-- @{{search.length}} - @{{search}} --}}
     @endif
 
     @error('text')

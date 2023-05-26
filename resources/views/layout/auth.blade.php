@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf_token" content="{{ csrf_token() }}" />
     <title>@yield('title') | {{ config('app.name') }}</title>
     <link rel="shortcut icon" href='/img/favicon.png' type="image/x-icon" />
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
@@ -16,22 +15,21 @@
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/toastr.css') }}" />    
     @endif
-
-    <link rel="canonical" href="{{ url()->current() }}" />
     
-    <meta name="keywords" content="CRM, продажи, оптом">
-    <meta name="description" content="Официальный сервис «Prospekt Parts» по оптовым продажам запчастей">
-    <meta name="theme-color" content="#310062">
-    <meta name="msapplication-navbutton-color" content="#310062">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#310062">
+    <meta name="keywords" content="CRM, продажи, оптом" />
+    <meta name="description" content="Официальный сервис «Prospekt Parts» по оптовым продажам запчастей" />
+    <meta name="theme-color" content="#310062" />
+    <meta name="msapplication-navbutton-color" content="#310062" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#310062" />
 
-    <meta name="robots" content="index, follow">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Prospekt Parts">
-    <meta property="og:image" content="/img/apple_touth_icon.jpg">
+    <meta name="robots" content="noindex,nofollow,noarchive" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Prospekt Parts" />
+    <meta property="og:image" content="/img/apple_touth_icon.jpg" />
     <meta property="og:title" content="{{ config('app.name') }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:description" content="Официальный сервис «Prospekt Parts» по оптовым продажам запчастей"/> 
+    <meta property="og:description" content="Официальный сервис «Prospekt Parts» по оптовым продажам запчастей" /> 
+    
     <style>
         body, html {
             font-family: 'Nunito Sans', sans-serif;
