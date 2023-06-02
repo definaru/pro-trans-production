@@ -23,8 +23,10 @@
         
         <ul class="d-grid gap-3">
             <li>Скан документов с подписью и печатью в PDF - <i>{!!$contact::getEmail('manager@prospekt-parts.com', ['text-dark'])!!}</i></li>
-            <li>На бумаге, формата А4, почтой - <i>{{ config('app.address') }}</i> <br />
-               <strong>Кому:</strong> ООО {{ config('app.name') }}</li>
+            <li>
+                На бумаге, формата А4, почтой - <i>{{ config('app.address') }}</i> <br />
+                <strong>Кому:</strong> ООО {{ config('app.name') }}
+            </li>
         </ul>  
     @elseif($deal::status() === 'z')
         <x-alert type="danger" message="Договор не заключён" />    
@@ -61,9 +63,8 @@
         </div>
     </form>
 
-    @include('layout.main.ui.card.card-call-to-action')
-
-    {{-- @{{search.length}} - @{{search}} --}}
+    {{-- @include('layout.main.ui.card.card-call-to-action') --}}
+    
     @endif
 
     @error('text')
@@ -207,7 +208,7 @@
                 </div>
                 <div class="modal-footer border-0">
                     <div class="btn btn-outline-light text-dark" data-bs-dismiss="modal">Отмена</div>
-                    <button type="submit" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center" v-if="!loading">
+                    <button type="submit" class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center" v-if="loading">
                         <span class="material-symbols-outlined spin">autorenew</span>
                         Отправляю...
                     </button>

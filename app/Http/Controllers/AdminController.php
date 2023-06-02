@@ -102,7 +102,7 @@ class AdminController extends Controller
     }
 
 
-    public function Access($id)
+    public function Access($id = '')
     {
         $model = Role::query()
             ->join('users_roles', 'roles.id', '=', 'users_roles.role_id')

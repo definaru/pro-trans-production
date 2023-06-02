@@ -12,6 +12,14 @@ body, html {
 input:focus {
     box-shadow: none !important;
 }
+.shlak {
+    background-image: url(/img/photo50.jpg);
+    background-size: cover;
+    background-position: center;
+}
+.shlak .container-fluid {
+    background: linear-gradient(180deg, #f8f9fa 35%, transparent 100%);
+}
 .nav-link {
     color: #000;
 }

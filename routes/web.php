@@ -8,6 +8,7 @@ use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\ApiController;
 use App\Http\Middleware\Authenticate;
 
 
@@ -123,6 +124,7 @@ Route::controller(MainController::class)->group(function () {
     Route::get('/doc', 'Documentation');
     Route::get('/products/mersedes-benz/{limit?}/{offset?}', 'Catalog')->name('search');
     Route::get('/product/mersedes-benz/{id}', 'DetailProduct');
+    Route::get('/product', 'NoProduct');
 });
 
 Route::prefix('doc')->group(function () {

@@ -486,12 +486,14 @@ function selectOffset() {
 });
 
 const log = document.querySelector(".grid-design");
+if(log) {
+    document.addEventListener("readystatechange", () => {
+        if (document.readyState === "complete") {
+            log.remove();
+        }
+    });    
+}
 
-document.addEventListener("readystatechange", () => {
-    if (document.readyState === "complete") {
-        log.remove();
-    }
-});
 
 
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');

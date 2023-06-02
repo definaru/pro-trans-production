@@ -36,6 +36,12 @@ class MainController extends Controller
     }
 
 
+    public function NoProduct()
+    {
+        return redirect()->route('search');
+    }
+
+
     public function About()
     {
         return view('about');

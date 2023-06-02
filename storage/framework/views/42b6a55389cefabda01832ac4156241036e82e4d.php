@@ -9,6 +9,7 @@
     <meta name="theme-color" content="#310062"/>
     <meta name="msapplication-navbutton-color" content="#310062"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="#310062"/>
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>" />
 
     <title itemprop="headline"><?php echo $__env->yieldContent('title'); ?></title>
 
@@ -66,7 +67,10 @@
                     </span>
                 </a>
                 <form onsubmit="loadingPage()" id="sendForm" action="/product" method="POST" class="d-lg-flex d-none position-relative" style="width: 310px">
-                    <?php echo csrf_field(); ?>
+                    <?php echo e(csrf_field()); ?>
+
+                    <?php echo e(method_field('POST')); ?>
+
                     <input 
                         type="search" 
                         list="searchlist" 
@@ -158,7 +162,7 @@
                             </template>
                         <?php endif; ?>
                         <?php if(auth()->guard()->check()): ?>
-                            <a href="/dashboard" class="btn pe-0">
+                            <a href="/dashboard" class="btn">
                                 <?php if (isset($component)) { $__componentOriginal0d94697088dc22c93949a4cc30ab7d385eb397e5 = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\IconPerson::class, ['size' => '27px']); ?>
 <?php $component->withName('icon-person'); ?>

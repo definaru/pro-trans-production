@@ -9,6 +9,7 @@
     <meta name="theme-color" content="#310062"/>
     <meta name="msapplication-navbutton-color" content="#310062"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="#310062"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <title itemprop="headline">@yield('title')</title>
 
@@ -65,7 +66,8 @@
                     </span>
                 </a>
                 <form onsubmit="loadingPage()" id="sendForm" action="/product" method="POST" class="d-lg-flex d-none position-relative" style="width: 310px">
-                    @csrf
+                    {{ csrf_field() }}
+                    {{ method_field('POST') }}
                     <input 
                         type="search" 
                         list="searchlist" 
@@ -113,7 +115,7 @@
                             </template>
                         @endguest
                         @auth
-                            <a href="/dashboard" class="btn pe-0">
+                            <a href="/dashboard" class="btn">
                                 <x-icon-person size="27px" />
                             </a>
                             <template v-if="card.length > 0">

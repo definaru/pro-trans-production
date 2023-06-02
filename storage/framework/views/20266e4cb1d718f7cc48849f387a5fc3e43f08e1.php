@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('title', 'Prospekt Parts'); ?>
 <?php $__env->startSection('content'); ?>
     <section id="about" class="bg-hero coral position-relative overflow-hidden">
