@@ -12,7 +12,7 @@
                 <div>
                     <span class="text text-muted">Каталог</span> 
                     <h3>Mercedes-Benz</h3>
-                    <a href="{{$link ?? '/products/mersedes-benz'}}" class="text-primary text-decoration-none text-uppercase">
+                    <a href="{{$link ?? '/products/mercedes-benz'}}" class="text-primary text-decoration-none text-uppercase">
                         <span style="font-family: ui-monospace">←</span>
                         Назад в каталог
                     </a> 

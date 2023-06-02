@@ -41,7 +41,7 @@ endif --}}
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link<?=($_SERVER['REQUEST_URI'] === '/products/mersedes-benz') ? ' active' : '';?>" href="/products/mersedes-benz">
+        <a class="nav-link<?=($_SERVER['REQUEST_URI'] === '/products/mercedes-benz') ? ' active' : '';?>" href="/products/mercedes-benz">
             Запасные части
         </a>
     </li>

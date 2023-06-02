@@ -34,7 +34,7 @@
                     @if(isset($item['article']))
                     <div class="col-lg-3 col-12">
                         <div class="card card-data border-0 shadow order">
-                            <a href="/product/mersedes-benz/{{$item['id']}}" class="card-body pb-0 position-relative">
+                            <a href="/product/mercedes-benz/{{$item['id']}}" class="card-body pb-0 position-relative">
                                 <div 
                                     itemprop="aggregateRating" 
                                     itemscope 
@@ -57,7 +57,7 @@
                             </a>
                             <div class="card-body">
                                 <h5 class="card-title fw-bold fs-6" style="height: 39px">
-                                    <a itemprop="name" href="/product/mersedes-benz/{{$item['id']}}">
+                                    <a itemprop="name" href="/product/mercedes-benz/{{$item['id']}}">
                                         {{mb_convert_case($item['name'], MB_CASE_TITLE, "UTF-8")}}
                                     </a>
                                 </h5>
@@ -122,7 +122,7 @@
                     <div>
                         <select id="selectOffset" class="form-select" onchange="selectOffset()">
                             @foreach ([12, 24, 48, 64, 100] as $key)
-                                <option value="/products/mersedes-benz/{{$key}}/0" @if($key == $limit) selected @endif >
+                                <option value="/products/mercedes-benz/{{$key}}/0" @if($key == $limit) selected @endif >
                                     {{$key}}
                                 </option>
                             @endforeach
@@ -195,7 +195,7 @@
                         <div>
                             <select id="selectOffset" class="form-select" onchange="selectOffset()">
                                 @foreach ([12, 24, 48, 64, 100] as $key)
-                                    <option value="/products/mersedes-benz/{{$key}}/0" @if($key == $limit) selected @endif >
+                                    <option value="/products/mercedes-benz/{{$key}}/0" @if($key == $limit) selected @endif >
                                         {{$key}}
                                     </option>
                                 @endforeach
@@ -209,7 +209,7 @@
                                         parse_str($url_previous, $previous);
                                     ?>
                                     <li class="page-item p-0">
-                                        <a class="page-link text-primary border-0" href="/products/mersedes-benz/{{$previous['limit']}}/{{$previous['offset']}}">
+                                        <a class="page-link text-primary border-0" href="/products/mercedes-benz/{{$previous['limit']}}/{{$previous['offset']}}">
                                             <span>&laquo;</span> Назад
                                         </a>
                                     </li>  
@@ -227,7 +227,7 @@
                                         parse_str($url_next, $next);
                                     ?>
                                     <li class="page-item p-0">
-                                        <a class="page-link text-primary border-0" href="/products/mersedes-benz/{{$next['limit']}}/{{$next['offset']}}">
+                                        <a class="page-link text-primary border-0" href="/products/mercedes-benz/{{$next['limit']}}/{{$next['offset']}}">
                                             Далее <span aria-hidden="true">&raquo;</span>
                                         </a>
                                     </li>                                

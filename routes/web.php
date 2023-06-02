@@ -122,8 +122,8 @@ Route::controller(MainController::class)->group(function () {
     Route::get('/contact', 'Сontact');
     Route::get('/customers', 'Customers');
     Route::get('/doc', 'Documentation');
-    Route::get('/products/mersedes-benz/{limit?}/{offset?}', 'Catalog')->name('search');
-    Route::get('/product/mersedes-benz/{id}', 'DetailProduct');
+    Route::get('/products/mercedes-benz/{limit?}/{offset?}', 'Catalog')->name('search');
+    Route::get('/product/mercedes-benz/{id}', 'DetailProduct');
     Route::get('/product', 'NoProduct');
 });
 

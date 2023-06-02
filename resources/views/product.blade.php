@@ -26,7 +26,7 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/">Главная</a></li>
                                 <li class="breadcrumb-item">
-                                    <a href="/products/mersedes-benz">
+                                    <a href="/products/mercedes-benz">
                                         {{$product['catalog']['name']}}
                                     </a>
                                 </li>

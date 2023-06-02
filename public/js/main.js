@@ -171,7 +171,7 @@ new Vue({
             this.saveCart();
             if(this.card.length === 0) {
                 localStorage.removeItem('сheckout');
-                window.location.assign('/products/mersedes-benz');
+                window.location.assign('/products/mercedes-benz');
             }
         },
         saveCart() {
@@ -462,7 +462,7 @@ function isNotSignUp()
 
 function startGoods()
 {
-    window.location.assign('/products/mersedes-benz');
+    window.location.assign('/products/mercedes-benz');
 }
 
 var searchModal = document.getElementById('searchForm')

@@ -38,7 +38,7 @@
                                 @verbatim
                                 <small class="d-flex align-items-center gap-3" style="width: 320px;">
                                     <img :src="item.image" :alt="item.name" class="rounded" style="width: 50px;height: 50px;object-fit: cover" /> 
-                                    <a :href=`/product/mersedes-benz/${item.id}` class="d-flex align-items-center text-muted text-decoration-none">
+                                    <a :href=`/product/mercedes-benz/${item.id}` class="d-flex align-items-center text-muted text-decoration-none">
                                         <div class="d-flex justify-content-start flex-column">
                                             <span class="text">{{item.article}}</span> 
                                             <p class="fw-bold text-dark m-0">{{item.name}}</p>
