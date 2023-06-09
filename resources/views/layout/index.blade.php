@@ -10,6 +10,7 @@
     <meta name="msapplication-navbutton-color" content="#310062"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="#310062"/>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta http-equiv="refresh" content="{{ config('session.lifetime') * 60 }}" />
 
     <title itemprop="headline">@yield('title')</title>
 

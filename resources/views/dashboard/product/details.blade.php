@@ -196,7 +196,7 @@
                             :class="[loading === true ? 'btn-dark' : 'btn-secondary']"
                             v-html="loading === true ? 'Подождите, грузится...' : 'Сохранить'"
                         ></button>
-                        <a href="/product/mersedes-benz/{{$id}}" target="_blank" class="btn btn-light px-4">
+                        <a href="/product/mercedes-benz/{{$id}}" target="_blank" class="btn btn-light px-4">
                             Посмотреть
                         </a>
                         <a href="https://online.moysklad.ru/app/#good/edit?id={{$id}}" target="_blank" class="btn material-symbols-outlined">

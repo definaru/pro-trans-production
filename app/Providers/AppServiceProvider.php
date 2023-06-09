@@ -22,6 +22,7 @@ use App\Models\TimeFormat;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Notifications\Messages\MailMessage;
 use App\Providers\ContactService;
+use App\Models\Data\Replacement;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -55,6 +56,7 @@ class AppServiceProvider extends ServiceProvider
             'listorder'     => GetOrder::GoodsAreAvailable(),
             'bestsellers'   => GetOrder::Bestsellers(),
             'alllist'       => GetOrder::list(),
+            'replacement'   => new Replacement(),
             'names'         => new Names(),
             'contact'       => new ContactService(),
             'time'          => new Carbon(),

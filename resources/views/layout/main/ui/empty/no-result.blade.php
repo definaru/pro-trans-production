@@ -1,6 +1,22 @@
-<p class="w-100 bg-body-secondary rounded px-4 py-3">
-    По запросу <strong>"{{$text}}"</strong> ничего не найдено
-</p>
+@php
+    $parts = $replacement::parts(); // A5410501222
+@endphp
+
+@if (in_array($text, $parts)) 
+    <p class="badge bg-danger fs-6 rounded-pill text">! Нашлась одна замена:</p>
+    <div class="row">
+        <div class="col-12 col-lg-4">
+            <div class="text bg-white rounded ps-4 pe-4 py-3 shadow-sm mb-4">
+                <strong>Артикул:</strong>  
+                <a href="{{$parts['link']}}">{{$parts['analog']}}</a> 
+            </div>            
+        </div>
+    </div>
+@else
+    <p class="w-100 bg-body-secondary rounded px-4 py-3">
+        По запросу <strong>"{{$text}}"</strong> ничего не найдено
+    </p>
+@endif
 <ul class="text bg-white rounded ps-5 pe-4 py-3 shadow-sm">
     <li>Попробуйте поискать запчасть без буквы в начале артикула</li>
     <li>Попробуйте указать латинскую букву в начале артикула</li>

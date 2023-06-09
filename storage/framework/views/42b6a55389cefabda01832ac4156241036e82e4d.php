@@ -10,6 +10,7 @@
     <meta name="msapplication-navbutton-color" content="#310062"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="#310062"/>
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>" />
+    <meta http-equiv="refresh" content="<?php echo e(config('session.lifetime') * 60); ?>" />
 
     <title itemprop="headline"><?php echo $__env->yieldContent('title'); ?></title>
 

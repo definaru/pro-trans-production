@@ -62,7 +62,6 @@
             <x-button color="danger" icon="search" type="submit" text="Найти" />
         </div>
     </form>
-
     {{-- @include('layout.main.ui.card.card-call-to-action') --}}
     
     @endif
