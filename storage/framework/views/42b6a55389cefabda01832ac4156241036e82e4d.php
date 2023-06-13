@@ -79,6 +79,8 @@
                         max="5"
                         id="search" 
                         name="text" 
+                        v-model="search"
+                        
                         class="form-control searchForm ps-3 pe-5 text border-0" 
                         placeholder="Артикул или Название запчасти..." 
                         autofocus

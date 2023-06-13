@@ -142,15 +142,8 @@ class MainController extends Controller
             $url = Steames::getListResult($request->text);
             $search = MoySklad::searchOfResult($url);
             $text = $request->input('text');
-            // $test = [
-            //     'server' => $request->server->getHeaders()->$parameters,
-            //     'headers' => $request->headers
-            // ];
             return redirect()->route('search')->with(['search' => $search, 'text' => $text]);
-            //return response($request, 419)->header('Content-Type', 'text/json');
         }
-
-        // back()->
     }
 
     public function Partner()

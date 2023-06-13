@@ -1,5 +1,5 @@
 @php
-$classes = ($close === 'true') ? 'alert-dismissible' : '';
+    $classes = ($close === 'true') ? 'alert-dismissible' : '';
 @endphp
 <div class="alert alert-{{ $type }} d-flex gap-2 align-items-center {{ $classes }} fade show border-0">
     <span>

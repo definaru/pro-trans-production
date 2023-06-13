@@ -9,7 +9,8 @@ new Vue({
         amount: 0,
         totalsumma: 0,
         button: 0,
-        count: 1
+        count: 1,
+        search: ''
     },
     computed: {
         totalSum: function () {
@@ -58,6 +59,10 @@ new Vue({
         }
     },
     methods: {
+        inputOnKeyPress()
+        {
+            this.search = '111'
+        },
         isGrid() {
             this.design = 'grid'
             localStorage.setItem('design', 'grid');

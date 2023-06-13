@@ -250,8 +250,8 @@ a.nav-link.active {
     cursor: text !important;
 }
 .searchForm {
-    background-color: #fff;
-    box-shadow: inset 0px -1px 5px #9191598c;
+    background-color: #f8f9fa;
+    box-shadow: inset 0px -1px 5px #91915947;
     width: 100%;
     cursor: text !important;
 }

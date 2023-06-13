@@ -247,6 +247,14 @@ class MoySklad
         return $response->json();
     }
 
+    
+    public static function searchAssortmentByArticle($text)
+    {
+        $url = self::msUrl().'assortment?filter=article~'.$text;
+        $response = self::get($url);
+        return $response->json();
+    }
+
 
     public static function getAllContract($limit = 100)
     {

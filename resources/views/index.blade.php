@@ -73,7 +73,7 @@
                 @foreach ($bestsellers as $best)
                 <div class="col-12 col-lg-3">
                     <div class="card card-data border-0 shadow order">
-                        <a href="/product/mersedes-benz/<?=$best['href'];?>" class="card-body pb-0 position-relative">
+                        <a href="/product/mercedes-benz/<?=$best['href'];?>" class="card-body pb-0 position-relative">
                             <div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating" class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2">
                                 <x-icon-favorite color="#b02a37" />
                                 <small><?=$best['raiting'];?> рейтинг</small> 
@@ -90,7 +90,7 @@
                         </a>
                         <div class="card-body pb-0">
                             <h5 class="card-title fw-bold fs-6" style="height: 38px">
-                                <a itemprop="name" href="/product/mersedes-benz/<?=$best['href'];?>"><?=$best['name'];?></a>
+                                <a itemprop="name" href="/product/mercedes-benz/<?=$best['href'];?>"><?=$best['name'];?></a>
                             </h5>
                             <hr style="color: #ddd" />
                             <div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="d-flex justify-content-between">
@@ -126,7 +126,7 @@
             </div>
             <div class="row">
                 <div class="col-8 offset-2 text-center mt-4">
-                    <a href="/products/mersedes-benz" class="btn btn-lg btn-dark px-5">
+                    <a href="/products/mercedes-benz" class="btn btn-lg btn-dark px-5">
                         Показать всё &#160; &rarr;
                     </a>
                 </div>
@@ -140,7 +140,7 @@
                         Расходные материалы
                         <span class="d-block w-100 fw-light fs-6 text-secondary text">Mercedes-Benz</span>
                     </h2>
-                    <a href="/products/mersedes-benz" class="btn btn-sm btn-outline-dark px-4">
+                    <a href="/products/mercedes-benz" class="btn btn-sm btn-outline-dark px-4">
                         Смотреть все&#160; &rarr;
                     </a>
                 </div>
@@ -149,7 +149,7 @@
                 @foreach ($alllist as $detail)
                 <div class="col-12 col-md-4">
                     <div class="consumables bg-white rounded p-2 shadow d-flex align-items-center">
-                        <a href="/product/mersedes-benz/<?=$detail['href'];?>" class="rounded me-3" style="background: #ebcaa1">
+                        <a href="/product/mercedes-benz/<?=$detail['href'];?>" class="rounded me-3" style="background: #ebcaa1">
                             <img
                                 itemprop="image" 
                                 src="<?=$detail['image'];?>" 
@@ -161,7 +161,7 @@
                         <div class="d-flex flex-column w-75">
                             <small class="w-75">
                                 <strong>
-                                    <a href="/product/mersedes-benz/<?=$detail['href'];?>" class="text-dark text-decoration-none" itemprop="name">
+                                    <a href="/product/mercedes-benz/<?=$detail['href'];?>" class="text-dark text-decoration-none" itemprop="name">
                                         <?=$detail['name'];?>
                                     </a> 
                                 </strong>
@@ -255,7 +255,7 @@
                 @foreach ($listorder as $item)
                     <div class="col-lg-3 col-12">
                         <div class="card card-data border-0 shadow order">
-                            <a href="/product/mersedes-benz/<?=$item['href'];?>" class="card-body pb-0 position-relative">
+                            <a href="/product/mercedes-benz/<?=$item['href'];?>" class="card-body pb-0 position-relative">
                                 <div 
                                     itemprop="aggregateRating" 
                                     itemscope 
@@ -277,7 +277,7 @@
                             </a>
                             <div class="card-body">
                                 <h5 class="card-title fw-bold fs-6">
-                                    <a itemprop="name" href="/product/mersedes-benz/<?=$item['href'];?>"><?=$item['name']?></a>
+                                    <a itemprop="name" href="/product/mercedes-benz/<?=$item['href'];?>"><?=$item['name']?></a>
                                 </h5>
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div>
@@ -329,7 +329,7 @@
             </div>
             <div class="row">
                 <div class="col-12 col-lg-8 offset-lg-2 text-center mt-3 mb-5">
-                    <a href="/products/mersedes-benz" class="btn btn-lg btn-dark px-5">
+                    <a href="/products/mercedes-benz" class="btn btn-lg btn-dark px-5">
                         Показать всё &nbsp; →
                     </a>
                 </div>
