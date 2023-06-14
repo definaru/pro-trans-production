@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>" />
+    <meta http-equiv="refresh" content="<?php echo e(config('session.lifetime') * 60); ?>" />
+    
     <title><?php echo $__env->yieldContent('title'); ?> / <?php echo e(config('app.name')); ?> </title>
     <link rel="shortcut icon" href='/img/favicon.png' type="image/x-icon" />
     <link rel="stylesheet" href="<?php echo e(asset('css/bootstrap.min.css')); ?>" />

@@ -33,38 +33,38 @@
     @elseif($deal::status() === '2')
         <x-alert type="danger" message="Договор расторгнут. Вы не можете пользоваться данной платформой" />    
     @elseif($deal::status() === '1')
-    <form action="/dashboard/search" method="post" class="card shadow-sm border-0 mb-5 mt-3">
-        @csrf
-        <div id="type" class="card-body d-flex align-items-center gap-2">
-            @foreach($options as $item)
-            <label class="border rounded d-lg-block d-none">
-                <input type="radio" name="type" class="d-none" value="{{$item['value']}}" @if ($item['value'] === old('type')) checked @endif />
-                <span>{{$item['name']}}</span>
-            </label>
-            @endforeach
-            <label class="border rounded" data-bs-toggle="modal" data-bs-target="#vinModal">
-                <input type="radio" name="type" class="d-none" value="vin" />
-                <span>Запрос по VIN</span>
-            </label>
-        </div>
-        <div id="filter" class="card-body pt-0 d-flex gap-2">
-            <input 
-                type="text" 
-                name="text" 
-                list="searchlist"
-                class="form-control" 
-                value="{{session('text') ? session('text') : old('text') }}" 
-                v-on:change="onChange(search)"
-                v-model="search"
-                placeholder="Поиск..." 
-            />
-            {{-- @include('layout.main.ui.selest.list') --}}
-            <x-button color="danger" icon="search" type="submit" text="Найти" />
-        </div>
-    </form>
-    {{-- @include('layout.main.ui.card.card-call-to-action') --}}
-    
+        <form action="/dashboard/search" method="post" class="card shadow-sm border-0 mb-5 mt-3">
+            @csrf
+            <div id="type" class="card-body d-flex align-items-center gap-2">
+                @foreach($options as $item)
+                <label class="border rounded d-lg-block d-none">
+                    <input type="radio" name="type" class="d-none" value="{{$item['value']}}" @if ($item['value'] === old('type')) checked @endif />
+                    <span>{{$item['name']}}</span>
+                </label>
+                @endforeach
+                <label class="border rounded" data-bs-toggle="modal" data-bs-target="#vinModal">
+                    <input type="radio" name="type" class="d-none" value="vin" />
+                    <span>Запрос по VIN</span>
+                </label>
+            </div>
+            <div id="filter" class="card-body pt-0 d-flex gap-2">
+                <input 
+                    type="text" 
+                    name="text" 
+                    list="searchlist"
+                    class="form-control" 
+                    value="{{session('text') ? session('text') : old('text') }}" 
+                    v-on:change="onChange(search)"
+                    v-model="search"
+                    placeholder="Поиск..." 
+                />
+                {{-- @include('layout.main.ui.selest.list') --}}
+                <x-button color="danger" icon="search" type="submit" text="Найти" />
+            </div>
+        </form>
     @endif
+
+
 
     @error('text')
         <p>Получен пустой запрос.</p>

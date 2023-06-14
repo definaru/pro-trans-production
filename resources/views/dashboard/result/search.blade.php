@@ -9,7 +9,8 @@
     @if($size === 0)
         @include('layout.main.ui.empty.no-result', [
             'text' => $text, 
-            'link' => '/dashboard/catalog/category/8854033a-48ad-11ed-0a80-0c87007f4175/10/0'
+            'link' => '/dashboard/catalog/category/8854033a-48ad-11ed-0a80-0c87007f4175/10/0',
+            'dashboard' => true
         ])
     @else
         <p class="text-muted">{{$decl::search($size)}} <span class="badge bg-soft-danger text-danger rounded-pill">{{$size}}</span> </p>        

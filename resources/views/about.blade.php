@@ -71,7 +71,7 @@
                             class="w-50" 
                             style="cursor: default;filter: saturate(100%);height: auto; opacity: 1" 
                         /> 
-                        <h5 class="fw-bold mt-3" style="text-decoration: 3px underline #8630a3;cursor: default">Продажа</h5>
+                        <h5 class="fw-bold mt-3" style="text-decoration: 3px underline #310062;cursor: default">Продажа</h5>
                         <p class="text-muted">
                             только оригинальных запасных частей для грузовых автомобилей
                         </p>
@@ -87,7 +87,7 @@
                             class="w-50" 
                             style="cursor: default;filter: saturate(100%);height: auto; opacity: 1" 
                         /> 
-                        <h5 class="fw-bold mt-3" style="text-decoration: 3px underline #8630a3;cursor: default">Диагностика</h5>
+                        <h5 class="fw-bold mt-3" style="text-decoration: 3px underline #310062;cursor: default">Диагностика</h5>
                         <p class="text-muted">
                             и ремонт грузовых автомобилей импортного производства.
                         </p>
@@ -103,7 +103,7 @@
                             class="w-75 mb-1" 
                             style="cursor: default;filter: saturate(100%); height: auto; opacity: 1" 
                         />
-                        <h5 class="fw-bold mt-3" style="text-decoration: 3px underline #8630a3;cursor: default">Импорт</h5>
+                        <h5 class="fw-bold mt-3" style="text-decoration: 3px underline #310062;cursor: default">Импорт</h5>
                         <p class="text-muted">
                             оригинальных запчастей для грузовых автомобилей мы закупаем напрямую у изготовителей.
                         </p>
@@ -119,7 +119,7 @@
                             class="w-50" 
                             style="cursor: default;filter: saturate(100%); height: auto; opacity: 1" 
                         />
-                        <h5 class="fw-bold mt-3" style="text-decoration: 3px underline #8630a3;cursor: default">Логистика</h5>
+                        <h5 class="fw-bold mt-3" style="text-decoration: 3px underline #310062;cursor: default">Логистика</h5>
                         <p class="text-muted">
                             Сами оформляем контракт и осуществляем логистику.
                         </p>
@@ -135,7 +135,7 @@
                             class="w-50" 
                             style="cursor: default;filter: saturate(100%); height: auto; opacity: 1" 
                         />
-                        <h5 class="fw-bold mt-3" style="text-decoration: 3px underline #8630a3;cursor: default">Таможенное оформление</h5>
+                        <h5 class="fw-bold mt-3" style="text-decoration: 3px underline #310062;cursor: default">Таможенное оформление</h5>
                         <p class="text-muted">
                             Поэтому у каждого нашего товара есть <abbr title="Грузовая Таможенная Декларация" class="initialism">ГТД</abbr>
                         </p>
@@ -151,7 +151,7 @@
                             class="w-50" 
                             style="cursor: default;filter: saturate(100%); height: auto; opacity: 1" 
                         />
-                        <h5 class="fw-bold mt-3" style="text-decoration: 3px underline #8630a3;cursor: default">Складирование товара</h5>
+                        <h5 class="fw-bold mt-3" style="text-decoration: 3px underline #310062;cursor: default">Складирование товара</h5>
                         <p class="text-muted">
                             У нас собственные складские помещения.
                         </p>

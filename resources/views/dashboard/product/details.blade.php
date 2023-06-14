@@ -186,7 +186,14 @@
                 <div class="col-12 mt-4">
                     <label class="fw-bold">Описание товара:</label>
                     <textarea id="editor" name="description" >
-                        {{$images::text($id)['description']}}
+                        @if ($images::text($id)['description'])
+                            {{$images::text($id)['description']}}
+                        @else
+                            <strong>Материал:</strong> нет данных<br /> 
+                            <strong>Описание:</strong> нет данных<br />
+                            <strong>Производитель:</strong> Daimler Truck AG.<br />
+                            <strong>Адрес:</strong> Россия, Московская область, г. Мытищи.                            
+                        @endif
                     </textarea>
                     <div class="d-flex gap-2 mt-2">
                         <button 

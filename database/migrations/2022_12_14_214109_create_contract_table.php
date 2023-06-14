@@ -15,7 +15,7 @@ class CreateContractTable extends Migration
     {
         Schema::create('contract', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid')->unique();
+            $table->unsignedBigInteger('uuid')->unique();
             $table->string('name');
             $table->string('action');
             $table->string('bank');
@@ -24,7 +24,7 @@ class CreateContractTable extends Migration
             $table->string('ks');
             $table->string('email')->unique();
             $table->string('phone')->unique();
-            //$table->foreign('uuid')->references('verified')->on('users')->onDelete('cascade');
+            $table->foreign('uuid')->references('verified')->on('users')->onDelete('cascade');
             $table->primary(['uuid']);
         });
     }
