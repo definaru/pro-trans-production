@@ -1,12 +1,9 @@
 @php
-    $parts = $replacement::parts(); // A5410501222
-    $key = array_search($text, array_column($parts, 'part'));
-    $isEmpty = $replacement::getReplacementPart($parts[$key]['analog']);
+    $scoup = $replacement::getResultReplacement($text);
+    $isEmpty = count($scoup) !== 0 ? $replacement::getReplacementPart($scoup[0]->analog) : [];
 @endphp
 
-
-
-@if (in_array($text, array_column($parts, 'part')))
+@if ( count($scoup) !== 0) 
     <x-alert type="warning" header=" " message="По запросу <strong>{{$text}}</strong> нашлась одна замена:" />
     <div class="row g-2">
         @foreach($isEmpty['rows'] as $item)
