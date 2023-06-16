@@ -60,7 +60,9 @@
                                 </a>
                             </td>
                             <td>
-                                {{$item['agent']['name']}}
+                                <a href="/dashboard/payment/reports/{{$item['id']}}" class="link-dark text-decoration-none">
+                                    {{$item['agent']['name']}}
+                                </a>
                             </td>
                             <td>
                                 <x-badge color="{{$item['state']['color']}}" text="{{$item['state']['name']}}" />

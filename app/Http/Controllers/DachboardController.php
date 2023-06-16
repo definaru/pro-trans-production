@@ -84,9 +84,17 @@ class DachboardController extends Controller
             'text' => 'required' // поиск по артиклу
         ]);
         $url = Steames::getListArticle($request->text);
-        $search = MoySklad::searchOfResult($url);
-        //return response()->json($search);
-        return view('dashboard.result.search', ['search' => $search, 'text' => $request->text]);
+        $search = MoySklad::searchOfResult($url);  
+        //dd($search);
+        $error = 'Слишком короткий запрос, укажите более точные данные';  
+        
+        if (strlen($request->text) < 2 || $search === null) {
+            return view('dashboard.result.search', ['text' => $request->text, 'error' => $error]);
+        } elseif(strlen($request->text) > 2 && strlen(count($search)) > 9000) {
+            return view('dashboard.result.search', ['search' => $search, 'text' => $request->text]);
+        } else {
+            return view('dashboard.result.search', ['text' => $request->text, 'error' => $error]);
+        }
     }
 
 

@@ -24,6 +24,9 @@
                 @enderror
             </div>
         </div>
+        @if (session('error'))
+            <x-alert type="warning" header=" " message="{{session('error')}}" />
+        @endif
         @if(session('search'))
             @if($size === 0)
                 @include('layout.main.ui.empty.no-result', ['text' => session('text')])

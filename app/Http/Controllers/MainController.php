@@ -139,10 +139,14 @@ class MainController extends Controller
                 'type' => 'nullable',
                 'text' => 'required',
             ]);
+            $error = 'Слишком короткий запрос, укажите более точные данные';
             $url = Steames::getListResult($request->text);
             $search = MoySklad::searchOfResult($url);
-            $text = $request->input('text');
-            return redirect()->route('search')->with(['search' => $search, 'text' => $text]);
+            $text = $request->input('text');            
+            if(strlen($request->text) > 2 && strlen(count($search)) > 9000) {
+                return redirect()->route('search')->with(['search' => $search, 'text' => $text]);                
+            }
+            return redirect()->route('search')->with(['error' => $error]);
         }
     }
 
