@@ -80,21 +80,13 @@ class DachboardController extends Controller
 
     public function resultSearch(Request $request)
     {
-        $request->validate([
-            'text' => 'required' // поиск по артиклу
-        ]);
-        $url = Steames::getListArticle($request->text);
-        $search = MoySklad::searchOfResult($url);  
-        //dd($search);
-        $error = 'Слишком короткий запрос, укажите более точные данные';  
-        
-        if (strlen($request->text) < 2 || $search === null) {
-            return view('dashboard.result.search', ['text' => $request->text, 'error' => $error]);
-        } elseif(strlen($request->text) > 2 && strlen(count($search)) > 9000) {
+        $request->validate(['text' => 'required']); // поиск по артиклу
+        $search = MoySklad::searchAssortmentByArticle($request->text);
+        $error = 'Слишком короткий запрос, укажите более точные данные';
+        if(strlen($request->text) > 2) {
             return view('dashboard.result.search', ['search' => $search, 'text' => $request->text]);
-        } else {
-            return view('dashboard.result.search', ['text' => $request->text, 'error' => $error]);
         }
+        return view('dashboard.result.search', ['text' => $request->text, 'error' => $error]);
     }
 
 
@@ -339,16 +331,6 @@ class DachboardController extends Controller
             return redirect()->route('signin')->with(['signup' => $message, 'id' => $account['id']]);
         }
         return redirect()->route('signin')->with(['error' => $error]);
-
-        //try {} catch (Exception $e) {}
-            //dd($e->getMessage());
-            // echo 'Caught exception: ',  $e->getMessage(), "\n";
-        
-        // if(isset($account['id'])) {
-        //     Telegram::getMessageTelegram($account['id'], $account['name'], $request->email, 'counterparty');
-        //     return redirect()->route('signin')->with(['signup' => $message, 'id' => $account['id']]);
-        // }
-        // 
     }
     
 

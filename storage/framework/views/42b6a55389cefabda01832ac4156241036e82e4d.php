@@ -45,7 +45,7 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/92391099" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
 </head>
-<body itemscope itemtype="http://schema.org/Organization">
+<body itemscope itemtype="http://schema.org/Organization" id="top" class="relative">
     <div class="progress">
         <div id="progressbar"></div>
     </div>
@@ -298,7 +298,11 @@
     </div>
 
     <?php echo $__env->make('layout.main.ui.modal.subscription', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
+    <a href="#top" class="px-3 py-3 rounded bg-white text-dark" style="position: fixed;right: 15px;bottom: 15px">
+        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1.5em" xmlns="http://www.w3.org/2000/svg">
+            <path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path>
+        </svg>
+    </a>
     
     <script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/bootstrap.bundle.min.js')); ?>"></script>

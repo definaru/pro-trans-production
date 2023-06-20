@@ -15,9 +15,13 @@
         @endforeach
     </div>
 @else
-    <p class="w-100 bg-body-secondary rounded px-4 py-3">
-        По запросу <strong>"{{$text}}"</strong> ничего не найдено
-    </p>
+    @if (is_numeric(mb_substr($text, 1)))
+        <p class="w-100 bg-body-secondary rounded px-4 py-3">
+            По запросу <strong>"{{$text}}"</strong> ничего не найдено
+        </p>        
+    @else
+        <x-alert type="warning" header="Ошибка!" message="Артикул <strong>{{$text}}</strong> не найден" />
+    @endif
 @endif
 <ul class="text bg-white rounded ps-5 pe-4 py-3 shadow-sm mt-4">
     <li>Попробуйте поискать запчасть без буквы в начале артикула</li>

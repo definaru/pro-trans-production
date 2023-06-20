@@ -143,7 +143,7 @@ class MainController extends Controller
             $url = Steames::getListResult($request->text);
             $search = MoySklad::searchOfResult($url);
             $text = $request->input('text');            
-            if(strlen($request->text) > 2 && strlen(count($search)) > 9000) {
+            if(strlen($request->text) > 3) {
                 return redirect()->route('search')->with(['search' => $search, 'text' => $text]);                
             }
             return redirect()->route('search')->with(['error' => $error]);
