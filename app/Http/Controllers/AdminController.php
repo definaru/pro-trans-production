@@ -10,6 +10,8 @@ use App\Models\Customer;
 use App\Models\DaData;
 use App\Models\MoySklad;
 use App\Models\Api1CFresh;
+use App\Models\Catalog;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 
 class AdminController extends Controller
@@ -19,6 +21,68 @@ class AdminController extends Controller
     {
         $list = MoySklad::viewPrintDocument();
         return view('dashboard.admin.doc', ['list' => $list]);
+    }
+
+
+    public function getPromo()
+    {
+        $model = Catalog::all();
+        return response()->json($model);
+    }
+
+
+    public function deletePromo($id)
+    {
+        Catalog::where(['uuid' => $id])->first()->delete();
+        $model = ['message' => 'Запись удалена.'];
+        return response()->json($model);
+    }
+
+
+    public function createPromo(Request $request)
+    {
+        if($request->isMethod('post')) {
+            try {
+                $promo = new Catalog;
+                $promo->banner = '-';
+                $promo->description = '-';
+                $promo->pdf = '-';
+                $promo->uuid = $request->uuid;
+                $promo->header = $request->header;
+                $promo->brand = $request->brand;
+                $promo->save();
+                return response()->json($request);
+            } catch (\Exception $exception) {
+                $error = [
+                    'error' => 'Такой каталог бренда уже есть',
+                    'message' => $exception,
+                    'alert' => $exception->getMessage()
+                ];
+                return response()->json($error);
+            }
+        }
+    }
+
+
+    public function updatePromo($id, Request $request)
+    {
+        if($request->isMethod('post')) {
+            $model = Catalog::where('uuid', $id)->update([
+                'pdf'         => $request->pdf,
+                //'uuid'        => $request->uuid,
+                'banner'      => $request->banner,
+                'description' => $request->description,
+                'header'      => $request->header,
+                'brand'       => $request->brand
+            ]);
+            return response()->json($model);
+        }
+    }
+
+
+    public function Promo()
+    {
+        return view('dashboard.admin.promo');
     }
 
 

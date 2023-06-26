@@ -20,6 +20,7 @@
         "maatwebsite/excel": "^3.1",
         "milon/barcode": "^9.0",
         "nyholm/psr7": "^1.5",
+        "shuchkin/simplexlsx": "^1.0",
         "symfony/psr-http-message-bridge": "^2.1"
     },
     "require-dev": {

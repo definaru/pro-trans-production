@@ -4,6 +4,7 @@ new Vue({
         card: [],
         design: 'grid',
         сheckout: [],
+        preorder: [],
         loading: true,
         cookie: true,
         amount: 0,
@@ -35,6 +36,7 @@ new Vue({
         this.cookie = JSON.parse(localStorage.getItem("cookie")) || [];
         this.card = JSON.parse(localStorage.getItem('cart')) || [];
         this.сheckout = JSON.parse(localStorage.getItem('сheckout')) || [];
+        this.preorder = JSON.parse(localStorage.getItem('preorder')) || [];
         this.design = localStorage.getItem("design") || '';
 
         if (localStorage.getItem('design')) {
@@ -122,6 +124,32 @@ new Vue({
             item.count--;
             item.summa = Number.parseInt((item.price * 100) / 100).toFixed(2)*Number(item.count);
             this.saveCart();
+        },
+        addToOrder(e) {
+            var added = JSON.parse(localStorage.getItem('preorder'));
+            var arr = added ? added : [added];
+            const el = document.querySelector('#preorder'+e);
+            const {...order} = el.dataset.order.split(',');
+            const add = {
+                id: order[0],
+                article: order[1],
+                name: order[2],
+                count: order[3],
+                price: order[4]
+            }
+            console.log('to card: ', add);
+            var total = arr.filter(el => el != null).concat(add);
+            toastr.success(`Товар "${order[2]}" отправлен в предзаказ`, "Успешно", {
+                positionClass:"toast-bottom-left",
+                containerId:"toast-bottom-left"
+            });
+            localStorage.setItem('preorder', JSON.stringify(total));
+            this.preorder.push(add);
+            this.savePreOrder();
+        },
+        savePreOrder() {
+            const parsed = JSON.stringify(this.preorder);
+            localStorage.setItem('preorder', parsed); 
         },
         addToCard(e) {
             var added = JSON.parse(localStorage.getItem('cart'));

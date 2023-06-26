@@ -86,6 +86,20 @@
 
     <section id="bestsellers" class="bg-secondary-subtle d-lg-block d-none">
         <div class="container" itemscope itemtype="https://schema.org/ItemList">
+
+            <div class="row mb-5">
+                <div class="col-12 col-lg-6">
+                    <a href="/dashboard/promo/Gearax">
+                        <img src="/img/goods/promo/gearax.jpg" alt="Gearax" class="w-100 rounded shadow-sm" />
+                    </a>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <a href="/dashboard/promo/GMS">
+                        <img src="/img/goods/promo/gms.jpg" alt="GMS" class="w-100 rounded shadow-sm" />
+                    </a>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-12 col-lg-8 offset-lg-2 text-center">
                     <h2 class="fw-bold display-5">Хиты продаж <img src="/img/index/fire.png" style="width: 35px" alt="Хиты продаж" /></h2>

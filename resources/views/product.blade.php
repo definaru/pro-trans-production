@@ -40,6 +40,16 @@
                         @endrole
                     </div>
                 </div>
+                <div class="col-12">
+                    @if ($product['salePrices'] == '0')
+                        <x-alert 
+                            type="warning" 
+                            header="Внимание: " 
+                            message="Доставка предзаказа осуществляется <strong>в течении 5 рабочих дней!</strong>" 
+                            close="true"
+                        />
+                    @endif
+                </div>
                 <div class="col-12 col-lg-6">
                     <div class="pe-0 pe-lg-5">
                         <img 
@@ -68,9 +78,13 @@
                         <meta itemprop="price" content="{{$currency::rubl($product['salePrices'], '')}}" /> 
                         <meta itemprop="priceCurrency" content="RUB" /> 
                         <div class="d-flex align-items-center justify-content-start gap-3">
-                            <p class="fs-4 text m-0">{!!$currency::summa($product['salePrices'])!!}</p>
-                            <div class="vr" v-if="count !== 1"></div>
-                            <div v-html="resultSumma('{{$product['salePrices']}}', count)" v-if="count !== 1" class="text text-success fw-bold"></div>                        
+                            @if ($product['salePrices'] == '0')
+                                <p class="fs-5 text m-0 badge rounded-pill bg-danger">Предзаказ</p>
+                            @else
+                                <p class="fs-4 text m-0">{!!$currency::summa($product['salePrices'])!!}</p>
+                                <div class="vr" v-if="count !== 1"></div>
+                                <div v-html="resultSumma('{{$product['salePrices']}}', count)" v-if="count !== 1" class="text text-success fw-bold"></div>                        
+                            @endif
                         </div>                        
                     </div>
                     <div class="w-25">
@@ -117,16 +131,38 @@
                                     <x-icon-remove color="#000" />
                                 </button>
                             </div>
-                            <div 
-                                id="card<?=$id?>"
-                                :data-card="['<?=$id?>,<?=$product['article']?>,<?=$str?>,'+count+',<?=$product['salePrices']?>,'+<?=$product['salePrices']?>*count+',<?=$image;?>']"
-                                v-on:click="addToCard('<?=$id?>')"
-                                class="btn btn-lg btn-primary px-5 py-3 d-flex justify-content-center align-items-center gap-2"
-                            >
-                                <x-icon-add-card size="25px" color="#fff" />
-                                В корзину
-                            </div>    
-                                             
+                            @if($product['quantity'] == 0 || $product['salePrices'] == '0')
+                                @guest
+                                    <div>
+                                        <a href="/signin" class="btn btn-dark px-5 py-3 d-flex align-items-center gap-2 justify-content-center">
+                                            <x-icon-add-card />
+                                            Предзаказ
+                                        </a>
+                                    </div>
+                                @endguest
+                                @auth
+                                    <div  
+                                        id="preorders1"
+                                        data-order="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,{{$product['salePrices']}}"
+                                        v-on:click="addToOrder('s1')"
+                                    >
+                                        <button class="btn btn-dark px-5 py-3 d-flex align-items-center gap-2 justify-content-center">
+                                            <x-icon-add-card />
+                                            Предзаказ
+                                        </button>
+                                    </div>
+                                @endauth
+                            @else
+                                <div 
+                                    id="card<?=$id?>"
+                                    :data-card="['<?=$id?>,<?=$product['article']?>,<?=$str?>,'+count+',<?=$product['salePrices']?>,'+<?=$product['salePrices']?>*count+',<?=$image;?>']"
+                                    v-on:click="addToCard('<?=$id?>')"
+                                    class="btn btn-lg btn-primary px-5 py-3 d-flex align-items-center gap-2 justify-content-center"
+                                >
+                                    <x-icon-add-card size="25px" />
+                                    В корзину
+                                </div>    
+                            @endif               
                         @endif
                     </div>
                     {{-- onclick="getReviewYandex()" --}}

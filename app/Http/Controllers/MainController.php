@@ -6,6 +6,7 @@ use App\Models\Goods;
 use App\Models\Steames;
 use App\Models\Customer;
 use App\Models\MoySklad;
+use App\Models\Catalog;
 use Illuminate\Http\Request;
 use App\Providers\ContactService;
 use Symfony\Component\HttpFoundation\ServerBag;
@@ -34,6 +35,14 @@ class MainController extends Controller
         Goods::upsert($data, ['article'], ['quantity']); // insert // updateOrCreate // create
         return view('test', ['modal' => $data]);
         // return redirect()->route('search')->with(['search' => $search, 'text' => $text]);
+    }
+
+
+    public function PromoView($uuid)
+    {
+        $model = Catalog::where('brand', $uuid)->first();
+        //Catalog::where('brand', $uuid)->toArray()->get();
+        return view('dashboard.promo', compact('uuid', 'model'));
     }
 
 

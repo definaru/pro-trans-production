@@ -66,6 +66,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('admin/user/{uuid}', [AdminController::class, 'User']);
     Route::get('admin/nomenclature', [AdminController::class, 'Nomenclature']);
     Route::get('/admin/nomenclature/gtd/{id}', [AdminController::class, 'Gtd']);
+    Route::get('admin/promo', [AdminController::class, 'Promo']);
+    Route::get('/promo/{uuid?}', [MainController::class, 'PromoView']);
 });
 
 Route::prefix('api')->group(function () {
@@ -81,6 +83,10 @@ Route::prefix('api')->group(function () {
     Route::post('description', [DachboardController::class, 'Description']);
     Route::post('active/{id}', [AdminController::class, 'activeContract']);
     Route::post('block/{id}', [AdminController::class, 'blockContract']);
+    Route::post('promo/{id}', [AdminController::class, 'updatePromo']);
+    Route::post('create/promo', [AdminController::class, 'createPromo']);
+    Route::get('all/promo', [AdminController::class, 'getPromo']);
+    Route::get('delete/promo/{id}', [AdminController::class, 'deletePromo']);
 });
 
 Route::controller(PasswordController::class)->group(function () {

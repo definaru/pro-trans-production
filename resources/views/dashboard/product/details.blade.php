@@ -146,7 +146,7 @@
                             @if($product['quantity'] == 0 || $product['quantity'] < 0)
                                 <div  
                                     id="preorders1"
-                                    data-order="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,{{$product['salePrices']}}"
+                                    data-order="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,{{$product['salePrices']}},{{$images::text($id)['image']}}"
                                     v-on:click="addToOrder('s1')"
                                 >
                                     <button class="btn btn-secondary px-4 d-flex align-items-center gap-2 justify-content-center">

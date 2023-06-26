@@ -498,6 +498,13 @@ class GetMenu
                                 'href' => 'users'
                             ]
                         ]
+                    ],
+                    [
+                        'icon' => 'folder_managed',
+                        'name' => 'Материалы',
+                        'slug' => 'admin/promo',
+                        'count' => '',
+                        'list' => ''
                     ]
                 ]
             ]
