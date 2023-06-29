@@ -36,8 +36,8 @@ input:focus {
     cursor: pointer;
 }
 ::selection {
-    color: red;
-    background-color: yellow;
+    color: #fff;
+    background-color: #310062;
 }
 .accordion-button:not(.collapsed)::after {
     background-image: url(/img/arrow-top.svg) !important;
@@ -386,6 +386,13 @@ form.signup i {
     }
 }
 
+
+#partner.card-body h4 {
+    padding-top: 30px;
+    font-weight: bold;
+}
+
+
 /* Responsive layout */
 @media screen and (max-width:767px) {
     .panel {
@@ -412,6 +419,7 @@ form.signup i {
     .search+span:after {display: none;}
     .company-name {width: 100%}
     .mobile-search {width: 100% !important}
+    .pad {padding: 0;}
 }
 @media screen and (min-width:768px) and (max-width:991px) {}
 @media screen and (min-width:992px) and (max-width:1199px) {}

@@ -21,13 +21,13 @@ class Steames
     public static function nullOrResult($modal, $fiter)
     {
         if(count($modal["rows"]) === 0) {
-            return 'https://online.moysklad.ru/api/remap/1.2/entity/assortment?filter=article~'.$fiter;
+            return 'https://online.moysklad.ru/api/remap/1.2/entity/assortment?expand=productFolder&limit=100&filter=article~'.$fiter;
         } else {
             $array = [];
             foreach($modal["rows"] as $item) {
                 $array[] = 'id='.$item['id'];
             }
-            return 'https://online.moysklad.ru/api/remap/1.2/entity/assortment?filter='.implode(";", $array);            
+            return 'https://online.moysklad.ru/api/remap/1.2/entity/assortment?expand=productFolder&limit=100&filter='.implode(";", $array);            
         }
     }
 

@@ -38,6 +38,13 @@ class MainController extends Controller
     }
 
 
+    public function PromoCatalog($uuid)
+    {
+        $model = Catalog::where('uuid', $uuid)->first();
+        return view('dashboard.promo.catalog', ['uuid' => $uuid, 'model' => $model]);
+    }
+
+
     public function PromoView($uuid)
     {
         $model = Catalog::where('brand', $uuid)->first();

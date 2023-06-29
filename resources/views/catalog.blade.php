@@ -42,10 +42,9 @@
                                     itemprop="aggregateRating" 
                                     itemscope 
                                     itemtype="https://schema.org/AggregateRating" 
-                                    class="d-flex align-items-center gap-1 z-3 position-absolute px-2 rounded-2 bg-light m-2"
+                                    class="d-flex align-items-center gap-1 z-3 position-absolute rounded-2 m-2"
                                 >
-                                    {{-- <x-icon-favorite color="#b02a37" />
-                                    <small>{{rand(4, 5)}}.{{rand(0, 9)}} рейтинг</small>  --}}
+                                    @include('layout.main.ui.badge.stock', ['stock' => $item['productFolder']['id']])
                                     <meta itemprop="worstRating" content="1">
                                     <meta itemprop="ratingValue" content="4.9">
                                     <meta itemprop="bestRating" content="5">

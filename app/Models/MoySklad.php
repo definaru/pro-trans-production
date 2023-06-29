@@ -234,7 +234,7 @@ class MoySklad
     public static function searchByProduct($type, $text)
     {
         $params = is_numeric($text) ? '&filter=article~'.$text : '&search='.urlencode($text);
-        $url = self::msUrl().'product?expand=images,positions'.$params;
+        $url = self::msUrl().'product?expand=positions'.$params;
         $response = self::get($url);
         return $response->json();
     }
@@ -250,7 +250,7 @@ class MoySklad
     
     public static function searchAssortmentByArticle($text)
     {
-        $url = self::msUrl().'assortment?filter=article~'.$text;
+        $url = self::msUrl().'assortment?expand=productFolder&limit=100&filter=article~'.$text;
         $response = self::get($url);
         return $response->json();
     }

@@ -26,7 +26,7 @@
             >
                 <div class="container-fluid d-print-table">
                     <div class="row d-print-table">
-                        <div class="col-md-12 mt-5 d-print-table">
+                        <div class="col-md-12 mt-5 d-print-table pad">
                             <main class="px-3 pb-5 d-print-block">
                                 <div class="d-print-none">
                                     @yield('breadcrumbs')

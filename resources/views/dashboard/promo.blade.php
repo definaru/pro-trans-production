@@ -16,7 +16,7 @@
             <div class="col-12">
                 <h2 class="fw-bold">{{$model['header']}}</h2>
                 <hr />
-                <a class="btn btn-dark px-4 icon-link me-2" href="#">
+                <a class="btn btn-dark px-4 icon-link me-2" href="/dashboard/promo/catalog/{{$model['uuid']}}">
                     <x-icon-check />
                     Купить
                 </a>
@@ -34,12 +34,12 @@
             </div>
         </div>
         <div class="card card-data border-0 shadow">
-            <div class="card-body">
+            <div id="partner" class="card-body p-3 p-lg-5">
 
                 {!! $model['description'] !!}
                 
                 <hr />
-                <a class="btn btn-dark px-4 icon-link me-2" href="#">
+                <a class="btn btn-dark px-4 icon-link me-2" href="/dashboard/promo/catalog/{{$model['uuid']}}">
                     <x-icon-check />
                     Купить
                 </a>

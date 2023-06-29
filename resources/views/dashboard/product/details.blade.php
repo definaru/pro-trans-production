@@ -161,7 +161,7 @@
                                     data-card="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,{{$product['salePrices']}},{{$product['salePrices']}},{{$images::text($id)['image']}}" 
                                     v-on:click="addToCard('s1')"
                                 >
-                                    <button class="btn btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
+                                    <button class="btn btn-lg btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
                                         <x-icon-add-card color="#fff" />
                                         В корзину
                                     </button>
@@ -200,8 +200,8 @@
                             type="submit" 
                             v-on:click="editText('{{$id}}')" 
                             class="btn px-4"
-                            :class="[loading === true ? 'btn-dark' : 'btn-secondary']"
-                            v-html="loading === true ? 'Подождите, грузится...' : 'Сохранить'"
+                            :class="[loading !== true ? 'btn-dark' : 'btn-secondary']"
+                            v-html="loading !== true ? 'Подождите, грузится...' : 'Сохранить'"
                         ></button>
                         <a href="/product/mercedes-benz/{{$id}}" target="_blank" class="btn btn-light px-4">
                             Посмотреть

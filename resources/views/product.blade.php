@@ -34,20 +34,29 @@
                                     {{$str}}
                                 </li>
                             </ol>
-                        </nav>                        
+                        </nav>    
+                        {{-- $product['catalog']['id'] --}}
                         @role('admin')
                             <a href="/dashboard/product/details/{{$id}}">ред.</a>
                         @endrole
                     </div>
                 </div>
                 <div class="col-12">
-                    @if ($product['salePrices'] == '0')
+                    @if ($product['catalog']['id'] === '416a3aff-0f66-11ee-0a80-0d9c00124798')
                         <x-alert 
                             type="warning" 
                             header="Внимание: " 
                             message="Доставка предзаказа осуществляется <strong>в течении 5 рабочих дней!</strong>" 
                             close="true"
                         />
+                    @elseif ($product['catalog']['id'] === 'a2a12edf-1642-11ee-0a80-13ab00041ab9')
+                        <x-alert 
+                            type="warning" 
+                            header="Внимание: " 
+                            message="Доставка заказа осуществляется <strong>в течении 28 рабочих дней!</strong>" 
+                            close="true"
+                        />
+                    @else
                     @endif
                 </div>
                 <div class="col-12 col-lg-6">
@@ -78,13 +87,9 @@
                         <meta itemprop="price" content="{{$currency::rubl($product['salePrices'], '')}}" /> 
                         <meta itemprop="priceCurrency" content="RUB" /> 
                         <div class="d-flex align-items-center justify-content-start gap-3">
-                            @if ($product['salePrices'] == '0')
-                                <p class="fs-5 text m-0 badge rounded-pill bg-danger">Предзаказ</p>
-                            @else
-                                <p class="fs-4 text m-0">{!!$currency::summa($product['salePrices'])!!}</p>
-                                <div class="vr" v-if="count !== 1"></div>
-                                <div v-html="resultSumma('{{$product['salePrices']}}', count)" v-if="count !== 1" class="text text-success fw-bold"></div>                        
-                            @endif
+                            <p class="fs-4 text m-0">{!!$currency::summa($product['salePrices'])!!}</p>
+                            <div class="vr" v-if="count !== 1"></div>
+                            <div v-html="resultSumma('{{$product['salePrices']}}', count)" v-if="count !== 1" class="text text-success fw-bold"></div>                        
                         </div>                        
                     </div>
                     <div class="w-25">
@@ -95,7 +100,7 @@
                         @endif
                     </div>
                     <div class="w-100">
-                        @if($product['quantity'] == 0 || $product['quantity'] < 0)
+                        @if($product['quantity'] == 0)
                         <p class="label-danger">
                             Нет в наличии
                         </p>&#160;
@@ -113,7 +118,7 @@
                     </div>
                     <hr style="color: #ddd" />
                     <div class="d-grid d-lg-flex align-items-center gap-4 w-100">
-                        @if($product['quantity'] == 0 || $product['quantity'] < 0)
+                        @if($product['quantity'] == 0)
                             <button onclick="isUserSubscribe()" class="btn btn-lg btn-primary px-5 py-3 d-flex justify-content-center align-items-center gap-2">
                                 <x-icon-add-card size="25px" color="#fff" />
                                 В корзину

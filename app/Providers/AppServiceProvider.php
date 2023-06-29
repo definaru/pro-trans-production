@@ -12,6 +12,7 @@ use App\Models\Card;
 use App\Models\Names;
 use App\Models\Image;
 use App\Models\Email;
+use App\Models\Excel;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
@@ -56,6 +57,7 @@ class AppServiceProvider extends ServiceProvider
             'listorder'     => GetOrder::GoodsAreAvailable(),
             'bestsellers'   => GetOrder::Bestsellers(),
             'alllist'       => GetOrder::list(),
+            'xml'           => new Excel(),
             'replacement'   => new Replacement(),
             'names'         => new Names(),
             'contact'       => new ContactService(),
