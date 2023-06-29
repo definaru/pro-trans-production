@@ -62,12 +62,12 @@
 
             <div class="row mb-5">
                 <div class="col-12 col-lg-6">
-                    <a href="/dashboard/promo/Gearax">
+                    <a href="/stock/254c7d33-15ba-11ee-0a80-09a00027e0da">
                         <img src="/img/goods/promo/gearax.jpg" alt="Gearax" class="w-100 rounded shadow-sm" />
                     </a>
                 </div>
                 <div class="col-12 col-lg-6">
-                    <a href="/dashboard/promo/GMS">
+                    <a href="/stock/a2a12edf-1642-11ee-0a80-13ab00041ab9">
                         <img src="/img/goods/promo/gms.jpg" alt="GMS" class="w-100 rounded shadow-sm" />
                     </a>
                 </div>

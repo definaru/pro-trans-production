@@ -48,7 +48,7 @@
                         />
                         <input type="text" placeholder="Заголовок..." v-model="header" class="form-control" />
                         <div class="d-grid w-50">
-                            <button class="btn btn-dark px-4 icon-link" v-if="loading === true">
+                            <button class="btn btn-dark px-4 icon-link" v-if="loading !== true">
                                 <x-icon-add /> Cоздать
                             </button>
                             <button class="btn btn-dark px-4" v-else>Запись...</button>                    
@@ -59,7 +59,7 @@
                 {{-- <pre v-html="JSON.parse(JSON.stringify(isError, null, 4))"></pre> --}}
             </div>
             {{-- <pre v-html="JSON.stringify(result, null, 4)"></pre> --}}
-            <div v-if="!loading">Загрузка материалов...</div>
+            <div v-if="loading">Загрузка материалов...</div>
             <template v-if="result.length !== 0">
                 <div class="card border-0 shadow-sm mb-3" v-for="(item, id) in result" :key="item.id">
                     <div class="card-body">

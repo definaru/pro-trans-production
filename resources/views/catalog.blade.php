@@ -1,7 +1,9 @@
 @php
     $result = array_merge($listorder, $bestsellers, $alllist);
     $size = session('search') ? session('search')['meta']['size'] : '';
+    $stock = $product['rows'][0]['productFolder'];
 @endphp
+
 @extends('layout/index', [
     'title' => 'Каталог запчастей Mercedes-Benz | Проспект Партс',
     'keywords' => 'ремонт в москве, ремонт машин в мытищи, ремонт двигателя, сервис, service, чинить, автосервис, мерседес бенц, актрос',
@@ -119,8 +121,14 @@
             @endif
         @else
             <div class="row" itemscope itemtype="https://schema.org/Product">
+                <div class="col-12">
+                    <h2 class="text fw-bold text-dark">{{$stock['name']}}</h2>
+                    <hr />
+                </div>
                 <div class="col-12 d-flex align-items-center justify-content-between py-3">
-                    <p class="text text-muted m-0">Всего {{$product['meta']['size']}} товаров</p>
+                    <p class="text text-muted m-0">
+                        Всего {{$product['meta']['size']}} {{$decl::cart($product['meta']['size'])}}
+                    </p>
                     <div>
                         <select id="selectOffset" class="form-select" onchange="selectOffset()">
                             @foreach ([12, 24, 48, 64, 100] as $key)
@@ -144,52 +152,52 @@
                 @include('layout.main.ui.card.card-empty')
             </div>
             <div class="row g-2" itemscope itemtype="https://schema.org/Product">
-                    @foreach ($product["rows"] as $item)
-                        <template v-if="design === 'line'">
-                            <div class="col-12">
-                                <div class="d-flex align-items-center justify-content-between bg-white py-2 px-3 shadow-sm mb-1 rounded">
-                                    <div class="d-flex gap-3 w-50 align-items-center">
-                                        <div style="width: 50px;height: 50px;overflow: hidden;background: #ddd;border-radius: 5px">
-                                            @include('layout.main.ui.card.card-image')
-                                        </div>
-                                        <div class="text-start">
-                                            @include('layout.main.ui.card.card-title') 
-                                        </div>                                    
+                @foreach ($product["rows"] as $item)
+                    <template v-if="design === 'line'">
+                        <div class="col-12">
+                            <div class="d-flex align-items-center justify-content-between bg-white py-2 px-3 shadow-sm mb-1 rounded">
+                                <div class="d-flex gap-3 w-50 align-items-center">
+                                    <div style="width: 50px;height: 50px;overflow: hidden;background: #ddd;border-radius: 5px">
+                                        @include('layout.main.ui.card.card-image')
                                     </div>
-                                    <div class="w-25">
-                                        @include('layout.main.ui.quantity.quantity')
-                                    </div>
-                                    <div class="px-4">
-                                        @include('layout.main.ui.logo.car-logo')
-                                    </div>
-                                    <div>
-                                        @include('layout.main.ui.button.card-button')
-                                    </div>
+                                    <div class="text-start">
+                                        @include('layout.main.ui.card.card-title') 
+                                    </div>                                    
                                 </div>
-                            </div>                        
-                        </template>
-                        <template v-else>
-                            <div class="col-lg-3 col-12">
-                                <div class="card card-data border-0 shadow-sm order">
-                                    @include('layout.main.ui.card.card-image')
-                                    <div class="card-body">
-                                        <div style="height: 39px">
-                                            @include('layout.main.ui.card.card-title')                                    
-                                        </div>
-                                        <hr style="color: #ddd">
-                                        @include('layout.main.ui.quantity.quantity')
-                                        <hr style="color: #ddd">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            @include('layout.main.ui.logo.car-logo')
-                                            <div>
-                                                @include('layout.main.ui.button.card-button')
-                                            </div>
+                                <div class="w-25">
+                                    @include('layout.main.ui.quantity.quantity')
+                                </div>
+                                <div class="px-4">
+                                    @include('layout.main.ui.logo.car-logo')
+                                </div>
+                                <div>
+                                    @include('layout.main.ui.button.card-button')
+                                </div>
+                            </div>
+                        </div>                        
+                    </template>
+                    <template v-else>
+                        <div class="col-lg-3 col-12">
+                            <div class="card card-data border-0 shadow-sm order">
+                                @include('layout.main.ui.card.card-image')
+                                <div class="card-body">
+                                    <div style="height: 39px">
+                                        @include('layout.main.ui.card.card-title')                                    
+                                    </div>
+                                    <hr style="color: #ddd">
+                                    @include('layout.main.ui.quantity.quantity')
+                                    <hr style="color: #ddd">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        @include('layout.main.ui.logo.car-logo')
+                                        <div>
+                                            @include('layout.main.ui.button.card-button')
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </template>
-                    @endforeach                    
+                        </div>
+                    </template>
+                @endforeach                    
 
 
                 @if (isset($product['meta']['nextHref']) || $offset > 0)

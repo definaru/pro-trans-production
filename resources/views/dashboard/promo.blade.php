@@ -37,7 +37,6 @@
             <div id="partner" class="card-body p-3 p-lg-5">
 
                 {!! $model['description'] !!}
-                
                 <hr />
                 <a class="btn btn-dark px-4 icon-link me-2" href="/dashboard/promo/catalog/{{$model['uuid']}}">
                     <x-icon-check />

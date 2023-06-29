@@ -8,6 +8,9 @@
     $description = isset($product['description']) ? 
         $product['article'] . ' | ' . $product['description'] : 
         $product['article']. ', MERCEDES-BENZ \ '.$price;
+    $stock = $product['catalog']['id'] === '8854033a-48ad-11ed-0a80-0c87007f4175' ? 
+        '/products/mercedes-benz' : 
+        '/stock/'.$product['catalog']['id'];
 @endphp
 @extends('layout/index', [
     'title' => $str,
@@ -26,7 +29,7 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/">Главная</a></li>
                                 <li class="breadcrumb-item">
-                                    <a href="/products/mercedes-benz">
+                                    <a href="{{$stock}}">
                                         {{$product['catalog']['name']}}
                                     </a>
                                 </li>
@@ -46,15 +49,13 @@
                         <x-alert 
                             type="warning" 
                             header="Внимание: " 
-                            message="Доставка предзаказа осуществляется <strong>в течении 5 рабочих дней!</strong>" 
-                            close="true"
+                            message="Доставка предзаказа осуществляется <strong>в течении 5 рабочих дней!</strong>"
                         />
                     @elseif ($product['catalog']['id'] === 'a2a12edf-1642-11ee-0a80-13ab00041ab9')
                         <x-alert 
                             type="warning" 
                             header="Внимание: " 
-                            message="Доставка заказа осуществляется <strong>в течении 28 рабочих дней!</strong>" 
-                            close="true"
+                            message="Доставка заказа осуществляется <strong>в течении 28 рабочих дней!</strong>"
                         />
                     @else
                     @endif

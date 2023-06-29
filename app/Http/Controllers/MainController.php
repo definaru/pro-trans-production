@@ -123,6 +123,14 @@ class MainController extends Controller
         return view('product', compact('id', 'product', 'data'));
     }
 
+
+    public function stockFolder($id, $limit = 64, $offset = 0)
+    {
+        $product = MoySklad::getProductFromStock($id, $limit, $offset);
+        return view('stock', compact('product', 'limit', 'offset', 'id'));
+    }
+
+
     public function Catalog($limit = 64, $offset = 0)
     {
         $product = MoySklad::getAllProduct($limit, $offset);

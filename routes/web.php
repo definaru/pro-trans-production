@@ -130,6 +130,7 @@ Route::controller(MainController::class)->group(function () {
     Route::get('/customers', 'Customers');
     Route::get('/doc', 'Documentation');
     Route::get('/products/mercedes-benz/{limit?}/{offset?}', 'Catalog')->name('search');
+    Route::get('/stock/{id}/{limit?}/{offset?}', 'stockFolder');
     Route::get('/product/mercedes-benz/{id}', 'DetailProduct');
     Route::get('/product', 'NoProduct');
 });

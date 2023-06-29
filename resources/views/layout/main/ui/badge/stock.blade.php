@@ -1,5 +1,6 @@
 {{-- <x-icon-favorite color="#b02a37" />
 <small>{{rand(4, 5)}}.{{rand(0, 9)}} рейтинг</small>  --}}
+<template v-if="design === 'grid'">
 @if ($stock === '416a3aff-0f66-11ee-0a80-0d9c00124798')
 <span 
     class="badge rounded-pill text-bg-danger px-3" 
@@ -18,3 +19,4 @@
 </span>
 @else
 @endif
+</template>
