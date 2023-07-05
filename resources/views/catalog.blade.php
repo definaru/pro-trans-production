@@ -84,7 +84,7 @@
                                 </div>
                                 <hr style="color: #ddd">
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-center gap-2">
+                                    {{-- <div class="d-flex align-items-center gap-2">
                                         <div>
                                             <img src="/img/mercedes-benz.png" alt="Mercedes-Benz" style="width: 37px;height: 37px">
                                         </div>
@@ -94,7 +94,8 @@
                                             </small>
                                             <strong class="text-secondary">Mercedes-Benz</strong>
                                         </div>
-                                    </div>
+                                    </div> --}}
+                                    @include('layout.main.ui.logo.car-logo', ['stock' => $item['productFolder']])
                                     <div>
                                         @if($item['quantity'] == 0)
                                         <div onclick="isNotSignUp()" class="btn btn-primary text d-flex align-items-center justify-content-center gap-2 py-2">
@@ -168,7 +169,7 @@
                                     @include('layout.main.ui.quantity.quantity')
                                 </div>
                                 <div class="px-4">
-                                    @include('layout.main.ui.logo.car-logo')
+                                    @include('layout.main.ui.logo.car-logo', ['stock' => $item['productFolder']])
                                 </div>
                                 <div>
                                     @include('layout.main.ui.button.card-button')
@@ -188,7 +189,7 @@
                                     @include('layout.main.ui.quantity.quantity')
                                     <hr style="color: #ddd">
                                     <div class="d-flex align-items-center justify-content-between">
-                                        @include('layout.main.ui.logo.car-logo')
+                                        @include('layout.main.ui.logo.car-logo', ['stock' => $item['productFolder']])
                                         <div>
                                             @include('layout.main.ui.button.card-button')
                                         </div>

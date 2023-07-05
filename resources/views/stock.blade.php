@@ -51,7 +51,7 @@
         <div class="row g-2" itemscope itemtype="https://schema.org/Product">
             @foreach ($product["rows"] as $item)
                 <template v-if="design === 'line'">
-                    <div class="col-12">
+                    <div class="col-12 line">
                         <div class="d-flex align-items-center justify-content-between bg-white py-2 px-3 shadow-sm mb-1 rounded">
                             <div class="d-flex gap-3 w-50 align-items-center">
                                 <div style="width: 50px;height: 50px;overflow: hidden;background: #ddd;border-radius: 5px">
@@ -65,7 +65,7 @@
                                 @include('layout.main.ui.quantity.quantity')
                             </div>
                             <div class="px-4">
-                                @include('layout.main.ui.logo.car-logo')
+                                @include('layout.main.ui.logo.car-logo', ['stock' => $item['productFolder']])
                             </div>
                             <div>
                                 @include('layout.main.ui.button.card-button')
@@ -85,7 +85,7 @@
                                 @include('layout.main.ui.quantity.quantity')
                                 <hr style="color: #ddd">
                                 <div class="d-flex align-items-center justify-content-between">
-                                    @include('layout.main.ui.logo.car-logo')
+                                    @include('layout.main.ui.logo.car-logo', ['stock' => $item['productFolder']])
                                     <div>
                                         @include('layout.main.ui.button.card-button')
                                     </div>

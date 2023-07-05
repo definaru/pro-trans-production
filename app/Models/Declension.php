@@ -101,4 +101,11 @@ class Declension
         return preg_replace('~^(\S++)\s++(\S)\S++\s++(\S)\S++$~u', '$1 $2. $3.', $name);
     }
 
+    public static function article($article)
+    {
+        $start = $article{0};
+        $result = is_string($start) === true ? substr($article, 1) : $article;
+        return $article === '' ? '' : $result;
+    }
+
 }

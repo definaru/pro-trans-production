@@ -18,7 +18,7 @@ class CreateCatalogTable extends Migration
             $table->string('brand')->unique();
             $table->string('header');
             $table->string('banner');
-            $table->string('uuid');
+            $table->string('stock', 200);
             $table->text('description');
             $table->string('pdf');
             $table->timestamps();

@@ -243,6 +243,9 @@ a.nav-link.active {
 }
 
 
+.line .badge {display: none;}
+
+
 .searchForm:focus {
     background-color: #dbd2e3;
     box-shadow: inset 0px -1px 5px #b19dc5;

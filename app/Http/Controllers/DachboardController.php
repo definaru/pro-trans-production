@@ -243,17 +243,24 @@ class DachboardController extends Controller
         }
         $image = Goods::where('link', $id)->get();
         $product = MoySklad::getOneProduct($id);
-        return view('dashboard.product.details', [
-            'id' => $id,
-            'product' => $product,
-            'image' => $image
-        ]);
+        Goods::updateOrCreate(
+            ['article' => $product['article']],
+            [
+                'name' => $product['name'],
+                'link' => $product['id'],
+                'article' => $product['article'],
+                'price' => $product['salePrices'],
+                'quantity' => $product['quantity']
+            ]
+        );
+        return view('dashboard.product.details', compact('id', 'product', 'image'));
     }
 
 
     public function CatalogDetail($name, $limit = 10, $offset = 0)
     {
         $product = MoySklad::getAllProduct($limit, $offset);
+        //return response()->json($product);
         return view('dashboard.catalog-detail', [
             'name' => $name,
             'product' => $product,

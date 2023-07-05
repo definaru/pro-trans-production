@@ -13,20 +13,49 @@
     <div class="col">
         <template v-if="edit">
             <div class="card border-0 shadow-sm mb-3">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h2></h2>
+                    <button class="btn" v-on:click="viewPromo(array.stock)">
+                        <x-icon-close />
+                    </button>                        
+                </div>                
                 <form class="card-body" @submit.prevent="onEditSubmit">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <h2></h2>
-                        <button class="btn" v-on:click="edit = !edit">
-                            <x-icon-close />
-                        </button>                        
-                    </div>
                     <div class="d-grid gap-2">
-                        <input type="file" name="banner" />
-                        <input type="text" name="header" :value="array.header" class="form-control" placeholder="Заголовок" />   
+                        <label class="btn">
+                            <figure class="position-relative" v-if="array.banner && promo.preview.src == ''">
+                                <div class="position-absolute badge text-bg-dark">заменить</div>
+                                <img :src="array.banner" :alt="array.brand" class="w-50" />
+                            </figure>  
+
+                            <span v-if="promo.preview.src == ''" class="btn btn-dark px-4 icon-link">
+                                <x-icon-download /> 
+                                Выберите картинку на баннер
+                            </span>
+                            <figure class="position-relative" v-else>
+                                <div class="position-absolute badge text-bg-dark">заменить</div>
+                                <img :src="promo.preview.src" :alt="promo.preview.name" class="w-50" />
+                                <figcaption class="border-top mx-auto p-2 w-50">
+                                    @{{ `${promo.preview.name} / ${promo.preview.size}` }}
+                                </figcaption>
+                            </figure>
+                            <input type="file" name="banner" class="d-none" @change="handleFileSelect($event)" accept="image/png, image/jpeg" />
+                        </label>
+                        <input type="text" name="header" :value="array.header" class="form-control fw-bold" placeholder="Заголовок" />   
                         <input type="text" name="brand" :value="array.brand" class="form-control" placeholder="Бренд" />   
-                        <input type="text" name="uuid" :value="array.uuid" class="form-control" placeholder="uuid" />   
-                        <textarea name="description" class="form-control" placeholder="Описание"></textarea> 
-                        <input type="file" name="pdf" />  
+                        <input type="text" name="uuid" :value="array.stock" class="form-control" placeholder="uuid" />   
+                        <textarea id="promoedit" name="description">
+                            @{{array.description}}
+                        </textarea> 
+                        <label class="d-flex align-items-center g-2">
+                            <x-icon-pdf size="80px" />
+                            <span class="fw-bold mb-4" v-if="promo.preview.pdf.name == ''">
+                                @{{array.pdf ? array.pdf.split('/').at(-1) : 'Прикрепите PDF файл c презентацией'}}
+                            </span>
+                            <span class="mb-4" v-else>
+                                <strong>@{{promo.preview.pdf.name}}</strong> / @{{promo.preview.pdf.size}}
+                            </span>
+                            <input type="file" name="pdf" class="d-none" @change="FilePDF($event)" accept="application/pdf" />  
+                        </label>
                     </div>
                     <hr />
                     <button class="btn btn-dark px-4 icon-link">
@@ -48,7 +77,7 @@
                         />
                         <input type="text" placeholder="Заголовок..." v-model="header" class="form-control" />
                         <div class="d-grid w-50">
-                            <button class="btn btn-dark px-4 icon-link" v-if="loading !== true">
+                            <button class="btn btn-dark px-4 icon-link" v-if="loading == true">
                                 <x-icon-add /> Cоздать
                             </button>
                             <button class="btn btn-dark px-4" v-else>Запись...</button>                    
@@ -59,7 +88,7 @@
                 {{-- <pre v-html="JSON.parse(JSON.stringify(isError, null, 4))"></pre> --}}
             </div>
             {{-- <pre v-html="JSON.stringify(result, null, 4)"></pre> --}}
-            <div v-if="loading">Загрузка материалов...</div>
+            <div v-if="loading === false">Загрузка материалов...</div>
             <template v-if="result.length !== 0">
                 <div class="card border-0 shadow-sm mb-3" v-for="(item, id) in result" :key="item.id">
                     <div class="card-body">
@@ -69,8 +98,8 @@
                             </a>
                             <div class="d-flex align-items-center gap-2">
                                 <div class="btn btn-sm fst-italic text-body-secondary">@{{new Date(item.created_at).toLocaleString()}}</div>
-                                <button class="btn bg-dark-subtle material-symbols-outlined" v-on:click="viewPromo(item.uuid)">edit_note</button>
-                                <button class="btn text-danger bg-danger-subtle" v-on:click="deletePromo(item.uuid)">
+                                <button class="btn bg-dark-subtle material-symbols-outlined" v-on:click="viewPromo(item.stock)">edit_note</button>
+                                <button class="btn text-danger bg-danger-subtle" v-on:click="deletePromo(item.stock)">
                                     <x-icon-delete size="25px" />
                                 </button> 
                             </div>

@@ -394,7 +394,7 @@ class MoySklad
     public static function getAllProduct($limit = 10, $offset = 0)
     {
         $stock = 'https://online.moysklad.ru/api/remap/1.2/entity/productfolder/8854033a-48ad-11ed-0a80-0c87007f4175';
-        $url = self::msUrl().'assortment?expand=productFolder&limit='.$limit.'&offset='.$offset.'&filter=quantityMode=positiveOnly&filter=productFolder='.$stock;
+        $url = self::msUrl().'assortment?expand=images,positions,productFolder&limit='.$limit.'&offset='.$offset.'&filter=quantityMode=positiveOnly&filter=productFolder='.$stock;
         $response = self::get($url);
         return $response->json();
     }

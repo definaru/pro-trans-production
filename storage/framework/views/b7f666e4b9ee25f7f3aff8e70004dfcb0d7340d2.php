@@ -83,6 +83,15 @@
                     console.error(error);
                 });             
         }
+        // if(promo) {
+        //     ClassicEditor
+        //         .create(promo, {
+        //             placeholder: 'Описание...'
+        //         })
+        //         .catch(error=>{
+        //             console.error(error);
+        //         });             
+        // }
 
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
         const tooltipList = [...tooltipTriggerList].map(

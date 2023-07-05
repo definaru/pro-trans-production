@@ -67,9 +67,8 @@ class AdminController extends Controller
     public function updatePromo($id, Request $request)
     {
         if($request->isMethod('post')) {
-            $model = Catalog::where('uuid', $id)->update([
+            $model = Catalog::where('stock', $id)->update([
                 'pdf'         => $request->pdf,
-                //'uuid'        => $request->uuid,
                 'banner'      => $request->banner,
                 'description' => $request->description,
                 'header'      => $request->header,

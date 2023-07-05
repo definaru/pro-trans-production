@@ -1,7 +1,7 @@
 @php
     $company = $user->customer->company;
 @endphp
-@if($company)
+@if(isset($company))
     @if(iconv_strlen($company) > 20)
     <div 
         class="company-name"

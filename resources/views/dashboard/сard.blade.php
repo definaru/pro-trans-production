@@ -36,7 +36,7 @@
 @endif
 @verbatim
 <template v-else>
-    <template v-if="loading">
+    <template v-if="!loading">
         <h6 class="text-muted">Всего {{card.length+' '+countGoods(card.length, 'товар', 'товара', 'товаров')}}</h6>
         <ul class="list-group list-group-flush mt-4 d-grid gap-2">
             <li v-for="(item, id) in card" class="list-group-item d-flex justify-content-between align-items-center rounded shadow-sm border-0">

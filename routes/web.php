@@ -9,6 +9,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\RSSFeedController;
 use App\Http\Middleware\Authenticate;
 
 
@@ -89,6 +90,8 @@ Route::prefix('api')->group(function () {
     Route::get('all/promo', [AdminController::class, 'getPromo']);
     Route::get('delete/promo/{id}', [AdminController::class, 'deletePromo']);
 });
+
+Route::get('/feed', [RSSFeedController::class, 'feedRSS']);
 
 Route::controller(PasswordController::class)->group(function () {
     // Маршруты запроса ссылки для сброса пароля
