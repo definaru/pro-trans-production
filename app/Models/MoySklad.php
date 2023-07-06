@@ -47,6 +47,14 @@ class MoySklad
     }
 
 
+    public static function getListStock()
+    {
+        $url = self::msUrl().'productfolder';
+        $response = self::get($url);
+        return $response->json();
+    }
+
+
     public static function viewOnePreOrder($id)
     {
         $url = self::msUrl().'internalorder/'.$id.'?expand=state,positions,positions.assortment';

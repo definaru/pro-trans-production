@@ -1,7 +1,7 @@
-@php
-    $table = $xml::parse('img/goods/promo/'.$uuid.'/GEARAX.xlsx');
-    $tables = $xml::parse('img/goods/promo/'.$uuid.'/GEARAX.xlsx', true);
-@endphp
+{{-- @php
+    $table = $xml::parse('img/goods/promo/'.$stock.'/GEARAX.xlsx');
+    $tables = $xml::parse('img/goods/promo/'.$stock.'/GEARAX.xlsx', true);
+@endphp --}}
 
 @extends('layout/main')
 @section('title', $model['header'])
@@ -19,6 +19,8 @@
 @section('content') 
     <div class="row">
         <div class="col-12">
+            {{$stock}}
+            <?php /*
             @if ($table)
                 <table class="table">
                     @foreach ($table as $item)
@@ -54,7 +56,7 @@
             @else
                 <x-alert type="danger" message="Таблица с товарами не найдена" />
             @endif
-            <pre><?php print_r($table);?></pre>
+            */ ?>
         </div>
     </div>
 @endsection

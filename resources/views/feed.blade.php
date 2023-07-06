@@ -23,7 +23,7 @@
         <offers>
             @foreach ($yml as $item)
             <offer id="{{$decl::article($item['article'])}}" available="true">
-                <name>Прокладка</name>
+                <name>{{$item['name']}}</name>
                 <categoryId>1198118</categoryId>
                 <picture>{{$url}}/img/goods/{{$item['article']}}.jpg</picture>
                 <price>{{$item['price']}}</price>

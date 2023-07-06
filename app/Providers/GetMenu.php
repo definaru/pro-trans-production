@@ -442,6 +442,13 @@ class GetMenu
                 'header' => 'Управление',
                 'list' => [
                     [
+                        'icon' => 'box_add',
+                        'name' => 'Товары',
+                        'slug' => 'admin/posting',
+                        'count' => '',
+                        'list' => ''
+                    ],
+                    [
                         'icon' => 'bolt',
                         'name' => 'Документооборот',
                         'slug' => 'admin/nomenclature',

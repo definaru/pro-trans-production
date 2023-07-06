@@ -10,10 +10,10 @@ class Catalog extends Model
     use HasFactory;
 
     protected $table = 'catalog';
-    protected $primaryKey = 'uuid';	
+    protected $primaryKey = 'stock';	
 
     protected $fillable = [
-        'brand', 'header', 'banner', 'uuid', 'description', 'pdf', 'created_at', 'updated_at'
+        'brand', 'header', 'banner', 'stock', 'description', 'pdf', 'created_at', 'updated_at'
     ];
 
 }

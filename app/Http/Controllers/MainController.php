@@ -38,10 +38,10 @@ class MainController extends Controller
     }
 
 
-    public function PromoCatalog($uuid)
+    public function PromoCatalog($id)
     {
-        $model = Catalog::where('uuid', $uuid)->first();
-        return view('dashboard.promo.catalog', ['uuid' => $uuid, 'model' => $model]);
+        $model = Catalog::where('stock', $id)->first();
+        return view('dashboard.promo.catalog', ['stock' => $id, 'model' => $model]);
     }
 
 
@@ -49,6 +49,7 @@ class MainController extends Controller
     {
         $model = Catalog::where('brand', $uuid)->first();
         //Catalog::where('brand', $uuid)->toArray()->get();
+        //return response()->json($model);
         return view('dashboard.promo', compact('uuid', 'model'));
     }
 

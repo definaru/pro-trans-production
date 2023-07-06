@@ -68,8 +68,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('admin/nomenclature', [AdminController::class, 'Nomenclature']);
     Route::get('/admin/nomenclature/gtd/{id}', [AdminController::class, 'Gtd']);
     Route::get('admin/promo', [AdminController::class, 'Promo']);
+    Route::get('admin/posting', [AdminController::class, 'Posting']);
     Route::get('/promo/{uuid?}', [MainController::class, 'PromoView']);
-    Route::get('/promo/catalog/{uuid?}', [MainController::class, 'PromoCatalog']);
+    Route::get('/promo/catalog/{id?}', [MainController::class, 'PromoCatalog']);
 });
 
 Route::prefix('api')->group(function () {

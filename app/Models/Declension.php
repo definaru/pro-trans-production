@@ -103,7 +103,7 @@ class Declension
 
     public static function article($article)
     {
-        $start = $article{0};
+        $start = $article[0];
         $result = is_string($start) === true ? substr($article, 1) : $article;
         return $article === '' ? '' : $result;
     }

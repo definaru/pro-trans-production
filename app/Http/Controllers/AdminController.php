@@ -24,6 +24,13 @@ class AdminController extends Controller
     }
 
 
+    public function Posting()
+    {
+        $stock = MoySklad::getListStock();
+        return view('dashboard.admin.posting', compact('stock'));
+    }
+
+
     public function getPromo()
     {
         $model = Catalog::all();
