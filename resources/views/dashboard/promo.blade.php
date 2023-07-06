@@ -14,10 +14,8 @@
     <div class="col-12 col-lg-8 mx-auto">
         <div class="row">
             <div class="col-12">
-                {{-- <pre><?php //var_dump($model);?></pre> --}}
                 <h2 class="fw-bold">{{$model['header']}}</h2>
                 <hr />
-                <strong>{{strval($model['stock'])}}</strong>
                 <a class="btn btn-dark px-4 icon-link me-2" href="/dashboard/promo/catalog/{{$model['stock']}}">
                     <x-icon-check />
                     Купить
