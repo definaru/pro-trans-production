@@ -3,6 +3,10 @@
 namespace App\Models;
 
 use Shuchkin\SimpleXLSX;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+
+
+
 
 class Excel
 {
@@ -15,6 +19,16 @@ class Excel
             return false;
             //SimpleXLSX::parseError();
         }
+    }
+
+
+    public static function reader($file)
+    {
+        $reader = IOFactory::createReader('Xlsx');
+        $reader->setReadDataOnly(TRUE);
+        $spreadsheet = $reader->load($file);
+        $worksheet = $spreadsheet->getActiveSheet();
+        return $worksheet;
     }
 
 }

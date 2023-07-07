@@ -1,5 +1,9 @@
 @php
     $accept = '.xlsx, .xlsm, .xltm, .xls, .csv';
+    $table = $xml::parse('./img/xml/for_table_prospect_parts.xlsx');
+
+    //$table = $xml::parse('img/goods/promo/'.$stock.'/GEARAX.xlsx');
+    //$tables = $xml::parse('img/goods/promo/'.$stock.'/GEARAX.xlsx', true);
 @endphp
 
 @extends('layout/main')
@@ -56,6 +60,58 @@
                 </form>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <table class="table">
+            <pre><?php //var_dump($table);?></pre>
+            @if ($table)
+                <table class="table table-striped table-hover table-bordered">
+                    <tr>
+                        <td>#</td>
+                        <td>Наименование</td>
+                        <td>Артикул</td>
+                        <td>Цена</td>
+                        <td>Описание</td>
+                        <td>Страна</td>
+                        <td>НДС</td>
+                        <td>Количество</td>
+                        <td>ГТД</td>
+                    </tr> 
+                    @foreach ($table as $item)
+                        @if ($item[0] !== 'UUID')
+                        <tr>
+                            <td>{{$loop->iteration-1}}</td>
+                            <td>{{$item[4]}}</td>
+                            <td>{{$item[6]}}</td>
+                            <td>{{$item[12]}}</td>
+                            <td>{{$item[21]}}</td>
+                            <td>{{$item[24]}}</td>
+                            <td>{{$item[25]}}</td>
+                            <td>{{$item[27]}}</td>
+                            <td>{{$item[29]}}</td>
+                        </tr>    
+                        @endif
+                    @endforeach
+                </table> 
+            @endif
+<?php /*
+            @foreach ($table as $row)
+                <tr>
+                @php
+                    $cellIterator = $row->getCellIterator();
+                    $cellIterator->setIterateOnlyExistingCells(FALSE);                        
+                @endphp
+                @foreach ($cellIterator as $cell)
+                    <td><?=$cell->getValue();?></td>
+                @endforeach
+                </tr>
+            @endforeach
+*/ ?>
+
+        </table>        
     </div>
 </div>
 @endsection
