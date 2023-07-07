@@ -1,3 +1,7 @@
+@php
+    $stock = $model['brand'] == 'GMS' ? 'a2a12edf-1642-11ee-0a80-13ab00041ab9' : '254c7d33-15ba-11ee-0a80-09a00027e0da';
+@endphp
+
 @extends('layout/main')
 @section('title', $uuid)
 
@@ -16,7 +20,7 @@
             <div class="col-12">
                 <h2 class="fw-bold">{{$model['header']}}</h2>
                 <hr />
-                <a class="btn btn-dark px-4 icon-link me-2" href="/dashboard/promo/catalog/{{$model['stock']}}">
+                <a class="btn btn-dark px-4 icon-link me-2" href="/dashboard/promo/catalog/{{$stock}}">
                     <x-icon-check />
                     Купить
                 </a>
@@ -46,7 +50,7 @@
                 </video>  
                 @endif
                 <hr />
-                <a class="btn btn-dark px-4 icon-link me-2" href="/dashboard/promo/catalog/{{$model['uuid']}}">
+                <a class="btn btn-dark px-4 icon-link me-2" href="/dashboard/promo/catalog/{{$stock}}">
                     <x-icon-check />
                     Купить
                 </a>

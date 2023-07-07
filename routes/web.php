@@ -26,7 +26,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::post('settings', [DachboardController::class, 'EditSettings']);
     Route::get('settings/profile', [DachboardController::class, 'Settings'])->name('settings');
     Route::match(['get', 'post'],'product/details/{id}', [DachboardController::class, 'DetailProduct'])->name('productdetails');
-    Route::get('catalog', [DachboardController::class, 'Catalog']);
     Route::get('catalog/category/{name}/{limit?}/{offset?}', [DachboardController::class, 'CatalogDetail']);
     Route::get('payment/preorder/{id}', [DachboardController::class, 'preOrderViewOne']);
     Route::get('payment/preorders', [DachboardController::class, 'preOrders'])->name('preorders');
@@ -49,6 +48,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::post('/agreements/update', [DachboardController::class, 'updateAgreement']);
     Route::post('/action/deal', [DachboardController::class, 'sendDeal']);
     Route::post('upd/pdf/export', [DachboardController::class, 'getUPD']);
+    Route::get('/promo/{uuid?}', [MainController::class, 'PromoView']);
+    Route::get('/promo/catalog/{id?}', [MainController::class, 'PromoCatalog']);    
+    Route::get('accounts/{limit?}/{offset?}', [DachboardController::class, 'Accounts']);
 
     // Admin-Панель
     Route::get('mail/inbox', [AdminController::class, 'Email']);
@@ -56,7 +58,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('orders', [DachboardController::class, 'OrdersList'])->name('allorders');
     Route::post('orders/delete/{uuid}', [DachboardController::class, 'OrdersListDelete']);
     Route::post('agent/delete/{uuid}', [DachboardController::class, 'AgentDelete']);
-    Route::get('accounts/{limit?}/{offset?}', [DachboardController::class, 'Accounts']);
     Route::get('admin/doc', [AdminController::class, 'adminDoc']);
     Route::get('admin/accounting', [AdminController::class, 'Accounting']);
     Route::get('admin/users', [AdminController::class, 'Users'])->name('adminusers');
@@ -69,8 +70,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('/admin/nomenclature/gtd/{id}', [AdminController::class, 'Gtd']);
     Route::get('admin/promo', [AdminController::class, 'Promo']);
     Route::get('admin/posting', [AdminController::class, 'Posting']);
-    Route::get('/promo/{uuid?}', [MainController::class, 'PromoView']);
-    Route::get('/promo/catalog/{id?}', [MainController::class, 'PromoCatalog']);
 });
 
 Route::prefix('api')->group(function () {

@@ -38,10 +38,20 @@ class MainController extends Controller
     }
 
 
-    public function PromoCatalog($id)
+    public function PromoCatalog($id, $limit = 10, $offset = 0)
     {
         $model = Catalog::where('stock', $id)->first();
-        return view('dashboard.promo.catalog', ['stock' => $id, 'model' => $model]);
+        $product = MoySklad::getProductFromStock($id, $limit, $offset);
+        // return response()->json($product);
+        return view('dashboard.promo.catalog', 
+            [
+                'stock' => $id, 
+                'model' => $model, 
+                'product' => $product, 
+                'limit' => $limit, 
+                'offset' => $offset
+            ]
+        );
     }
 
 

@@ -229,12 +229,6 @@ class DachboardController extends Controller
     }
 
 
-    public function Catalog()
-    {
-        return view('dashboard.catalog');
-    }
-
-
     public function DetailProduct($id, Request $request)
     {
         if ($request->has(['name', 'phone'])) {
