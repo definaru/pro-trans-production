@@ -137,7 +137,12 @@ class MainController extends Controller
 
     public function stockFolder($id, $limit = 64, $offset = 0)
     {
+        // $files = './img/xml/data.json';
+        // if (file_exists($files)){
+        //     $json = json_decode(file_get_contents($files), true);
+        // }
         $product = MoySklad::getProductFromStock($id, $limit, $offset);
+        //return response()->json($product);
         return view('stock', compact('product', 'limit', 'offset', 'id'));
     }
 
@@ -159,7 +164,6 @@ class MainController extends Controller
         $uploaddir = './img/goods/';
         $uploadfile = $uploaddir . basename($_FILES['file']['name']);
         if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
-            //Goods::where('link', $uuid)->update(['image' => $uploadfile]);
             Goods::updateOrCreate(['link' => $uuid], ['image' => $uploadfile]);
             return redirect('/dashboard/product/details/'.$uuid)->with(['text' => 'Фото товара загружено']);
         } else {

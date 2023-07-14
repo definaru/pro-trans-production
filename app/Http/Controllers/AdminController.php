@@ -27,7 +27,18 @@ class AdminController extends Controller
     public function Posting()
     {
         $stock = MoySklad::getListStock();
-        return view('dashboard.admin.posting', compact('stock'));
+        $country = MoySklad::getCountry();
+        return view('dashboard.admin.posting', compact('stock', 'country'));
+    }
+
+
+    public function stockTable()
+    {
+        // $files = './img/xml/data.json';
+        // if (file_exists($files)){
+        //     $json = json_decode(file_get_contents($files), true);
+        // }, ['json' => $json]
+        return view('dashboard.stock.table');
     }
 
 

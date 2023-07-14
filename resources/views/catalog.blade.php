@@ -16,9 +16,6 @@
 @section('content')
 <section class="bg-secondary-subtle catalog">
     <div class="container position-relative py-4 py-lg-2">
-        <div class="d-print-none row">
-            <div id="loadingpage" class="d-flex gap-2 text"></div>
-        </div>
         <div class="row">
             <div class="col-12">
                 @error('text')
@@ -122,10 +119,13 @@
             @endif
         @else
             <div class="row" itemscope itemtype="https://schema.org/Product">
-                <div class="col-12">
+                <div class="d-flex justify-content-between">
                     <h2 class="text fw-bold text-dark">{{$stock['name']}}</h2>
-                    <hr />
+                    <div class="d-print-none">
+                        <div id="loadingpage" class="text"></div>
+                    </div>
                 </div>
+                <div class="col-12"><hr /></div>
                 <div class="col-12 d-flex align-items-center justify-content-between py-3">
                     <p class="text text-muted m-0">
                         Всего {{$product['meta']['size']}} {{$decl::cart($product['meta']['size'])}}

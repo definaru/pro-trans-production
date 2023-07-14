@@ -51,8 +51,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('/promo/{uuid?}', [MainController::class, 'PromoView']);
     Route::get('/promo/catalog/{id?}', [MainController::class, 'PromoCatalog']);    
     Route::get('accounts/{limit?}/{offset?}', [DachboardController::class, 'Accounts']);
+    
 
     // Admin-Панель
+    Route::get('admin/stock', [AdminController::class, 'stockTable'])->name('stockable');
     Route::get('mail/inbox', [AdminController::class, 'Email']);
     Route::get('users', [DachboardController::class, 'Users']);
     Route::get('orders', [DachboardController::class, 'OrdersList'])->name('allorders');
@@ -74,6 +76,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 
 Route::prefix('api')->group(function () {
     Route::post('files', [MainController::class, 'Files']);
+    Route::post('loadstock', [ApiController::class, 'loadStock']);
+    Route::post('download/files', [ApiController::class, 'downloadFiles']);
     Route::post('signup', [AuthController::class, 'Sigature']);
     Route::post('customer', [AuthController::class, 'Customer']);
     Route::post('mail', [AuthController::class, 'SendMail']);

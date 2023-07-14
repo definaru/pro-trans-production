@@ -190,6 +190,50 @@ class MoySklad
     }
 
 
+    public static function createListGoods($data)
+    {
+        $url = self::msUrl().'product';
+        $response = self::post($url, json_encode($data));
+        return $response->json();
+    }
+
+
+    public static function enter($data, $sum)
+    {
+        $url = self::msUrl().'enter';
+        $result = [
+            [
+                'name' => 'new'.date('Ydm'),
+                'moment' => date('Y-m-d H:i:s'),
+                'applicable' => true,
+                'sum' => $sum,
+                'organization' => [
+                    'meta' => [
+                        'href' => 'https://online.moysklad.ru/api/remap/1.2/entity/organization/218c26ab-33fe-11ed-0a80-0285001db7b3',
+                        'metadataHref' => 'https://online.moysklad.ru/api/remap/1.2/entity/organization/metadata',
+                        'type' => 'organization',
+                        'mediaType' => 'application/json'                    
+                    ]                    
+                ],
+                'store' => [
+                    'meta' => [
+                        'href' => 'https://online.moysklad.ru/api/remap/1.2/entity/store/218d258b-33fe-11ed-0a80-0285001db7b5',
+                        'metadataHref' => 'https://online.moysklad.ru/api/remap/1.2/entity/store/metadata',
+                        'type' => 'store',
+                        'mediaType' => 'application/json'                        
+                    ]
+                ],
+                'positions' => $data,
+                'overhead' => [
+                    'sum' => $sum,
+                    'distribution' => 'price'                   
+                ]
+            ]
+        ];
+        $response = self::post($url, json_encode($result));
+        return $response->json();
+    }
+
     public static function createContract()
     {
         $uuid = auth()->user()->verified;
@@ -219,6 +263,14 @@ class MoySklad
     }
 
     
+    public static function getStock($id)
+    {
+        $url = self::msUrl().'enter/'.$id.'?expand=positions,positions.assortment';
+        $response = self::get($url);
+        return $response->json();
+    }
+
+
     public static function getContract()
     {
         $id = self::getAgreementID();
@@ -251,6 +303,14 @@ class MoySklad
     public static function searchByArticle($text)
     {
         $url = self::msUrl().'product?filter=article~'.$text;
+        $response = self::get($url);
+        return $response->json();
+    }
+
+    
+    public static function getCountry()
+    {
+        $url = self::msUrl().'country?order=name';
         $response = self::get($url);
         return $response->json();
     }

@@ -279,7 +279,10 @@ let modal = new bootstrap.Modal(document.querySelector('#searchForm'));
 let input = document.querySelector('input[type="search"]');
 
 var loadingpage = document.getElementById('loadingpage');
-const loaderText = `<span class="spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 96 960 960" width="20" height="20"><path d="M196 725q-20-36-28-72.5t-8-74.5q0-131 94.5-225.5T480 258h43l-80-80 39-39 149 149-149 149-40-40 79-79h-41q-107 0-183.5 76.5T220 578q0 29 5.5 55t13.5 49l-43 43Zm280 291L327 867l149-149 39 39-80 80h45q107 0 183.5-76.5T740 577q0-29-5-55t-15-49l43-43q20 36 28.5 72.5T800 577q0 131-94.5 225.5T480 897h-45l80 80-39 39Z"/></svg></span> Ищем деталь...`;
+const loaderText = `<button class="btn border-0">
+    <span class="spinner-border spinner-border-sm text-danger"></span>
+    &#160;Ищем деталь...
+</button>`;
 function move() {
     var elem = document.getElementById("progressbar");
     document.querySelector('.progress').style.display = 'block';

@@ -1,27 +1,29 @@
 @php
-    $stock = $product['rows'][0]['productFolder'];
+    $stock = count($product['rows']) !== 0 ?  $product['rows'][0]['productFolder'] : '';
+    $title = $stock === '' ? 'Пусто' : $stock['name'];
 @endphp
 
 @extends('layout/index', [
-    'title' => $stock['name'].' | Проспект Партс',
+    'title' => $title.' | Проспект Партс',
     'keywords' => 'ремонт в москве, ремонт машин в мытищи, ремонт двигателя, сервис, service, чинить, автосервис, мерседес бенц, актрос',
-    'description' => 'Каталог '.$stock['name'].', широкий ассортимент комплектующих и расходных материалов для грузовых автомобилей',
+    'description' => 'Каталог '.$title.', широкий ассортимент комплектующих и расходных материалов для грузовых автомобилей',
     'image' => 'https://prospekt-parts.com/img/5464765787695.jpg'
 ])
 
-@section('title', $stock['name'].' | Проспект Партс')
+@section('title', $title.' | Проспект Партс')
 
 @section('content')
 <section class="bg-secondary-subtle catalog">
     <div class="container position-relative py-4 py-lg-2">
-        <div class="d-print-none row">
-            <div id="loadingpage" class="d-flex gap-2 text"></div>
-        </div>
+        <pre><?php //var_dump($json)?></pre>
         <div class="row" itemscope itemtype="https://schema.org/Product">
-            <div class="col-12">
-                <h2 class="text fw-bold text-dark">{{$stock['name']}}</h2>
-                <hr />
+            <div class="d-flex justify-content-between">
+                <h2 class="text fw-bold text-dark">{{$title}}</h2>
+                <div class="d-print-none">
+                    <div id="loadingpage" class="text"></div>
+                </div>
             </div>
+            <div class="col-12"><hr /></div>
             <div class="col-12 d-flex align-items-center justify-content-between py-3">
                 <p class="text text-muted m-0">
                     Всего {{$product['meta']['size']}} {{$decl::cart($product['meta']['size'])}}

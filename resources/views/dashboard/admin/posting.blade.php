@@ -1,9 +1,9 @@
 @php
-    $accept = '.xlsx, .xlsm, .xltm, .xls, .csv';
-    $table = $xml::parse('./img/xml/for_table_prospect_parts.xlsx');
-
-    //$table = $xml::parse('img/goods/promo/'.$stock.'/GEARAX.xlsx');
-    //$tables = $xml::parse('img/goods/promo/'.$stock.'/GEARAX.xlsx', true);
+    $accept = '.xlsx'; //, .xlsm, .xltm, .xls, .csv
+    $excel = isset($_GET['excel']) ? $_GET['excel'] : '';
+    $table = $excel !== '' ? $xml::parse('./img/xml/'.$excel) : '';
+    $isNull = $table ? array_filter($table, function($a){return $a[27] == '';}) : 0;
+    $complete = $table ? array_filter($table, function($a){return $a[27] !== '';}) : 0;
 @endphp
 
 @extends('layout/main')
@@ -23,41 +23,120 @@
     <div class="col">
         <div class="card border-0 shadow-sm mb-3">
             <div class="card-body">
+                @if ($excel === '')
                 <x-alert 
                     type="warning" 
                     header="Внимание: " 
                     message="Принимаются форматы таблиц {{$accept}}" 
                     close="true" 
-                />
-                <form action="" method="get" class="d-flex flex-column gap-3 mt-5 w-50">
-                    <label class="d-flex align-items-center gap-2">
-                        <span class="material-symbols-outlined fs-1 mx-2">pallet</span>
-                        <div class="w-100">
-                            <select class="form-select">
-                                <option value="" disabled selected>Выберите склад...</option>
-                                @foreach ($stock['rows'] as $item)
-                                    <option value="{{$item['id']}}">{{$item['name']}}</option>
-                                @endforeach
-                            </select>                            
-                        </div>
-                    </label>
-                    <label class="d-flex align-items-center gap-2">
-                        <x-icon-excel />
-                        <div class="w-100">
-                            <input type="file" name="file" accept="{{$accept}}" class="form-control" />
-                        </div>
-                    </label>
-                    <div><hr class="m-0" /></div>
-                    <div>
-                        <button 
-                            type="submit"
-                            class="btn btn-dark px-4 icon-link"
-                        >
-                            <x-icon-download />
-                            Загрузить
-                        </button>                        
+                />                    
+                @endif
+
+                <div class="row @if (!$table) mt-5 @endif">
+                    <div class="col col-lg-6">
+                        <form name="form" action="" method="get" class="d-flex flex-column gap-3">
+                            @if ($table) 
+                            <label class="d-flex align-items-center gap-2">
+                                <span class="material-symbols-outlined fs-1 mx-2">pallet</span>
+                                <div class="w-100">
+                                    <select name="stock" class="form-select" v-model="stock.store.id" @change="handleStock($event)">
+                                        <option value="" disabled selected>Выберите склад...</option>
+                                        @foreach ($stock['rows'] as $item)
+                                            <option value="{{$item['id']}}">{{$item['name']}}</option>
+                                        @endforeach
+                                    </select>                            
+                                </div>
+                            </label>
+                            <label class="d-flex align-items-center gap-2">
+                                <span class="material-symbols-outlined fs-1 mx-2">location_on</span>
+                                <div class="w-100">
+                                    <select name="country" class="form-select" v-model="stock.country.id" @change="handleCountry($event)">
+                                        <option value="" disabled selected>Выберите страну...</option>
+                                        @foreach ($country['rows'] as $item)
+                                        <option value="{{$item['id']}}">{{$item['name']}}</option>
+                                        @endforeach
+                                    </select>  
+                                </div>
+                            </label>
+                            @else
+                            <label class="d-flex align-items-center gap-2">
+                                <x-icon-excel />
+                                <div class="w-100">
+                                    <input 
+                                        type="file" 
+                                        name="file" 
+                                        accept="{{$accept}}" 
+                                        class="form-control" 
+                                        @change="handleExcelFile($event)" 
+                                    />
+                                </div>
+                            </label>
+                            @endif
+                        </form>
+
+                        <form id="createstosck" action="/api/loadstock" method="post">
+                            @csrf
+                            <input type="hidden" name="store" :value="stock.store.id" />
+                            <input type="hidden" name="country" :value="stock.country.id" />
+                            @if ($table)
+                                <input type="hidden" name="pack" value="{{ceil((count($table)-1)/1000)}}" />
+                            @endif
+                            <input type="hidden" name="file" value="{{$excel}}" />
+                            <div v-if="stock.store.id && stock.country.id">
+                                <div><hr /></div>
+                                <div>
+                                    <button 
+                                        v-on:click="isCompleteStock"
+                                        type="submit"
+                                        class="btn btn-dark px-4 icon-link"
+                                    >
+                                        <template v-if="stock.loading">
+                                            <span class="spinner-border spinner-border-sm text-danger"></span>
+                                            Tовары загружается на склад...
+                                        </template>
+                                        <template v-else>
+                                            <x-icon-download />
+                                            Загрузить товары
+                                        </template>
+                                    </button>           
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                    <div class="col col-lg-6 @if (!$table) d-flex align-items-center @endif">
+                        <button class="btn border-0" v-if="stock.loader">
+                            <span class="spinner-border spinner-border-sm text-danger"></span>
+                            Файл загружается...
+                        </button> 
+
+                        @if ($table) 
+                            <p class="m-0"><strong>Всего товаров:</strong> {{number_format(count($table)-1)}} шт. </p>
+                            @if ($isNull !== 0)
+                            <p class="m-0">
+                                <strong>Товаров нет в наличии:</strong> 
+                                <span class="badge text-bg-danger">{{number_format(count($isNull))}} шт.</span>
+                            </p>                                
+                            @endif
+                            @if ($complete !== 0)
+                            <p class="m-0">
+                                <strong>Товары в наличии:</strong> {{number_format(count($complete))}} шт. /
+                                <span class="badge text-bg-success"><?=ceil(count($complete)/1000);?> пачек</span>
+                            </p>
+                            @endif
+                            <p class="m-0" v-if="stock.store.name"><strong>Склад:</strong> @{{stock.store.name}}</p>
+                            <p class="m-0" v-if="stock.country.name"><strong>Страна:</strong> @{{stock.country.name}}</p>
+                        @else
+                            <p v-if="stock.size"><strong>Размер файла:</strong> @{{stock.size}}</p>
+                            <p v-if="stock.size">
+                                <button class="btn border-0">
+                                    <span class="spinner-border spinner-border-sm text-danger"></span>
+                                    Чтение таблицы...
+                                </button>                                 
+                            </p>
+                        @endif
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -65,53 +144,40 @@
 
 <div class="row">
     <div class="col">
-        <table class="table">
-            <pre><?php //var_dump($table);?></pre>
-            @if ($table)
-                <table class="table table-striped table-hover table-bordered">
+        @if ($table)
+            <table class="table table-striped table-hover table-bordered">
+                <thead>
                     <tr>
-                        <td>#</td>
-                        <td>Наименование</td>
-                        <td>Артикул</td>
-                        <td>Цена</td>
-                        <td>Описание</td>
-                        <td>Страна</td>
-                        <td>НДС</td>
-                        <td>Количество</td>
-                        <td>ГТД</td>
-                    </tr> 
+                        {{-- <th scope="col">#</th> --}}
+                        <th scope="col">Наименование</th>
+                        <th scope="col">Артикул</th>
+                        <th scope="col">Цена</th>
+                        {{-- <th scope="col">Описание</th> --}}
+                        <th scope="col">Страна</th>
+                        <th scope="col">НДС</th>
+                        <th scope="col">Количество</th>
+                        {{-- <th scope="col">ГТД</th> --}}
+                    </tr>
+                </thead>
+                <tbody>
                     @foreach ($table as $item)
-                        @if ($item[0] !== 'UUID')
+                        @if ($item[0] !== 'UUID' && $item[27] !== '')
                         <tr>
-                            <td>{{$loop->iteration-1}}</td>
-                            <td>{{$item[4]}}</td>
-                            <td>{{$item[6]}}</td>
-                            <td>{{$item[12]}}</td>
-                            <td>{{$item[21]}}</td>
-                            <td>{{$item[24]}}</td>
-                            <td>{{$item[25]}}</td>
-                            <td>{{$item[27]}}</td>
-                            <td>{{$item[29]}}</td>
+                            {{-- <td contenteditable="true">{{$loop->iteration-1}}</td> --}}
+                            <td contenteditable="true">{{$item[4]}}</td>
+                            <td contenteditable="true">{{$item[6]}}</td>
+                            <td contenteditable="true">{{$item[12]}}</td>
+                            {{-- <td contenteditable="true">{{$item[21]}}</td> --}}
+                            <td contenteditable="true">@{{stock.country.name}}</td> <?php // 24 ?>
+                            <td contenteditable="true">{{$item[25]}}</td>
+                            <td contenteditable="true">{{$item[27]}}</td>
+                            {{-- <td contenteditable="true">{{$item[29]}}</td> --}}
                         </tr>    
                         @endif
                     @endforeach
-                </table> 
-            @endif
-<?php /*
-            @foreach ($table as $row)
-                <tr>
-                @php
-                    $cellIterator = $row->getCellIterator();
-                    $cellIterator->setIterateOnlyExistingCells(FALSE);                        
-                @endphp
-                @foreach ($cellIterator as $cell)
-                    <td><?=$cell->getValue();?></td>
-                @endforeach
-                </tr>
-            @endforeach
-*/ ?>
-
-        </table>        
+                </tbody>
+            </table> 
+        @endif
     </div>
 </div>
 @endsection
