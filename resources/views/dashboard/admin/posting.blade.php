@@ -92,7 +92,7 @@
                                     >
                                         <template v-if="stock.loading">
                                             <span class="spinner-border spinner-border-sm text-danger"></span>
-                                            Tовары загружается на склад...
+                                            &#160;Tовары загружаются на склад...
                                         </template>
                                         <template v-else>
                                             <x-icon-download />

@@ -134,37 +134,11 @@ class ApiController extends Controller
         //$arr = array_chunk($download, ceil(count($download) / $pack));
         $result = MoySklad::createListGoods($download);
         if($result) {
-            Excel::insert($result);
+            $answer = Excel::insert($result);
         }
+        //dd($test);
         //return response()->json($result);
-        return redirect()->route('stockable')->with(['result' => $result]);
-
-        // if($result) {
-        //     $summa = [];
-        //     $data = [];
-        //     foreach ($result as $row) {
-        //         $summa[] = $row['salePrices'][0]['value'];
-        //     }
-        //     foreach ($result as $item) {
-        //         $data[] = [
-        //             'quantity' => $item['volume'],
-        //             'price' => $item['salePrices'][0]['value'],
-        //             'assortment' => [
-        //                 'meta' => [
-        //                     'href' => 'https://online.moysklad.ru/api/remap/1.2/entity/product/'.$item['id'],
-        //                     'metadataHref' => 'https://online.moysklad.ru/api/remap/1.2/entity/product/metadata',
-        //                     'type' => 'product',
-        //                     'mediaType' => 'application/json'
-        //                 ]
-        //             ],
-        //             'overhead' => 0
-        //         ];
-        //     }
-        //     $sum = array_sum($summa);
-        //     $end = MoySklad::enter($data, $sum);
-        //     return redirect()->route('stockable')->with(['result' => $end]);
-        // }
-        // return redirect()->route('stockable')->with(['result' => $download]);
+        return redirect()->route('stockable')->with(['result' => $result, 'answer' => $answer]);
     }
 
 }

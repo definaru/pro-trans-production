@@ -20,8 +20,23 @@
 @endsection
 
 @section('content')
+
+    @if (session('answer'))
+        <x-alert 
+            type="{{session('answer')['type']}}" 
+            header="{{session('answer')['header']}}" 
+            message="{{session('answer')['message']}}" 
+        />
+    @endif
+
     @if (session('result'))
-        <pre><?php // var_dump(session('result'))?></pre>
+        <pre><?php // var_dump()?></pre>
+        <figure class="bg-white p-3 shadow-sm rounded">
+            <blockquote class="blockquote">
+                <p>Записано и обновлено {{count(session('result'))}} товаров.</p>
+            </blockquote>
+            <figcaption class="blockquote-footer mb-0">Товары без количества обработаны не были.</figcaption>
+        </figure>
         <table class="table">
             <thead>
                 <tr>

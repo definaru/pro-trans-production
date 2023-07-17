@@ -31,37 +31,38 @@ class Excel
         return $worksheet;
     }
 
-    // public function quantitys($val)
-    // {
-    //     // = ;
-    //     $files = './img/xml/data.json';
-    //     if (file_exists($files)){
-    //         $json = json_decode(file_get_contents($files), true);
-    //         $quantity = array_filter($json, function($a){return $a['article'] == $value;});
-    //         //return $quantity; 
-    //         //$res = empty($quantity) ? 0 : array_values($quantity)[0]['volume'];
-    //     }   
-    //     //} else {
-    //     //    return 0;
-    //     //}
-    //     //return $value;
-    // }
-
 
     public static function insert($db)
     {
-        foreach($db as $item) {
-            $data = Goods::updateOrCreate(['article' => $item['article']], 
-            [
-                'link' => $item['id'],
-                'image' => '',
-                'article' => $item['article'],
-                'name' => $item['name'],
-                'description' => isset($item['description']) ? $item['description'] : '',
-                'price' => $item['salePrices'][0]['value'],
-                'quantity' => $item['volume']
-            ]);            
+        try {
+            DB::transaction(function() use ($db) {
+                foreach($db as $item) {
+                    Goods::updateOrCreate(['article' => $item['article']], 
+                    [
+                        'link' => $item['id'],
+                        'image' => '',
+                        'article' => $item['article'],
+                        'name' => $item['name'],
+                        'description' => isset($item['description']) ? $item['description'] : '',
+                        'price' => $item['salePrices'][0]['value'],
+                        'quantity' => $item['volume']
+                    ]);            
+                }
+            }, 3);  // Повторить три раза, прежде чем признать неудачу
+            DB::commit();
+            return [
+                'type' => 'success',
+                'header' => 'Успешно!',
+                'message' => ' Данные обновлены и записаны в базу данных.'
+            ];
+        } catch (\Exception $exception) {
+            return [
+                'type' => 'danger',
+                'header' => 'Ошибка: ',
+                'message' => $exception
+            ];
         }
+
     }
 
 }
