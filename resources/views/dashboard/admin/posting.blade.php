@@ -2,8 +2,8 @@
     $accept = '.xlsx'; //, .xlsm, .xltm, .xls, .csv
     $excel = isset($_GET['excel']) ? $_GET['excel'] : '';
     $table = $excel !== '' ? $xml::parse('./img/xml/'.$excel) : '';
-    $isNull = $table ? array_filter($table, function($a){return $a[27] == '';}) : 0;
-    $complete = $table ? array_filter($table, function($a){return $a[27] !== '';}) : 0;
+    $isNull = $table ? array_filter($table, function($a){return $a[3] == '';}) : 0;
+    $complete = $table ? array_filter($table, function($a){return $a[3] !== '';}) : 0;
 @endphp
 
 @extends('layout/main')
@@ -145,38 +145,37 @@
 <div class="row">
     <div class="col">
         @if ($table)
-            <table class="table table-striped table-hover table-bordered">
-                <thead>
+        <pre><?php //var_dump($table);?></pre>
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Наименование</th>
+                    <th scope="col">Артикул</th>
+                    <th scope="col">Цена</th>
+                    {{-- <th scope="col">Описание</th> --}}
+                    <th scope="col">Страна</th>
+                    <th scope="col">НДС</th>
+                    <th scope="col">Количество</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($table as $item)
+                    @if ($item[1] !== 'Номенклатура' && $item[3] !== '')
                     <tr>
-                        {{-- <th scope="col">#</th> --}}
-                        <th scope="col">Наименование</th>
-                        <th scope="col">Артикул</th>
-                        <th scope="col">Цена</th>
-                        {{-- <th scope="col">Описание</th> --}}
-                        <th scope="col">Страна</th>
-                        <th scope="col">НДС</th>
-                        <th scope="col">Количество</th>
-                        {{-- <th scope="col">ГТД</th> --}}
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($table as $item)
-                        @if ($item[0] !== 'UUID' && $item[27] !== '')
-                        <tr>
-                            {{-- <td contenteditable="true">{{$loop->iteration-1}}</td> --}}
-                            <td contenteditable="true">{{$item[4]}}</td>
-                            <td contenteditable="true">{{$item[6]}}</td>
-                            <td contenteditable="true">{{$item[12]}}</td>
-                            {{-- <td contenteditable="true">{{$item[21]}}</td> --}}
-                            <td contenteditable="true">@{{stock.country.name}}</td> <?php // 24 ?>
-                            <td contenteditable="true">{{$item[25]}}</td>
-                            <td contenteditable="true">{{$item[27]}}</td>
-                            {{-- <td contenteditable="true">{{$item[29]}}</td> --}}
-                        </tr>    
-                        @endif
-                    @endforeach
-                </tbody>
-            </table> 
+                        {{-- <td contenteditable="true">{{$loop->iteration-1}}</td> --}}
+                        <td contenteditable="true">{{$item[1]}}</td>
+                        <td contenteditable="true">{{$item[0]}}</td>
+                        <td contenteditable="true">{{$item[4]}}</td>
+                        {{-- <td contenteditable="true">{{$item[21]}}</td> --}}
+                        <td contenteditable="true">@{{stock.country.name}}</td> <?php // 24 ?>
+                        <td contenteditable="true">{{$item[25] ?? 20}}%</td>
+                        <td contenteditable="true">{{$item[3]}}</td>
+                        {{-- <td contenteditable="true">{{$item[29]}}</td> --}}
+                    </tr>    
+                    @endif
+                @endforeach
+            </tbody>
+        </table> 
         @endif
     </div>
 </div>

@@ -54,19 +54,19 @@ class ApiController extends Controller
 
         $array = [];
         foreach($table as $item) {
-            if($item[4] !== 'Наименование' && $item[27] !== '') {
+            if($item[1] !== 'Номенклатура' && $item[3] !== '') {
                 $array[] = [
-                    'name' => $item[4],
-                    'description' => $item[21],
-                    'article' => $item[6],
+                    'name' => $item[1],
+                    'description' => '',
+                    'article' => $item[0],
                     'paymentItemType' => 'GOOD',
                     'discountProhibited' => false,
                     'isSerialTrackable' => false,
                     'trackingType' => 'NOT_TRACKED',
                     'archived' => false,
-                    'vat' => $item[25],
-                    'effectiveVat' => $item[25],
-                    'volume' => $item[27],
+                    'vat' => isset($item[25]) ? $item[25] : 20,
+                    'effectiveVat' => isset($item[25]) ? $item[25] : 20,
+                    'volume' => $item[3],
                     'productFolder' => [
                         'meta' => [
                             'href' => 'https://online.moysklad.ru/api/remap/1.2/entity/productfolder/'.$store,
@@ -77,7 +77,7 @@ class ApiController extends Controller
                     ],
                     'salePrices' => [
                         [
-                            'value' => (int)$item[12]*100,
+                            'value' => (int)$item[4]*100,
                             'currency' => [
                                 'meta' => [
                                     'href' => 'https://online.moysklad.ru/api/remap/1.2/entity/currency/218d5776-33fe-11ed-0a80-0285001db7ba',
@@ -124,19 +124,35 @@ class ApiController extends Controller
                             'id' => 'f9d0dad4-9346-11ed-0a80-0ca10012e215',
                             'name' => 'ГТД',
                             'type' => 'string',
-                            'value' => $item[29] === '' ? '0000-0001' : $item[29]                      
+                            'value' => '0000-0001'
+                            //$item[29] === '' ? '0000-0001' : $item[29]                      
                         ]
                     ]
                 ];                
             }
         }
         $download = (array)$array;
-        //$arr = array_chunk($download, ceil(count($download) / $pack));
-        $result = MoySklad::createListGoods($download);
-        if($result) {
-            $answer = Excel::insert($result);
+        $arr = array_chunk($download, ceil(count($download) / $pack));
+        
+        try {
+            set_time_limit(3000);
+            for ($i = 1; $i <= $pack; $i++) {
+                sleep(2);
+                if($i !== $pack) {
+                    $result = MoySklad::createListGoods($arr[$i]);
+                    if($result) {
+                        $answer = Excel::insert($result);
+                    }                
+                }
+            }
+        } catch (\Exception $e) {
+            dd($e->getMessage());
         }
-        //dd($test);
+
+        //dd($result, $answer);
+        //$result = MoySklad::createListGoods($download);
+
+
         //return response()->json($result);
         return redirect()->route('stockable')->with(['result' => $result, 'answer' => $answer]);
     }
