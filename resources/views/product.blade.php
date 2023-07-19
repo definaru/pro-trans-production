@@ -11,14 +11,19 @@
     $stock = $product['catalog']['id'] === '8854033a-48ad-11ed-0a80-0c87007f4175' ? 
         '/products/mercedes-benz' : 
         '/stock/'.$product['catalog']['id'];
+    $quantity = $product['catalog']['id'] === '8854033a-48ad-11ed-0a80-0c87007f4175' ?
+        '' : $product['volume'];
 @endphp
+
 @extends('layout/index', [
     'title' => $str,
     'keywords' => $keywords.', ремонт, ремонт машин в мытищи, сервис, service, чинить, автосервис, мерседес бенц, актрос',
     'description' => $description,
     'image' => $url.$image
 ])
+
 @section('title', $str.' | Проспект Партс')
+
 @section('content')
     <section class="bg-secondary-subtle" itemscope itemtype="http://schema.org/Product">
         <div class="container">
@@ -101,20 +106,38 @@
                         @endif
                     </div>
                     <div class="w-100">
-                        @if($product['quantity'] == 0)
-                        <p class="label-danger">
-                            Нет в наличии
-                        </p>&#160;
-                        <span class="badge bg-secondary text">Деталь на заказ</span>
+                        @if ($quantity === '')
+                            @if($product['quantity'] == 0)
+                                <p class="label-danger">
+                                    Нет в наличии
+                                </p>&#160;
+                                <span class="badge bg-secondary text">Деталь на заказ</span>
+                            @else
+                                <p :class="[{{$product['quantity']}}-count >= 0 || {{$product['quantity']}}-count == 1 ? 'label' : 'label-danger']">
+                                    <link itemprop="availability" href="https://schema.org/InStock"> 
+                                    <template>
+                                        В наличии
+                                        <span v-html="{{$product['quantity']}}" v-if="count == 1"></span>
+                                        <span v-html="{{$product['quantity']}}-count" v-else></span>
+                                    </template>
+                                </p>                        
+                            @endif                            
                         @else
-                        <p :class="[{{$product['quantity']}}-count >= 0 || {{$product['quantity']}}-count == 1 ? 'label' : 'label-danger']">
-                            <link itemprop="availability" href="https://schema.org/InStock"> 
-                            <template>
-                                В наличии
-                                <span v-html="{{$product['quantity']}}" v-if="count == 1"></span>
-                                <span v-html="{{$product['quantity']}}-count" v-else></span>
-                            </template>
-                        </p>                        
+                            @if($product['volume'] == 0)
+                                <p class="label-danger">
+                                    Нет в наличии
+                                </p>&#160;
+                                - <span class="badge bg-secondary text">Деталь на заказ</span>
+                            @else
+                                <p :class="[{{$product['volume']}}-count >= 0 || {{$product['volume']}}-count == 1 ? 'label' : 'label-danger']">
+                                    <link itemprop="availability" href="https://schema.org/InStock"> 
+                                    <template>
+                                        В наличии
+                                        <span v-html="{{$product['volume']}}" v-if="count == 1"></span>
+                                        <span v-html="{{$product['volume']}}-count" v-else></span>
+                                    </template>
+                                </p>                        
+                            @endif 
                         @endif
                     </div>
                     <hr style="color: #ddd" />
@@ -122,7 +145,7 @@
                         @if($product['quantity'] == 0)
                             <button onclick="isUserSubscribe()" class="btn btn-lg btn-primary px-5 py-3 d-flex justify-content-center align-items-center gap-2">
                                 <x-icon-add-card size="25px" color="#fff" />
-                                В корзину
+                                В корзину +
                             </button>   
                         @else
                             <div class="d-flex justify-content-center rounded p-3 bg-white">

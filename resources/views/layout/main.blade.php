@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/defina.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/toastr.css') }}" />
 </head>
@@ -66,6 +67,7 @@
     <script src="{{ asset('js/vue.js') }}"></script>
     <script src="{{ asset('js/toastr.min.js') }}"></script>
     <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
+    <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('js/defina.admin.min.js') }}"></script>
     @if ($_SERVER['REQUEST_URI'] === '/dashboard/document/agreement/edit' || $_SERVER['REQUEST_URI'] === '/dashboard/document/agreement')
     <script src="{{ asset('js/cleave.js') }}"></script>

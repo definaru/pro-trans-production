@@ -140,20 +140,21 @@ class ApiController extends Controller
                 sleep(2);
                 if($i !== $pack) {
                     $result = MoySklad::createListGoods($arr[$i]);
-                    if($result) {
-                        $answer = Excel::insert($result);
-                    }                
+                    // if($result) {
+                    //     $answer = Excel::insert($result);
+                    // }                
                 }
             }
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            $answer = [
+                'type' => 'danger',
+                'header' => 'Ошибка: ',
+                'message' => $e->getMessage()
+            ];
+            return redirect()->route('stockable')->with(['answer' => $answer]);
+            // dd($e->getMessage());
         }
-
-        //dd($result, $answer);
-        //$result = MoySklad::createListGoods($download);
-
-
-        //return response()->json($result);
+        // return response()->json($result);
         return redirect()->route('stockable')->with(['result' => $result, 'answer' => $answer]);
     }
 

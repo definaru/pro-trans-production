@@ -53,33 +53,33 @@
                             </div>
                         </div>
                         <div class="row gx-2">
-                            <div class="col-12 col-lg-4">
+                            <div class="col-12 col-lg-6">
                                 <div class="border rounded p-3 mb-2 bg-white">
-                                    <strong>Связаться с<br /> менеджером:</strong> 
+                                    <strong>Связаться с менеджером:</strong> 
                                     <div class="d-flex gap-2 mt-2">
                                         <x-icon-call size="22px" color="#310062"/>
                                         {!! $contact::getPhone(config('app.phone'), ['text-muted']) !!}
                                     </div>
                                 </div>                                
                             </div>
-                            <div class="col-12 col-lg-4">
+                            <div class="col-12 col-lg-6">
                                 <div class="border rounded p-3 mb-2 bg-white">
-                                    <strong>Связаться с<br /> тех.поддержкой:</strong> 
+                                    <strong>Связаться с тех.поддержкой:</strong> 
                                     <div class="d-flex gap-2 mt-2">
                                         <x-icon-call size="22px" color="#310062"/>
                                         {!! $contact::getPhone('89151389077', ['text-muted']) !!}
                                     </div> 
                                 </div> 
                             </div>
-                            <div class="col-12 col-lg-4">
+                            {{-- <div class="col-12 col-lg-4">
                                 <div class="border rounded p-3 mb-2 bg-white">
                                     <strong>По корпоративным<br /> вопросам:</strong> 
                                     <div class="d-flex gap-2 mt-2">
                                         <x-icon-call size="22px" color="#310062"/>
-                                        {!! $contact::getPhone('84957682473', ['text-muted']) !!}
+                                        $contact::getPhone('84957682473', ['text-muted'])
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <div class="d-flex flex-column border rounded p-3 mb-2 bg-white">

@@ -101,7 +101,7 @@
             @if (isset($product['meta']['nextHref']) || $offset > 0)
             <div class="mt-5 d-flex align-items-center justify-content-between">
                 <div>
-                    <select id="selectOffset" class="form-select" onchange="selectOffset()">
+                    <select id="selectOffsetBottom" class="form-select" onchange="selectOffsetBottom()">
                         @foreach ([12, 24, 48, 64, 100] as $key)
                             <option value="/stock/{{$id}}/{{$key}}/0" @if($key == $limit) selected @endif >
                                 {{$key}}

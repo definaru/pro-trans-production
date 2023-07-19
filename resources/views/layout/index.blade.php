@@ -210,5 +210,13 @@
     <script src="{{ asset('js/toastr.min.js') }}"></script>
     <script src="{{ asset('js/vue.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+
+    <script>
+        var dataPro = {
+            "language":"ru", 
+            "id": "{{$user['verified'] ?? ''}}", 
+            "email": "{{$user['email'] ?? ''}}"
+        };
+    </script> 
 </body>
 </html>

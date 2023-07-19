@@ -88,7 +88,11 @@
                 {{-- <pre v-html="JSON.parse(JSON.stringify(isError, null, 4))"></pre> --}}
             </div>
             {{-- <pre v-html="JSON.stringify(result, null, 4)"></pre> --}}
-            <div v-if="loading === false">Загрузка материалов...</div>
+            <div v-if="loading === false">
+                <div class="card border-0 shadow-sm mb-3 placeholder-glow"><div class="card-body placeholder rounded px-3 h2 m-0">Loading</div></div>
+                <div class="card border-0 shadow-sm mb-3 placeholder-glow"><div class="card-body placeholder rounded px-3 h2 m-0">Loading</div></div>
+                <div class="card border-0 shadow-sm mb-3 placeholder-glow"><div class="card-body placeholder rounded px-3 h2 m-0">Loading</div></div>
+            </div>
             <template v-if="result.length !== 0">
                 <div class="card border-0 shadow-sm mb-3" v-for="(item, id) in result" :key="item.id">
                     <div class="card-body">

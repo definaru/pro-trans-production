@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="<?php echo e(asset('css/bootstrap.min.css')); ?>" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="<?php echo e(asset('css/sweetalert2.min.css')); ?>" />
     <link rel="stylesheet" href="<?php echo e(asset('css/defina.min.css')); ?>" />
     <link rel="stylesheet" href="<?php echo e(asset('css/toastr.css')); ?>" />
 </head>
@@ -67,6 +68,7 @@
     <script src="<?php echo e(asset('js/vue.js')); ?>"></script>
     <script src="<?php echo e(asset('js/toastr.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/jquery.slimscroll.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/sweetalert2.all.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/defina.admin.min.js')); ?>"></script>
     <?php if($_SERVER['REQUEST_URI'] === '/dashboard/document/agreement/edit' || $_SERVER['REQUEST_URI'] === '/dashboard/document/agreement'): ?>
     <script src="<?php echo e(asset('js/cleave.js')); ?>"></script>

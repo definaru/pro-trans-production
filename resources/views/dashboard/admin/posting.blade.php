@@ -19,7 +19,7 @@
 
 @section('content')
 <h6 class="text-muted">Для оприходования товаров, выберите склад и загрузите Excel таблицу.</h6>
-<div class="row">
+<div class="row" :style="stock.loading ? 'cursor: progress' : ''">
     <div class="col">
         <div class="card border-0 shadow-sm mb-3">
             <div class="card-body">
@@ -39,7 +39,14 @@
                             <label class="d-flex align-items-center gap-2">
                                 <span class="material-symbols-outlined fs-1 mx-2">pallet</span>
                                 <div class="w-100">
-                                    <select name="stock" class="form-select" v-model="stock.store.id" @change="handleStock($event)">
+                                    <select 
+                                        name="stock" 
+                                        class="form-select" 
+                                        v-model="stock.store.id" 
+                                        @change="handleStock($event)"
+                                        :style="stock.loading ? 'cursor: progress' : ''" 
+                                        :disabled="stock.loading ? true : false"
+                                    >
                                         <option value="" disabled selected>Выберите склад...</option>
                                         @foreach ($stock['rows'] as $item)
                                             <option value="{{$item['id']}}">{{$item['name']}}</option>
@@ -50,7 +57,14 @@
                             <label class="d-flex align-items-center gap-2">
                                 <span class="material-symbols-outlined fs-1 mx-2">location_on</span>
                                 <div class="w-100">
-                                    <select name="country" class="form-select" v-model="stock.country.id" @change="handleCountry($event)">
+                                    <select 
+                                        name="country" 
+                                        class="form-select" 
+                                        v-model="stock.country.id" 
+                                        @change="handleCountry($event)"
+                                        :style="stock.loading ? 'cursor: progress' : ''" 
+                                        :disabled="stock.loading ? true : false"
+                                    >
                                         <option value="" disabled selected>Выберите страну...</option>
                                         @foreach ($country['rows'] as $item)
                                         <option value="{{$item['id']}}">{{$item['name']}}</option>
@@ -76,8 +90,16 @@
 
                         <form id="createstosck" action="/api/loadstock" method="post">
                             @csrf
-                            <input type="hidden" name="store" :value="stock.store.id" />
-                            <input type="hidden" name="country" :value="stock.country.id" />
+                            <input 
+                                type="hidden" 
+                                name="store" 
+                                :value="stock.store.id" 
+                            />
+                            <input 
+                                type="hidden" 
+                                name="country" 
+                                :value="stock.country.id"
+                            />
                             @if ($table)
                                 <input type="hidden" name="pack" value="{{ceil((count($table)-1)/1000)}}" />
                             @endif

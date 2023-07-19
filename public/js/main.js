@@ -167,10 +167,13 @@ new Vue({
                 image: card[6]
             }
             var total = arr.filter(el => el != null).concat(add);
-            toastr.success(`Добавлен в корзину`, `Товар "${card[2]}"`, {
-                positionClass:"toast-bottom-left",
-                containerId:"toast-bottom-left"
-            });
+            toastr.success(
+                `<a href="/card" class="text-white text-decoration-none">Добавлен в корзину</a>`, 
+                `<a href="/card" class="text-white text-decoration-none">Товар "${card[2]}"</a>`, 
+                {
+                    positionClass:"toast-bottom-left",
+                    containerId:"toast-bottom-left"
+                });
             localStorage.setItem('cart', JSON.stringify(total));
             this.card.push(add);
             this.saveCart();
@@ -433,16 +436,18 @@ function getReviewYandex()
 
 async function isUserSubscribe()
 {
-    const { value: email } = await Swal.fire({
+    const { value: email } = await Swal.fire({ // dataPro.id
         title: 'Данной запчасти нет в наличии',
-        html: `Вы можете подписаться, чтобы первыми узнать о поступлении товара, 
-        либо связаться с нашим менеджером 
-        <br /><a href="tel:89017331866" class="text-decoration-none fw-bold">+7 (901) 733-18-66</a>`,
-        input: 'email',
-        inputPlaceholder: 'Укажите ваш e-mail...',
-        showCancelButton: true,
-        confirmButtonText: '✎ Подписаться',
-        cancelButtonText: '✖ Отмена',
+        html: `Но она есть у нас на складе. Зарегистрируйтесь, или позвоните нам. 
+        <br />
+        <a href="tel:89017331866" class="text-decoration-none fw-bold text-primary">
+            +7 (901) 733-18-66
+        </a>`,
+        //input: 'email',
+        //inputPlaceholder: 'Укажите ваш e-mail...',
+        showCancelButton: false,
+        confirmButtonText: 'Зарегистрироваться',
+        cancelButtonText: '✖ Закрыть',
         confirmButtonColor: '#310062',
         cancelButtonColor: '#111',
         allowOutsideClick: false,
@@ -459,9 +464,56 @@ async function isUserSubscribe()
         //     }
         // }
     });
-    if (email) {
-        Swal.fire(`Entered email: ${email}`)
-    }
+    // if (email) {
+    //     Swal.fire(`Entered email: ${email}`)
+    // }
+}
+
+function partnerStockEvent()
+{
+    if(dataPro.id) {
+        isLogin()
+    } else {
+        isNotSignUp()
+    } 
+}
+
+function isLogin()
+{
+    Swal.fire({
+        icon: 'warning',
+        title: 'Товара по предзаказу',
+        html: `Данную категорию товаров можно оформить <u class="fw-bold">только по предзаказу</u> в личном кабинете.
+        Количество дней ожидания указано в верхнем левом углу карточки товара.
+        `,
+        showCancelButton: true,
+        confirmButtonText: 'В личный кабинет',
+        cancelButtonText: '✖ Закрыть',
+        confirmButtonColor: '#310062',
+        cancelButtonColor: '#111',
+        allowOutsideClick: false,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.assign('/dashboard/catalog/category/8854033a-48ad-11ed-0a80-0c87007f4175');
+        }
+    });
+}
+
+
+function loadGoods()
+{
+    Swal.fire({
+        icon: false,
+        title: false,
+        showConfirmButton: false,
+        allowOutsideClick: false,
+        html: `
+        <div class="d-flex align-items-center gap-3 btn icon-link justify-content-center mt-2">
+            <span class="spinner-border spinner-border text-danger"></span>
+            <span>Загружаем товар...</span>
+        </div>
+        `,
+    });    
 }
 
 function isNotSignUp()
@@ -486,7 +538,7 @@ function isNotSignUp()
             icon: ['text-danger', 'border-danger'],
             title: 'text-dark',
             cancelButton: ['d-flex', 'align-items-center', 'gap-2'],
-            confirmButton: ['d-flex', 'align-items-center', 'gap-2'],
+            confirmButton: dataPro.id !== '' ? 'd-none' : ['d-flex', 'align-items-center', 'gap-2'],
             htmlContainer: 'text'
         }
     }).then((result) => {
@@ -510,7 +562,14 @@ searchModal.addEventListener('shown.bs.modal', function () {
 });
 
 function selectOffset() {
+    loadGoods();
     var url = document.getElementById("selectOffset").value;
+    window.location.assign(url);
+}
+
+function selectOffsetBottom() {
+    loadGoods();
+    var url = document.getElementById("selectOffsetBottom").value;
     window.location.assign(url);
 }
 

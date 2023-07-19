@@ -310,5 +310,13 @@
     <script src="<?php echo e(asset('js/toastr.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/vue.js')); ?>"></script>
     <script src="<?php echo e(asset('js/main.js')); ?>"></script>
+
+    <script>
+        var dataPro = {
+            "language":"ru", 
+            "id": "<?php echo e($user['verified'] ?? ''); ?>", 
+            "email": "<?php echo e($user['email'] ?? ''); ?>"
+        };
+    </script> 
 </body>
 </html><?php /**PATH C:\OpenServer\domains\prospektrans.host\resources\views/layout/index.blade.php ENDPATH**/ ?>

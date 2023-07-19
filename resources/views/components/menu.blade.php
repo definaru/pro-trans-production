@@ -72,15 +72,15 @@
                 </span>
                 @if($i['count'])
                     @if($i['name'] === 'Корзина')
-                        <span class="badge bg-danger rounded-pill me-3" v-if="card.length" :class="[!isOpen ? 'label-menu' : '']">
+                        <span class="badge bg-danger rounded-pill me-2" v-if="card.length" :class="[!isOpen ? 'label-menu' : '']">
                             @{{card.length}}
                         </span>
                     @elseif($i['name'] === 'Предзаказы')
-                        <span class="badge bg-danger rounded-pill me-3" v-if="preorder.length" :class="[!isOpen ? 'label-menu' : '']"> 
+                        <span class="badge bg-danger rounded-pill me-2" v-if="preorder.length" :class="[!isOpen ? 'label-menu' : '']"> 
                             @{{preorder.length}}
                         </span>
                     @else
-                    <span class="badge bg-danger rounded-pill me-3" :class="[!isOpen ? 'label-menu' : '']">
+                    <span class="badge bg-danger rounded-pill me-2" :class="[!isOpen ? 'label-menu' : '']">
                         {{ $i['count'] }}
                     </span>
                     @endif
