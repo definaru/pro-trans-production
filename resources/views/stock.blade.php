@@ -15,7 +15,6 @@
 @section('content')
 <section class="bg-secondary-subtle catalog">
     <div class="container position-relative py-4 py-lg-2">
-        <pre><?php //var_dump($json)?></pre>
         <div class="row" itemscope itemtype="https://schema.org/Product">
             <div class="d-flex justify-content-between">
                 <h2 class="text fw-bold text-dark">{{$title}}</h2>

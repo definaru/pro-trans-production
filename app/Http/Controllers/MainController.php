@@ -17,9 +17,7 @@ class MainController extends Controller
 
     public function Test()
     {
-        $modal = MoySklad::getAllGoods(); //  getListURL   
-        //$list = response()->json($modal);
-
+        $modal = MoySklad::getAllGoods(); //  getListURL
         $data = [];
         foreach($modal as $item) {
             $data[] = [
@@ -150,7 +148,12 @@ class MainController extends Controller
     public function Catalog($limit = 64, $offset = 0)
     {
         $product = MoySklad::getAllProduct($limit, $offset);
-        //return response()->json($product);
+        // $pro = [];
+        // foreach($product['rows'] as $item) {
+        //     $pro[] = $item['article']; //  ?? '/img/placeholder.png'
+        // }
+        // $arr_images = Goods::whereIn('article', $pro)->select('article', 'image')->get()->toArray();
+        //return response()->json($res);, 'arr_images' => $arr_images
         return view('catalog', ['product' => $product, 'limit' => $limit, 'offset' => $offset]);
     }
 
