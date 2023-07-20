@@ -65,15 +65,27 @@
                                 <hr style="color: #ddd">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div>
-                                        <p 
-                                            itemprop="offers" 
-                                            itemscope
-                                            itemtype="https://schema.org/Offer" 
-                                            class="{{$images::quantity($item['quantity'])['class']}}"
-                                        >
-                                            <link itemprop="availability" href="https://schema.org/InStock">
-                                            {{$images::quantity($item['quantity'])['text']}}
-                                        </p>                              
+                                        @if ($item['productFolder']['id'] === '8854033a-48ad-11ed-0a80-0c87007f4175')
+                                            <p 
+                                                itemprop="offers" 
+                                                itemscope
+                                                itemtype="https://schema.org/Offer" 
+                                                class="{{$images::quantity($item['quantity'])['class']}}"
+                                            >
+                                                <link itemprop="availability" href="https://schema.org/InStock">
+                                                {{$images::quantity($item['quantity'])['text']}}
+                                            </p>                                             
+                                        @else
+                                            <p 
+                                                itemprop="offers" 
+                                                itemscope
+                                                itemtype="https://schema.org/Offer" 
+                                                class="{{$item['volume'] == 0 ? 'label-danger' : 'label'}}"
+                                            >
+                                                <link itemprop="availability" href="https://schema.org/InStock">
+                                                {{$item['volume'] == 0 ? 'Нет в наличии' : 'В наличии '.$item['volume']}}
+                                            </p>  
+                                        @endif                    
                                     </div>
                                     <strong>
                                         {!!$currency::summa($item['salePrices'][0]['value'])!!}
