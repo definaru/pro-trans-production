@@ -16,7 +16,7 @@
         itemprop="image"
         loading="lazy"
         src="{{$image}}" 
-        class="card-img-top rounded" 
+        class="card-img-top rounded"
         alt="{{$item['name']}}, Проспект Партс, {{$item['pathName']}}"
     />
 </a>

@@ -264,7 +264,7 @@
                     <h2 class="fw-bold display-5">Запасные части</h2>
                     <p class="text-muted text">
                         В наличии и под заказ есть запчасти
-                        на следующие бренды грузовых автомобилей: 
+                        на следующие бренды для грузовых автомобилей по всей России: 
                         <i>Mercedes-Benz</i>, 
                         <i>Volvo</i>, 
                         <i>Renault Trucks</i>.
@@ -275,24 +275,24 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card card-data border-light shadow-lg">
                         <div class="card-body text-center pt-5">
-                            <img src="/img/actros___kopiya.png" style="height: auto;opacity: 1" class="w-100" alt="Mercedes-Benz">
-                            <h5 class="fw-bold mt-3">Mercedes-Benz</h5>
+                            <img src="/img/actros___kopiya.png" style="cursor: default;height: auto;opacity: 1" class="w-100" alt="Mercedes-Benz">
+                            <h5 class="fw-bold mt-3" style="cursor: default;text-decoration: 3px underline #8630a3;">Mercedes-Benz</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card card-data border-light shadow-lg">
                         <div class="card-body text-center pt-5">
-                            <img src="/img/volvo.png" style="height: auto;opacity: 1" class="w-100" alt="Volvo">
-                            <h5 class="fw-bold mt-3">Volvo</h5>
+                            <img src="/img/volvo.png" style="cursor: default;height: auto;opacity: 1" class="w-100" alt="Volvo">
+                            <h5 class="fw-bold mt-3" style="cursor: default;text-decoration: 3px underline #8630a3;">Volvo</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-4 mb-4 z-3 position-relative">
                     <div class="card card-data border-light shadow-lg">
                         <div class="card-body text-center pt-5">
-                            <img src="/img/Renault.png" style="height: auto;opacity: 1" class="w-100" alt="Renault Trucks">
-                            <h5 class="fw-bold mt-3">Renault Trucks</h5>
+                            <img src="/img/Renault.png" style="cursor: default;height: auto;opacity: 1" class="w-100" alt="Renault Trucks">
+                            <h5 class="fw-bold mt-3" style="cursor: default;text-decoration: 3px underline #8630a3;">Renault Trucks</h5>
                         </div>
                     </div>
                 </div>
@@ -306,11 +306,7 @@
                 <div class="d-flex flex-column flex-lg-row justify-content-between align-items-center col-12">
                     <h2 class="fw-bold display-6">Товары в наличии</h2>
                     <div>
-                        <select class="form-control px-5 d-lg-block d-none" name="brand">
-                            <option value="Mercedes-Benz">Mercedes-Benz</option>
-                            <option value="Volvo">Volvo</option>
-                            <option value="Renault Trucks">Renault Trucks</option>
-                        </select>
+                        
                     </div>
                 </div>
             </div>
@@ -520,7 +516,7 @@
                                 </span>
                                 <div>
                                     <strong class="fs-2 text-secondary">Доставка</strong>
-                                    <p class="fs-5 text">4) Качественная доставка в срок</p>
+                                    <p class="fs-5 text">4) Работаем со всеми транспортными компаниями</p>
                                 </div>
                             </li>
                         </ul>                                    

@@ -40,7 +40,7 @@ class GetOrder
             ],	
             [
                 'article' => 'A4700908352',
-                'name' => 'SFTP Картридж топливного фильтра с сеткой MercedesBenz',
+                'name' => 'SFTP Картридж топливного фильтра с сеткой',
                 'image' => '/img/material/A4700908352.png',
                 'href' => '54ddbc1a-90e3-11ed-0a80-0f4a0011b022'
             ],
@@ -58,7 +58,7 @@ class GetOrder
             ],	
             [
                 'article' => 'A4710700887',
-                'name' => 'Форсунка топливная Mercedes Actros Antos Arocs двигатель OM471',
+                'name' => 'Форсунка топливная Mercedes Actros двигатель OM471',
                 'image' => '/img/material/A4710700887.png',
                 'href' => '887f3a9f-48ad-11ed-0a80-0c87007f4188'
             ],
