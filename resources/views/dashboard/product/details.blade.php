@@ -58,6 +58,24 @@
     @else
     <div class="card border-0 shadow-sm">
         <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    @if ($product['catalog']['id'] === '416a3aff-0f66-11ee-0a80-0d9c00124798')
+                        <x-alert 
+                            type="warning" 
+                            header="Внимание: " 
+                            message="Доставка предзаказа осуществляется <strong>в течении 5 рабочих дней!</strong>"
+                        />
+                    @elseif ($product['catalog']['id'] === 'a2a12edf-1642-11ee-0a80-13ab00041ab9')
+                        <x-alert 
+                            type="warning" 
+                            header="Внимание: " 
+                            message="Доставка заказа осуществляется <strong>в течении 28 рабочих дней!</strong>"
+                        />
+                    @else
+                    @endif
+                </div>                
+            </div>
             <div class="row mt-3">
                 <div class="col-md-3">
                     @role('customer')
@@ -126,24 +144,37 @@
                     </div> -->
 
                     <p>
-                        @if($product['quantity'] == 0 || $product['quantity'] < 0)
-                        <div class="badge bg-soft-danger text-danger px-3">
-                            Нет в наличии
-                        </div>
+                        @if ($product['catalog']['id'] === '8854033a-48ad-11ed-0a80-0c87007f4175')
+                            @if($product['quantity'] == 0)
+                                <div class="badge bg-soft-danger text-danger px-3">
+                                    Нет в наличии
+                                </div>
+                            @else
+                                <div class="badge bg-soft-success px-3">
+                                    <div class="d-flex align-items-center gap-2 text-success">
+                                        В наличии 
+                                        <span class="badge bg-success">{{$product['quantity']}}</span>                                
+                                    </div>
+                                </div>
+                            @endif                            
                         @else
-                        <div class="badge bg-soft-success px-3">
-                            <div class="d-flex align-items-center gap-2 text-success">
-                                В наличии 
-                                <span class="badge bg-success">
-                                    {{$product['quantity']}}
-                                </span>                                
-                            </div>
-                        </div>
+                            @if($product['volume'] == 0)
+                                <div class="badge bg-soft-danger text-danger px-3">
+                                    Нет в наличии
+                                </div>
+                            @else
+                                <div class="badge bg-soft-success px-3">
+                                    <div class="d-flex align-items-center gap-2 text-success">
+                                        В наличии 
+                                        <span class="badge bg-success">{{$product['volume']}}</span>                                
+                                    </div>
+                                </div>
+                            @endif 
                         @endif
                     </p>
                     <div class="d-flex">
                         <div>
-                            @if($product['quantity'] == 0 || $product['quantity'] < 0)
+                            @if($product['quantity'] == 0)
                                 <div  
                                     id="preorders1"
                                     data-order="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,{{$product['salePrices']}},{{$images::text($id)['image']}}"

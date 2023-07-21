@@ -2,7 +2,7 @@
     $str = mb_convert_case($product['name'], MB_CASE_TITLE, "UTF-8");
     $result = array_merge($listorder, $bestsellers, $alllist);
     $url = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
-    $image = $images::src($id);
+    //$image = $images::src($id);
     $price = $currency::rubl($product['salePrices']);
     $keywords = $seo::keywords($images::text($id)['description']);
     $description = isset($product['description']) ? 
@@ -13,6 +13,9 @@
         '/stock/'.$product['catalog']['id'];
     $quantity = $product['catalog']['id'] === '8854033a-48ad-11ed-0a80-0c87007f4175' ?
         '' : $product['volume'];
+
+    $path = './img/goods/'.$product['article'].'.jpg';
+    $image = (file_exists($path)) ? trim($path, '.') : '/img/placeholder.png';
 @endphp
 
 @extends('layout/index', [
@@ -145,7 +148,7 @@
                         @if($product['quantity'] == 0)
                             <button onclick="isUserSubscribe()" class="btn btn-lg btn-primary px-5 py-3 d-flex justify-content-center align-items-center gap-2">
                                 <x-icon-add-card size="25px" color="#fff" />
-                                В корзину +
+                                В корзину
                             </button>   
                         @else
                             <div class="d-flex justify-content-center rounded p-3 bg-white">

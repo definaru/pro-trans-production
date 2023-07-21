@@ -135,10 +135,6 @@ class MainController extends Controller
 
     public function stockFolder($id, $limit = 64, $offset = 0)
     {
-        // $files = './img/xml/data.json';
-        // if (file_exists($files)){
-        //     $json = json_decode(file_get_contents($files), true);
-        // }
         $product = MoySklad::getProductFromStock($id, $limit, $offset);
         //return response()->json($product);
         return view('stock', compact('product', 'limit', 'offset', 'id'));

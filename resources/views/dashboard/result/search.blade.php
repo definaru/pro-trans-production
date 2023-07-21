@@ -41,11 +41,19 @@
                     {!! $currency::summa($item['salePrices'][0]['value']) !!}
                 </div> 
                 <div class="btn">
-                    @if ($item['quantity'] == 0)
-                        <x-badge color="danger" text="Нет в наличии" /> 
+                    @if ($item['productFolder']['id'] === '8854033a-48ad-11ed-0a80-0c87007f4175')
+                        @if ($item['quantity'] == 0)
+                            <x-badge color="danger" text="Нет в наличии" /> 
+                        @else
+                            <x-badge color="34617" text="В наличии {{$item['quantity']}}" />  
+                        @endif                         
                     @else
-                        <x-badge color="34617" text="В наличии {{$item['quantity']}}" />  
-                    @endif 
+                        @if ($item['volume'] == 0)
+                            <x-badge color="danger" text="Нет в наличии" />
+                        @else
+                            <x-badge color="34617" text="В наличии {{$item['volume']}}" />
+                        @endif
+                    @endif
                 </div>
                 <div>
                     @if ($item['quantity'] == 0)

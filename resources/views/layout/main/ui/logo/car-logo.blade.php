@@ -9,7 +9,7 @@
         @elseif ($stock['id'] === 'a2a12edf-1642-11ee-0a80-13ab00041ab9')
             <img 
                 src="/img/partner/GMS/gms.png" 
-                alt="GMS" 
+                alt="GMS"
                 style="background: #efeded;border-radius: 50em;width: 37px;height: 37px"
             />
         @else
