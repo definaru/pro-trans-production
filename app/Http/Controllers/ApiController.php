@@ -133,16 +133,20 @@ class ApiController extends Controller
         }
         $download = (array)$array;
         $arr = array_chunk($download, ceil(count($download) / $pack));
-        
+
+        //return response()->json($arr[0]);
+
         try {
             set_time_limit(3000);
-            for ($i = 1; $i <= $pack; $i++) {
-                sleep(2);
+            for ($i = 0; $i <= $pack; $i++) {
                 if($i !== $pack) {
                     $result = MoySklad::createListGoods($arr[$i]);
-                    // if($result) {
-                    //     $answer = Excel::insert($result);
-                    // }                
+                    if(isset($result[0]['meta']['href'])) {
+                        //Excel::loading($arr[$i]);
+                        setcookie("Pack", $i, time()+3600);
+                        //MoySklad::createListGoods($arr[$i]);
+                    }
+                    sleep(3);             
                 }
             }
         } catch (\Exception $e) {
@@ -152,9 +156,7 @@ class ApiController extends Controller
                 'message' => $e->getMessage()
             ];
             return redirect()->route('stockable')->with(['answer' => $answer]);
-            // dd($e->getMessage());
         }
-        // return response()->json($result);
         return redirect()->route('stockable')->with(['result' => $result, 'answer' => $answer]);
     }
 

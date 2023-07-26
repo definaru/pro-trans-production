@@ -32,6 +32,12 @@ class DachboardController extends Controller
         return view('dashboard');
     }
 
+
+    public function arrayPack($request) // Request 
+    {
+        return setcookie("Pack", $request, time()+3600);
+    }
+
     
     public function preOrderViewOne($id)
     {

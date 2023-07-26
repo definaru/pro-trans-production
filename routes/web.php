@@ -82,6 +82,7 @@ Route::prefix('api')->group(function () {
     Route::post('customer', [AuthController::class, 'Customer']);
     Route::post('mail', [AuthController::class, 'SendMail']);
     Route::post('spares', [DachboardController::class, 'SendSpares']);
+    Route::post('array/pack', [DachboardController::class, 'arrayPack']);
     Route::post('checkout', [DachboardController::class, 'Checkout']);
     Route::post('precheckout', [DachboardController::class, 'preCheckout']);
     Route::post('counterparty', [DachboardController::class, 'addedCounterAgent']);

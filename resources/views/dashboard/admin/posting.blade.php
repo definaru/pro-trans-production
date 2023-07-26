@@ -4,6 +4,7 @@
     $table = $excel !== '' ? $xml::parse('./img/xml/'.$excel) : '';
     $isNull = $table ? array_filter($table, function($a){return $a[3] == '';}) : 0;
     $complete = $table ? array_filter($table, function($a){return $a[3] !== '';}) : 0;
+    $pack = $table ? ceil(count($complete)/1000)-1 : [];
 @endphp
 
 @extends('layout/main')
@@ -101,7 +102,7 @@
                                 :value="stock.country.id"
                             />
                             @if ($table)
-                                <input type="hidden" name="pack" value="{{ceil((count($table)-1)/1000)}}" />
+                                <input type="hidden" name="pack" value="{{$pack}}" />
                             @endif
                             <input type="hidden" name="file" value="{{$excel}}" />
                             <div v-if="stock.store.id && stock.country.id">
@@ -140,13 +141,17 @@
                             </p>                                
                             @endif
                             @if ($complete !== 0)
-                            <p class="m-0">
-                                <strong>Товары в наличии:</strong> {{number_format(count($complete))}} шт. /
-                                <span class="badge text-bg-success"><?=ceil(count($complete)/1000);?> пачек</span>
+                            <p class="m-0" id="pack" data-pack="{{$pack}}">
+                                <strong>Товары в наличии:</strong> {{number_format(count($complete))}} шт.
                             </p>
                             @endif
                             <p class="m-0" v-if="stock.store.name"><strong>Склад:</strong> @{{stock.store.name}}</p>
                             <p class="m-0" v-if="stock.country.name"><strong>Страна:</strong> @{{stock.country.name}}</p>
+                            <div class="progress bg-dark-subtle mt-4" v-if="stock.loading">
+                                <div id="progress"
+                                    class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                ></div>
+                            </div>
                         @else
                             <p v-if="stock.size"><strong>Размер файла:</strong> @{{stock.size}}</p>
                             <p v-if="stock.size">

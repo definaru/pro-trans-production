@@ -32,6 +32,13 @@ class Excel
     }
 
 
+    public static function loading($request)
+    {
+        // http://prospektrans.host/api/array/pack
+        return setcookie("Pack", $request, time()+3600);
+    }
+
+
     public static function insert($db)
     {
         try {
