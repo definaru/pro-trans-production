@@ -111,19 +111,21 @@
     @endif
 
 
-    <div class="row mb-4">
-        <div class="col-12 col-lg-4">
-            <a href="/dashboard/promo/Gearax">
-                <img src="/img/goods/promo/gearax.jpg" alt="Gearax" class="w-100 rounded shadow-sm" />
-            </a>
-        </div>
-        <div class="col-12 col-lg-4">
-            <a href="/dashboard/promo/GMS">
-                <img src="/img/goods/promo/gms.jpg" alt="GMS" class="w-100 rounded shadow-sm" />
-            </a>
-        </div>
-    </div>
-
+    @if(session('search'))
+    @else
+        <div class="row mb-4">
+            <div class="col-12 col-lg-4">
+                <a href="/dashboard/promo/Gearax">
+                    <img src="/img/goods/promo/gearax.jpg" alt="Gearax" class="w-100 rounded shadow-sm" />
+                </a>
+            </div>
+            <div class="col-12 col-lg-4">
+                <a href="/dashboard/promo/GMS">
+                    <img src="/img/goods/promo/gms.jpg" alt="GMS" class="w-100 rounded shadow-sm" />
+                </a>
+            </div>
+        </div>        
+    @endif
 
     @role('admin')
         <hr />

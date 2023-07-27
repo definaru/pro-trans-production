@@ -9,7 +9,7 @@
                         <h1 class="fw-bold lh-1 display-4" style="text-shadow: 1px 1px 0px #fff">
                              
                             <span class="text-primary">Поставляем запчасти</span>, комплектующие 
-                            и расходные материалы 
+                            и расходные материалы по России
                             <br />
                             <span class="fw-light display-5">для грузовых автомобилей.</span> 
                              

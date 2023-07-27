@@ -133,8 +133,7 @@ class ApiController extends Controller
         }
         $download = (array)$array;
         $arr = array_chunk($download, ceil(count($download) / $pack));
-
-        //return response()->json($arr[0]);
+        // return response()->json($arr[9]);
 
         try {
             set_time_limit(3000);
@@ -142,9 +141,7 @@ class ApiController extends Controller
                 if($i !== $pack) {
                     $result = MoySklad::createListGoods($arr[$i]);
                     if(isset($result[0]['meta']['href'])) {
-                        //Excel::loading($arr[$i]);
                         setcookie("Pack", $i, time()+3600);
-                        //MoySklad::createListGoods($arr[$i]);
                     }
                     sleep(3);             
                 }
