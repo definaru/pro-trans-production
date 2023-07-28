@@ -615,14 +615,14 @@ class GetMenu
                         'slug' => 'settings/profile',
                         'count' => '',
                         'list' => ''
+                    ],
+                    [
+                        'icon' => 'help',
+                        'name' => 'Помощь',
+                        'slug' => 'help',
+                        'count' => '',
+                        'list' => ''
                     ]
-                    // [
-                    //     'icon' => 'help',
-                    //     'name' => 'Помощь',
-                    //     'slug' => 'help',
-                    //     'count' => '',
-                    //     'list' => ''
-                    // ]
                 ]
             ]
         ];

@@ -87,6 +87,40 @@
     <section id="bestsellers" class="bg-secondary-subtle d-lg-block d-none">
         <div class="container" itemscope itemtype="https://schema.org/ItemList">
 
+            <div class="row">
+                <div class="col-12 pb-5">
+                    <div class="p-5 bg-dark text-white rounded" 
+                    style="background-image: url(/img/banner.png);background-size: cover;background-position: top right;box-shadow: inset 0px -48px 254px 86px #000000bf">
+                        <h2 class="display-3 mb-4 fw-bold"><span class="text-danger">Акция!</span> Фирменная толстовка<br>при первом заказе</h2>
+                        <div class="d-grid d-lg-flex gap-3">
+                            <a href="/signup" class="btn btn-lg btn-primary px-5 d-flex justify-content-center align-items-center gap-2">
+                                <?php if (isset($component)) { $__componentOriginal8ebc2cfae60e7fda14142d5a384e1fb512120930 = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\IconAdd::class, ['color' => '#fff']); ?>
+<?php $component->withName('icon-add'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal8ebc2cfae60e7fda14142d5a384e1fb512120930)): ?>
+<?php $component = $__componentOriginal8ebc2cfae60e7fda14142d5a384e1fb512120930; ?>
+<?php unset($__componentOriginal8ebc2cfae60e7fda14142d5a384e1fb512120930); ?>
+<?php endif; ?>
+                                Участвовать
+                            </a>
+                            <a class="btn btn-lg btn-outline-light px-5" href="/promotion">
+                                Подробнее
+                            </a>
+                        </div>
+                        <p class="text text-light mb-0 mt-3">
+                            <b class="text-danger">*</b>
+                            &#160;Акция продлится до <b>31 сентября 2023 года</b>, размеры толстовок 
+                            <br />согласовывайте у менеджера.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
             <div class="row mb-5">
                 <div class="col-12 col-lg-6">
                     <a href="/stock/254c7d33-15ba-11ee-0a80-09a00027e0da">
@@ -416,37 +450,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 pt-5">
-                    <div class="p-5 bg-dark text-white rounded" 
-                    style="background-image: url(/img/banner.png);background-size: cover;background-position: top right;box-shadow: inset 0px -48px 254px 86px #000000bf">
-                        <h2 class="display-3 mb-4 fw-bold"><span class="text-danger">Акция!</span> Толстовка в подарок<br>при первом заказе</h2>
-                        <div class="d-grid d-lg-flex gap-3">
-                            <a href="/signup" class="btn btn-lg btn-primary px-5 d-flex justify-content-center align-items-center gap-2">
-                                <?php if (isset($component)) { $__componentOriginal8ebc2cfae60e7fda14142d5a384e1fb512120930 = $component; } ?>
-<?php $component = $__env->getContainer()->make(App\View\Components\IconAdd::class, ['color' => '#fff']); ?>
-<?php $component->withName('icon-add'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php $component->withAttributes([]); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal8ebc2cfae60e7fda14142d5a384e1fb512120930)): ?>
-<?php $component = $__componentOriginal8ebc2cfae60e7fda14142d5a384e1fb512120930; ?>
-<?php unset($__componentOriginal8ebc2cfae60e7fda14142d5a384e1fb512120930); ?>
-<?php endif; ?>
-                                Участвовать
-                            </a>
-                            <a class="btn btn-lg btn-outline-light px-5" href="/promotion">
-                                Подробнее
-                            </a>
-                        </div>
-                        <p class="text text-light mb-0 mt-3">
-                            <b class="text-danger">*</b>
-                            &#160;Акция продлится до <b>31 сентября 2023 года</b>, размеры толстовок 
-                            <br />согласовывайте у менеджера.
-                        </p>
-                    </div>
-                </div>
+                
             </div>                        
         </div>
     </section>
