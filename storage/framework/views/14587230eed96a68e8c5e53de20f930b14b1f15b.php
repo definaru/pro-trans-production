@@ -5,7 +5,7 @@
     <div class="d-flex align-items-center gap-3 w-50 mobile-search">
         <span class="material-symbols-outlined cp d-lg-block d-none" v-on:click="toggleMenu">menu</span>
         <span class="material-symbols-outlined d-block d-lg-none" v-on:click="toggleMenuMobile">menu</span>
-        <?php if($_SERVER['REQUEST_URI'] !== '/dashboard' && $deal::status() === '1'): ?>
+        <?php if($deal::status() === '1'): ?>
         <form action="/dashboard/result/search" method="post" class="input-group">
             <?php echo csrf_field(); ?>
             <span class="material-symbols-outlined input-group-text bg-light border-0 px-2 text-muted" id="basic-addon1">search</span>

@@ -141,6 +141,7 @@ Route::controller(MainController::class)->group(function () {
     Route::get('/stock/{id}/{limit?}/{offset?}', 'stockFolder');
     Route::get('/product/mercedes-benz/{id}', 'DetailProduct');
     Route::get('/product', 'NoProduct');
+    Route::get('/promotion', 'Promotion');
 });
 
 Route::prefix('doc')->group(function () {

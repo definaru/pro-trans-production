@@ -35,6 +35,12 @@ class MainController extends Controller
         // return redirect()->route('search')->with(['search' => $search, 'text' => $text]);
     }
 
+    
+    public function Promotion()
+    {
+        return view('promotion');
+    }
+
 
     public function PromoCatalog($id, $limit = 10, $offset = 0)
     {

@@ -350,27 +350,24 @@
             </div>
             <div class="row">
                 <div class="col-12 pt-5">
-                    {{-- <div class="p-5 bg-dark text-white rounded" 
+                    <div class="p-5 bg-dark text-white rounded" 
                     style="background-image: url(/img/banner.png);background-size: cover;background-position: top right;box-shadow: inset 0px -48px 254px 86px #000000bf">
-                        <h2 class="display-3 mb-4 fw-bold">Присоединяйтейсь<br> к нашему сообществу</h2>
+                        <h2 class="display-3 mb-4 fw-bold"><span class="text-danger">Акция!</span> Толстовка в подарок<br>при первом заказе</h2>
                         <div class="d-grid d-lg-flex gap-3">
                             <a href="/signup" class="btn btn-lg btn-primary px-5 d-flex justify-content-center align-items-center gap-2">
                                 <x-icon-add color="#fff" />
-                                Присоедиится
+                                Участвовать
                             </a>
-                            <button 
-                                data-bs-toggle="modal" 
-                                data-bs-target="#subscription"
-                                class="btn btn-lg btn-outline-light px-5" 
-                            >
-                                Подписаться
-                            </button>
+                            <a class="btn btn-lg btn-outline-light px-5" href="/promotion">
+                                Подробнее
+                            </a>
                         </div>
                         <p class="text text-light mb-0 mt-3">
-                            <b class="text-danger">*</b> Не нашли нужной детали? Подпишитесь, 
-                            и мы сообщим вам о её поступлении!
+                            <b class="text-danger">*</b>
+                            &#160;Акция продлится до <b>31 сентября 2023 года</b>, размеры толстовок 
+                            <br />согласовывайте у менеджера.
                         </p>
-                    </div> --}}
+                    </div>
                 </div>
             </div>                        
         </div>
