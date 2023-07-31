@@ -76,6 +76,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 
 Route::prefix('api')->group(function () {
     Route::post('files', [MainController::class, 'Files']);
+    Route::post('files/delete', [MainController::class, 'FilesDelete']);
     Route::post('loadstock', [ApiController::class, 'loadStock']);
     Route::post('download/files', [ApiController::class, 'downloadFiles']);
     Route::post('signup', [AuthController::class, 'Sigature']);

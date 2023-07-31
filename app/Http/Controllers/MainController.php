@@ -159,20 +159,50 @@ class MainController extends Controller
         return view('catalog', ['product' => $product, 'limit' => $limit, 'offset' => $offset]);
     }
 
+
+    public function FilesDelete(Request $request)
+    {
+        $uuid = $request->input('uuid');
+        $filename = $request->input('name');
+
+        $path = './img/goods/';
+        unlink($path.$filename.'.jpg');
+        Goods::updateOrCreate(['link' => $uuid], ['image' => '']);
+        return [
+            'header' => 'Успешно',
+            'text' => 'Фото удалено'
+        ];
+    }
+
+
     public function Files(Request $request)
     {
         $request->validate([
             'uuid' => 'required',
-            'file' => 'required'
+            'file' => 'required',
+            'name' => 'required'
         ]);
+        $filename = $request->input('name');
+        $name = $_FILES['file']['name'];
+        $error = $_FILES['file']['error'];
+        $ext = explode('.', $name);
         $uuid = $request->input('uuid');
+        
         $uploaddir = './img/goods/';
-        $uploadfile = $uploaddir . basename($_FILES['file']['name']);
+        $uploadfile = $uploaddir . $filename .'.'. $ext[1];
         if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
             Goods::updateOrCreate(['link' => $uuid], ['image' => $uploadfile]);
-            return redirect('/dashboard/product/details/'.$uuid)->with(['text' => 'Фото товара загружено']);
+            return [
+                'header' => 'Успешно',
+                'text' => 'Фото товара загружено',
+                'type' => 'success'
+            ];
         } else {
-            print_r('Ошибка!');
+            return [
+                'header' => 'Ошибка!',
+                'text' => $error,
+                'type' => 'error'
+            ];
         }
     }
 

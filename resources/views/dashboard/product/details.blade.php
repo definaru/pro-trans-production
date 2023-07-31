@@ -1,6 +1,8 @@
 @php
     $datetime = $time::now()->addHours(3)->locale('ru')->translatedFormat('l, j F Y, H:i');
     $uuid = auth()->user()->verified;
+    $path = './img/goods/'.$product['article'].'.jpg';
+    $image = (file_exists($path)) ? trim($path, '.') : '/img/placeholder.png';
 @endphp
 
 @extends('layout/main')
@@ -80,32 +82,48 @@
                 <div class="col-md-3">
                     @role('customer')
                         <img 
-                            src="{{$images::text($id)['image']}}"
+                            src="{{$image}}"
                             alt="{{$product['name']}}" 
                             class="w-100 rounded" 
                         /> 
                     @endrole
                     @role('admin')
-                    <form id="loaderphoto" onchange="loadPfoto()" action="/api/files" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <label class="position-relative">
-                            @if (session('text'))
-                                <div id="successphoto" class="d-none">{{ session('text') }}</div>
-                            @endif
-                            <img 
+                    <div class="position-relative">
+                        @if ($image !== '/img/placeholder.png')
+                        <div class="position-absolute delete-image" @click="deleteImageFromGood('{{$product['article']}}', '{{$id}}')">
+                            <span class="material-symbols-outlined">delete</span>
+                        </div>                             
+                        @endif
+                        <div v-if="goods.delete" class="position-absolute delete-image" @click="deleteImageFromGood('{{$product['article']}}', '{{$id}}')">
+                            <span class="material-symbols-outlined">delete</span>
+                        </div> 
+                        <label>
+                            <img v-if="goods.image" :src="goods.image" alt="{{$product['name']}}" class="w-100 rounded" />
+                            <img v-else 
                                 id="isEmptyImage"
-                                src="<?=isset($image[0]['image']) ? trim($image[0]['image'], '.') : '/img/placeholder.png';?>" 
+                                src="{{$image}}" 
                                 alt="{{$product['name']}}" 
                                 class="w-100 rounded" 
                             />
-                            <div class="position-absolute delete-image">
-                                <span class="material-symbols-outlined">delete</span>
-                            </div>
-                            <input type="file" name="file" accept="image/png, image/jpeg" class="d-none" />
-                            <input type="hidden" name="uuid" value="{{$id}}" />
-                            <div id="isloader" class="d-flex align-items-center gap-1 mt-2"></div>
-                        </label>
-                    </form>
+
+                            <input 
+                                type="file" 
+                                name="file" 
+                                data-uuid="{{$id}}"
+                                data-article="{{$product['article']}}"
+                                @change="selectImageFromGood($event)" 
+                                accept="image/jpeg" 
+                                class="d-none" 
+                            />
+                            <template v-if="goods.loading">
+                                <div class="d-flex align-items-center justify-content-center w-100 h-100 position-absolute top-0 start-0" style="background: #ffffffa6">
+                                    <span class="spinner-border spinner-border-sm text-danger"></span>
+                                    &#160;Загружаем фото...                                   
+                                </div>
+                            </template>
+                        </label>                                             
+                    </div>
+
                     @endrole
                 </div>
                 <div class="col-md-6">
@@ -177,7 +195,7 @@
                             @if($product['quantity'] == 0)
                                 <div  
                                     id="preorders1"
-                                    data-order="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,{{$product['salePrices']}},{{$images::text($id)['image']}}"
+                                    data-order="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,{{$product['salePrices']}},{{$image}}"
                                     v-on:click="addToOrder('s1')"
                                 >
                                     <button class="btn btn-secondary px-4 d-flex align-items-center gap-2 justify-content-center">
@@ -189,7 +207,7 @@
                                 <div 
                                     id="cards1" 
                                     class="d-flex flex-column"
-                                    data-card="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,{{$product['salePrices']}},{{$product['salePrices']}},{{$images::text($id)['image']}}" 
+                                    data-card="{{$product['id']}},{{$product['article']}},{{$product['name']}},1,{{$product['salePrices']}},{{$product['salePrices']}},{{$image}}" 
                                     v-on:click="addToCard('s1')"
                                 >
                                     <button class="btn btn-lg btn-dark px-4 d-flex align-items-center gap-2 justify-content-center">
