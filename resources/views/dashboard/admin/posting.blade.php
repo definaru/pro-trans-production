@@ -4,7 +4,7 @@
     $table = $excel !== '' ? $xml::parse('./img/xml/'.$excel) : '';
     $isNull = $table ? array_filter($table, function($a){return $a[3] == '';}) : 0;
     $complete = $table ? array_filter($table, function($a){return $a[3] !== '';}) : 0;
-    $pack = $table ? ceil(count($complete)/1000)-1 : [];
+    $pack = $table ? ceil(count($complete)/500)-1 : [];
 @endphp
 
 @extends('layout/main')

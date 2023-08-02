@@ -1,16 +1,17 @@
-<?php
-use Carbon\Carbon;
-$testdata = '2023-06-22 17:13:01';
-//$data = Carbon::parse($testdata)->format('d-m-Y H:i:s');
-$dt = Carbon::createFromFormat('Y-m-d H:i:s', $testdata, 'Europe/Moscow');
-//use Illuminate\Support\Facades\Hash;
-//$password = Hash::make('378b895a-0600-11ee-0a80-0d4600189f0b');
-//header('Content-Type: application/json');
-//$input = '<p data-placeholder="Опишите товар здесь..."><strong>Материал:</strong> Изделие металлическое цилиндрическое с роликом.<br><strong>Описание:</strong> Толкатель клапана распредвала ДВС.<br><strong>Производитель:</strong> Daimler Truck AG<br><strong>Адрес:</strong> Россия, Московская область, г. Мытищи</p>';
+@extends('layout/index', [
+    'title' => 'Проспект Партс',
+    'keywords' => 'ремонт в москве, ремонт машин в мытищи, ремонт двигателя, сервис, service, чинить, автосервис, мерседес бенц, актрос',
+    'description' => 'Каталог, широкий ассортимент комплектующих и расходных материалов для грузовых автомобилей',
+    'image' => 'https://prospekt-parts.com/img/5464765787695.jpg'
+])
 
-//echo $seo::keywords($input).'<br/>';
-//echo strtotime('11.05.1995').'<br/>';
-//echo $password;
+@section('title', 'Проспект Партс')
 
-echo $dt->toRssString();
-?>
+@section('content')
+<div style="height: 1000px" class="mt-5 pt-5">
+    <div style="color: {{$сolors::hex(10066329)}}; {{$сolors::background($сolors::hex(10066329))}};width: 100px; height: 100px">
+        Текст
+    </div>    
+</div>
+
+@endsection

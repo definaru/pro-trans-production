@@ -194,7 +194,11 @@ class MoySklad
     {
         $url = self::msUrl().'product';
         $response = self::post($url, json_encode($data));
-        return $response->json();
+        $result = $response->json();
+        if(isset($result[0]['meta']['href'])) {
+            self::createListGoods($data);
+        }
+        return $result;
     }
 
 

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Carbon\Carbon;
+use App\Models\Colors;
 use App\Models\DaData;
 use App\Models\MoySklad;
 use App\Models\Declension;
@@ -57,6 +58,7 @@ class AppServiceProvider extends ServiceProvider
             'listorder'     => GetOrder::GoodsAreAvailable(),
             'bestsellers'   => GetOrder::Bestsellers(),
             'alllist'       => GetOrder::list(),
+            'сolors'        => new Colors(),
             'xml'           => new Excel(),
             'replacement'   => new Replacement(),
             'names'         => new Names(),

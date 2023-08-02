@@ -49,17 +49,17 @@
                         <li class="d-flex align-items-center gap-2">
                             <x-icon-location size="30px" color="#999"/>
                             <a href="https://yandex.ru/maps/-/CCUCFDAwwA" target="_blank">
-                                <span itemprop="postalCode">141006</span>, 
+                                <span itemprop="postalCode" style="font-size: 14px">141006</span>, 
                                 <span itemprop="addressRegion">Московская обл</span>,
                                 <span itemprop="addressLocality">г Мытищи</span>, 
-                                <span itemprop="streetAddress">проезд 4536, стр 10</span>
+                                <span itemprop="streetAddress" style="font-size: 14px">проезд 4536, стр 10</span>
                             </a>
                         </li>
-                        <li class="d-flex align-items-center gap-2">
+                        <li class="d-flex align-items-center gap-2" style="font-size: 14px">
                             <x-icon-call size="22px" color="#999"/>
                             {!! $contact::getPhone(config('app.phone'), [], true) !!}
                         </li>
-                        <li class="d-flex align-items-center gap-2">
+                        <li class="d-flex align-items-center gap-2" style="font-size: 14px">
                             <x-icon-mark-as-unread size="22px" color="#999"/>
                             {!! $contact::getEmail(config('app.email'), [], true) !!}
                         </li>
